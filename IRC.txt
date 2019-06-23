@@ -1,0 +1,75 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-23T20:40:24+02:00
+
+====== IRC ======
+Created Sonntag 23 Juni 2019
+
+===== General commands =====
+	''/server irc.freenote.net		''connect to server irc.freenote.net
+	''/connect irc.freenote.net		''connect to server irc.freenote.net
+	''/join channelname				''join/create the channel "channelname"
+	''/nick nickname			''set nickname to nickname
+	''/msg uname message''				send private message to user uname
+	''/whois uname''					display info about user uname
+	''/clear [all]''					clears (all) channel's text
+	''/away not here''					set away message "not here"
+	''/back''							exit away mode
+	''/me loves tea''					send action (loves tea)
+	''/quit''							disconnect from server
+	''/msg nickserv register''			register your current nick
+		''password email''
+	''/msg nickserv identify''  			identify yourself
+		''password''
+	''/msg nickserv set''
+		''password newpasswd			''set password to "newpasswd"
+	
+===== irssi =====
+
+==== chat commands ====
+	''/help''							list all available commands
+	<''ALT>+<number>''					switch to window number <number>
+										(each channel has its own window)
+	/connect <TAB>					cycle through list of servers
+	''/disconnect''						disconnect from current server
+	''/n''								list participants of the channel
+	''/part''							leave current channel (and close the window)
+	''/wc''								close current window
+	''/quit''							exit irssi (and close all connections)
+	''<CTRL>+x''						switch between different servers
+													  (connection to multiple servers is possible)
+	''<PgUp>'' or ''<PgDown>''				scroll up or scroll down in window
+	''/network list''					list all networks irssi knows
+	''/script load scrip.pl''			load one of your (Perl) irssi scripts located in [[~/.irssi/scripts]]
+										place in ''~/.irssi/scripts/autorun/'' for auto-load
+										source for scripts: https://scripts.irssi.org
+	''/run <scriptname>''				-same-
+	''/set theme xchat''				load the xchat theme from ~/.irssi/
+													  source for themes: https://irssi.org/themes 
+	''/win 6''							switch to window 6
+	''/win move 2''						move current window to window 2
+
+==== configurational stuff ====
+	''/set''
+		show all settings
+	''/SERVER ADD -auto -network Freenode irc.freenode.net 6667''
+		add the freenode server to known networks and auto-connect on startup
+	''/NETWORK ADD -autosendcmd '^nick mynickname;/^msg nickserv identify password' Freenode''
+		identify/login with mynickname in network Freenode at start-up
+	''/CHANNEL ADD -auto #myChannel Freenode''
+		autojoin channel #myChannel at server Freenode on start-up
+ 	''/layout save''
+		store which channels and queries are in which windows
+	''/save''
+		save all current setting and apply current theme into ~/.irssi/config
+
+
+===== Bitlbee =====
+* irc instant messaging gateway to popular chat networks like AIM, ICQ, Google Talk, twitter, GNU Social from inside an IRC-client (e.g. from irssi)
+* google talk:
+		account add jabber (email)
+		/OPER
+		account (number) set server talk.google.com:5223:ssl
+* twitter:
+		account add twitter (username)
+		/OPER

@@ -1,0 +1,122 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-23T12:23:25+02:00
+
+====== git ======
+Created Sonntag 23 Juni 2019
+
+===== Overview =====
+working directory ---> staging area ---> repository (---> remote repo)
+editing files    git add          git commit     ( git push )
+ current commit (most recent) is called HEAD
+
+===== Setting up a new repo on github and on your PC =====
+1. Create project with <project-name> at github.com
+2. Initialize folder on your PC as a git repo
+	$ ''git init''
+3. Configure git on your PC
+	''$ git config --global user.name "Name2AppearInCommits"''
+	''$ git config --global user.email "myGitHub@email.address"''
+	''$ git config --global core.editor "vim"''
+	**note**: if used w/o ''--global'' (or ''--local''), settings are only for specific project
+4. Bring new/modified file to git's attention (add to //staging area//)
+	''$ git add <some-file>''
+5. commit changes to local repo (from //staging area// to //repo//)
+	''$ git commit -m 'interesting change message and log'''
+	* not using ''-m 'commit message''' will open an editor
+	* common agreement is to have 1st line of 72 characters, then empty line, then longer message (if desired)
+6. Connect local repo to repo at GitHub
+	''$ git remote add origin https://github.com/<username>/<project-name>.git''
+	to check, type: ''git remote -v''
+7. push local repo to GitHub
+	''$ git push''
+	more detailed might be better: ''git push -u origin master''
+
+
+===== Getting a remote repo (you are owner of that repo) =====
+1. Initially clone remote repo to local place (get full copy of repo)
+	''$ git clone <remote_location> <clone_name>''
+	* ''<remote_locate>'' can be web-address or git-repo-folder
+	* ''<clone_name>'' folder into which git will clone the repo
+	* if not set, folder with ''<project-name>'' is created
+	* e.g.:	''git clone git://github.com/aalemann/dotfiles.git''
+			''git clone https://github.com/aalemann/dotfiles.git''
+			''git clone <user>@<server>:<path-to-project>.git''
+2. Get latest version from GitHub
+	''$ git pull''
+3. Push changes you made from local repo to remote repo
+	''$ git push origin master''
+
+
+===== Work with branches =====
+1. Show which branch you are on and lists all projects branches
+	''$ git branch''
+2. Create a new branch (copy of master)
+	''$ git branch <branch-name>''
+3. Switch to master-branch (or any other branch using its name)
+	''$ git checkout master''
+4. Take all changes from my own branch <myBranch> and add them to master branch
+	''$ git merge <myBranch>''
+5. Delete a branch (after it has been successfully merged with ''master'', it is no longer needed and can therefore be deleted, as ''master'' contains all file-changes that were in ''<branch-name>'')  
+	''$ git branch -d <branch_name>''
+
+
+===== Typical workflow when collaborating on a remote repo =====
+1. Fetch and merge changes from remote
+	(check for changes of remote and bring them down to local copy
+	(note: changes are not merged into local repo 
+		   but put into remote-branch (branch-name: origin/master)
+	''$ git fetch''
+	''$ git merge origin/master''
+2. Create branch to work on new project feature
+3. Develop feature on your branch and commit your work
+4. Fetch and merge from remote again (in case new commits were made while you were working)
+5. Push your branch up to the remote for review
+	(remote boss can then review and add to master branch)
+	''$ git push origin <your_branch_name>''
+ 
+  (1. and 4. are a safeguard against merge conflicts, which occur when two branches contain file changes that cannot be merged with the git merge command.)
+
+===== Backtrack/rewind changes =====
+1. Restore file in working dir to version when last made commit (in case you messed around in the working dir)
+	''$ git checkout HEAD <file>''
+2. Unstage file from staging area (resets file in staging area to be same as in HEAD commit) 
+	''$ git reset HEAD <filename>''
+3. Using first 7 characters from commit to reset to this state
+	(use git log to display SHAs)
+	note: you change history!  
+	''$ git reset commit_SHA''
+
+
+===== Other useful commands =====
+	''$ git log''
+		show list of commits
+	''$ git log --pretty=oneline''
+		commit history in oneline
+	''$ git diff <file>''
+		show difference of file between working dir and staging area
+	''$ git diff --cached (oder --staged)''
+		show difference between staged area and last commit
+	''$ git show HEAD''
+		see HEAD commit
+	''$ git commit -a''
+		takes changed files directly from working dir (no need for git add)
+	''$ git rm <file>''
+		remove file from versioning-control, is no longer tracked by git
+	''$ git status''
+		show current status of repo
+	''$ git remote -v''
+		list remotes
+	''$ git help''
+		shows most common git commands
+	''$ git config --list''
+		show settings
+	''$ git commit --amend -m "New commit message"''
+		change last commit message
+	''$ git branch -a''
+		list all branches
+	''$ git remote update && git status''
+		''git remote update'' to bring your remote refs up to date
+		''git status'' to check was is different to my local version
+		then (''git pull origin master'') to bring local up to data
+

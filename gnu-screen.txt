@@ -1,0 +1,67 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-23T10:09:59+02:00
+
+====== gnu-screen ======
+Created Sonntag 23 Juni 2019
+
+===== command line options (when starting screen) =====
+''screen''			start screen
+''screen -S session1	''start new screen session named "session1"
+''screen -r session1''	resume screen session "session1"
+''screen -d session1	detach "session1"''
+''screen -d -r		''resume to a session which is still attached
+''screen -D -RR''		resume to a session when nothing else works
+''screen -ls''		list all running screen sessions
+''screen -rx session1	allow "session1" to be display at multiple computers''
+
+===== screen commands (after screen has been started) =====
+
+==== some general commands ====
+''<ctrl>+a d		''detach current session
+''<ctrl>+a <esc>		''switch to copy mode (enables scrolling)
+''<ctrl>+a b		''send break command to terminal
+''<ctrl>+a [		''switch to copy/scroll mode
+''<ctrl>+?		''show all available commands
+''<ctrl>+a :<command>	''execute screen command (see ''<ctrl>+?'' for list)
+''<ctrl>+a s		''stop output in current window
+''<ctrl>+s		''--same--
+''<ctrl>+a q		''resume output in current window
+''<ctrl>+q		--same--''
+
+==== handing multiple windows inside a screen session ====
+''<ctrl>+a c		''create a new window
+''<ctrl>+a n		''switch to next window
+''<ctrl>+a A		''rename current window
+''<ctrl>+a w		''list all open windows
+''<ctrl>+a 3		''switch to window 3
+''<ctrl>+a k		''kill current window
+''<ctrl>+a d		''detach current session
+
+==== splitting windows ====
+''<ctrl>+a S		''split window horizontally
+''<ctrl>+a |		''split window vertically
+''<ctrl>+a <tab>		''switch to nect pane
+''<ctrl>+a X		''close current pane/window
+''<ctrl>+a :resize -h 10	''set current window (in horizontal split) to size of 10 lines
+''<ctrl>+a Q		''un-split (only show this window)
+''<ctrl>+a :layout save default	''save split window layout 
+									when resuming screen session, layout is still there
+								usually not the case, requires screen version > 4.00.03
+								alternatively, add following 2 lines to .screenrc
+								
+								# make detach and re-attach without losing regions/windows layout
+								layout save default
+
+
+==== monitoring ====
+''<ctrl>+a h		''screenshot of current window into hardcopy.<n>
+''<ctrl>+a M		''switch-on monitoring: report, if something is happening
+''<ctrl>+a _		''silence: report, if nothing has happened for 30 sec.
+
+===== Enable X11 forwarding after re-attaching from a different server =====
+Source: https://www.polibyte.com/2012/05/15/automatically-fixing-the-gnu-screen-environment/
+1. get rescreen script from https://github.com/sciurus/splatbang/blob/master/rescreen
+2. save it in [[/usr/local/bin]] (for example)
+3. add following line to ''.bashrc'' 
+	''trap "if [ -f "$HOME/.rescreen_environment" ]; then source $HOME/.rescreen_environment; fi" SIGUSR1''
