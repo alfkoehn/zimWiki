@@ -89,6 +89,18 @@ Current commit (most recent) is called //HEAD//.
 	''$ git reset commit_SHA''
 
 
+===== Git Configuration =====
+	''~/.gitconfig''			contains global git configuration
+	''$ git config --list''		show git username and email
+	''$ git config --global''		add user name to global git config (appearing in commits)
+		''user.name <name>''
+	''$ git config --global''		add email address to global git config (appearing in commits)
+		''user.email <email>''
+	''$ git config --local''		set user name for current repo
+		''user.name <name>''
+	''$ git config --local''		set email for current repo
+		''user.email <email>''
+
 ===== Other useful commands =====
 	''$ git log''
 		show list of commits
