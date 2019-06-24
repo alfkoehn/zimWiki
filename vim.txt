@@ -1,0 +1,79 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-24T23:30:20+02:00
+
+====== vim ======
+Created Montag 24 Juni 2019
+
+	''u''				undo last change
+	''<CTRL>+R						''redo
+	<CTRL>+p						autocomplete
+	''<CTRL>+n			''undo autocomplete
+	''%								''automatch, e.g. closing brackets
+	''gg								''goto 1st line
+	''G								''goto last line
+	''za								fold/unfold code block''
+	''zM				fold all''
+	''zR								unfold all''
+
+
+
+===== vim-plugins via Vundle =====
+Source: https://github.com/gmarik/Vundle.vim.git
+1. install Vundle
+	''$ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim''
+2. ''~/.vimrc'' 
+	''""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
+	''" set Vundle environement ''
+	''""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
+	''set nocompatible            "required (also for other vim stuff)''
+	''filetype off                "required''
+
+	''" set runtime path to include Vundle and initialize''
+	''set rtp+=~/.vim/bundle/Vundle.vim''
+
+	''call vundle#begin()''
+
+	''" let Vundle manage Vundle (required)''
+	''Plugin 'gmarik/Vundle.vim'''
+
+	''" add plugins here (github-name/projectname)''
+	''Plugin 'scrooloose/nerdtree'''
+
+	''call vundle#end()''
+	''""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
+	''filetype plugin indent on   "smartindent for specific languages (like idl)''
+3. after restarting vim or source vimrc file in vim ('':source %''), plugins must be installed, do this by typing
+   '':BundleInstall''  or '':PluginInstall''
+   if "''>''" changed to "''+''" it is installed
+   close the buffer with :bdelete
+
+4) some useful commands
+   * list all installed plugins
+	   :PluginList
+   * update plugins
+	   :PluginUpdate
+   * reinstall plugins
+	   :PluginInstall!
+   * delete installed plugin
+	   :PluginList
+	   move cursor to plugin to be deleted
+	   <shift>+d
+	   remove line from .vimrc 
+   * search and install plugin using Vundle
+	   :PluginSearch search_expression
+	   move cursor to desired plugin
+	   i to install plugin
+	   copy the line and paste it to .vimrc file
+   * install plugins from github 
+	   Plugin github_repo_user/github_repo_project_name
+	   save file and restart vim (or :source %)
+	   :PluginInstall will install the plugin   
+
+5) some useful plugins
+   * NERDTree, github: scrooloose/nerdtree
+	  :NERDTree      open explorer-like sidebar
+	  :Bookmark foo  create a bookmark in that folder
+	  B              list bookmarks
+	  ?              help (list commands) 
+	  q              close NERDTree window

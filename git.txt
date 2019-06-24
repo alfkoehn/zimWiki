@@ -101,6 +101,7 @@ Current commit (most recent) is called //HEAD//.
 	''$ git config --local''		set email for current repo
 		''user.email <email>''
 
+
 ===== Other useful commands =====
 	''$ git log''
 		show list of commits
