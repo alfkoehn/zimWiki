@@ -1,0 +1,41 @@
+digraph G {
+    /* set direction of graph to be left-->right */
+    rankdir="LR";
+
+    /* make boxes instead of ellipses */
+    node [shape=box];
+
+    /* asign weight to edges and thus achieve a horizontal alignment */
+    edge[ weight=2 ];
+
+    /* assign labels to nodes */
+    wc [label="working copy"];
+    id [label="index"];
+    lr [label="local repo"];
+    rr [label="remote repo"];
+
+    wc -> id [label="git add"];
+    id -> lr [label="git commit"];
+    lr -> rr [label="git push"];
+
+    edge[ weight=0 ];
+
+    iv1 [shape=point, width=0, height=0, style=invisible, label=none, fixedsize="false"];
+    iv2 [shape=point, width=0, height=0, style=invisible, label=none, fixedsize="false"];
+
+    { 
+        rank=same; 
+        rr; 
+        iv1;
+    }
+
+    { 
+        rank=same; 
+        wc; 
+        iv2;
+    }
+
+    rr  -> iv1 [arrowhead=none]; 
+    iv1 -> iv2 [arrowhead=none, label="git pull"];
+    iv2 -> wc; 
+}

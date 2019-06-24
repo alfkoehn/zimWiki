@@ -6,9 +6,10 @@ Creation-Date: 2019-06-23T12:23:25+02:00
 Created Sonntag 23 Juni 2019
 
 ===== Overview =====
-working directory ---> staging area ---> repository (---> remote repo)
-editing files    git add          git commit     ( git push )
- current commit (most recent) is called HEAD
+{{./diagram.png?type=diagram}}
+Note that the //index// is also referred to as //staging area//.
+
+Current commit (most recent) is called //HEAD//.
 
 ===== Setting up a new repo on github and on your PC =====
 1. Create project with <project-name> at github.com
