@@ -118,50 +118,44 @@ Current commit (most recent) is called //HEAD//.
 	''$ git reset commit_SHA''
 
 
+===== Replacing local changes =====
+	''$ git checkout <file>''				replace changes in working tree with latest content in HEAD (changes already in index will be kept)
+														(i.e. undo local changes)
+	''$ git fetch origin &&''				drop all local changes and commits by fetching latest history from server
+		 ''git reset --hard origin/master''					and point local master branch to it
+
+
 ===== Git Configuration =====
-	''~/.gitconfig''			contains global git configuration
-	''$ git config --list''		show git username and email
-	''$ git config --global''		add user name to global git config (appearing in commits)
-		''user.name <name>''
-	''$ git config --global''		add email address to global git config (appearing in commits)
-		''user.email <email>''
-	''$ git config --local''		set user name for current repo
-		''user.name <name>''
-	''$ git config --local''		set email for current repo
-		''user.email <email>''
+	''~/.gitconfig''					contains global git configuration
+	''$ git config --list''				show git username and email
+	''$ git config --global user.name <name>''		add user name to global git config (appearing in commits)
+	''$ git config --global user.email <email>''	add email address to global git config (appearing in commits)
+	''$ git config --local user.name <name>''		set user name for current repo
+	''$ git config --local user.email <email>''		set email for current repo
 
 
 ===== Other useful commands =====
-	''$ git log''
-		show list of commits
-	''$ git log --pretty=oneline''
-		commit history in oneline
-	''$ git diff <file>''
-		show difference of file between working dir and staging area
-	''$ git diff --cached (oder --staged)''
-		show difference between staged area and last commit
-	''$ git show HEAD''
-		see HEAD commit
-	''$ git commit -a''
-		takes changed files directly from working dir (no need for git add)
-	''$ git rm <file>''
-		remove file from versioning-control, is no longer tracked by git
-	''$ git status''
-		show current status of repo
-	''$ git remote -v''
-		list remotes
-	''$ git help''
-		shows most common git commands
-	''$ git config --list''
-		show settings
-	''$ git commit --amend -m "New commit message"''
-		change last commit message
-	''$ git branch -a''
-		list all branches
-	''$ git remote update && git status''
-		''git remote update'' to bring your remote refs up to date
-		''git status'' to check was is different to my local version
-		then (''git pull origin master'') to bring local up to data
+	''$ git log					''show list of commits
+	''$ git log --pretty=oneline			show compressed ''commit history in oneline
+	''$ git log --author=Alice			''show only commits from Alice
+	''$ git log --graph --oneline --decorate --all	''show tree with all branches decorated with names of tags and names of branches
+	''$ git log --name-status				''show files which changed in each commit
+	''$ git tag 0.1 <commit-id>			''tag commit (useful for releases), usually first 10 chars of //commid-id// is ok
+
+	''$ git diff <file>				''show difference of file between working dir and staging area
+	''$ git diff --cached (oder --staged)		''show difference between staged area and last commit
+	''$ git show HEAD					''see HEAD commit
+	''$ git commit -a					''takes changed files directly from working dir (no need for git add)
+	''$ git rm <file>					''remove file from versioning-control, is no longer tracked by git
+	''$ git status					''show current status of repo
+	''$ git remote -v					''list remotes
+	''$ git help					''shows most common git commands
+	''$ git config --list				''show settings
+	''$ git commit --amend -m "New commit message"	''change last commit message
+	''$ git branch -a					''list all branches
+	''$ git remote update && git status		git remote update'' to bring your remote refs up to date
+												  ''git status'' to check was is different to my local version
+												  then (''git pull origin master'') to bring local up to data
 
 
 ===== Good git commit messages =====
