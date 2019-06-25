@@ -1,0 +1,67 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-25T21:21:37+02:00
+
+====== Valgrind ======
+Created Dienstag 25 Juni 2019
+
+Valgrind is a tool for memory debugging and memory leak detection, and for profiling (checking performance)
+
+===== Typical usage =====
+1. Compile with ''-g'' to include line numbers in valgrind output
+	''$ gcc -g myCode.c''
+2. Show program output + valgrind output (prefixed with ''=='')
+	''$ valgrind ./a.out''   
+3. Valgrind can detect 
+	a. misuse of uninitialized values
+	b. when accessing memory you shouldn't (e.g. off-by-one-errors)
+	c. invalid freeing of memory
+	d. data races (note: might require to run)
+		''$ valgrind --tool=helgrind ./a.out''
+	e. Find memory leaks
+		''$ valgrind --leak-check=yes --track-origins=yes --show-reachable=yes ./a.out''
+4. Use valgrind to optimize (profiling)
+	a. function profiles
+		''$ valgrind --tool=callgrind ./a.out''
+		--> create output file similar to callgrind.out.2887
+		--> use KCachegrind to GUI visualize output      
+	b. memory profiling
+		''$ valgrind --tool=massif''
+		--> evaluate where most memory is allocated
+
+
+===== Problem when using hdf5 (1.6.6) in C =====
+Valgrind complains when using ''hdf5'', official comment from https://ftp.hdfgroup.org/HDF5/faq/valgrind.html
+
+Simply opening a file and closing it like
+	''hid_t file    = H5Fcreate("test.h5", H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);''
+''    herr_t status = H5Fclose(file);''
+''    return 0;''
+results in a valgrind complaint like
+	''==24788== Syscall param write(buf) points to uninitialised byte(s)''
+''    ==24788==    at 0x40007F2: (within /lib/ld-2.6.1.so)''
+''    ==24788==    by 0x434FC52: write (in /lib/i686/cmov/libc-2.6.1.so)''
+''    ==24788==    by 0x408E28B: H5FD_sec2_write (in /home/domel/pack/i686/lib/libhdf5.so.0.0.0)''
+''    ==24788==  Address 0x4443170 is 440 bytes inside a block of size 1,864 alloc'd''
+''    ==24788==    at 0x4024765: malloc (vg_replace_malloc.c:149)''
+''    ==24788==    by 0x4092B6A: H5FL_malloc (in /home/domel/pack/i686/lib/libhdf5.so.0.0.0)''
+
+Small memory leak on simply creating a group:
+	''hid_t group   = H5Gcreate(file, gname.c_str (), 0);''
+''    herr_t status = H5Gclose(group);''
+valgrind output:
+	''==24788== ERROR SUMMARY: 2 errors from 1 contexts (suppressed: 21 from 1)''
+''    ==24788== malloc/free: in use at exit: 16 bytes in 2 blocks.''
+''    ==24788== malloc/free: 1,115 allocs, 1,113 frees, 454,594 bytes allocated.''
+''    ==24788== For counts of detected errors, rerun with: -v''
+''    ==24788== searching for pointers to 2 not-freed blocks.''
+''    ==24788== checked 133,708 bytes.''
+
+Answer from FAQ:
+The HDF5 library has internal free lists of memory structures, which can confuse memory allocation checking tools, like valgrind and Purify. Also, in the ''1.6.x'' branch we were writing out "known empty, but unitialized" portions of memory, which memory checkers also whine about.
+
+If you are going to use a tool like valgrind or Purify, here's how to build the HDF5 distribution so that you don't get false memory leaks reported. For the **1.6.x** branch, set the "''H5_USING_PURIFY''" preprocessor symbol to force memory to be initialized and to disable the internal free lists. If you just want to disable the internal free lists, you can define "''H5_NO_FREE_LISTS''". These symbols should be defined when building the HDF5 distribution, and I usually use something like this command to configure the library, which puts the preprocessor symbols in the compile line for the library:
+
+	''env CFLAGS="-DH5_USING_PURIFY" path/to/configure''
+
+For the **1.8.0** branch, it's easier, there are two configure options that we added: ''--enable-using-memchecker'' turns off the internal free lists and ''--enable-clear-file-buffers'' forces memory to be initialized. Both of these are displayed in the "''configure --help''" output, if you want to refer to their descriptions there. 
