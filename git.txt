@@ -11,6 +11,26 @@ Note that the //index// is also referred to as //staging area//.
 
 Current commit (most recent) is called //HEAD//.
 
+===== Basic commands =====
+	''$ git init''				create new repo in current directory
+	''$ git clone /repo_path	''		create working copy of local repo
+	''$ git close <user>@host:/repo_path''	create working copy of remote repo
+	
+	''$ git add <file>''			add/update file (or path) to index
+	''$ git commit -m "fix bug#42"	''	commit changes to HEAD (including log message)
+	''$ git rm <file>''				remove file (or path) from being tracked by git (don't forget to ''commit'' afterwards)
+	''$ git diff''				show changes not yet added to index
+	''$ git diff --cached''			show what will be committed (i.e. differences between index & HEAD)
+	
+	''$ git remote add origin <server>''	connect local repo to remote repo
+										   (link server to alias origin; run if no clone before)
+	''$ git push origin master	''	push changes (from HEAD) to remote repo (change master if desired)
+	''$ git pull <remote>''			pull (fetch & merge) changes from remote repo
+	''$ git remote -v''				show URL that git has stored for the alias origin
+	
+	''$ git status''				show a brief status message
+
+
 ===== Setting up a new repo on github and on your PC =====
 1. Create project with <project-name> at github.com
 2. Initialize folder on your PC as a git repo
@@ -50,16 +70,25 @@ Current commit (most recent) is called //HEAD//.
 
 
 ===== Work with branches =====
-1. Show which branch you are on and lists all projects branches
-	''$ git branch''
-2. Create a new branch (copy of master)
-	''$ git branch <branch-name>''
-3. Switch to master-branch (or any other branch using its name)
-	''$ git checkout master''
-4. Take all changes from my own branch <myBranch> and add them to master branch
-	''$ git merge <myBranch>''
-5. Delete a branch (after it has been successfully merged with ''master'', it is no longer needed and can therefore be deleted, as ''master'' contains all file-changes that were in ''<branch-name>'')  
-	''$ git branch -d <branch_name>''
+	''$ git branch''					show which branch you are on and lists all projects branches
+	''$ git branch <branch>	''			create new branch <branch-name> (copy of master)
+	''$ git checkout <branch>	''			switch to branch <branch-name>
+	''$ git checkout -b <branch>	''		create new branch <branch-name> and switch to it
+	''$ git branch -d <branch>''			delete <branch-name> (must be fully merged)
+												  (after is has successfully merged with master, it is no longer needed and can be deleted as master   
+												  contains all file-changes that were in <//branch//>)
+	''$ git branch -D <branch>''			delete <branch-name> (ignoring merge status)
+	
+	''$ git push origin <branch>	''		push <//branch-name//> to remote repo //origin//
+	''$ git pull master''				update local repo (fetch & merge remote changes in master branch into current branch)
+	''$ git fetch <remote-alias>	''		download new date from remote repo (no merge, has to be done manually)
+	
+	''$ git merge <branch>	''			merge <branch> into current branch (take all changes from <branch> and add them to current branch)
+												  solve conflicts manually by editing corresponding files and ''git add <file>'' after that
+	''$ git diff <b1> <b2>''				show differences between branches <//b1//> and <//b2//>
+															  usually done before merging them
+	
+	''$ git remote show <remote-alias>	''	show info about remote repo
 
 
 ===== Typical workflow when collaborating on a remote repo =====
@@ -133,4 +162,13 @@ Current commit (most recent) is called //HEAD//.
 		''git remote update'' to bring your remote refs up to date
 		''git status'' to check was is different to my local version
 		then (''git pull origin master'') to bring local up to data
+
+
+===== Good git commit messages =====
+1. Limit subject to 1 line with roughly 50 chars
+2. Imperative mood in subject line (read as //if applied, the commit will <your-commit-subject>//)
+3. No period at end of subject line
+4. Blank line between subject and body (note: for small/tiny commits, a body might not be needed)
+5. Wrap body text at approximately 72 characters (in vim, type '':set textwidth=72'')
+6. Use body to explain what and why and not how
 
