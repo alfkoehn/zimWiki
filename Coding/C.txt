@@ -1,0 +1,255 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-25T20:38:53+02:00
+
+====== C ======
+Created Dienstag 25 Juni 2019
+
+===== Pointer and array notation =====
+**Note**:  arrays and pointers are not really the same (though often said)
+	   pointer stores a single memory address, array is contiguous area of memory
+'''
+
+int a[8];           // a is an array of 8 integers
+int *a;             // a is a pointer to an integer
+int* a[8];          // array of 8 int pointers (array of 8 pointers to integers)
+int *(a[8]);        // same as above
+int (*a)[8];        // a is a pointer to an array of 8 integers
+int (*a[8])[5];     // a is array of 8 pointers each pointing to different int array of size 5
+int **a[8];         // a is an array of 8 pointers to pointer to integer
+'''
+
+
+	--> note the "**right-left rule**"
+
+The following statements are all equivalent:
+	''a[i] = 10;   ''
+''    *((a)+(i)) = 10;        // = *(a+i)''
+''    *((i)+(a)) = 10;        // = *(i+a)''
+''    i[a] = 10;''
+
+==== Simple usage of pointers ====
+	''int n;		       // integer variable''
+''    int *p;		   // pointer to an integer''
+''    p = &n      	   // p points now to n''
+''    *p = 2;     	   // set n to 2''
+''    (*p)++;     	   // increment value p points to by 1''
+''    *p++;       	   // increment p itself by bytes corresdonding to size of assigned data type''
+
+==== Pointers and funcions ====
+	''// does not work when calling with doubler(y)''
+''    void doubler( int x ) {''
+''        x *= 2;''
+''    }''
+
+''    // does work when calling with doubler(&y)''
+''    void doubler( int *x ) {''
+''        *x *= 2;''
+''    }''
+
+	==> if passing value of a variable into a function (with no &) then function can't modify original variable
+	==> if passing pointer pointer into a function then it can change variable's value unless you use const
+	Note: passing const pointers is mostly used for large structures,
+			  copying a 32-bit pointer is cheaper than copying the thing it points to
+
+	''// return sum of array in value ''
+''    int sumArr( int N_elements, const int *arr )''
+''    // equivalent to above ''
+''    int sumArr( int N_elements, const int arr[] )''
+
+==== Nice table to illustrate concepts ====
+Source: http://stackoverflow.com/questions/4607128/in-c-are-arrays-pointers-or-used-as-pointers?rq=1
+'''
+Declaration: T a[N];
+    Expression    Type    Converts to     Value
+    ----------    ----    ------------    -----
+             a    T [N]   T *             Address of first element in a;
+                                            identical to writing &a[0]
+            &a    T (*)[N]                Address of the array; value is the same
+                                            as above, but the type is different
+      sizeof a    size_t                  Number of bytes contained in the array
+                                            object (N * sizeof T)
+            *a    T                       Value at a[0]
+          a[i]    T                       Value at a[i]
+         &a[i]    T *                     Address of a[i] 
+
+Declaration: T a[N][M];
+    Expression     Type        Converts to     Value
+    ----------     ----        ------------    -----
+              a    T [N][M]    T (*)[M]        Address of the first subarray (&a[0])
+             &a    T (*)[N][M]                 Address of the array (same value as
+                                                 above, but different type)
+       sizeof a    size_t                      Number of bytes contained in the
+                                                 array object (N * M * sizeof T)
+             *a    T [M]      T *              Value of a[0], which is the address
+                                                 of the first element of the first subarray
+                                                 (same as &a[0][0])
+           a[i]    T [M]      T *              Value of a[i], which is the address
+                                                 of the first element of the i'th subarray
+          &a[i]    T (*)[M]                    Address of the i-th subarray; same value as
+                                                 above, but different type
+    sizeof a[i]    size_t                      Number of bytes contained in the i'th subarray
+                                                 object (M * sizeof T)
+          *a[i]    T                           Value of the first element of the i'th 
+                                                 subarray (a[i][0])
+        a[i][j]    T                           Value at a[i][j]
+       &a[i][j]    T *                         Address of a[i][j]
+
+Declaration: T a[N][M][O];
+    Expression        Type             Converts to
+    ----------        ----             -----------
+             a        T [N][M][O]      T (*)[M][O]
+            &a        T (*)[N][M][O]
+            *a        T [M][O]         T (*)[O]
+          a[i]        T [M][O]         T (*)[O]
+         &a[i]        T (*)[M][O]
+         *a[i]        T [O]            T *
+       a[i][j]        T [O]            T *
+      &a[i][j]        T (*)[O]
+      *a[i][j]        T 
+    a[i][j][k]        T
+'''
+
+
+===== Memory allocation for arrays =====
+**Note 1**:	preferred way of malloc call for C (which will NOT work in C++) is
+		''int *arr = malloc(length * (sizeof *arr));'' 
+		instead of casting the result of malloc, which would look like
+		''int *arr = (int *)malloc(length * (sizeof *arr));''
+		or (more errorprone due to possible typos)
+		''int *arr = (int *)malloc(length * sizeof(int));''
+**Note 2**:	more flexible with sizeof-call (and less errorprone due to less typo-probability)
+		''(sizeof *arr5)	  <-->	 sizeof( double *)''
+		''(sizeof **arr5)   <-->'' 	 ''sizeof( double )''
+		(example for double here)
+**Note 3**:	better use calloc instead of malloc (array is then initiallized with 0)
+		''int *arr = calloc( length, sizeof *arr )''
+
+
+==== 2D arrays ====
+1. Using a single pointer
+
+		''int *arr1 = (int *)malloc(Nrows * Ndims * sizeof(int));''
+
+		''// access with: *(arr1 + ii*Nrows + jj) = 1;''
+
+2. Using an array of pointers
+	'''
+	
+	int *arr2[Nrows];
+	for (ii=0; ii<Nrows; ii++)
+	    arr2[ii] = (int *)malloc(Ncols * sizeof(int)); 
+	
+	// access with: arr2[ii][jj] = 1; 
+	// note that arr2[ii][jj] is same as *(*(arr2+ii)+jj)
+	'''
+
+3. Using pointer to a pointer
+	'''
+	
+	int **arr3 = (int **)malloc(Nroms * sizeof(int *));
+	for (ii=0; ii<Nrows; ii++)
+	    arr3[ii] = (int *)malloc(Ncols * sizeof(int));
+	
+	// note that arr3[ii][jj] is same as *(*(arr+ii)+jj)
+	'''
+
+4. Using double pointer and one malloc call for all rows
+	'''
+	
+	int **arr4;
+	arr4  = (int **)malloc(sizeof(int *) * Nrows);
+	arr4[0] = (int *)malloc(sizeof(int) * Ncols * Nrows);
+	for(ii = 0; ii < Nrows; ii++)
+	    arr4[ii] = (*arr4 + Ncols * ii);
+	
+	// access with arr4[ii][jj] = 1;  OR *(*(arr+i)+j) = 1;
+	'''
+
+
+
+===== Function pointers =====
+Function name (label) is implicitely converted to a pointer to itself
+⇒	function names can be used where function pointers are required as input
+	address-of (&) and value-at-address (*) operators are (almost always) redundant when used against function names
+
+example code:
+{{{code: lang="c" linenumbers="True"
+	#include <stdio.h>
+
+	// function prototypes
+    int add(int x, int y);
+    int subtract(int x, int y);
+    int domath(int (*mathop)(int, int), int x, int y);
+    
+    // add x + y
+    int add(int x, int y) {
+        return x + y;
+    }
+    
+    // subtract x - y
+    int subtract(int x, int y) {
+	    return x - y;
+    }
+    
+    // run the function pointer with inputs
+    int domath(int (*mathop)(int, int), int x, int y) {
+        return (*mathop)(x, y);     // would also work: mathop(x,y)
+    }
+
+    // calling from main
+    int main() {
+
+        // call math function with add
+        int a = domath(add, 10, 2);
+        printf("Add gives: %d\n", a);
+    
+        // call math function with subtract
+        int b = domath(subtract, 10, 2);
+        printf("Subtract gives: %d\n", b);
+    }
+}}}
+
+
+
+===== Check if a file exists =====
+
+	''#include <sys/stat.h>''
+''    // Check if a file exists''
+''    // return true if and only if the file exists, false otherwise''
+''    bool fileExists(const char* file) {''
+''           struct stat buf;''
+''           return (stat(file, &buf) == 0);''
+''    }''
+
+	''struct stat st;''
+''    if(stat("/tmp",&st) == 0)''
+''        printf(" /tmp is present\n");''
+
+	''DIR* dir = opendir("mydir");''
+''    if (dir) {''
+''        /* Directory exists. */''
+''        closedir(dir);''
+''    }''
+''    else if (ENOENT == errno) {''
+''        /* Directory does not exist. */''
+''    }''
+''    else {''
+''        /* opendir() failed for some other reason. */''
+''    }''
+
+
+===== Executing system commands =====
+	''#include <stdio.h>''
+''    #include <unistd.h>''
+
+''    void main() {''
+''        char *name[] = {''
+''            "/bin/bash",''
+''            "-c",''
+''            "echo 'Hello World'",''
+''            NULL''
+''        };''
+''        execvp(name[0], name);''
+''    }''
+
