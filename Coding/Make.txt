@@ -1,0 +1,42 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-25T11:30:19+02:00
+
+====== Make ======
+Created Dienstag 25 Juni 2019
+
+* To compile your code, you usually do
+	''$ gcc -Wall test.c test2.c -o test''
+* With increasing number of files this becomes annoying, also when you have only made a change to one file (no need to compile everything again then)
+	==> use Makefiles
+* syntax of a makefile:
+	
+	''target: dependencies''
+	''[tab] command''
+	
+* example:
+'''
+
+all: test
+
+test: test.o test2.o
+    gcc -Wall test.c test2.c -o test
+
+test.o: test.c
+    gcc -Wall -c test.c
+
+test2.o: test2.c
+    gcc -Wall -c test2.c
+
+clean:
+    rm -rf *.o test
+'''
+
+* use with 
+	''$ make test''
+	--> scan the Makefile, build, if neccessary, the dependencies of test and execute command to build test
+	''$ make clean''
+	--> remove all non-required object or executable files before compilation cycle
+* nice feature about make is that is knows which files have changes 
+	==> only builds those dependencies that are required
+	==> easier for programmer to compile + minimize compilation time

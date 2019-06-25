@@ -1,0 +1,9 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-25T11:29:21+02:00
+
+====== Coding ======
+Created Dienstag 25 Juni 2019
+
+This page will contains some infos about the programming languages I usually work with.
+
