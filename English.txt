@@ -1,0 +1,31 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-29T01:22:12+02:00
+
+====== English ======
+Created Samstag 29 Juni 2019
+
+===== Commonly used expression =====
+* //fine with/by me//  used to express permission (or no objection)
+* //fine for me // used when  //fine in my opinion//  is meant
+* //derive  //vs.  //deduce//
+  //deduce// impliziert eher grobe Abschätzung, nicht Verwendung von Formel [e.ho]
+* //whose//  cannot be simply replaced by  //which//  (but by  //of which //)
+	→ //which // is not necessarily a possessive noun
+	   "I placed the phone whose screen was broken in the bin"              	OK
+	   "I placed the phone which screen was broken in the bin"          		NOT OK
+	   "I replaced the phone, the screen of which was broken, in the bin"   	OK 
+
+
+===== Figure caption =====
+* //Courtesy of Hans.A.//  = mit freundlicher Genehmigung von Hans.A.
+* NOT: //Courtesy Hans.A.//
+
+===== Email =====
+* signature should contain function and department
+* formal: 				//Sincerely//, //Kind regards//
+* less formal:				//Regards//  followed by only first name
+* very relaxed:			//Cheers//
+* heavy email exchange:	//Thanks//
+* adjust to your email partner
+
