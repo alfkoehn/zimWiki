@@ -1,0 +1,22 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-29T00:11:29+02:00
+
+====== gnuplot ======
+Created Samstag 29 Juni 2019
+
+* set output to terminal (e.g. if you don't have x-forwarding, or a slow connection)
+	''set term dumb''
+* read csv data
+	''set datafile separator ','''
+	''set datafile separator '\t'''
+* setting xrange and plot-command in one line
+	''plot [-pi:pi] sin(x)''
+* multiple plots side by side
+	''set multiplot layout 2,2''
+	''plot sin(x)''
+	''plot cos(x)''
+	''plot tan(x)''
+	''plot tanh(x)''
+* iterations are possible
+	''plot [-pi:pi] for [i in "0 1.57 -1.57"] sin(x+i)''
