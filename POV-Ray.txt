@@ -1,0 +1,44 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-06-29T00:16:22+02:00
+
+====== POV-Ray ======
+Created Samstag 29 Juni 2019
+
+===== Loops =====
+1) while-loop example
+'''
+
+union{ //-------------------------------
+#local Cntr = 0; // start
+// while loop
+#while ( Cntr <= 5 )
+
+    object{ MyObject
+            translate<0,0,Cntr*2>
+          } // end of object
+
+    #local Cntr = Cntr + 1; // next
+    #end // -------- end of #while loop
+
+    rotate<0,0,0>
+    translate<0,0,0>
+} // end of union ----------------------
+'''
+
+
+2) for loop example
+	
+	''union{ //-----------------------------''
+''        //#for (Identifier, Start, End [, Step])''
+''        #for (Cntr, 0, 5, 1)''
+
+''            object{ MyObject''
+''                    translate<0,0, Cntr*2 >''
+''                  } // end of object''
+
+''        #end // ----------- end of #for loop''
+
+''        rotate<0,0,0>''
+''        translate<0,0,0>''
+''    } // end of union --------------------''
