@@ -6,16 +6,15 @@ Creation-Date: 2019-06-24T23:30:20+02:00
 Created Montag 24 Juni 2019
 
 	''u''				undo last change
-	''<CTRL>+R						''redo
+	''<CTRL>+R			''redo
 	<CTRL>+p						autocomplete
 	''<CTRL>+n			''undo autocomplete
-	''%								''automatch, e.g. closing brackets
-	''gg								''goto 1st line
-	''G								''goto last line
-	''za								fold/unfold code block''
-	''zM				fold all''
-	''zR								unfold all''
-
+	''%				''automatch, e.g. closing brackets
+	''gg				''goto 1st line
+	''G				''goto last line
+	''za				''fold/unfold code block
+	''zM				''fold all
+	''zR				''unfold all
 
 
 ===== vim-plugins via Vundle =====
