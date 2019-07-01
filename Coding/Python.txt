@@ -1,0 +1,72 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-01T12:37:52+02:00
+
+====== Python ======
+Created Montag 01 Juli 2019
+
+===== Python virtual environments =====
+The idea is to create an isolated environment for a Python project. This has the advantage that each project has its own dependencies and libraries.
+
+==== Using virtual environments ====
+1. If not using Python 3, ''virtualenv'' has to be installed first:
+
+	''$ pip install virtualenv''
+	
+	 As for Python 3, the ''venv'' module is among the standard libraries already installed.
+2. Create a new virtual environment inside the current directory:
+'''
+
+# Python 2:
+$ virtualenv env
+
+# Python 3
+$ python3 -m venv env
+'''
+
+
+3. To use the environment in isolation, it needs to be activated:
+
+'''
+$ source env/bin/activate
+(env) $
+'''
+
+
+	 Prompt is prefixed with the name of the environment (''env'', in our case). This is the indicator that ''env'' is currently active, which means the python executable will only use this environment’s packages and settings. To install packages within the active environment, simply do
+
+	''(env) $ pip install numpy''
+
+4. To list all installed packages within the virtual environment, you can //freeze// its state:
+
+	''(env) $ pip freeze > requirements.txt''
+	
+	 Later, when setting up a new environment which should consist of the same packages, one can do
+
+	''(env) $ pip install -r requirements.txt''
+
+5. Leave (deactivate) the environment:
+
+'''
+(env) $ deactivate
+'''
+
+
+==== Managing virtual environments with virtualenvwrapper ====
+Virtual environments are good when it comes to managing their own environment. After creating a few of those, it can become cumbersome to keep the overview. The tool ''virtualenvwrapper'' was developed for this problem. It's basically just some wrapper scripts around ''virtualenv''.
+A few advantages are:
+	* Organizes all virtual environments in one location
+	* Provides methods to help create, delete, and copy environments
+	* Provides a single command to switch between environments
+	* provides tab-completion on environment names
+
+	$ ''pip install virtualenvwrapper						''install virtualenvwrapper
+	$ ''export WORKON_HOME=~/Envs''							place all future virtual environments created with virtualenv in ~/Envs
+	$ ''source /usr/local/bin/virtualenvwrapper.sh''
+	$ ''mkvirtualenv project_folder''						creates the project_folder folder inside [[~/Envs]]
+	''$ workon project_folder''				Work on a virtual environment (also deactivate current environment)
+	''$ deactivate''					deactivate virtual environment
+	''$ rmvirtualenv venv''				delete virtual environment venv
+
+
+

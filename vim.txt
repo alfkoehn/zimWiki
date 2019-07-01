@@ -17,6 +17,47 @@ Created Montag 24 Juni 2019
 	''zR				''unfold all
 
 
+===== Cursor movement =====
+	''h''					move cursor left
+	''j''					move cursor down
+	''k''					move cursor up
+	''l''					move cursor right
+	''H''					move to top of screen
+	''M''					move to middle of screen
+	''L''					move to bottom of screen
+	''w''					jump forward to start of a word
+	''W''					jump forward to start of a word that can contain punctuations
+	''e''					jump forward to end of a word
+	''E''					jump forward to end of a word than can contain punctuations
+	''b''					jump backwards to start of a word
+	''B''					jump backwards to start of a word that can contain punctuations
+	''%''					move to matching character (brackets: ''()'', ''{}'', ''[]'')
+	''0''					jump to start of line
+	''^''					jump to first non-blank character of line
+	''$''					jump to end of line
+	''g_''					jump to last non-blank character of line
+	''gg''					go to first line of document
+	''G''					go to last line of document
+	''5G''					go to line 5
+	''fx''					jump to next occurrence of character x
+	''tx''					jump to before next occurrence of character x
+	''Fx''					jump to previous occurrence of character x
+	''Tx''					jump to after previous occurrence of character x
+	'';''					repeat previous f, t, F, T
+	'',''					repeat previous f, t, F, T - backwards
+	''}''					jump to next paragraph/function/block
+	''{''					jump to previous paragraph/function/block
+	''zz''					center cursor on screen
+	''<ctrl>+e''				move screen down one line (not cursor)
+	''<ctrl>+y''				move screen up one line (not cursor)
+	''<ctrl>+b''				move back one full screen
+	''<ctrl>+f''				move forward one full screen
+	''<ctrl>+u''				move back 1/2 screen
+	''<ctrl>+d''				move forward 1/2 screen
+	
+	
+
+
 ===== vim-plugins via Vundle =====
 Source: https://github.com/gmarik/Vundle.vim.git
 1. install Vundle
