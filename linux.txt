@@ -1,0 +1,34 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-02T06:26:57+02:00
+
+====== linux ======
+Created Dienstag 02 Juli 2019
+
+===== Freeing disk space =====
+
+1. Deleting thumbnails
+	''$ rm ~/.cache/thumbnails/''
+2. Deleting old files in ''~/.cache''
+	$ ''find ~/.cache/ -depth -type f -atime +365''			list everything which hasn't been accessed for a year 
+	$ ''find ~/.cache/ -type f -atime +365 -delete''			delete everything which hasn't been accessed for a year
+
+	 Alternatively
+	''$ find /path/to/ -type f -mtime +7 -name '*.gz' -execdir rm -- '{}' \;''
+		
+		''find''		the unix command for finding files/directories/links and etc.
+		''/path/to/''	the directory to start your search in.
+		''-type f''		only find files.
+		''-name '*.gz'''	list files that ends with .gz.
+		''-mtime +7''	only consider the ones with modification time older than 7 days.
+		''-execdir ... \;''	for each such result found, do the following command in ....
+		''rm -- '{}'''	remove the file; the {} part is where the find result gets substituted into from the previous part. 
+						  ''--'' means end of command parameters avoid prompting error for those files starting with hyphen.
+						
+	Alternatively
+	  ''$ find /path/to/ -type f -mtime +7 -name '*.gz' -print0 | xargs -r0 rm ''—
+	
+	Alternatively and slightly faster (still slightly slower than ''find -delete'')
+	  $ ''find /path/to/ -type f -mtime +7 -name '*.gz' -execdir rm -- '{}' +''
+
+
