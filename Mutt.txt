@@ -1,0 +1,87 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-05T18:41:46+02:00
+
+====== Mutt ======
+Created Freitag 05 Juli 2019
+
+"All mail clients suck. This one just sucks less."	--- Michael Elkins
+
+
+===== Installation and set-up =====
+1. Install Mutt from the repositories
+	''$ sudo apt-get install mutt''
+	
+2. Create directories required to cache message headers and bodies, store certificates 
+	''$ mkdir -p ~/.mutt/cache/headers''
+	''$ mkdir ~/.mutt/cache/bodies''
+	''$ touch ~/.mutt/certificates''
+	  
+3. Create the Mutt configuration file
+	''$ touch ~/.mutt/muttrc''
+
+
+===== Controls in Mutt =====
+Start Mutt by
+	''$ mutt''
+	
+==== Keyboard shortcuts ====
+	''j''				move down
+	''k''				move up
+	''d''				delete a message
+	''y''				archive a message
+	''gi''				view your inbox
+	''ga''				view All Mail
+	''gd''				view Drafts
+	''gs''				view starred messages
+	
+	''t''				mark a message
+	''s''				save message(s)
+	''c''				change folder
+	''/''				search in current folder
+	
+	''$''				apply changes you marked (e.g. delete)
+	
+==== Sending emails ====
+	1. Type  ''m''  (''r''  for reply)
+	2. Enter recipients email address ''<return>''
+	3. Enter subject ''<return>''
+	4. Write message
+	5. Save message and quit editor
+	6. Type  ''y''  to send message
+
+===== The index =====
+This is the overview of your email in a certain folder. 
+
+==== Symbol legend ====
+
+=== flag_char ===
+	''*''				email is tagged
+	''!''				email is flagged as important
+	''D''				email is marked for deletion
+	''d''				email's attachment is marked for deletion
+	''r''				email has been replied to
+	''O''				email is old (unread but seen)
+	''N''				email (thread) is new (unread and not seen)
+	''o''				email thread is old (unread but seen)
+
+=== to_chars ===
+	''<space>''				email is not addressed to your address
+	''+''				you are only recipient
+	''T''				your address appears in "To:" field and you are not only recipient
+	''C''				your address appears in "Cc:" field and you are not only recipient
+	''F''				email was sent by you
+	''L''				email was sent to mailing-list you subscribed to
+
+
+===== Sending email from command line =====
+	''$ echo "" | mutt -s "subject" -i body.txt -a attachment.txt recipient@example.com''
+
+		''-s''		specify subject of mail
+		''-i''		specify file containing message body
+		''-a''		specify attachment file
+		''-b''		add Bcc address
+		''-c''		add Cc address
+		''-e''		if you want to specify sender's address (something other than default)
+
+

@@ -11,7 +11,14 @@ Valgrind is a tool for memory debugging and memory leak detection, and for profi
 1. Compile with ''-g'' to include line numbers in valgrind output
 	''$ gcc -g myCode.c''
 2. Show program output + valgrind output (prefixed with ''=='')
-	''$ valgrind ./a.out''   
+	''$ valgrind ./a.out'' 
+	 A good practise is to run valgrind with the following options 
+	''$ valgrind --leak-check=yes \			''--> detailed memory lead detector
+				''--show-leak-kinds=all \''
+				''--track-orgins=yes \''
+				''--verbose \''
+				''--log-file=valgrind-out.txt \''
+				''./a.out arg1 arg2''
 3. Valgrind can detect 
 	a. misuse of uninitialized values
 	b. when accessing memory you shouldn't (e.g. off-by-one-errors)

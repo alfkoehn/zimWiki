@@ -117,3 +117,25 @@ Source: https://github.com/gmarik/Vundle.vim.git
 	  B              list bookmarks
 	  ?              help (list commands) 
 	  q              close NERDTree window
+
+
+===== Spell check =====
+	'':set spell''				enable spell check
+	'':set nospell''				disable spell check
+	'':set spell spelllang=en_us''		enable spell check using US region English
+	
+Any misspelled word will be highlighted. The following commands exists (when in command mode)
+	'']s''					find next misspelled word after cursor
+	''[s''					find next misspelled word before cursor
+	''z=''					find suggestions for misspelled word at current cursor position
+
+
+==== Using your own spell-file ====
+Create following directory (if not existing)
+	''$ mkdir ~/.vim/spell/''  
+Set spell-file for each language in vim
+	'':set spellfile=~/.vim/spell/en.utf-8.add''   
+Go to the in-correctly highlighted word
+	''zg''					add word to spell-file (user dictionary)
+	''zug''					undo this (remove word from spell-file)
+	
