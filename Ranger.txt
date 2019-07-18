@@ -1,0 +1,72 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-14T18:25:26+02:00
+
+====== Ranger ======
+Created Sonntag 14 Juli 2019
+
+Ranger is a terminal based file manager with vim-like key bindings. It works with **Miller columns**, where the middle column is the current directory, left is the parent directory, right shows a preview for the file the cursor in the middle column is at (similar to //Finder// from iOs). 
+
+Previews are supported for
+* ascii files using ''less'' 
+* PDFs, converted to text
+* images using either ascii image display or an image viewer
+
+===== Installation =====
+1. From the official repositories
+		''$ sudo apt-get install ranger''
+2. From the sources
+		''$ git clone git://git.savannah.nongnu.org/ranger.git /tmp/ranger'' 
+		''$ cd /tmp/ranger'' 
+		''$ git checkout v1.8.1'' 
+		''$ sudo make install''
+
+===== Navigation =====
+	''gg''				go to top of list
+	''G''				go to bottom of list
+	''<ctrl>+f''			page down
+	''<ctrl>+b''			page up
+	''J''				1/2 page down 
+	''K''				1/2 page up
+	''H''				go back in navigation history
+	''L''				go forward in navigation history
+	''zh''				toggle show hidden files
+
+
+===== Working with files =====
+	''i''				display file
+	''E''  //or//  ''I''				edit file
+	''r''				open file with chosen program
+	''cw''				rename file
+	''/''				search for file
+	''n''  //or//  ''p''				jump to next or previous match
+	''dd''				mark file for cut
+	''ud''				uncut
+	''p''				paste file
+	''yy''				copy/yank file
+	
+===== General shortcuts =====
+	''R''				reload current directory
+	''<ctrl>+n''			create a new tab
+	''<ctrl>+w''			close current tab
+	''<tab>''				jump to next tab
+	''<shift>+<tab>''			jump to previous tab
+	''q''				quit ranger
+	''?''				open man page, key bindings, commands, or settings
+	
+===== Command interface =====
+	'':delete''				delete selected file
+	'':mkdir''				create new directory
+	'':touch''				create file
+	'':rename''				rename file
+	'':help''				show help (''k'' will show shortcuts)
+	
+===== Customizing ranger =====
+	''$ ranger --copy-config=all''
+	Create 
+		* ''rifle.conf'' 				ranger's file opener
+		* ''commands.py'' 
+		* ''commands_full.py'' 			define commands for ''rc.conf'' and terminal commands 
+		* ''rc.conf'' 					basic configuration
+		* ''scope.sh'' 					handle previews for ranger
+	in ''~/.config/ranger''

@@ -7,6 +7,8 @@ Created Freitag 05 Juli 2019
 
 "All mail clients suck. This one just sucks less."	--- Michael Elkins
 
+A good source for information is http://www.mutt.org/doc/manual/
+
 
 ===== Installation and set-up =====
 1. Install Mutt from the repositories
@@ -19,12 +21,15 @@ Created Freitag 05 Juli 2019
 	  
 3. Create the Mutt configuration file
 	''$ touch ~/.mutt/muttrc''
+	
+	 Note that Mutt supports the ''source'' command, i.e. you can put some of your settings into separate files and ''source'' them from the ''.muttrc'' file.
 
 
 ===== Controls in Mutt =====
 Start Mutt by
 	''$ mutt''
 	
+
 ==== Keyboard shortcuts ====
 	''j''				move down
 	''k''				move up
@@ -42,6 +47,7 @@ Start Mutt by
 	
 	''$''				apply changes you marked (e.g. delete)
 	
+
 ==== Sending emails ====
 	1. Type  ''m''  (''r''  for reply)
 	2. Enter recipients email address ''<return>''
@@ -65,13 +71,14 @@ This is the overview of your email in a certain folder.
 	''N''				email (thread) is new (unread and not seen)
 	''o''				email thread is old (unread but seen)
 
+
 === to_chars ===
 	''<space>''				email is not addressed to your address
 	''+''				you are only recipient
 	''T''				your address appears in "To:" field and you are not only recipient
 	''C''				your address appears in "Cc:" field and you are not only recipient
 	''F''				email was sent by you
-	''L''				email was sent to mailing-list you subscribed to
+	''L''				email was sent to mailing-list you ''subscribed'' to
 
 
 ===== Sending email from command line =====
@@ -83,5 +90,4 @@ This is the overview of your email in a certain folder.
 		''-b''		add Bcc address
 		''-c''		add Cc address
 		''-e''		if you want to specify sender's address (something other than default)
-
 

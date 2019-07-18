@@ -1,0 +1,71 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-16T06:17:08+02:00
+
+====== Zim ======
+Created Dienstag 16 Juli 2019
+
+Microsoft OneNote and Evernote have very nice frontends, are easy to use on your smartphone and can be accessed basically from everywhere. But you have little to no control where exactly your data is stored and what the companies are doing with them. They could also at any point decide to shut-down their services (like google has done that to a few of their services).
+
+Zim is a free and open source software for your notes. Due to the notes being saved as plain text files it can easily be sync'ed across devices via the version control system git.
+
+
+===== Installation =====
+Since Zim is under active development it is best to install the latest stable version and not the version from the official repositories of your distro which sometimes tends to be a little bit outdated.
+
+	'''
+	$ sudo add-apt-repository ppa:jaap.karssenberg/zim
+	$ sudo apt-get update
+	$ sudo apt-get install zim
+	'''
+
+
+
+===== Basics =====
+	* Notebooks in Zim are folders which contain Zim pages, attachments, and folders with more Zim pages
+	* By default, Zim shows an index of all pages in your current notebook in a sidebar on the left
+
+==== Text formatting ====
+	''<ctrl>+i''				italic
+	''<ctrl>+b''				bold
+	''<ctrl>+u''				underline
+	''<ctrl>+k''				strikethrough
+
+
+==== Lists ====
+	* start a **bulleted list** simpy by typing "*"
+	* start a **numbered list** simply by typing "1."
+
+==== Links ====
+	* to a page in the notebook: drag and drop the page from the index bar into the page where you want the link to appear
+	* to a file: drag and drop the file into the page where you want the link to appear
+	* to a webpage: paste the URL directly into the text, alternatively press ''<crtl>+l'' 
+
+==== Attachments ====
+Instead of just linking to a file/picture located somewhere on your harddrive, you can also attach it to the page which will make copy of that file and store it in the Zim-notebook folder.
+
+===== ToDo list =====
+Writing "[]" lets Zim create a checkbox that you can tick when a certain task has been solved:
+[ ] tick the box to marked it as solved
+[*] this one is already ticked
+[ ] celebrate X-mas on [d:2019-12-24] 
+[x] this is a checkbox marked as dropped
+The **Task List plugin** might be helpful.
+
+===== Tags =====
+Instead of just searching by ''<ctrl>+<shift>+f'' through all the pages, zim also supports a tag system to find and link data. After enabling the **Tags plugin** typing anywhere an expression preceded by "@" put a tag of that name at that position, e.g. ''@tags'' would create a tag "tags". A list of all tags and all their occurrences is available as an additional navigation toolbar at the index navigation toolbar.
+
+===== Snychronizing notebook via git =====
+1. Preferences → Plugins → Version Control
+2. File → Save Version
+3. Open shell in Zim notebook folder
+4. If git is correctly set-up, you can push the notebook to a github server
+	''$ git push''
+	
+	To check if set-up correctly, type
+	''$ git config --list''
+	and if required set your name and email address via
+	''$ git config --local user.email "my.email@gmail.com"''
+	''$ git config --local user.name "My Name"''
+
+
