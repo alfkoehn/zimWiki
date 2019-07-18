@@ -57,6 +57,27 @@ Created Montag 24 Juni 2019
 	
 	
 
+===== Comment and uncomment multiple lines =====
+[[http://vimdoc.sourceforge.net/htmldoc/visual.html|Block selection]] is an easy way to realize that:
+	1. Put cursor into beginning of line that we want to comment
+	2. Put editor into **Visual Block** mode
+		''<ctrl>+v''
+	3. Go to last line we want to comment (using for example arrow keys or something like ''9j'' to put cursor 9 lines down)
+	4. Put editor into **Insert** mode
+		''<shift>+i''
+	5. Insert comment sign (e.g. ''#'' for python)
+		''#''
+	6. Press Esc (and wait for a second) to insert the comment character on all selected lines.
+		''<esc>''
+
+Uncommenting works in a very similar way:
+	1. Put cursor to first comment character
+	2. Put editor into **Visual Block** mode
+		''<ctrl>+v''
+	3. Go to last commentend line
+	4. Delete comment character
+		''x''
+
 
 ===== vim-plugins via Vundle =====
 Source: https://github.com/gmarik/Vundle.vim.git
