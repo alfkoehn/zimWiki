@@ -1,0 +1,52 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-24T06:45:02+02:00
+
+====== GIMP ======
+Created Mittwoch 24 Juli 2019
+
+GNU Image Manipulation Program
+
+=== Make skin color more "brown" (better teint) ===
+1. Layer --> New Layer (Layer Fill Type: Transparency)
+2. Change Foreground Color to 774616 in HTML-Notation
+3. Use Paintbrush Tool with 100% Opacitiy to completely brush all skin
+	 maybe use a gaussian blur afterwards to make soft edges
+4. Layers - Brushes --> Mode: Overlay, Opacity = ca. 30 %
+
+
+=== Remove under eye bags / dark circles under eyes ===
+1. Layer --> Duplicate Layer
+2. Dodge / Burn Tool ("Abwedelwerkzeug")
+	Opacity: 30...50 %
+	Circle Fuzzy (weiche Pinselspitze)
+	Exposure ("Beleuchtung"): ca. 20 %
+
+
+=== Draw arrows ===
+1. download script from http://registry.gimp.org/node/20269
+	''$ cd ~/.gimp-2.8/scripts''
+	''$ wget http://registry.gimp.org/files/arrow.scm''
+2. Tools --> Arrow
+
+
+=== Draw grid ===
+1. Filters -> Render -> Patterns -> Grid
+2. suggestion to put grid on own transparent layer
+
+
+=== Add transparent layer ===
+1. check if image has alpha channel
+	Windows -> Dockable Dialogs -> Channels
+	"Alpha" channel might exists below Red, Green, Blue channels 
+2. if "Alpha" channel does not exist
+	 Layer -> Transparency -> Add Alpha Channel
+3. Tools -> Selection Tools -> By Color Select
+	 or anything else to select part you want to have transparent
+	 Fuzzy Select tool is also very useful
+4. Select to-be-transparent region
+5. for complete transparency hit "Delete"
+	 partial transparency 
+	 e.g. eraser tool with appropriate opacity setting (below 100%)
+6. save/export as GIF or PNG
+

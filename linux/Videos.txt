@@ -1,0 +1,96 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-24T05:47:42+02:00
+
+====== Videos ======
+Created Mittwoch 24 Juli 2019
+
+===== Create video from images =====
+Using **ffmpeg**
+* ''$ ffmpeg -framerate 24 -i %03d.png output.mp4''
+	  --> ''-framerate 24''		default is 25 frames per secons
+	  --> ''-i '%03d.png'''		specify input files (* does NOT work)
+* ''$ ffmpeg -start_number 42 -i '%30d.png' -c:v libx264 out.mp4''
+	  --> ''-start_number 42''	default is 0 (can be omitted then)
+	  --> ''-c:v libx264''
+	  --> ''out.mp4''
+* png files use RGB color space, conversion to H.264 would end up being YUV 4:4:4
+   may not be playable with all players, set pixel format to YUV 4:2:0 explicitely
+	''$ ffmpeg -i '%03d.png' -c:v libx264 -pix_fmt yuv420p out.mp4''
+* some players might require "''-vf format=yuv420p''" or "''-pix_fmt yuv420p''"
+* if problems with frames occur, use "''fps''" filter
+	''$ ffmpeg -framerate 1/5 -i %03d.png -c:v libx264 -vf fps=25 -pix_fmt yuv420p out.mp4''
+* ''$ ffmpeg -f image2 -i %03d.jpg out.mpg''
+
+
+===== Video capture with ubuntu =====
+* **screen capture** (including sound) with **recordMyDesktop**
+	1. install the software
+		''sudo apt-get install recordMyDesktop		''// //command-prompt version//
+		''sudo apt-get install gtk-recordMyDesktop'' 	// //GUI version//
+	2. record
+		''recordmydesktop -x START_POS -y START_POS --width XSIZE --height YSIZE -o foo.ogv''
+				//// e.g. recordmydesktop -x 10 -y 10 --width 640 --height 480 -o foo.ogv//
+		''wininfo						''// //get size and position of window//
+	2a. record with the gui (set windowsize and sound)
+* **video capture** using **ffmpeg** and the build-in webcam
+	1. using ffmpeg w/o sound
+		''ffmpeg -f video4linux2 -s 640x480 -i /dev/video0 -qscale 3 out.mpeg''
+	2. using ffmpeg w/ sound
+		''ffmpeg -t 00:00:15 -f video4linux2 -s 640x480 -i /dev/video0 -f alsa -ac 2 -i pulse -qscale 3 outSound.mpeg''
+* **screen capture** using **ffmpeg**
+	a. ''ffmpeg -f x11grab -r 25 -s 320x240 -i :0.0+10,20 out.mpg''
+		record with 25 frames, window-size of 320x240 starting upper left corner at (10,20)
+		0.0 is display.screen number of X11 server, same as DISPLAY environment variable
+	b. ''ffmpeg -f x11grab -r 25 -s 640x480 -i :0.0 -vcodec huffyuv ffmepg_screencast.mkv''
+		--> record with 25 frames a window of 640x480 and with huffyuv codec
+			  note: will produce a HUGE file
+		''ffmpeg -i in.mkv -vcodec libx264 -crf 22 -threads 0 out.mp4''
+		--> compress to mp4 format (youtube-ready)
+			  lower -crf values might increase quality, but for screencast not really needed
+			  note: -vpre could be set to ensure using same presets
+	c. ''ffmpeg -s 1024x768 -r 25 -f x11grab -i :0.0+100,200 output.flv''
+		record 1024x768 starting with upper left corner at (100,200)
+	d. ''ffmpeg -s 1024x768 -r 25 -f x11grab -i :0.0+100,200 -f alsa -ac 2 -i pulse output.flv''
+		same as b. but w/ sound
+* some weblinks:
+	* https://web2.ph.utexas.edu/~asimha/PHY303K_Spring2015/making.htm
+	* https://sandilands.info/sgordon/presenting-and-recording-lectures-with-ubuntu-linux
+
+
+===== Live video from webcam =====
+* using **vlc**
+		''$ cvlc v4l2:///dev/video0''
+		''$ cvlc v4l2:///dev/video1:width=640:height=480''
+* using **ffmpeg**
+		? (stream to server)
+* using **cheese**
+		''$ sudo apt-get install cheese''
+* see also
+	  https://help.ubuntu.com/community/Webcam
+	  http://www.netinstructions.com/tag/logitech-quickcam-pro-9000/
+	  http://xmodulo.com/live-stream-video-webcam-linux.html
+* **get resolution** of webcam via command line
+	a. locate webcam
+		$ lsusb
+		   output might look like this
+		   ...
+		   ''Bus 003 Device 003: ID 046d:0991 Logitech, Inc. QuickCam Pro for Notebooks''
+		   ...
+	b. greb possible Width and Height values
+		''$ lsusb -s 003:003 -v | egrep "Width|Height"''
+
+
+===== Merge video files =====
+* merge **avi-files**
+   install required apps
+	''$ sudo apt-get install transcode transcode-utils''
+   merge the avi-files
+	''$ avimerge -i part1.avi part2.avi -o joinedfile.avi''
+* merge **mkv-files**
+   install mkvtoolnix
+	''$ sudo apt-get install mkvtoolnix mkvtoolnix-gui''
+   Start mmg (graphical user interface for mkvmerge)
+	   "Add" the first file, "Append" the second one
+	   "Append" third, fourth, ..., Set output name in the textbox at the bottom
+	   "Start muxing"
