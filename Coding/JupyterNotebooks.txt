@@ -1,0 +1,86 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-25T05:43:55+02:00
+
+====== JupyterNotebooks ======
+Created Donnerstag 25 Juli 2019
+
+Emerged from "notebook" - project.
+
+===== General notes =====
+* notebook itself is stored as text file in JSON format
+* start (browser should open)
+	''$ ipython notebook''
+* cell types:
+	* code
+	* markdown
+	* header
+	* raw
+* possible to use various kernels, not just python (40 languages availabe)
+* nbconvert to save it in verious format, run notebook non-interactively
+	''$ ipython nbconvert --to pdf foo.ipynb''
+
+
+===== Basic commands =====
+	''<shift> + <enter>''				execute cell
+	''<esc> + b	''				insert new cell below
+	''<esc> + a''					insert cell above
+
+
+===== Magics =====
+"magics" allow to use different languages within 1 notebook
+	''% lsmagic''					list all available magics (type in a cell)
+	''%% <command>	''				for multiline command
+	''% env	''					list your environment variables
+	''!''						to run a shell command
+	''%matplotlib inline				''show matplotlib plots inside of notebook
+					 ''notebook''							activates nbagg backend, allows to zoom in plots (requires matplotlib 1.4)
+					 nbagg								same as before but for older matplotlib versions
+	''% bash''						to run cell with bash in a subprocess
+	''%time''						time whatever you evaluate
+	''%timeit''						time whatever you evaluate multiple times, return best and average times
+	''%prun, %lprun, %mprun''				line-by-line time and memory usage
+	''%% HTML''						render cell as HTML (e.g. embed images)
+	
+**rmagics** to run R locally
+	''%load_ext rmagic''				load rmagics extension
+	''%%R''
+	''Y <- runif(10)''
+	''Y <- runif(10)''
+	''%R plot(X,Y)''
+
+THERE EXIST **CYTHON** MAGICS
+
+
+===== Using python 2.x and 3.x in ipython notebook =====
+1. running jupyter on Python3, set up a Python2 kernel:
+	''$ python2 -m pip install ipykernel''
+	''$ python2 -m ipykernel install --user''
+2. running jupyter on Python2, set up a Python3 kernel:
+	''$ python3 -m pip install ipykernel''
+	''$ python3 -m ipykernel install --user''
+
+
+===== Add a 'toggle code' option to IPython notebook =====
+from http://blog.nextgenetics.net/?e=102
+1. to run javascript in the notebook, import HTML method from IPython:
+	''from IPython.display import HTML''
+2. in a code cell, enter:
+	'''
+	HTML('''<script>
+	code_show=true; 
+	function code_toggle() {
+	    if (code_show){
+	        $('div.input').hide();
+	    } else {
+	        $('div.input').show();
+	    }
+	    code_show = !code_show
+	} 
+	$( document ).ready(code_toggle);
+	</script>
+	'''
+
+	''The raw code for this IPython notebook is by default hidden for easier reading.''
+	''To toggle on/off the raw code, click <a href="javascript:code_toggle()">here</a>.''')''
+
