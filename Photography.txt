@@ -1,0 +1,98 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-07-29T06:19:13+02:00
+
+====== Photography ======
+Created Montag 29 Juli 2019
+
+===== General tips =====
+* Two camera modes should be used for vast majority of photos: Aperture priority "Av", Shutter priority "Tv"
+	* Aperture prority "Av"
+		* control how soft background blur is
+		* f-stop number:	lower   =>	more background blur
+						  higher =>        less background blur
+		* increasing f-stop number might require using a tripod
+		* f8 to get best overall image quality (in terms of sharpness)
+	* Shutter priority "Tv"
+		* control motion blur by setting shutter speed manually
+		* f-stop number are set automatically
+* Some iso-recommendation
+	* normal daylight					iso 100,200
+	* mid morning/afternoon			iso 400
+	* inside building, sunset/sunrise		iso 800, 1600
+	* before sunrise, after sunset		iso 3200, 6400
+* Fireworks
+	* Blende f5.6 - f11
+	* ISO 100-400
+	* Belichtung 1-20 s
+* Thunderstorm-lightnings
+	* only nice during night (or evening/blue hour)
+		--> during day: use of Graufilter required
+	* manual mode, set focus to infinity, Blende 8, Belichtung 4 s, ISO 100
+		--> eventuell "bulb" Modus + Fernauslöser
+		--> Blitz/Wolken überstrahlt: Blende schließen (=größere Blendenzahl)
+		--> Scharf-stellen kann per live-view gut klappen
+	* blitzortung.org shows real-time lightnings
+* Moving water
+	* program mode "Tv"
+	* 1 sec for beautifully blurred water
+		* use tripod, best early morning or late day
+		* midday only possible with ND filters
+		* iso is lowest possible
+	* 1/250 sec for freezing the water
+		* iso 400-1600
+* Landscapes
+	* sharp landscapes: use highest f-stop number
+	* before and after mid-day might require a tripod to avoid blurry photos
+	* golden hourse: first hour of sunrise, last of sunset
+		lighting is softer then b/c sun in lower and travels through more atmosphere
+	* always look for better angles
+	* equipment
+		* food, drinks, sunscreen, mossie repellent
+		* flashlight, solid tripod, spare battery, remote (or use timer)
+		* wide lens, ND filter
+		* zip lock bag + elastic band (for an in-expensive rain-cover)
+		* cleaning kit
+* Astro-stuff
+	* Sun (Canon EOS1100D)
+		* White balance: cloudy
+		* Blende 1/8
+		* Belichtung ca. 1/1000s, ISO 100
+* Set correct focus for your photos
+	* single shot autofocus "AF-S" or "ONE SHOT AF"
+		* works in most photo situations where subject is not moving
+		* e.g. landscape, portrait
+	* continuous autofocus "AF-C" or "AI SERVO"
+		* sports, driving-by cars
+		* use continuous shooting mode / rapid fire / sports mode
+			  (take many consecutive photos to decide later which is best)
+		* note: takes a lot of battery power
+	* manual focus "MF"
+		* still life, close-up, makro
+		* for situation with very little contrast
+
+===== Travel photo tips =====
+Source: https://www.youtube.com/watch?v=n_8DVwVOX9c
+* Choose right time of day, e.g. around dusk (30 mins time frame)
+	* sidelighting is better than backlighting
+	* front lighting and cloudy daytime are also good
+* Photos with people on benches 
+	* interesting dynamic, emotional
+	* also from the back or side
+	* take photos with long lens (telephoto lens)
+	* use aperture priority at lowest f-stop number possible
+* Use negative space to draw attention to the subject
+	* negative space: when majority of composition is blank and has no detail
+* Windows are nice subjects for travel photos
+	* straight-on position, ensure vertical lines are straight
+	* 45 degree angle of camera if first not possible
+	* people in windows even better
+* Put camera on ground for photographing church ceilings
+	* aperture prority, f/5.6 or f/8 to have everything sharp
+	* use self-timer
+	* wide-angle lense (at most 50 mm)
+* Street photography without being rude
+	* take photos at 45 degrees angle with interesting background
+	* use burst mode / continuous shooting mode
+	* wait for actual shoot
+	* zoom lense with help to keep distance
