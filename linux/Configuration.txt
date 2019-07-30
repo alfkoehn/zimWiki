@@ -5,3 +5,13 @@ Creation-Date: 2019-07-18T06:34:18+02:00
 ====== Configuration ======
 Created Donnerstag 18 Juli 2019
 
+===== Local decimal point in bash =====
+* list all local services available at system:
+	''locale -a''
+* list all locale-variables and their values:
+	''locale''
+* change settings temporarily (e.g.: not use local decimal point)
+	''LC_NUMERIC=C''
+* change settings permanently
+	''less /etc/default/locale''
+

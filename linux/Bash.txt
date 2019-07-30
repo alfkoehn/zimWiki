@@ -32,3 +32,7 @@ Note that the following shortcuts are actually ''readline'' shortcuts, meaning t
 	
 	''<ctrl>+r				''search command history and loop through results
 	''<ctrl>+g								''cancel search and restore original line
+
+
+===== Local decimal point in bash =====
+Link to linux → Configuration
