@@ -71,6 +71,7 @@ Created Montag 29 Juli 2019
 		* still life, close-up, makro
 		* for situation with very little contrast
 
+
 ===== Travel photo tips =====
 Source: https://www.youtube.com/watch?v=n_8DVwVOX9c
 * Choose right time of day, e.g. around dusk (30 mins time frame)
@@ -96,3 +97,18 @@ Source: https://www.youtube.com/watch?v=n_8DVwVOX9c
 	* use burst mode / continuous shooting mode
 	* wait for actual shoot
 	* zoom lense with help to keep distance
+
+
+===== Adding copyright infos to photos =====
+using exiftool
+	''$ exiftool -CopyrightNotice="Alf Köhn, CC BY-SA 3.0" -artist="Alf Köhn" -Copyright="Alf Köhn, CC BY-SA 3.0" picture.jpg''
+
+
+===== Geotag picture with GPS coordinates =====
+1. install geotag
+	''$ sudo apt-get install libimage-exiftool-perl dcraw gpsbabel'' 
+2. Start with
+	''$ java -jar geotag-0.0xx.jar''
+2a. Alternatively, use their website 
+	http://geotag.sourceforge.net/geotag.jnlp
+3. Bedienung siehe http://wiki.ubuntuusers.de/Geotag

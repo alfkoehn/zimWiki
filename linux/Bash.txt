@@ -9,30 +9,50 @@ Bash is a Unix shell and command language. It is written in C and published unde
 
 ===== Shortcuts to move faster in command line =====
 Note that the following shortcuts are actually ''readline'' shortcuts, meaning they should work in every program using ''libreadline''.
+''<Meta>'' is in most cases ''<alt>''.
 
+==== Moving cursor ====
 	''<ctrl>+b''				move back one character
 	''<ctrl>+f''				move forward one character
-	''<ctrl>+d''				delete current character
-	''<ctrl>+-''				undo
+	''<ctrl>+a''				move to start of line
+	''<ctrl>+e''				move to end of line
+	''<Meta>+f''				move forward a word
+	''<Meta>+b''				move backward a word
 
-	''<ctrl>+a''								move to start of line
-	''<ctrl>+e''								move to end of line
-	''<Meta>+f''								move forward a word
-												 → ''<Meta>'' is often ''<alt>''
-	''<Meta>+b''								move backward a word
-	''<Meta>+l''				clear screen
-
-	''<ctrl>+k''				cut from cursor to end of line
-	''<Meta>+d''				cut from cursor to end of word
-	''<Meta>+<bckspace>''						cut from cursor to start of word
+==== Deleting ====
+	''<ctrl>+d''				delete current character (delete one character forward)
+	''<ctrl>+h''				delete current character (delete one character backward)
+	''<Meta>+<backspace>''						cut from cursor to start of word (delete word backward)
+	''<Meta>+d''								cut from cursor to end of word
+	''<ctrl>+u''								cut from cursor to beginning of line
+	''<ctrl>+k''								cut from cursor to end of line
 	''<ctrl>+w''								cut from cursor to previous whitespace
+''<ctrl>+-''				undo
+
+==== Paste ====
 	''<ctrl>+y				''				paste last cut text
-	''<Meta>+y (after <ctrl>+y)''				loop through (and paste) previously cut text
+	''<Meta>+y (after <ctrl>+y)''		loop through (and paste) previously cut text
 	''<Meta>+.''				loop through and past last argument of previous commands
-	
-	''<ctrl>+r				''search command history and loop through results
+
+==== Search command history ====
+	''<ctrl>+r								''search command history backwards and loop through results
+	''<ctrl>+s				s''earch command history forwards and loop through results
+	''<esc>	''				exit search with current choice
 	''<ctrl>+g								''cancel search and restore original line
+
+==== Misc ====
+	''<ctrl>+l''				clear screen
+	''<ctrl>+d''								exit shell
+	''<ctrl>+c''								terminate current foreground process (SIGINT)
+	''<ctrl>+z''				suspend current foreground process (SIGTSTP)
 
 
 ===== Local decimal point in bash =====
 Link to linux → Configuration
+
+
+===== Bash history =====
+* Environment variable ''$HISTIGNORE'' allows you to set commands that will be ignored by the history, set it to a colon-delimited list of patterns.
+* Special pattern '&' suppresses duplicate entries
+* example:
+	''export HISTIGNORE="&:ls:[bf]g:exit"''
