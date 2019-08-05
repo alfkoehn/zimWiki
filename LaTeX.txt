@@ -1,0 +1,100 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-08-05T06:39:14+02:00
+
+====== LaTeX ======
+Created Montag 05 August 2019
+
+===== Some general tips =====
+1. Some packages where one extends another
+	''xcolor    > color''
+	''graphicx  > graphics''
+	''mathtools > amsmath''
+2. Lengths
+	''pt''      	1 pt is 1/72.27 inch
+	''mm''      	millimeter (2.84 pt)
+	''cm''      	centimeter
+	''in''      	inch (72.27 pt)
+	''ex''      	approx. height of letter "x" in current font
+	''em''      	approx. width of "M" is current font
+3. word count
+	''$ detex file.tex | wc -w''
+	 detex removes all LaTeX-commands
+	 wc makes a wordcount (-w to count the words)
+4. Correct way to bold/italicize text
+	 ''\textbf{bla}'' or ''\bfseries{bla}''		**NOT** ''{\bf bla}'' <-- old
+	 ''\textit{bla}			''                    	''NOT'' ''{\it bla}''  <-- old
+5. Colors
+	''\usepackage{xcolor} --> \textcolor{<color>}{<text>}''
+6. Spell check
+	''$ aspell -t check file.tex''
+7. Dots in filename when using \includegraphics
+	''\includegraphics{path_to_file/{my.filename.with.dots}.png}''
+
+
+===== Umlaute =====
+* ''{\"a}'', ''{\"o}'' etc. is the safest option
+	it should always work
+* ''\usepackage[utf8]{inputenc}''
+	in the document header allows to type umlaute directly
+* ''\usepackage{fontspec}''
+	if using XeLaTeX to compile
+
+
+===== Basic drawing using TikZ =====
+* ''\usepackage{tikz}''
+* every TikZ diagram requires tikzpicture environment
+	''\begin{tikzpicture}''
+''      ...''
+	''\end{tikzpicture}''
+
+==== Basic shapes: ====
+* straight line
+	''\draw (0,0) -- (4,0);''
+* square
+	''\draw (0,0) -- (4,0) -- (4,4) -- (0,4) -- cycle;''
+   square in a more direct way (starting point & opposite corner)
+	''\draw (0,0) rectangle (4,4);''
+* parabola
+	''\draw (0,0) parabola (4,4);''
+* curved line
+	''\draw (0,0) .. controls (0,4) and (4,0) .. (4,4);''
+* circle
+	''\draw (2,2) circle (3cm);''
+* ellipse
+	''\draw (2,2) ellipse (3cm and 1cm);''
+* arw
+	''\draw (3,0) arc (0:75:3cm);''
+   --> (<starting-angle>:<ending-angle>:<radius>)
+* vary linestyle
+	''\draw[red,thick,dashed] <one of the above commands>''
+* grid
+	''\draw[step=1cm,grey,very thin] (-2,-2) grid (6,6);''
+   --> 1st point is bottom left, 2nd point top right corner
+* colour filled box
+	''\fill[blue!40!white] (0,0) rectangle (4,4);''
+   --> colour is 40% blue mixed with 60% white
+   colour filled box with border
+	''\filldraw[fill=blue!40!white, draw=black] (0,0) rectangle (4,4);''
+   colour-gradient filled box
+	''\shade[left color=blue,right color=red] (0,0) rectangle (4,4);''
+	''\shade[inner color=blue,outer color=red] (0,0) rectangle (4,4);''
+* axes/arrows
+	'''
+	\draw[thick,->] (0,0) -- (4.5,0);
+	\draw[thick,->] (0,0) -- (0,4.5);
+	'''
+
+   axes/arrows with labels
+	'''
+	\draw[thick,->] (0,0) -- (4.5,0) node[anchor=north west] {x axis};
+	\draw[thick,->] (0,0) -- (0,4.5) node[anchor=south east] {y axis};
+	'''
+
+   axes/arrows with ticks and numbering
+	''\foreach \x in {0,1,2,3,4}''
+		''\draw (\x cm,1pt) -- (\x cm -1pt) node[anchor=north] {$\x$};''
+	''\foreach \y in {0,1,2,3,4}''
+		''\draw (\y cm,1 cm) -- (\y cm -1 cm) node[anchor=east] {$\y$};''
+	--> 'for each' is a loop construct
+
