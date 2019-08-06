@@ -48,6 +48,7 @@ Created Montag 05 August 2019
 ''      ...''
 	''\end{tikzpicture}''
 
+
 ==== Basic shapes: ====
 * straight line
 	''\draw (0,0) -- (4,0);''
@@ -98,3 +99,73 @@ Created Montag 05 August 2019
 		''\draw (\y cm,1 cm) -- (\y cm -1 cm) node[anchor=east] {$\y$};''
 	--> 'for each' is a loop construct
 
+
+===== References and footnotes when using the beamer style =====
+1. To show footnotes from each column at bottom, 2 methods exists
+
+	a. use ''[frame]'' option
+
+{{{code: lang="latex" linenumbers="True"
+\documentclass{beamer}
+\begin{document}
+\begin{frame}
+	\begin{columns}
+		\column{.5\textwidth}
+		text for 1st column and a footnote\footnote[frame]{footnote in 1st column}
+		\column{.5\textwidth}
+		text for 2nd column and a footnote\footnote[frame]{footnote in 2nd column}
+		\end{columns}
+\end{frame}
+\end{document}
+}}}
+
+	b. use ''\footnotemark'' and ''footnotetext'' to explicitely set number
+    
+{{{code: lang="latex" linenumbers="True"
+\documentclass{beamer}
+\begin{document}
+\begin{frame}
+	\begin{columns}
+		\column{.5\textwidth}
+		text for 1st column and a footnote\footnotemark
+		\column{.5\textwidth}
+		text for 2nd column and a footnote\footnotemark
+	\end{columns}
+	\footnotetext[1]{footnote in 1st column}
+	\footnotetext[2]{footnote in 2nd column}
+\end{frame}
+\end{document}
+}}}
+	
+2. Use biblatex to show bibliography items at bottom
+{{{code: lang="latex" linenumbers="True"
+\documentclass{beamer}
+\usepackage{biblatex}
+\bibliography{foo}   % alternatively: \addbibresource{foo.bib}
+\begin{document}
+\begin{frame}
+	Here is text\footfullcite{smith00}
+\end{frame}
+\end{document}
+}}}
+
+	 --> this will display full reference smith00 from foo.bib 
+	 --> compile: ''pdflatex'', ''biber'', ''pdflatex'', ''pdflatex''
+
+3. Show references at bottom and at bibliography at end
+{{{code: lang="latex" linenumbers="True"
+\documentclass{beamer}
+\usepackage[style=verbose]{biblatex}
+%\usepackage[style=verbose,backend=biber]{biblatex}
+\addbibresource{foo.bib}
+\begin{document}
+\begin{frame}
+	Text text \footcite{RePEc:cwl:cwldpp:159}
+\end{frame}
+\begin{frame}
+	\printbibliography
+\end{frame} 
+\end{document}
+}}}
+
+	 --> compile: ''pdflatex'', ''biber'', ''pdflatex'', ''pdflatex''
