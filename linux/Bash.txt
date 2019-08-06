@@ -19,6 +19,7 @@ Note that the following shortcuts are actually ''readline'' shortcuts, meaning t
 	''<Meta>+f''				move forward a word
 	''<Meta>+b''				move backward a word
 
+
 ==== Deleting ====
 	''<ctrl>+d''				delete current character (delete one character forward)
 	''<ctrl>+h''				delete current character (delete one character backward)
@@ -34,11 +35,13 @@ Note that the following shortcuts are actually ''readline'' shortcuts, meaning t
 	''<Meta>+y (after <ctrl>+y)''		loop through (and paste) previously cut text
 	''<Meta>+.''				loop through and past last argument of previous commands
 
+
 ==== Search command history ====
 	''<ctrl>+r								''search command history backwards and loop through results
 	''<ctrl>+s				s''earch command history forwards and loop through results
 	''<esc>	''				exit search with current choice
 	''<ctrl>+g								''cancel search and restore original line
+
 
 ==== Misc ====
 	''<ctrl>+l''				clear screen
@@ -56,3 +59,30 @@ Link to linux → Configuration
 * Special pattern '&' suppresses duplicate entries
 * example:
 	''export HISTIGNORE="&:ls:[bf]g:exit"''
+
+
+===== Reload .bashrc w/o logging out and in again =====
+1. ''$ source ~/.bashrc''
+2. ''$ . ~/.bashrc''
+3. ''$ exec bash''
+   (or ''$ exec "$BASH"'')
+
+
+===== Infinite bash loop =====
+1. Using while-loop
+	''#!/bin/bash''
+	''while true''
+	''do''
+		''echo "Press [CTRL+C] to stop.."''
+		''sleep 1''
+	''done''
+2. Using while loop with additional break statement
+	''while true''
+	''do''
+		''echo "Pres CTRL+C to stop..."''
+		''sleep 1''
+		''if (disaster-condition)''
+		''then''
+			''break       	   #Abandon the loop''
+		''fi''
+	''done''
