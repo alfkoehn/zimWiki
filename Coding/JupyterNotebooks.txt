@@ -19,6 +19,8 @@ Emerged from "notebook" - project.
 * possible to use various kernels, not just python (40 languages availabe)
 * nbconvert to save it in verious format, run notebook non-interactively
 	''$ ipython nbconvert --to pdf foo.ipynb''
+* list of hotkeys is found in
+	//Help// → //Keyboard Shortcuts//
 
 
 ===== Basic commands =====
@@ -27,12 +29,21 @@ Emerged from "notebook" - project.
 	''<esc> + a''					insert cell above
 
 
+===== Plotting in notebook =====
+* matplotlib is activated with
+	''%matplotlib inline''
+   note: has to be executed before matplotlib.pyplot is imported
+* interactivity is added to plotted using a different magics
+	''%matplotlib notebook''
+
+
 ===== Magics =====
 "magics" allow to use different languages within 1 notebook
 	''% lsmagic''					list all available magics (type in a cell)
 	''%% <command>	''				for multiline command
 	''% env	''					list your environment variables
 	''!''						to run a shell command
+		e.g.: ''!ls''
 	''%matplotlib inline				''show matplotlib plots inside of notebook
 					 ''notebook''							activates nbagg backend, allows to zoom in plots (requires matplotlib 1.4)
 					 nbagg								same as before but for older matplotlib versions
@@ -40,6 +51,8 @@ Emerged from "notebook" - project.
 	''%time''						time whatever you evaluate
 	''%timeit''						time whatever you evaluate multiple times, return best and average times
 	''%prun, %lprun, %mprun''				line-by-line time and memory usage
+	''%run <some-python-file>''				execute python code
+	''%load <some-python-file>''			load python code into cell
 	''%% HTML''						render cell as HTML (e.g. embed images)
 	
 **rmagics** to run R locally
@@ -50,6 +63,12 @@ Emerged from "notebook" - project.
 	''%R plot(X,Y)''
 
 THERE EXIST **CYTHON** MAGICS
+	''!pip install cython''
+	''%load_ext Cython''
+	''%%cython''
+	''def myltiply_by_2(float x):''
+		''return 2.0 * x''
+	''myltiply_by_2(23.)''
 
 
 ===== Using python 2.x and 3.x in ipython notebook =====
@@ -84,3 +103,10 @@ from http://blog.nextgenetics.net/?e=102
 	''The raw code for this IPython notebook is by default hidden for easier reading.''
 	''To toggle on/off the raw code, click <a href="javascript:code_toggle()">here</a>.''')''
 
+
+===== Give colleagues possibility to play with your notebook in web-browser =====
+* some free services exists which allows access to your notebooks for a limited time, e.g.
+	* http://mybinder.org/
+* setup your own system
+	https://github.com/jupyterhub/jupyterhub
+	
