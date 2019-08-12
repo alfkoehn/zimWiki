@@ -1,0 +1,190 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-08-07T00:03:41+02:00
+
+====== SettingUpNewSystem ======
+Created Mittwoch 07 August 2019
+
+1. Install software packages
+
+{{{code: lang="sh" linenumbers="True"
+sudo apt-get install git xvnc4viewer mc xournal sshfs nfs-common \
+texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra \
+texmaker conky-all ncview qtiplot radiotray meld diffpdf caca-utils unison-all-gtk stockfish pychess scid \
+vim gnuplot gv imagemagick inkscape irssi pdftk ps2eps rdesktop screen ssvnc mupdf guake \
+texlive-science texlive-base texlive-lang-english texlive-lang-german texlive-games texlive-generic-extra \
+texlive-publishers texlive-xetex pandoc \
+povray jabref lm-sensors youtube-dl chromium-browser p7zip-full gnudatalanguage valgrind \
+hdfview h5utils hdf5-tools libhdf5-dev vitables libpng12-dev libpng12-0 \
+graphviz octave octave-doc subversion gnupg2 gnupg-doc enigmail moc xdotool \
+owncloud-client build-essential linux-headers-generic fbreader calibre djview \
+libimage-exiftool-perl dcraw gpsbabel network-manager-vpnc gparted usb-creator-gtk \
+playonlinux vlc rar gfortran \
+python-pip python3-pip python-dev python3-dev python-doc python3-doc spyder \
+gimp gimp-help-en gimp-data-extras feh \
+libreoffice-impress \
+dvipng \
+crafty \
+exfat-fuse exfat-utils
+}}}
+
+
+	''git	'' 	version control system
+	''xvnc4viewer'' 		vnc-viewer
+	''mc'' 				midnight commander, total commander-like in xterm
+	''xournal'' 			annotating pdfs
+	''sshfs'' 			mounting remote distance folders (what about fuse-utils ??)
+	''nfs-common'' 		mounting nfs over network
+	''texlive-*'' 		latex
+	''texmaker'' 		very nice LaTeX-editor
+	''conky-all lm-sensors'' 	nice system monitor
+	''ncview'' 			netcdf-viewer
+	''qtiplot'' 			origin-like 
+	''radiotray'' 		online radio station player
+	''meld'' 			visualizing difference between 2 files
+	''diffpdf'' 			visualizing difference between 2 pdfs
+	''cacaview'' 		view images in ascii-format
+	''unison'' 			GUI for synching
+	''stockfish pychess scid crafty'' 	chess software
+	''vim''
+	''gnuplot''
+	''gv''
+	''imagemagick''
+	''inkscape''
+	''irssi''
+	''pdftk''
+	''ps2eps''
+	''rdesktop''
+	''screen''
+	''ssvnc''
+	''mupdf''
+	''guake''
+	''povray''
+	''jabref''
+	''youtube-dl'' 		command line for youtoube video or sound download
+	''chromium-browser''
+	''p7zip-full'' 		7zipper
+	''gnudatalanguage'' open-source IDL clone
+	''valgrind''
+	''hdfview h5utils hdf5-tools libhdf5-dev vitables''
+	''libpng12-dev libpng12-0''
+	''graphviz''
+	''zotero-standalone''
+	''octave octave-doc''
+	''subversion''
+	''gnupg2 gnupg-doc enigmail''
+	''moc'' 				music player for the terminal
+	''sunflower''
+	''xdotool'' 			move mouse per command line (for noSleep)
+	''owncloud-client''
+	''build-essential linux-headers-generic''
+	''calibre fbreader djview	''ebook reader
+	''libimage-exiftool-perl dcraw gpsbabel'' 	gps-tagging images
+	''network-manager-vpnc''
+	''gparted'' 
+	''usb-creator-gtk''
+	''playonlinux'' 
+ 	''vlc''
+	''rar''
+	''gfortran''
+	''python-pip python3-pip python-dev python3-dev spyder''
+	''gimp gimp-help-en gimp-data-extras'' 
+	''feh'': 
+	''libreoffice-impress'':
+	''dvipng'' 			for matplotlib usetex
+	''exfat'' 			mount SD-cards
+	''pandoc'' 			document converter 
+
+{{{code: lang="sh" linenumbers="True"
+sudo add-apt-repository ppa:smathot/cogscinl
+sudo add-apt-repository ppa:atareao/sunflower
+sudo apt-get update
+sudo apt-get install zotero-standalone
+sudo apt-get install sunflower
+}}}
+
+2. Add dropdown-terminal
+	* in xfce: Settings --> Keyboard --> Application shortcuts --> Add:  "xfce4-terminal --drop-down" --> F12
+		  or via command line call:
+		''xfconf-query -c xfce4-keyboard-shortcuts -p /commands/custom/F12 -n -t string -s "xfce4-terminal --drop-down"''
+		  other: 
+		''sudo apt-get install guake''    (or tilda)
+
+3. Get dotfiles (maybe a apt-get install git is required)
+	'''
+	$ git clone https://github.com/yourgithubuserrname/dotfiles.git
+	$ chmod +x makemydotfiles.sh
+	$ ./makemydotfiles.sh
+	'''
+
+
+4. Get the old bash_history file (might be helpful) located at [[~/.bash_history]]
+
+5. Modify .bashrc
+	* increase history:
+		''HISTSIZE=100000''
+		''HISTFILESIZE=200000''
+	* add to history file immediately after command
+		''PROMPT_COMMAND="history -a"''
+	* tweak aliases
+		''alias ll='ls -alF --time-style long-iso'''
+
+6. Copy (and install) ssh-key to access igvp-server
+	''$ cp <OLD-HOME>/.ssh/id_dsa <NEW-HOME>/.ssh/''
+	''$ chmod 600 .ssh/id_dsa''
+	''$ ssh-add ~/.ssh/id_dsa''
+	''$ ssh -X koehn@129.69.28.2''
+	
+7. Activate 4 workspaces
+	Settings --> Workspaces
+	right-click into top panel: Add New Items --> Workspace switcher
+
+8. Set mouse-behaviour
+	Settings --> Window Manager --> Focus --> Focus follows mouse
+	(or use gconf-editor-->apps-->metacity-->general-->focus_mode: sloppy)
+
+9. Disable touchpad during typing
+	Settings --> Mouse and Touchpad --> Touchpad --> Disable touchpad while typing
+	or via command line (should work):
+	''$ syndaemon -i 1 -d -t -K''
+	
+10. Copy thunderbird profile from old setup
+	''$ tar -czvf Thunderbird_backup.tar.gz .thunderbird/''
+	''$ tar -xzvf Thunderbird_backup.tar.gz''
+
+11. Change Firefox settings
+	  Preferences --> History --> custom settings --> Clear history when Firefox closes
+	  Add-ons --> LastPass
+		   --> Startpage to search box
+		   --> Xmarks (for syncing bookmarks)
+
+12. Install dropbox
+	''$ cd ~ && wget -0 - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -''
+	''$ ~/.dropbox-dist/dropboxd''
+	* if dropbox-icon is not working properly:
+		''$ sudo apt-get install nautilus-dropbox''
+		''$ dropbox stop && dbus-launch dropbox start''
+	Dropbox-icon --> Preferences --> Disable "Start Dropbox on system startup"
+	XFCE-Settings --> Session and Startup --> Application Autostart --> Add
+		Name: Dropbox
+		Command: dbus-launch dropbox start -i
+		(Check that it is enabled in list)
+		OR: vi /usr/share/applications/dropbox.desktop
+			replace "Exec=dropbox start -i" with "Exec=dbus-launch dropbox start"
+
+13. Install VMware
+	* install necessary packages
+		''$ sudo apt-get install gcc build-essential linux-headers-$(uname -r)''
+	* download VMware Workstation Player (not the Pro version)
+		 --> https://my.vmware.com/web/vmware/downloads
+	* install VMware Workstation Player
+		''$ chmod +x VMware-Player*''
+		''$ sudo ./VMware-Player*''
+
+14. Install VirtualBox (which is open-source)
+	''$ sudo apt-get install virtualbox''
+	''$ sudo apt-get install virtualbox-ext-pack''
+
+15. Enable Ctrl-Alt-Backspace (reboot graphical environment)
+	''$ sudo vi /etc/default/keyboard'' 
+		  change  ''XKBOPTIONS=""''  to  ''XKBOPTIONS="terminate:ctrl_alt_bksp"''

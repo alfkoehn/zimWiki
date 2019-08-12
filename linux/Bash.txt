@@ -19,34 +19,32 @@ Note that the following shortcuts are actually ''readline'' shortcuts, meaning t
 	''<Meta>+f''				move forward a word
 	''<Meta>+b''				move backward a word
 
-
 ==== Deleting ====
 	''<ctrl>+d''				delete current character (delete one character forward)
 	''<ctrl>+h''				delete current character (delete one character backward)
-	''<Meta>+<backspace>''						cut from cursor to start of word (delete word backward)
-	''<Meta>+d''								cut from cursor to end of word
-	''<ctrl>+u''								cut from cursor to beginning of line
-	''<ctrl>+k''								cut from cursor to end of line
-	''<ctrl>+w''								cut from cursor to previous whitespace
-''<ctrl>+-''				undo
+	''<Meta>+<backspace>''			cut from cursor to start of word (delete word backward)
+	''<Meta>+d''				cut from cursor to end of word
+	''<ctrl>+u''				cut from cursor to beginning of line
+	''<ctrl>+k''				cut from cursor to end of line
+	''<ctrl>+w''				cut from cursor to previous whitespace
+	''<ctrl>+-''				undo
+
 
 ==== Paste ====
-	''<ctrl>+y				''				paste last cut text
+	''<ctrl>+y	''			paste last cut text
 	''<Meta>+y (after <ctrl>+y)''		loop through (and paste) previously cut text
 	''<Meta>+.''				loop through and past last argument of previous commands
 
-
 ==== Search command history ====
-	''<ctrl>+r								''search command history backwards and loop through results
+	''<ctrl>+r				''search command history backwards and loop through results
 	''<ctrl>+s				s''earch command history forwards and loop through results
 	''<esc>	''				exit search with current choice
-	''<ctrl>+g								''cancel search and restore original line
-
+	''<ctrl>+g				''cancel search and restore original line
 
 ==== Misc ====
 	''<ctrl>+l''				clear screen
-	''<ctrl>+d''								exit shell
-	''<ctrl>+c''								terminate current foreground process (SIGINT)
+	''<ctrl>+d''				exit shell
+	''<ctrl>+c''				terminate current foreground process (SIGINT)
 	''<ctrl>+z''				suspend current foreground process (SIGTSTP)
 
 
@@ -66,6 +64,14 @@ Link to linux → Configuration
 2. ''$ . ~/.bashrc''
 3. ''$ exec bash''
    (or ''$ exec "$BASH"'')
+
+
+===== Detach running process from a bash shell =====
+1. ''$ nohup my-command &''
+2. ''$ my-command''
+	 ''<ctrl>-z''
+	 ''bg''
+	 ''disown %1''
 
 
 ===== Infinite bash loop =====
