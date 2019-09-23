@@ -15,6 +15,9 @@ Created Montag 24 Juni 2019
 	''za				''fold/unfold code block
 	''zM				''fold all
 	''zR				''unfold all
+	''<ctrl>+x''			decrease number under cursor
+	''<ctrl>+a''			increase number under cursor
+	''r<char>''				replace character under cursor by ''<char>''
 
 
 ===== Cursor movement =====
