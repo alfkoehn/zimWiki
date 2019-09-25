@@ -1,0 +1,33 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-09-25T20:29:24+02:00
+
+====== ImageViewer ======
+Created Mittwoch 25 September 2019
+
+
+===== Feh =====
+''$ feh --recursive --randomize --auto-zoom ~/Pictures''
+	make a slide show of all pictures in folder ~/Pictures 
+	(action for next image required)
+''$ feh --fullscreen -D 5 --cycle-once ~/images''
+	make a "real" slide show in fullscreen (one cycle)
+''$ feh -I ~/Pictures''
+	show all images in folder with name and resolution
+''$ feh -t ~/Pictures''
+	show all pictures in folder and allow <mouse-click> to open them
+	
+some flags:
+	''--geometry 1366x768	''for scaling all pictures to given size
+	''--scale-down'' 		for fitting into screen
+	
+some commands:
+	''<space>'' or ''<arrow-right>		''next image
+	''<backspace>'' or ''<arrow-left>'' 	previous image
+	''<arrow-up>''                  		zoom in
+	''<arrow-down>			''zoom out
+
+
+===== Viewing images in ascii-format =====
+install cacaview
+img2txt to directly display image in shell

@@ -118,3 +118,6 @@ Link to linux → Configuration
 				''-x''	executable file
 				''-s'' 	file size greater than zero
 
+
+===== Start a script with a time delay =====
+	''$ sleep 14400 ; ./myAwesomeScript.sh''

@@ -5,8 +5,8 @@ Creation-Date: 2019-07-02T06:26:57+02:00
 ====== linux ======
 Created Dienstag 02 Juli 2019
 
-===== Freeing disk space =====
 
+===== Freeing disk space =====
 1. Deleting thumbnails
 	''$ rm ~/.cache/thumbnails/''
 2. Deleting old files in ''~/.cache''
@@ -32,3 +32,81 @@ Created Dienstag 02 Juli 2019
 	  $ ''find /path/to/ -type f -mtime +7 -name '*.gz' -execdir rm -- '{}' +''
 
 
+===== Fast resizing of current window =====
+''<alt> + <right-click> + <drag>''
+
+
+===== Get system infos in shell =====
+1. ''lspci''
+2. ''sudo dmidecode --type 2   //for motherboard''
+	''sudo dmidecode --type 17  //for RAM''
+3. ''lshw''
+
+
+===== Repair grub2 using a live-version =====
+1. boot from live-{CD,USB}
+2. launch GParted to check which partition is the linux partion
+	 usually, it is an EXT4 partition
+3. mount it, e.g.:
+	''$ sudo mount /dev/sda6 /mnt''
+4. bind the directories grub needs to detect other OS
+	''$ sudo mount --bind /dev /mnt/dev''
+	''$ sudo mount --bind /dev/pts /mnt/dev/pts''
+	''$ sudo mount --bind /proc /mnt/proc''
+	''$ sudo mount --bind /sys /mnt/sys''
+5. change into them using chroot
+	''$ sudo chroot /mnt''
+6. install grub
+	''$ grub-install /dev/sda''
+	if error occur, try
+	''grub-install --recheck /dev/sda''
+7. update grub
+	''$ update-grub''
+8. exit chrooted system
+	''$ exit'' 
+	''$ sudo umount /mnt/sys'' 
+	''$ sudo umount /mnt/proc'' 
+	''$ sudo umount /mnt/dev/pts'' 
+	''$ sudo umount /mnt/dev''
+	''$ sudo umount /mnt''
+
+
+===== Using a wacom tablet =====
+1. wacom usb tablet usually work out-of-the-box
+	 tips are here: https://wiki.ubuntuusers.de/Wacom_USB-Tabletts/#Konfiguration
+2. using wacom-tools package, contains utility names xsetwacom
+	 some tips from http://www.chrisge.org/blog/2014-12-29/wacom_intuos_p_t_s
+	a. list help
+		''$ xsetwacom -h''
+	b. change, for example TapTime
+		''$ xsetwacom list'' 
+			--> get exact name to be inserted in later calls
+		''$ xsetwacom get "<wacom-name Finger touch>" TapTime''
+			  --> get current value
+		''$ xsetwacom set "<wacom-name Finger touch>" TapTime 200''
+			  --> change value
+		''$ xsetwacom get "<wacom-name Finger touch>" TapTime''
+			  --> check if value was actually changed
+	c. change buttons
+		''$ xsetwacom list modifiers''
+			  --> list possible keys (buttons?)
+		''$ xetwacom set "<wacom-name Finger pad>" Button <button-nr> "key ctrl y"''
+			  --> button number can be 1,2,8,9 in case of Intuos P&T
+	d. draw more smooth lines (might not be necessary, test before!)
+		''$ xsetwacom set "<wacom-name> Pen stylus" RawSample 9''
+			  --> RawSample adjust number of samples taken from tablet before coordinates are submitted to mouse pointer on screen
+		''$ xsetwacom set "<wacom-name> Pen stylus" Suppress 10''
+			  --> prevents mouse pointer from moving unless it has been moved by given amount
+		''$ xsetwacom set "<wacom-name> Pen eraser" RawSample 9''
+		''$ xsetwacom set "<wacom-name> Pen eraser" RawSample 9''
+	e. fine-tune touchpad
+		''$ xsetwacom set "<wacom-name> Finger touch" ScrollDistance 40''
+		''$ xsetwacom set "<wacom-name> Finger touch" ZoomDistance 40''
+		''$ xsetwacom set "<wacom-name> Finger touch" TapTime 200''
+	f. all commands above should be put into a script to be executed when connecting the tablet
+		''#!/bin/sh''
+		''$ xsetwacom set "<wacom-name>" RawSample 9''
+		''$ xsetwacom set "<wacom-name>" Suppress 10''
+		''...''
+3. look into the official wiki-page:
+	 http://linuxwacom.sourceforge.net/wiki/index.php/Tablet_Configuration

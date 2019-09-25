@@ -1,0 +1,82 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-09-25T20:42:29+02:00
+
+====== MusicAndSound ======
+Created Mittwoch 25 September 2019
+
+===== Console-based music player =====
+1. **cplay**
+	only a frontend, uses for playing: ogg123, mpg123 
+	''h		''help
+	''<tab>		''file-browser <--> playlist
+	''<enter>''		start playing
+	''a''		add file or directory to playlist
+	''x''            		stop/resume playing
+	''z''            		pause/resume playing
+	''1...0''        	volume control 
+2. **cmus**
+	music player supporting ogg, flac, mp3, wav, wma, aac, mp4
+	vi-style commands (starting with a :)
+	''1...7			''different views
+										  1-library: artists/albums + songs
+										  2-sorted library: playlist view
+	''<enter>''              		start playing selected song
+	''x''                    		start playing
+	''v''                    		stop playing
+	''c''                    		pause playing
+	''+-''                   		volume control
+	'':set softvol=true''    	enable software volume control
+	'':add /path''           	add audio files from /path to library
+	'':clear''               		clear current playlist
+	'':colorscheme <name>''  	enable color scheme <name>
+3. **mp3blaster**
+	some default keybindings might interfere with GNOME
+	''?''           			help
+4. **mocp**
+
+
+===== Play sound from console =====
+1. **play**
+	''$ play mySoundFile.ogg''
+		for mp3 support, extra packages are required (libsox-fmt-mp3)
+2. **aplay**
+	''$ aplay myWavFile.wav''
+		only for wav files, aplay is part of ALSA system
+3. **vlc**
+	''$ cvlc --play-and-exit sound.mp3''
+		requires vlc to be installed
+4. **pacmd**
+	''$ pacmd play-file soundFile <index/name>''
+		this is the pulseaudio command line interface
+		''<index/name>'' has to be replaced with output sink desired
+		list all sinks with pacmd list-sinks
+5. **cat**
+	''$ cat wavFile.wav | /dev/pcsp''
+		not sure if this really works in most cases
+
+
+===== Make beep sound from console =====
+1. ''$ echo -e "\a"''       (or "\07")
+	send ASCII BEL character to standard output
+	might require to load pcspkr kernel module:
+		''$ sudo modprobe pcspkr''
+	note: might not work if logged-in via ssh, output should then be redirected to any of the TTY devices (ideally, an unused)
+		''$ echo -en "\a" > /dev/tty5''
+2. ''$ speaker-test -t sine -f 1000 -l 1''
+	note: this lets the speakers beep, not the pc-/motherboard-speaker
+	beep will be of arbitrary length, conrol the following way:
+		''$ ( speaker-test -t sine -f 1000 )& pid=$! ; sleep 0.1s ; kill -9 $pid''
+	writing an alarm function:
+		''_alarm() {''
+			''( \speaker-test --frequency $1 --test sine )&''
+			''pid=$!''
+			''\sleep 0.${2}s''
+			''\kill -9 $pid''
+		''}''
+	call with frequency and duration arguments:
+		''$ _alarm 400 200''
+	(e.g. https://github.com/spiralofhope/shell-random/blob/master/live/alarm.sh)
+3. ''$ beep''
+	requires beep to be installed (sudo apt-get install beep)
+
