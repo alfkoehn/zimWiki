@@ -19,6 +19,7 @@ Note that the following shortcuts are actually ''readline'' shortcuts, meaning t
 	''<Meta>+f''				move forward a word
 	''<Meta>+b''				move backward a word
 
+
 ==== Deleting ====
 	''<ctrl>+d''				delete current character (delete one character forward)
 	''<ctrl>+h''				delete current character (delete one character backward)
@@ -35,11 +36,13 @@ Note that the following shortcuts are actually ''readline'' shortcuts, meaning t
 	''<Meta>+y (after <ctrl>+y)''		loop through (and paste) previously cut text
 	''<Meta>+.''				loop through and past last argument of previous commands
 
+
 ==== Search command history ====
 	''<ctrl>+r				''search command history backwards and loop through results
 	''<ctrl>+s				s''earch command history forwards and loop through results
 	''<esc>	''				exit search with current choice
 	''<ctrl>+g				''cancel search and restore original line
+
 
 ==== Misc ====
 	''<ctrl>+l''				clear screen
@@ -92,3 +95,26 @@ Link to linux → Configuration
 			''break       	   #Abandon the loop''
 		''fi''
 	''done''
+
+
+===== if construct in one line =====
+''if true; then echo "yep, it's true" ; fi''
+
+
+===== Check if file or folder exists =====
+1. check for a directory
+	''if [ -d "/dev/" ] ; then echo "yes, /dev/ exists ; fi''
+	
+2. check for a file
+	''if [ -f "myfile" ] ; then echo "yes, myfile exists ; fi''
+
+	note: empty space after opening and before closing braces important
+
+	syntax:	''-e''	any kind of archive
+				''-f''	file
+				''-h''	symbolic link
+				''-r''	readable file
+				''-w''	writable file
+				''-x''	executable file
+				''-s'' 	file size greater than zero
+
