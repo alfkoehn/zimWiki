@@ -213,43 +213,52 @@ example code:
 
 
 ===== Check if a file exists =====
+{{{code: lang="c" linenumbers="True"
+	#include <sys/stat.h>
+    // Check if a file exists
+    // return true if and only if the file exists, false otherwise
+    bool fileExists(const char* file) {
+           struct stat buf;
+           return (stat(file, &buf) == 0);
+    }
 
-	''#include <sys/stat.h>''
-''    // Check if a file exists''
-''    // return true if and only if the file exists, false otherwise''
-''    bool fileExists(const char* file) {''
-''           struct stat buf;''
-''           return (stat(file, &buf) == 0);''
-''    }''
+	struct stat st;
+    if(stat("/tmp",&st) == 0)
+        printf(" /tmp is present\n");
 
-	''struct stat st;''
-''    if(stat("/tmp",&st) == 0)''
-''        printf(" /tmp is present\n");''
-
-	''DIR* dir = opendir("mydir");''
-''    if (dir) {''
-''        /* Directory exists. */''
-''        closedir(dir);''
-''    }''
-''    else if (ENOENT == errno) {''
-''        /* Directory does not exist. */''
-''    }''
-''    else {''
-''        /* opendir() failed for some other reason. */''
-''    }''
+	DIR* dir = opendir("mydir");
+    if (dir) {
+        /* Directory exists. */
+        closedir(dir);
+    }
+    else if (ENOENT == errno) {
+        /* Directory does not exist. */
+    }
+    else {
+        /* opendir() failed for some other reason. */
+    } 
+}}}
 
 
 ===== Executing system commands =====
-	''#include <stdio.h>''
-''    #include <unistd.h>''
+{{{code: lang="c" linenumbers="True"
+	#include <stdio.h>
+    #include <unistd.h>
 
-''    void main() {''
-''        char *name[] = {''
-''            "/bin/bash",''
-''            "-c",''
-''            "echo 'Hello World'",''
-''            NULL''
-''        };''
-''        execvp(name[0], name);''
-''    }''
+    void main() {
+        char *name[] = {
+            "/bin/bash",
+            "-c",
+            "echo 'Hello World'",
+            NULL
+        };
+        execvp(name[0], name);
+    } 
+}}}
 
+
+===== Using OR condition in #ifdef macro =====
+
+''#if defined(HELIOS) || defined(TOKS)''
+''...''
+''#endif''
