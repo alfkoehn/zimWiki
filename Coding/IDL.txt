@@ -1,0 +1,28 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-09-25T06:24:16+02:00
+
+====== IDL ======
+Created Mittwoch 25 September 2019
+
+
+===== Adding Programs to Your IDL Path =====
+easiest way to do add a folder to the path (independent of architecture) is the following:
+1. Make an IDL startup file called ''.idlstartup''
+2. within IDL type:
+	''idl> pref_set, 'IDL_STARTUP', '/path/to/.idlstartup',/commit''
+3. edit ''.idlstartup'' file to include the following lines:
+	''!PATH=!PATH+':'+Expand_Path('~/example/')''
+	  to include all subdirectories:
+	''!PATH=!PATH+':'+Expand_Path('+~/example/')''
+
+possible also in bash or csh profile w/o ''.idlstartup'' file: 
+	bash:	''export IDL_PATH=$IDL_PATH:+'~/example/'''
+	csh: 	''setenv IDL_PATH +$IDL_PATH:~/examples''
+include all subdirectores by leading the name with a + sign
+
+
+===== Executing system commands =====
+	''idl> $ls     // does not work for all commands''
+	''idl> spawn, 'rm foo.dat'''
+
