@@ -29,3 +29,21 @@ Created Donnerstag 18 Juli 2019
 	''#!/bin/sh''
 	''xinput --set-prop 12 276 1.5''
 
+
+===== Correctly use ntfs filesystems (mostly referring to permissions) =====
+1. create mount point
+	''$ sudo mkdir /media/alf/datar''
+2. change ownership of that filesystem
+	''$ sudo chown -R alf:alf /media/alf/datar''
+3. get UUID
+	''$ sudo blkid''
+4. edit fstab
+	''UUID="06D15CF7231BF421" /media/alf/datar ntfs-3g auto,users,permissions,exec 0 0''
+		''# auto''			mount during boot and when calling mount -a
+		''# users''			allow every user to mount and unmount the filesystem
+		''# permissions''		set standard permission on created files and use standard access control
+		''# exec''			allows executing files on mounted filesystem
+5. mount the filesystem
+	''$ sudo mount /media/alf/datar''
+	(or ''mount -a'' for mounting everything) 
+
