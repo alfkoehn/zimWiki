@@ -5,6 +5,7 @@ Creation-Date: 2019-07-18T06:34:18+02:00
 ====== Configuration ======
 Created Donnerstag 18 Juli 2019
 
+
 ===== Local decimal point in bash =====
 * list all local services available at system:
 	''locale -a''
@@ -14,4 +15,17 @@ Created Donnerstag 18 Juli 2019
 	''LC_NUMERIC=C''
 * change settings permanently
 	''less /etc/default/locale''
+
+
+===== Change touch pad sensitivity via command line =====
+1. identify touch pad
+	''$ xinput --list --short''
+2. list properties of that device using the corresponing id (e.g. id=12)
+	''$ xinput --list-props 12''
+3. change property (number of device property, as given in parantheses, can also be used)
+	''$ xinput --set-prop 12 "Device Accel Constant Deceleration" 1.5''
+4. make the change everytime at startup
+	create a change_touchpad.sh and put it into start-up application list
+	''#!/bin/sh''
+	''xinput --set-prop 12 276 1.5''
 
