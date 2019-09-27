@@ -6,6 +6,22 @@ Creation-Date: 2019-07-02T06:26:57+02:00
 Created Dienstag 02 Juli 2019
 
 
+===== Backup =====
+1. using **rsync**
+	''$ rsync --dry-run -avz --delete <user>@<server>:/some/folder/ local_folder/''
+		copies all files and folder from ''<user>@<server>:/some/folder/'' (remote) to ''local_folder/'' (local)
+		''-a''		archive mode = Recursive mode + Preserves symbolic links, permission, timestamp, owner and group
+		''-z''		enable compression 
+		''-v''		verbose (display info)
+		''--delete	''if file does not exist at source but at target, delete it (propagate deletes)
+		''--dry-run''	make a test run (to check if you will ''accidentally'' delete files)
+	''$ rsync -avrz -e ssh <user>@<server>:/some/folder/ local_folder/''
+		''-r		''recursively (including subfolders)
+	''$ rsync -e ssh -r localeDir <user>@<server>:~/remoteDir''
+		synchronizes a local directory (''localeDir'') to a remote directory (''remoteDir'') with
+2. **unison**
+
+
 ===== Freeing disk space =====
 1. Deleting thumbnails
 	''$ rm ~/.cache/thumbnails/''
@@ -32,6 +48,64 @@ Created Dienstag 02 Juli 2019
 	  $ ''find /path/to/ -type f -mtime +7 -name '*.gz' -execdir rm -- '{}' +''
 
 
+===== Undelete or recover files =====
+1. use ''photorec'' (from command-line)
+2. other method
+   a) find the mount point
+	  remove sd-card/mmc/whatever from PC
+	  ''$ ls -1 /dev > before.txt''
+	  connect it
+	  ''$ ls -1 /dev > after.txt''
+	  find the difference: ''$ diff before.txt after.txt''
+   b) make a backup image
+	  ''$ sudo dd if=/dev/sdb of=backup_image_file''
+   c) recover jpgs
+	  ''$ foremost jpg -o /tmp/bilder -i backup_image_file''
+	  recover everything
+	  ''$ foremost -o /tmp/daten -i backup_image_file''
+
+
+===== Zip and unzip files =====
+1. **tar** and **gzip**
+	''$ tar cfvz my_archive.tar.gz <folder1> <file1>''
+		pack and zip files/folders
+	''$ tar xfvz my_archive.tar.gz''
+		extract
+2. **tar** and **bzip2**
+	''$ tar cfvj my_archive.tar.bz2 <folder1> <file1>''
+		pack and zip
+	''$ tar xfvj my_archive.tar.bz2''
+		extract
+3. using **7z**
+	''$ 7z a -mx=9 archive.7z *''
+		create archive
+
+
+===== Use sshfs =====
+1. if not installed: 
+	''$ apt-get install fuse-utils sshfs''
+2. add user (that wanted to use fuse) to group fuse
+	-> check with "groups" if group fuse exists (?)
+	''sudo usermod -a USERNAME -G fuse''
+	(new login required)
+3. connect
+	''$ sshfs USERNAME@111.111.1.1:/home/USERNAME ~/srv/''
+	local mount point: ~/srv/
+	USERNAME = user@server
+	if error is "fusermount: user has no write access to mountpoint"
+	 => ''$ sudo chown USERNAME MOUNTPOINT-FOLDER''
+4. problems => use "''-d''" as parameter
+5. end connection:
+	''$ fusermount -u ~/srv/''
+
+
+===== File count =====
+''$ find folder -type f | wc -l''
+	first, all files (''-type f'' ==> files) are listed, then number of output lines are counted with wc
+''$ find folder -type d | wc -l''
+	count subfolder
+
+
 ===== Fast resizing of current window =====
 ''<alt> + <right-click> + <drag>''
 
@@ -41,6 +115,24 @@ Created Dienstag 02 Juli 2019
 2. ''sudo dmidecode --type 2   //for motherboard''
 	''sudo dmidecode --type 17  //for RAM''
 3. ''lshw''
+
+
+===== Set shell variable using export =====
+1. making local shell variable global, i.e. from now on it is known in this shell
+	''$ export VAR=value''
+	
+	''$ export EDITOR=/usr/bin/vim''
+	setting a new EDITOR variable:
+2. to make this a permanent export write into ''~/.bash_profile'' or ''~/.profile'' or ''/etc/profile''
+3. see a list of all exported variables and functions
+	''$ export -p''
+
+
+===== Download files from website =====
+''$ wget -A py -m -p -E -k -K -np www.greenteapress.com/thinkpython/code/''
+	mirror website but remove all files except those with .py extension
+	to remove directory architecture: ''-np''
+	attention: ''--accept (-A)'' is case sensitive, therefore: ''-A py,PY''
 
 
 ===== Repair grub2 using a live-version =====
@@ -69,6 +161,13 @@ Created Dienstag 02 Juli 2019
 	''$ sudo umount /mnt/dev/pts'' 
 	''$ sudo umount /mnt/dev''
 	''$ sudo umount /mnt''
+
+
+===== Creating a bootable pendrive with linux =====
+1. ''$ sudo apt-get install usb-creator-gtk''
+   don't forget to download the .iso file
+2. ''$ sudo apt-get install unetbootin''
+   ppa:gezakovacs/ppa  
 
 
 ===== Using a wacom tablet =====
@@ -110,3 +209,37 @@ Created Dienstag 02 Juli 2019
 		''...''
 3. look into the official wiki-page:
 	 http://linuxwacom.sourceforge.net/wiki/index.php/Tablet_Configuration
+
+
+===== TI Texas Instruments Calculator emulator =====
+1. Install the software
+	''$ sudo apt-get install tilem''
+2. Tool for download ROM from your TI
+	''$ sudo apt-get install tilp2''
+3. Start the emulator 
+	''$ tilem''
+4. Another emulator TiEmu
+	''$ sudo apt-get install tiemu''
+
+
+===== VMware player high mount.ntfs usage (100%) =====
+provide a non-ntfs location for vmware snapshot and suspend files
+vmware options --> general --> Working directory: ''/opt/vmware'' or ''/var/vmware''
+
+
+===== Manually install fonts (Ubuntu 16.04) =====
+1. font files are installed in ''/usr/lib/share/fonts'' or ''/usr/share/fonts''
+	 create a sub-folder in font directory
+	''$ sudo mkdir /usr/share/fonts/my_font'' 
+2. move downloaded files into that folder
+	''$ sudo mv ~/Downloads/*.ttc ~/Downloads/*.ttf /usr/share/fonts/my_font/''
+3. set correct permission to these files
+	''$ sudo chmod 644 /usr/share/fonts/my_font/* -R''
+	''$ sudo chmod 755 /usr/share/fonts/my_font''
+4. build font information cache
+	''$ sudo fc-cache -fv''
+Alternatively:
+1. double-click on ttf-font
+   click "Install"
+
+

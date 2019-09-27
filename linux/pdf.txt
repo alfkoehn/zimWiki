@@ -1,0 +1,35 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-09-27T22:02:10+02:00
+
+====== pdf ======
+Created Freitag 27 September 2019
+
+
+===== Remove watermark in pdfs =====
+1. uncompress pdf (might not be necessary)
+	''$ pdftk original.pdf output uncompressed.pdf uncompress''
+2. using sed to search and replace watermark text
+	''$ sed -e "s/watermarktextstring//" uncompressed.pdf > unwatermarked.pdf''
+3. repair and recompress output
+	''$ pdftk unwatermarked.pdf output fixed.pdf compress''
+
+
+===== Manipulate pdfs =====
+1. **pdftk**
+	''$ pdftk in.pdf cat 2-end output out.pdf''
+		delete first page
+2. **qpdf**
+	* page range is a set of numbers separated by commas
+	* ranges of numbers separated by a dash
+	* "z" represents last page, “l” represent the first page
+	* reversed page order leads to pages in reversed order
+
+	''$ qpdf --empty --pages file.pdf 1-10 -- output.pdf''
+		extract pages from single PDF, without their metadata
+	''$ qpdf file1.pdf --pages file1.pdf 1-5 file2.pdf 15-11 -- outfile.pdf''
+		take pages 1–5 from file1.pdf and pages 11–15 from file2.pdf in reverse
+	''$ qpdf infile.pdf outfile.pdf''
+		repair pdf
+	''$ qpdf --linearize infile.pdf outfile.pdf''
+		linearize pdf

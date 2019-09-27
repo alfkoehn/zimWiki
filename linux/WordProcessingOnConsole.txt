@@ -1,0 +1,66 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-09-27T19:59:11+02:00
+
+====== WordProcessingOnConsole ======
+Created Freitag 27 September 2019
+
+
+1. show first 5 lines of all files in folder <Dokumente>
+	''$ head -5 Dokumente/*''
+2. show new content at end of file log.txt
+   (very useful for live-monitoring log-files)
+	''$ tail -f log.txt''
+3. cut first 6 chars of input (i.e. show starting at 7th char)
+	''$ cut -c7-''
+		''-f1-1''        	print first 2 columns (assuming tab is separator)
+		''-d',' -f3,6''  	print column 3-6 using , as separator
+	example:
+	''$ echo '1234567' | cut -c7-''
+		''-->  789''
+4. sort file.csv using 7th column
+	''$ sort -b -i -r -u -t',' -k7 file.csv''
+		''-b		''ignore trailing spaces
+		''-i''   		ignore non-printable special chars
+		''-r''   		reverse order
+		''-u''   		remove double entries
+		''-t''   		set separator
+		''-k''   		set field to be used for sort
+5. count rows, words, chars of all *txt files in folder Dokumente
+	''$ wc Dokumente/*txt''
+6. remove first and second line and last and second-last line from file.txt 
+	''$ cat file.txt | head -n -2 | tail -n +3''
+7. use 'paste' and 'join' to merge files (also column-wise)
+	''$ paste file1.txt file2.txt''
+		merge the files together, assuming they both consist of 1 column with same number of lines
+	''$ paste -s file1.txt file2.txt file3.txt''
+		merge files row-wise, i.e. first row of combined files will be first column of new file
+9. use 'split' to split one file into multiple files
+10. fold text.txt after 80 chars
+	''$ fold -s -w80 text.txt''
+		''-s''   		fold only at space chars
+10. print 'Latte' to console
+	''$ echo Masse | tr Ms Lt''
+11. replace windows-linebreaks with linux-linebreaks
+	''$ tr 'r\n' '\n' < txt.txt''
+	
+	''$ tr '\t' '_'''
+		replace tabs with _
+	''$ tr -s ' '''
+		remove double space chars
+12. powerful scripting tools 'sed' and 'awk'
+13. create word cloud (use then as input for wordle.net)
+	''$ fmt -0 article.txt | tr -d [:punct:] | grep -w -i -v -f stopwords.txt''
+		''fmt -0''              		create list with all words
+			''tr -d [:punct:]''     		remove all punctuations
+			''grep -f stopwords.txt''   	search all words from stopwords-file (from internet)
+				   ''-i''                 		ignore Capital and non-Capital
+				   ''-w''                 		only words
+				   ''-v''                 		invert results
+												==> all words NOT appearing in stopwords-file
+14. count and sort word cloud list
+	''$ sort | uniq -c | sort -n''
+15. search and replace in multiple files 
+	''$ find . -name "*.php" -print | xargs sed -i 's/foo/bar/g'''
+		search for all *.php file, look for text "foo" and replace with text "bar"
+

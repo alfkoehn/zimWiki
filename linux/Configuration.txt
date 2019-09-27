@@ -17,6 +17,12 @@ Created Donnerstag 18 Juli 2019
 	''less /etc/default/locale''
 
 
+===== Mouse-window behaviour =====
+gconf-editor from xterm
+	-->apps-->metacity-->general-->focus_mode: sloppy
+	(sloppy is best because it allows to ALT-TAB into window w/o mouse in it)
+
+
 ===== Change touch pad sensitivity via command line =====
 1. identify touch pad
 	''$ xinput --list --short''
@@ -47,3 +53,17 @@ Created Donnerstag 18 Juli 2019
 	''$ sudo mount /media/alf/datar''
 	(or ''mount -a'' for mounting everything) 
 
+
+===== Adding a swap-file to your linux system =====
+1. create the directory for the swap file
+	''$ sudo mkdir -p /var/cache/swap/''
+2. create the swap file (here w/ 512 MB)
+	''$ sudo dd if=/dev/zero of=/var/cache/swap/swap0 bs=1M count=512'' 
+3. restrict/regulate user access to swap file
+	''$ sudo chmod 0600 /var/cache/swap/swap0'' 
+4. format file as swap-file
+	''$ sudo mkswap /var/cache/swap/swap0'' 
+5. put swap file into system
+	''$ sudo swapon /var/cache/swap/swap0'' 
+6. to automatically mount swap-file during system start, edit ''/etc/fstab''
+	''/var/cache/swap/swap0    none    swap    sw      0 0''

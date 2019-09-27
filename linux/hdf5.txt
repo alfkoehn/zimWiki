@@ -1,0 +1,29 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-09-27T20:28:56+02:00
+
+====== hdf5 ======
+Created Freitag 27 September 2019
+
+
+===== hdf5-file handling =====
+1. print content to console
+	''$ h5dump file.h5''
+2. zip data in hdf file
+	''$ h5repack --filter=GZIP=9 fileIN.h5 fileOUT.h5''
+	
+	
+===== Using hdf5 in C =====
+1. hdf5 C compiling
+	''$ gcc foo.c -lhdf5''
+		   not sure: ''-lhdf5_hl''
+	''$ h5cc foo.c''
+2. getting hdf5-1.6 code compiled with hdf5-1.8
+	''h5cc -DH5_USE_16_API ./foo.c''
+	
+	
+===== Software for looking into hdf-files =====
+* ViTables
+* h5dump foo.h5
+* Panoply
+* hdfview
