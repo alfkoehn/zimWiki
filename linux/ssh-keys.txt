@@ -1,0 +1,67 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-09-28T22:51:19+02:00
+
+====== ssh-keys ======
+Created Samstag 28 September 2019
+
+* private key is kept on computer you log in from
+* public key is stored on .ssh/authorized_keys file on all computers you want to log in to
+* RSA better than DSA
+
+
+===== Generate RSA keys =====
+	''$ mkdir ~/.ssh''
+	''$ chmod 700 ~/.ssh''
+	''$ ssh-keygen -t rsa -b 4096''
+
+add email address as a comment at end of key:
+	''$ ssh-keygen -t rsa -b 4096 -C "email@address.com"''
+
+
+===== Add your (public) key to host (you want to log in to) =====
+1. if you can log in to host via ssh using a password:
+	''$ ssh-copy-id <username>@<host>''
+2. alternatively, copy public key manually to host and concatenate it to athorized_keys file manually
+	''$ cp authorized_keys authorized_keys_Backup''
+	''$ cat id_rsa.pub >> authorized_keys''
+	
+	''($ chmod 600 ~/.ssh/authorized_keys)''
+	''($ ssh-add   <-- is sometimes required to start using ssh-agent to managing keys)''
+
+create public ssh key from private key (in case of lost of public key):
+	''$ ssh-keygen -f ~/.ssh/id_rsa -y > ~/.ssh/id_rsa.pub''
+(note: comment is lost might need to be added manually)
+
+restrict key to only be used with a certain command:
+add at the beginning of a key in authorized_keys file
+''command="/bin/restricted-command",no-port-forwarding,no-x11-forwarding,no-agent-forwarding''
+
+test if ssh-key access is working with github:
+	''$ ssh -T git@github.com''
+	''$ ssh -T git@gitlab.rzg.mpg.de''
+	--> Hi username! You've successfully authenticated, but GitHub does not provide shell access.
+
+
+===== Using multiple keys =====
+1. example: 2 keys are desired, one for work, one for personal use, create with
+	''$ ssh-keygen -t rsa -f ~/.ssh/id_rsa.home''
+	''$ ssh-keygen -t rsa -f ~/.ssh/id_rsa.work''
+2. add entry to ''~/.ssh/config'' to pick key to use based on server you connect to: 
+{{{code: lang="sh" linenumbers="True"
+	Host home
+	Hostname home.com
+	IdentityFile ~/.ssh/id_rsa.home
+	User <home-username>
+
+	Host work
+	Hostname work.com
+	IdentityFile ~/.ssh/id_rsa.work
+	User <work-username>
+}}}
+
+3. append ''id_rsa.work.pub'' into ''~/.ssh/authorized_keys on work machine''
+	 append ''id_rsa.home.pub'' into ''~/.ssh/authorized_keys'' on home machine
+4. probably add both keys to ''ssh-agent'' (to not type passphrase every time)
+	NOTE: multiple keys in authorized_keys file is possible (ssh will check all public keys in there until it finds a match).
+
