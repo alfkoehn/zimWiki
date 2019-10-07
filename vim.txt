@@ -7,7 +7,7 @@ Created Montag 24 Juni 2019
 
 	''u''				undo last change
 	''<CTRL>+R			''redo
-	<CTRL>+p						autocomplete
+	''<CTRL>+p			''autocomplete
 	''<CTRL>+n			''undo autocomplete
 	''%				''automatch, e.g. closing brackets
 	''gg				''goto 1st line
@@ -18,6 +18,7 @@ Created Montag 24 Juni 2019
 	''<ctrl>+x''			decrease number under cursor
 	''<ctrl>+a''			increase number under cursor
 	''r<char>''				replace character under cursor by ''<char>''
+	'':w filename''			save as <filename>
 
 
 ===== Cursor movement =====
@@ -59,6 +60,12 @@ Created Montag 24 Juni 2019
 	''<ctrl>+d''				move forward 1/2 screen
 	
 	
+
+===== Configuration =====
+	'':set wrap''				enable line wrapping
+	'':set nowrap''				disabale line wrapping
+	
+
 
 ===== Comment and uncomment multiple lines =====
 [[http://vimdoc.sourceforge.net/htmldoc/visual.html|Block selection]] is an easy way to realize that:
