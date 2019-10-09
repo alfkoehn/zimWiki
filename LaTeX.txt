@@ -22,8 +22,8 @@ Created Montag 05 August 2019
 	 detex removes all LaTeX-commands
 	 wc makes a wordcount (-w to count the words)
 4. Correct way to bold/italicize text
-	 ''\textbf{bla}'' or ''\bfseries{bla}''		**NOT** ''{\bf bla}'' <-- old
-	 ''\textit{bla}			''                    	''NOT'' ''{\it bla}''  <-- old
+	 ''\textbf{bla}'' or ''\bfseries{bla}''		**NOT** ''{\bf bla}''   ← old
+	 ''\textit{bla}			''                    		**NOT** ''{\it bla}''   ← old
 5. Colors
 	''\usepackage{xcolor} --> \textcolor{<color>}{<text>}''
 6. Spell check
@@ -39,6 +39,19 @@ Created Montag 05 August 2019
 	in the document header allows to type umlaute directly
 * ''\usepackage{fontspec}''
 	if using XeLaTeX to compile
+
+
+===== Date =====
+* insert current date, where format is according to language settings
+	''\today''
+* change format of displayed date can be easily done via package ''datetime2''
+	''\usepackage[yyyymmdd]{datetime}''
+	''\renewcommand{\dateseparator}{--}''
+	''\today''
+* define your own command to display date is iso-standard
+	''\def\myisodate{\leavevmode\hbox{\the\year-\twodigits\month-\twodigits\day}}''
+	''\def\twodigits#1{\ifnum#1<10 0\fi\the#1}''
+	''Today we have: \myisodate''
 
 
 ===== Basic drawing using TikZ =====
@@ -104,7 +117,6 @@ Created Montag 05 August 2019
 1. To show footnotes from each column at bottom, 2 methods exists
 
 	a. use ''[frame]'' option
-
 {{{code: lang="latex" linenumbers="True"
 \documentclass{beamer}
 \begin{document}
@@ -119,8 +131,8 @@ Created Montag 05 August 2019
 \end{document}
 }}}
 
+
 	b. use ''\footnotemark'' and ''footnotetext'' to explicitely set number
-    
 {{{code: lang="latex" linenumbers="True"
 \documentclass{beamer}
 \begin{document}
