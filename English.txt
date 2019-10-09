@@ -32,6 +32,24 @@ Created Samstag 29 Juni 2019
 * adjust to your email partner
 
 
+===== Compound words =====
+Source: https://english.stackexchange.com/questions/889/when-should-com-pound-words-be-writ-ten-as-one-word-with-hy-phens-or-with-spac
+Three types of compound words exists in English:
+1. The closed form: words are melded together, such as firefly, secondhand, softball, childlike, crosstown, redhead, keyboard, makeup, notebook
+2. The hyphenated form: daughter-in-law, master-at-arms, over-the-counter, six-pack, six-year-old, mass-produced
+3. The open form: post office, real estate, middle class, full moon, half sister, attorney general
+
+In general, compound words that are created by adding a prefix are not hyphenated, e.g. anteroom, extraordinary and coordinate. 
+Some exceptions are:
+* compounds in which the second element is capitalized or a number: anti-Semitic, pre-1998, post-Freudian
+* compounds which need hyphens to avoid confusion: un-ionized (as distinguished from unionized), co-op
+* compounds in which a vowel would be repeated (especially to avoid confusion): co-op, semi-independent, anti-intellectual (but reestablish, reedit)
+* compounds consisting of more than one word: (poster's note: these are phrasal adjectives) non-English-speaking, pre-Civil War
+* compounds that would be difficult to read without a hyphen: pro-life, pro-choice, co-edited
+
+Hyphenation is also used to join a word to a past participle to create a single adjective preceding the noun it modifies: "a well-intentioned plan," for example, or "a horseshoe-shaped bar."
+
+
 ===== Getting to know each other in conversations =====
 * "How are you"	 --> "Thank you, everything is fine/quite okay/I can't complain"
 				   --> don't talk about problems
