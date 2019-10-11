@@ -114,8 +114,7 @@ Created Montag 05 August 2019
 
 
 ===== References and footnotes when using the beamer style =====
-1. To show footnotes from each column at bottom, 2 methods exists
-
+1. To show footnotes from each column at the bottom of a slide, 2 methods exists
 	a. use ''[frame]'' option
 {{{code: lang="latex" linenumbers="True"
 \documentclass{beamer}
