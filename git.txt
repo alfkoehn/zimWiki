@@ -11,6 +11,7 @@ Note that the //index// is also referred to as //staging area//.
 
 Current commit (most recent) is called //HEAD//.
 
+
 ===== Basic commands =====
 	''$ git init''				create new repo in current directory
 	''$ git clone /repo_path	''		create working copy of local repo
@@ -107,6 +108,7 @@ Current commit (most recent) is called //HEAD//.
  
   (1. and 4. are a safeguard against merge conflicts, which occur when two branches contain file changes that cannot be merged with the git merge command.)
 
+
 ===== Backtrack/rewind changes =====
 1. Restore file in working dir to version when last made commit (in case you messed around in the working dir)
 	''$ git checkout HEAD <file>''
@@ -140,6 +142,7 @@ Current commit (most recent) is called //HEAD//.
 	''$ git log --author=Alice			''show only commits from Alice
 	''$ git log --graph --oneline --decorate --all	''show tree with all branches decorated with names of tags and names of branches
 	''$ git log --name-status				''show files which changed in each commit
+	''$ git log --patch -2''				show difference introduced by each commit (here: only last 2 commits)
 	''$ git tag 0.1 <commit-id>			''tag commit (useful for releases), usually first 10 chars of //commid-id// is ok
 
 	''$ git diff <file>				''show difference of file between working dir and staging area
@@ -166,3 +169,8 @@ Current commit (most recent) is called //HEAD//.
 5. Wrap body text at approximately 72 characters (in vim, type '':set textwidth=72'')
 6. Use body to explain what and why and not how
 
+
+===== Online tutorials & tips =====
+* git - the simple guide: http://rogerdudler.github.io/git-guide/
+* Pro Git book (free online), written by Scott Chacon and Ben Straub: https://git-scm.com/book/en/v2
+* Git for beginners: The definitive practical guide (stackoverflow): https://stackoverflow.com/questions/315911/git-for-beginners-the-definitive-practical-guide
