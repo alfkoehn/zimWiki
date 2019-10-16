@@ -5,7 +5,7 @@ Creation-Date: 2019-07-25T05:43:55+02:00
 ====== JupyterNotebooks ======
 Created Donnerstag 25 Juli 2019
 
-Emerged from "notebook" - project.
+Emerged from "IPython notebook" project. Create readable analyses as you can keep programming code, images, extensive comments, formulae and plots in one document
 
 ===== General notes =====
 * notebook itself is stored as text file in JSON format
@@ -21,12 +21,18 @@ Emerged from "notebook" - project.
 	''$ ipython nbconvert --to pdf foo.ipynb''
 * list of hotkeys is found in
 	//Help// → //Keyboard Shortcuts//
+* suppress output of a final function by adding a semicolon after function
+	''plt.plot(x,y);''
 
 
 ===== Basic commands =====
 	''<shift> + <enter>''				execute cell
 	''<esc> + b	''				insert new cell below
 	''<esc> + a''					insert cell above
+	''<esc>	''					go into command mode
+	''<enter>	''					go into edit mode
+	''<ctrl> + <shift> + p''				open dialog box allowing to enter any command
+	''<shift> + <tab>''					show docstring for object just typed into code cell
 
 
 ===== Plotting in notebook =====
@@ -35,6 +41,8 @@ Emerged from "notebook" - project.
    note: has to be executed before matplotlib.pyplot is imported
 * interactivity is added to plotted using a different magics
 	''%matplotlib notebook''
+* ''Seaborn'' might make plots more prettier (just by importing it without any additional code modification)
+* ''bokeh'' allows to make nice interactive plots
 
 
 ===== Magics =====
@@ -48,12 +56,17 @@ Emerged from "notebook" - project.
 					 ''notebook''							activates nbagg backend, allows to zoom in plots (requires matplotlib 1.4)
 					 nbagg								same as before but for older matplotlib versions
 	''% bash''						to run cell with bash in a subprocess
-	''%time''						time whatever you evaluate
+	''%time''						time whatever you evaluate (a single command)
 	''%timeit''						time whatever you evaluate multiple times, return best and average times
-	''%prun, %lprun, %mprun''				line-by-line time and memory usage
+		e.g.: ''%timeit np.random.normalize(size=100)''
+	''%prun						''time spent in each function when running a bigger program
+	''%lprun, %mprun''					line-by-line time and memory usage
 	''%run <some-python-file>''				execute python code
 	''%load <some-python-file>''			load python code into cell
-	''%% HTML''						render cell as HTML (e.g. embed images)
+	''%who	''					list all variables in global scope
+	''%%HTML''						render cell as HTML (e.g. embed images)
+	''%%bash''						run code using a bash kernel
+	''%%pearl''						run code using a pearl kernel
 	
 **rmagics** to run R locally
 	''%load_ext rmagic''				load rmagics extension
@@ -62,13 +75,18 @@ Emerged from "notebook" - project.
 	''Y <- runif(10)''
 	''%R plot(X,Y)''
 
-THERE EXIST **CYTHON** MAGICS
+**CYTHON** magics
 	''!pip install cython''
 	''%load_ext Cython''
 	''%%cython''
 	''def myltiply_by_2(float x):''
 		''return 2.0 * x''
 	''myltiply_by_2(23.)''
+
+**Fortran** magics
+	''%load_ext fortranmagic''
+	''%%fortran''
+	''<fortran-code>''
 
 
 ===== Using python 2.x and 3.x in ipython notebook =====
@@ -109,4 +127,20 @@ from http://blog.nextgenetics.net/?e=102
 	* http://mybinder.org/
 * setup your own system
 	https://github.com/jupyterhub/jupyterhub
+	
+
+===== Share & export Jupyter notebook into various formats =====
+* powerpoint-like presentation
+	''pip install RISE''						install RISE package
+	''jupyter-nbextension install rise --py --sys-prefix''		install extension in Jupyter notebooks
+	''jupyter-nbextension enable rise --py --sys-prefix''		enable extension in jupyter notebooks
+* html
+	''File > Download as > HTML''
+* github renders Jupyter notebooks
+* nbviewer
+	store notebook e.g. in dropbox and put link into nbviewer
+* Publication-ready notebooks
+	http://blog.juliusschulz.de/blog/ultimate-ipython-notebook
+* Jupyter notebooks to be shown on your personal blog
+	https://www.dataquest.io/blog/how-to-setup-a-data-science-blog/
 	
