@@ -1,0 +1,47 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-10-22T06:30:26+02:00
+
+====== ssvnc ======
+Created Dienstag 22 Oktober 2019
+
+Doing vnc via ssh using ssvnc
+http://www.karlrunge.com/x11vnc/ssvnc.html
+
+1. in the folder ''~/.vnc'' the file xstartup must exist (''chmod 744'')
+   content of the file:
+{{{code: lang="sh" linenumbers="True"
+#!/bin/sh
+   # copied from NuPla107 configuration
+
+   # Uncomment the following two lines for normal desktop:
+   # unset SESSION_MANAGER
+   # exec /etc/X11/xinit/xinitrc
+
+   [ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+   [ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+   xsetroot -solid grey
+   vncconfig -iconic &
+   #xterm -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
+   #twm &
+   gnome-session &
+}}}
+
+2. on the remote machine the vnc4server must run (better than vncserver):
+	''$ vnc4server''
+   if necessary kill all old servers before:
+	''$ killall Xvnc4''
+   set geometry by specifying when starting the server:
+	''$ vnc4server -geometry 1680x1010 -geometry 1300x500''
+   set the display number:
+	''$ vnc4server :75''
+   doing both together:
+	''$ vnc4server :75 -geometry 1680x1010 -geometry 1300x500''
+	
+3. connect from local to remote:
+	''$ ssvnc'' --> ''user@host:display#''
+   display possible display resolutions (set by the -geometry flag at server call)
+	''$ xrandr''
+   change to one of the possible resolutions
+	''$ xrandr -s 1680x1010''
+
