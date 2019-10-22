@@ -1,0 +1,42 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-10-22T06:23:26+02:00
+
+====== RaspberryPi ======
+Created Dienstag 22 Oktober 2019
+
+
+===== Prepare SD card with linux for NOOBS =====
+1. see what devices are currently mounted
+	''$ df -h''
+2. insert SD card
+3. see, how sd card is called, e.g. ''/dev/mmcblk0p1'' or ''/dev/sdb5'' (remove partition number to get name: ''/dev/mmcblk0'' or ''/dev/sdb5'')
+	$ df -h
+4. unmount SD-card (unmount all partitions!)
+	''$ umount /dev/sdb5''
+5. list all mounted and unmouted devices, compare with and without SD-card insert to identify it
+	''# fdisk -l''
+6. create single partition
+	''# fdisk /dev/sdb''
+	''d''   			(for delete existing partitions)
+7. list to check if really all partitions are deleted
+	''p''
+8. create new single (primary) partition
+	''n''
+9. list again, to check if it has worked
+10. change to FAT32
+	''t''
+11. list again, to check if it has worked
+12. write changes to SD-card
+	''w''
+13. format partition on SD-card (NOT whole SD-card)
+	''# mkfs.vfat /dev/sdb1''
+14. downloaded NOOBS
+15. mount SD-card and find mount-point
+	''$ mount | grep -i sdb1''
+16. change into mounted SD-card (mount-point found as described in 15.)
+17. unzip
+	''$ unzip ~/Downloads/NOOBS_v1_9_2.zip''
+18. done. unmount and insert into raspberry pi
+	''$ cd && sudo umount /dev/sdb1''
+
