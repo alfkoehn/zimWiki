@@ -19,6 +19,23 @@ Created Montag 24 Juni 2019
 	''<ctrl>+a''			increase number under cursor
 	''r<char>''				replace character under cursor by ''<char>''
 	'':w filename''			save as <filename>
+	''gg=G''				auto-indent the whole file
+
+
+===== Split screens =====
+	'':vsplit''				split vim window vertically
+	''<ctrl>+w v''			split vim window vertically
+	'':split''				split vim window horizontally
+	''<ctrl>+w s''			split vim window horizontally
+	''<ctrl>+w h''			move to split window left of current split window
+	''<ctrl>+w l''			move to split window right of current split window
+	''<ctrl>+w j''			move to split window below current split window
+	''<ctrl>+w k''			move to split window below current split window
+	''<ctrl>+w <''			decrease width of current split window
+	''<ctrl>+w >''			increase width of current split window
+	''<ctrl>+w -''			decrease height of current split window
+	''<ctrl>+w +''			increase height of current split window
+	''<ctrl>+w =''			reset current split window's width and height
 
 
 ===== Cursor movement =====
@@ -59,12 +76,10 @@ Created Montag 24 Juni 2019
 	''<ctrl>+u''				move back 1/2 screen
 	''<ctrl>+d''				move forward 1/2 screen
 	
-	
 
 ===== Configuration =====
 	'':set wrap''				enable line wrapping
 	'':set nowrap''				disabale line wrapping
-	
 
 
 ===== Comment and uncomment multiple lines =====
