@@ -1,0 +1,51 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-11-04T23:09:54+01:00
+
+====== Math ======
+Created Montag 04 November 2019
+
+===== Conditional equations with a curly bracket on one side =====
+The ''cases'' environment from the ''amsmath'' package is a good choice for that:
+{{{code: lang="latex" linenumbers="True"
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+  \begin{equation}
+    y=
+    \begin{cases}
+      0, & \text{if}\ x=1 \\
+      1, & \text{otherwise}
+    \end{cases}
+  \end{equation}
+\end{document}
+}}}
+
+
+===== Writing matrices =====
+An easy way to writes matrices with 
+	''[]'' braces is provided by the ''bmatrix'' environment, 
+	''()'' braces by the ''pmatrix'' environment, 
+	''||'' braces by the ''vmatrix'' environment (double lines by the ''Vmatrix'' environment)
+	no braces by the ''matrix'' environment,
+which are all part of the ''amsmath'' package:
+{{{code: lang="latex" linenumbers="True"
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+
+\begin{equation}
+M=
+  \begin{bmatrix}
+    1 & 2 & 3 \\
+    3 & 4 & 5 
+  \end{bmatrix}
+\end{equation}
+
+\end{document}
+}}}
+
+To write a matrix inline, simply write
+	''$M = \left\[ \begin{smallmatrix} 1 & 2 \\ 3 & 4 \end{smallmatrix} \right\]$''
+

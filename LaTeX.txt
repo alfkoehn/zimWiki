@@ -54,6 +54,24 @@ Created Montag 05 August 2019
 	''Today we have: \myisodate''
 
 
+===== Quotationmarks =====
+At least three different solutions exists:
+* Type ''``text'''' to produce “text”, and type ''`text''' to produce ‘text’
+* Using an Unicode editor, and either ''\usepackage[utf8]{inputenc}'' or ''XeTeX/LuaTeX, ''simply type ''“text”'' or ''‘text’'' in your code
+* Using the ''csquotes'' package, type ''\enquote{text} (''also not all the options for e.g. foreign quotes)
+
+
+===== Enumerations =====
+Make an enumerate list start at any number:
+{{{code: lang="latex" linenumbers="True"
+\begin{enumerate}
+  \setcounter{enumi}{4}
+  \item fifth element
+\end{enumerate}
+}}}
+
+Note that ''enumii'', ''enumiii'', and ''enumv'' are for 2nd, 3rd and 4th level of nested lists, respectively.
+
 ===== Basic drawing using TikZ =====
 * ''\usepackage{tikz}''
 * every TikZ diagram requires tikzpicture environment
