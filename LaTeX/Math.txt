@@ -49,3 +49,32 @@ M=
 To write a matrix inline, simply write
 	''$M = \left\[ \begin{smallmatrix} 1 & 2 \\ 3 & 4 \end{smallmatrix} \right\]$''
 
+
+===== Writing Equations in a math environment (display-math expression) =====
+1. ''$$ ... $$''
+	* old "Plain TeX" method, deprecated nowadays i.e. **should not be used** especially when using pdfLaTeX or XeLaTeX, see [[https://tex.stackexchange.com/questions/503/why-is-preferable-to|here]] for details
+2. ''\[ ... \]''
+	* Leslie Lamport's re-implementation of the previous (''$$...$$'') method which acts as a carefully designed wrapper around that method
+	* produces more helpful error messages
+	* checks if being in vertical mode (i.e. being at a start of a paragraph) and avoids inserting additional vertical space
+	* does not generate equation numbers
+3. ''\begin{displaymath} ... \end{displaymath}''
+	* exactly the same as ''\[ ... \]''  
+4. ''\begin{equation} ... \end{equation}''
+	* wrapper around ''$$ ... $$'' 
+	* equation number is added; avoid with writing ''equation*''
+	* might add some unwanted vertical space if at start of a paragraph
+	* will be redefined (and optimized) when loading the ''amsmath'' package
+5. ''\begin{gather*} ... \end{gather*}''
+	* requires ''amsmath'' package
+	* wrapper around ''$$ ... $$'' but optimizing it 
+	* can add equation numbers
+6. ''\begin{align} ... \end{align}''
+	* Like ''gather'' but with but with ability to vertically align equations.
+7. ''\begin{eqnarray} ... \end{eqnarray}''
+	* **do not use** this, use the ''align'' environment instead
+	* spacing around relation symbol somewhat inconsistent
+	* long equaions tend to collide with equation numbers
+	* sometimes there are problems with references and labels
+	* note that the iop-style fixes some of the problems
+
