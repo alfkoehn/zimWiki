@@ -11,8 +11,15 @@ Created Freitag 27 September 2019
 	''$ h5dump file.h5''
 2. zip data in hdf file
 	''$ h5repack --filter=GZIP=9 fileIN.h5 fileOUT.h5''
+3. display list of objects in the file
+	''$ h5dump -n file.h5''
+4. list all groups and objects including dataspace information
+	''$ h5ls -r file.h5''
+5. show file structure of hdf5 file (including dataspace size)
+	''$ h5dump -H -A 0 file.h5''
 	
 	
+
 ===== Using hdf5 in C =====
 1. hdf5 C compiling
 	''$ gcc foo.c -lhdf5''
@@ -22,6 +29,7 @@ Created Freitag 27 September 2019
 	''h5cc -DH5_USE_16_API ./foo.c''
 	
 	
+
 ===== Software for looking into hdf-files =====
 * ViTables
 * h5dump foo.h5
