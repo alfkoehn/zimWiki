@@ -56,7 +56,7 @@ Created Montag 05 August 2019
 
 ===== Quotationmarks =====
 At least three different solutions exists:
-* Type ''``text'''' to produce “text”, and type ''`text''' to produce ‘text’
+* Type ''``text to produce “text”, and type ''`text''' to produce ‘text’
 * Using an Unicode editor, and either ''\usepackage[utf8]{inputenc}'' or ''XeTeX/LuaTeX, ''simply type ''“text”'' or ''‘text’'' in your code
 * Using the ''csquotes'' package, type ''\enquote{text} (''also not all the options for e.g. foreign quotes)
 
@@ -71,6 +71,35 @@ Make an enumerate list start at any number:
 }}}
 
 Note that ''enumii'', ''enumiii'', and ''enumv'' are for 2nd, 3rd and 4th level of nested lists, respectively.
+
+
+===== Include pdfs =====
+1. Use the ''includegraphics'' command from the ''graphicx'' package
+	'''
+	\usepackage{graphicx}
+	\begin{document}
+	'''
+	'''
+	\includegraphics[page=7,scale=0.5]{some_file.pdf}      
+	'''
+	'''
+	\end{document}
+	'''
+
+2. Use the ''pdfpages'' package
+	a. All pages (and scaled)
+		''\includepdf[pages=-,scale=0.5]{some_file.pdf}''
+	b. All pages in reversed order
+		''\includepdf[pages=last-1]{some_file.pdf}''
+	c. Specific pages
+		''\includepdf[pages={2-9,13}]{some_file.pdf}''
+	d. Multiple pages on one side, 2 columns x 3 rows
+		''\includepdf[pages=., nup=2x3]{some_file.pdf}''
+	e. Set distance betwen pages
+		''\includepdf[pages=., nup=2x3, delta=3mm 3mm]{some_file.pdf}''
+	f. Make a frame around the pages
+		''\includepdf[pages=., nup=2x3, delta=3mm 3mm, frame=true]{some_file.pdf}''
+
 
 ===== Basic drawing using TikZ =====
 * ''\usepackage{tikz}''
