@@ -1,0 +1,53 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-11-17T12:54:07+01:00
+
+====== vpn ======
+Created Sonntag 17 November 2019
+
+
+===== NordVPN =====
+
+==== Install in ubuntu ====
+1. Download package from website or via wget
+	''$ sudo wget -qnc https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb''
+2. Include package into package list
+	''$ sudo dpkg -i ~/Downloads/nordvpn-release_1.0.0_all.deb''
+3. Update package list
+	''$ sudo apt-get update''
+4. Install [[NordVPN]]
+	''$ sudo apt-get install nordvpn''
+
+
+==== Usage in ubuntu ====
+1. Log in to [[NordVPN]] account
+	''$ nordvpn login''
+2. Connect to [[NordVPN]] server
+	''$ nordvpn connect''
+3. If GPG error (''NO_PUBKEY'') occurs, run following command
+	''$ sudo wget https://repo.nordvpn.com/gpg/nordvpn_public.asc -O - | sudo apt-key add -''
+	
+==== List of available commands ====
+	''$ nordvpn login''					log in
+	''$ nordvpn connect''				connect to vpn
+	''$ nordvpn disconnect''				disconnect from vpn
+	''$ nordvpn connect <country_code_server_number>	''connect to specific server, e.g. uk715
+	
+	''$ nordvpn set cybersec on/off''			enable/disable [[CyberSec]] (CyberSec: protection from ads, unsafe connections and malicious sites)
+	''$ nordvpn set killswitch on/off''			enable/disable Kill Switch (prevent unprotected access to internet, when traffic doesn't go through the vpn)
+	''$ nordvpn set autoconnect on/off''				enable/disable autoconnect
+	''$ nordvpn set protocol udp/tcp''					switch between udp/tcp protocoll
+	''$ nordvpn set obfuscate on/off	''				enable/disable obfuscated servers
+	
+	''$ nordvpn whitelist add port 22''			open incoming port 22
+	''$ nordvpn whitelist remove port 22''		remove the whitelist rule added previously
+	''$ nordvpn whitelist add subnet 192.168.0.0/16''	add a rule to whitelist your specific subnet
+	''$ nordvpn whitelist remove subnet 192.168.0.0/16''	remove the rule which previously whitelisted your subnet
+
+	''$ nordvpn settings''				list current settings
+	''$ nordvpn status''				see connection status
+	''$ nordvpn countries'' 				list countries
+	''$ nordvpn cities''				list cities
+	''$ nordvpn groups''				list available server groups
+	''$ nordvpn logout''				logout
+	''$ nordvpn help''					help
