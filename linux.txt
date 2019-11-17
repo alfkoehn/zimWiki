@@ -19,6 +19,9 @@ Created Dienstag 02 Juli 2019
 		''-r		''recursively (including subfolders)
 	''$ rsync -e ssh -r localeDir <user>@<server>:~/remoteDir''
 		synchronizes a local directory (''localeDir'') to a remote directory (''remoteDir'') with
+	''$ rsync -avrzP -e ssh --exclude '*.mp4' --exclude '*.gz' <user>@<server>:remoteDir/ localDir/''
+		''--exclude''	exclude files or folders
+		''-P''		show progess during transfer
 2. **unison**
 
 
