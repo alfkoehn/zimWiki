@@ -1,0 +1,22 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-11-18T22:48:17+01:00
+
+====== MachineLearning ======
+Created Montag 18 November 2019
+
+===== Databases for training your algorithm =====
+1. The MNIST database of handwritten digits
+	* Source: http://yann.lecun.com/exdb/mnist/
+	* Training set of 60000 examples
+	* Test set of 10000 examples
+	* Digits have been size-normalized and centered in a 28x28 sized image
+2. Fashion-MNIST
+	* Source: https://github.com/zalandoresearch/fashion-mnist
+	* Dataset of Zalando's article images
+	* Training set of 60000 examples
+	* Test set of 10000 examples
+	* 28x28 grayscaled image, associated with a label from 10 classes
+	* Serves as a drop-in replacement for the original MNIST dataset
+		* MNIST is too easy
+		* MNIST is overused
