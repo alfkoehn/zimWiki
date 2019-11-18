@@ -1,0 +1,29 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-11-18T06:08:25+01:00
+
+====== GDB ======
+Created Montag 18 November 2019
+
+GDB is short for GNU Project Debugger. It is a powerfull debugging tool for C.
+
+The code needs to be compiled with the debug flag:
+	''$ gcc -g -o test test.c''
+
+The generated executable is then passed to gdb:
+	''$ gdb ./test''
+
+Some useful gdb commands:
+	''run'' 				execute the program from start to end
+	''list	''						display the code
+''break line_number''		set breakpoint on a particular line (followed by the line number)
+''disable''				disable a breakpoin.
+''enable''				enable a disabled breakpoint
+''next	''			execute next line of code, but don’t go into functions
+''step''				go to next instruction, including functions
+	''print variable_name''		display the stored value of the variable //variable_name//
+	''set variable_name = 0''			set the value of the variable //variable_name//
+''quit''				exit gdb
+''clear''				clear all breakpoints
+''continue''			continue normal execution.
+
