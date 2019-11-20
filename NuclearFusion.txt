@@ -5,6 +5,13 @@ Creation-Date: 2019-11-18T23:53:49+01:00
 ====== NuclearFusion ======
 Created Montag 18 November 2019
 
+
+===== Fusion databases =====
+* International Stellarator-Heliotron Profile Database: https://ishpdb.ipp-hgw.mpg.de/
+* International Global H-Mode Confinement Database: http://efdasql.ipp.mpg.de/HmodePublic/
+* International Multi-Tokamak Confinement Profile Database: http://tokamak-profiledb.ccfe.ac.uk/
+
+
 ===== Fusion and Fiction =====
 1. //Back to the Future// (1985)
 	* Flux capacitor, previously used to allow the sports car to travel through time and running on plutonium replaced by "Mr Fusion"

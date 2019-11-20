@@ -170,6 +170,14 @@ Current commit (most recent) is called //HEAD//.
 6. Use body to explain what and why and not how
 
 
+===== Download a single folder from within a github project =====
+1. Copy the folder link, e.g. ''https://github.com/alfkoehn/zimWiki/tree/master/LaTeX''
+2. Modify the url: ''tree/master'' → ''trunk''
+	''https://github.com/alfkoehn/zimWiki/trunk/LaTeX''
+3. Download the folder content with ''svn'' 
+	''$ svn checkout https://github.com/alfkoehn/zimWiki/trunk/LaTeX''
+
+
 ===== Online tutorials & tips =====
 * git - the simple guide: http://rogerdudler.github.io/git-guide/
 * Pro Git book (free online), written by Scott Chacon and Ben Straub: https://git-scm.com/book/en/v2
