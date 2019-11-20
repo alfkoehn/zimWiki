@@ -73,16 +73,55 @@ Make an enumerate list start at any number:
 Note that ''enumii'', ''enumiii'', and ''enumv'' are for 2nd, 3rd and 4th level of nested lists, respectively.
 
 
+===== Linebreaks within table cells =====
+The default ''tabular'' environment does not allow for linebreak within a cell. 
+1. Add addtional rows to the table to mimick linebreaks
+2. Use the ''tabularx'' package, where columns can get a fixed width and if cell entry is wider an automatic wrapping happens.
+{{{code: lang="latex" linenumbers="True"
+\documentclass{article}
+\usepackage{tabularx}
+
+\begin{document}
+
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\hline
+In this table & each column has the same & width & of textwidth/4 \\
+\hline
+  &  & the width is & too small for some of the cells  \\
+\hline
+\end{tabularx}
+
+\end{document}
+}}}
+	
+3. Explicitly specify the column width using additional column types
+	''p{width}''	vertically top-aligned cells width fixed width
+	''m{width}''	vertically middle-aligned cells width fixed width
+	''b{width}''	vertically bottom-aligned cells with fixed width
+{{{code: lang="latex" linenumbers="True"
+\documentclass{article}
+\usepackage{blindtext}
+\begin{document}
+\begin{tabular}{p{0.1\textwidth}p{0.8\textwidth}}
+\hline
+First column & Second column\\
+\hline
+blub & \blindtext\\
+blob & blib\\
+\hline
+\end{tabular}
+\end{document}
+}}}
+	
+
+
+
 ===== Include pdfs =====
 1. Use the ''includegraphics'' command from the ''graphicx'' package
 	'''
 	\usepackage{graphicx}
 	\begin{document}
-	'''
-	'''
 	\includegraphics[page=7,scale=0.5]{some_file.pdf}      
-	'''
-	'''
 	\end{document}
 	'''
 
