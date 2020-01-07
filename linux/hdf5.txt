@@ -17,8 +17,7 @@ Created Freitag 27 September 2019
 	''$ h5ls -r file.h5''
 5. show file structure of hdf5 file (including dataspace size)
 	''$ h5dump -H -A 0 file.h5''
-	
-	
+		
 
 ===== Using hdf5 in C =====
 1. hdf5 C compiling
@@ -28,7 +27,88 @@ Created Freitag 27 September 2019
 2. getting hdf5-1.6 code compiled with hdf5-1.8
 	''h5cc -DH5_USE_16_API ./foo.c''
 	
+
+===== Using hdf5 in python =====
+The ''h5py'' module offers easy hdf5 handling. 
+1. Basic saving into an hdf5 file
+{{{code: lang="python3" linenumbers="True"
+import numpy as np
+import h5py
+
+# create some dummy data
+data1 = np.random.random( size = (1000,10) )
+data2 = np.random.random( size = (1000,100) )
+
+# initialize hdf5 file
+hf = h5py.File( 'my_data.h5', 'w' )
+
+# create hdf5 dataset with compression enables
+hf.create_dataset( 'dataset1', data=data1, compression="gzip", compression_opts=9 )
+hf.create_dataset( 'dataset2', data=data2, compression="gzip", compression_opts=9 )
+
+# close hdf5 file to write data to disk
+h5.close()
+}}}
 	
+	//Note: it is usually worth to explicitely specify the datatype when create the dataset via the //''dtype''// keyword//
+
+2. Basic reading from an hdf5 file
+{{{code: lang="python3" linenumbers="True"
+import numpy as np
+import h5py
+
+# open file
+hf = h5py.File( 'my_data.h5', 'w' )
+
+# print keys to show datasets in hdf5 file
+for key in hf.keys():
+	print( key )
+
+# grab dataset
+# note: will return a hdf5 dataset object
+#       this is only accessible as long as file is open
+dSet1 = hf.get( 'dataset1' )
+
+# copy hdf5 dataset into numpy array
+# this is also accessible after file is closed
+data1 = np.array( dSet1 )
+# the following solution also works
+data2 = h5['dataset2'][:]
+
+# close hdf5 file
+h5.close()
+}}}
+	
+3. Organizing datasets in groups
+{{{code: lang="python3" linenumbers="True"
+arr1 = np.random.rand(1000)
+
+# write hdf5 file with nested groups and datasets in them
+with h5py.File( 'file_with_groups.h5', 'w' ) as hf:
+	hf_g1 = hf.create_group('base_group')
+	hf_g2 = hf_g1.create_group('sub_group')
+	
+	dSet1 = h1_g1.create_dataset( 'dSet1', data=arr1 )
+	dSet2 = hf_g2.create_dataset( 'dSet2', data=arr1 )
+	
+# read datasets from hdf5 file with groups
+with h5py.File( 'file_with_groups.h5', 'r' ) as hf:
+	dSet1 = f['base_group/dSet1']
+	dSet2 = f['base_group/sub_group/dSet2']
+}}}
+	
+4. Handling metadata
+	Metadata can be stored in different ways into an hdf5 file, one way it so use attributes:
+	'''
+	hf = h5py.File( 'my_data.h5', 'w' )
+	g1 = hf.create_group( 'some_group' )
+	dSet = g1.create_group( 'some_data', my_arr )
+	g1.attrs['Date'] = time.time()
+	g1.attrs['User'] = 'me'
+	dSet.attrs['OS'] = os.name
+	'''
+	
+
 
 ===== Software for looking into hdf-files =====
 * ViTables
