@@ -15,14 +15,14 @@ Created Sonntag 17 November 2019
 	''$ sudo dpkg -i ~/Downloads/nordvpn-release_1.0.0_all.deb''
 3. Update package list
 	''$ sudo apt-get update''
-4. Install [[NordVPN]]
+4. Install NordVPN
 	''$ sudo apt-get install nordvpn''
 
 
 ==== Usage in ubuntu ====
-1. Log in to [[NordVPN]] account
+1. Log in to NordVPN account
 	''$ nordvpn login''
-2. Connect to [[NordVPN]] server
+2. Connect to NordVPN server
 	''$ nordvpn connect''
 3. If GPG error (''NO_PUBKEY'') occurs, run following command
 	''$ sudo wget https://repo.nordvpn.com/gpg/nordvpn_public.asc -O - | sudo apt-key add -''
@@ -33,7 +33,7 @@ Created Sonntag 17 November 2019
 	''$ nordvpn disconnect''				disconnect from vpn
 	''$ nordvpn connect <country_code_server_number>	''connect to specific server, e.g. uk715
 	
-	''$ nordvpn set cybersec on/off''			enable/disable [[CyberSec]] (CyberSec: protection from ads, unsafe connections and malicious sites)
+	''$ nordvpn set cybersec on/off''			enable/disable CyberSec (CyberSec: protection from ads, unsafe connections and malicious sites)
 	''$ nordvpn set killswitch on/off''			enable/disable Kill Switch (prevent unprotected access to internet, when traffic doesn't go through the vpn)
 	''$ nordvpn set autoconnect on/off''				enable/disable autoconnect
 	''$ nordvpn set protocol udp/tcp''					switch between udp/tcp protocoll
