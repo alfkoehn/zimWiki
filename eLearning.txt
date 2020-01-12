@@ -1,0 +1,20 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2020-01-12T14:48:41+01:00
+
+====== eLearning ======
+Created Sonntag 12 Januar 2020
+
+===== Livestreaming lectures via twitch =====
+* tell students to go to your twitch-page at time of class
+* stream your desktop, talk through headset
+	* go through slides, same as giving an offline talk
+	* using wacom tablet to write equations and generally make speed slower, allowing students to follow
+* advertisements might be displayed
+* trolls might be there (moderator might be good)
+* plan in general less content than in an offline lecture
+* interact with students in online-class makes them attached to course (and maybe forces them to follow more closely)
+
+=== Educational twitch channels ===
+* Astrophysics:	https://www.twitch.tv/skylias
+* Coding:		https://www.twitch.tv/devchatter
