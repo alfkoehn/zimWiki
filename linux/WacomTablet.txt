@@ -70,6 +70,8 @@ Created Freitag 25 Oktober 2019
 ''|``        stylus                                     _ > 1''
 '' ``--------------------------------------------------/''
 
+Button configurations for other pads are listed at https://github.com/linuxwacom/xf86-input-wacom/wiki/Tablet-Configuration-1:-xsetwacom-and-xorg.conf
+
 
 ===== Restore configuration when reconnecting the tablet =====
 Create a bash script which contains all the ''xsetwacom'' configuration calls and run it once the tablet is connected to the computer.
@@ -85,7 +87,7 @@ xsetwacom set 18 Button 1 key "PgDn"
 
 
 ===== Setup on multiple monitors =====
-If using multiple monitors, it might happen that the tablet + pen maps to all screen where you want to map it for example only to the right monitor.
+If using multiple monitors, it might happen that the tablet + pen maps to all screens where you want to map it for example only to the right monitor.
 1. Get the ID of the stylus
 	''$ xsetwacom list devices''
 2. Get the resolution of the style
