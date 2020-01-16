@@ -1,0 +1,25 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2020-01-16T14:36:04+01:00
+
+====== beamer ======
+Created Donnerstag 16 Januar 2020
+
+===== Nice framed text boxes =====
+{{{code: lang="latex" linenumbers="True"
+\begin{center}
+    \begin{minipage}{.75\textwidth}
+    	% different types of blocks exists: block, exampleblock, alertblock (to be inserted in 1st brackets)
+        \begin{block}{}% empty brackets mean no title of block
+           \centering
+           Some important fact or result.
+        \end{block}
+    \end{minipage}
+\end{center}
+}}}
+
+Note that the appearance of the boxed text depends on the beamer theme used, i.e. the following results in different looking boxes
+	''\usetheme{Warsaw}''
+	''\usetheme{Copenhagen}''
+	''\usetheme[secheader]{Boadilla}''
+
