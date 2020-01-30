@@ -38,6 +38,14 @@ Created Samstag 29 Juni 2019
 * //to result// is very definite as it means "to arise as a consequence, effect, or outcome of some action, process, or design"
 
 
+===== Zero vs. Nil vs. Naught vs... =====
+	zero		mathematics, temperatures, digits (leading/trailing zeros)
+	oh			telephone numbers, room numbers, years (e.g. 1909), figures after the decimal (.003)
+	naught		as index (x_0)
+	nil			sport scores
+	love			tennis score
+
+
 ===== Compound words =====
 Source: https://english.stackexchange.com/questions/889/when-should-com-pound-words-be-writ-ten-as-one-word-with-hy-phens-or-with-spac
 Three types of compound words exists in English:
