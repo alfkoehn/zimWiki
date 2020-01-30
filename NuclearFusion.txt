@@ -31,3 +31,12 @@ Created Montag 18 November 2019
 7. //Interstellar// (2014)
 	* Fusion-powered spaceship, //Endurance//
 	* Compact tokamaks
+
+
+===== Fusion in computer games =====
+1. //SimCity 2000 //(1994)
+	* fusion power plant is ultimate power plant in [[SimCity]] 2000, [[SimCity]] 3000, and [[SimCity:]] Cities of Tomorrow
+	* looks different in each of the Sim-titles where it appears
+	* last power plant to unlock
+	* expensive, but can power a whole city
+	* no risk of meltdown or any other source of pollution
