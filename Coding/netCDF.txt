@@ -1,0 +1,61 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2020-02-03T06:30:33+01:00
+
+====== netCDF ======
+Created Montag 03 Februar 2020
+
+NetCDF: Network Common Data Format
+
+
+===== Software for looking into netCDF files =====
+* ''ncview'' to directly plot data with a GUI also showing all variables in file
+	''$ ncview my_nc_file.nc''
+* ''ncdump'' to look into file
+	''$ ncdump -h my_nc_file.nc		# shows only headers (metadata)''
+
+
+===== Using netCDF in Python =====
+
+==== Using netCDF4 library ====
+{{{code: lang="python3" linenumbers="True"
+from netCDF4 import Dataset
+import numpy as np
+
+# opening file (creating a file handler)
+filename_in = 'my_nc_data.nc'
+fh = Dataset(filename_in, mode='r')
+
+# read data from any of the variables in our file
+lons = fh.variables['lon'][:]
+lats = fh.variables['lat'][:]
+tmax = fh.variables['Tmax'][:]
+tmax_units = fh.variables['Tmax'].units
+
+# close file
+fh.close() 
+}}}
+
+
+==== Using xarray library ====
+{{{code: lang="python3" linenumbers="True"
+import xarray as xr
+
+# open single file (dataset)
+# by convention, datasets are named in upper case
+filename_in = 'my_nc_file.cdf'
+DS = xr.open_dataset(filename_in)
+
+# open multiple files
+filename_in_DIR = 'my_nc_files_*.cdf'
+DS = xr.open_mfdataset(filename_in_DIR)
+
+# xarray.DataArray is a labelled multidimensional array for a single variable
+# it contains following key properties
+data   = DS.values			# np.ndarray holding array's values
+dims   = DS.dims			# dimension names for each axis
+coords = DS.coords			# dict-like container to label each points (1D arrays for axes) 
+attrs  = DS.attr			# arbitrary metadata (attributes) 
+}}}
+ 
+
