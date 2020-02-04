@@ -67,7 +67,7 @@ Make an enumerate list start at any number:
 \begin{enumerate}
   \setcounter{enumi}{4}
   \item fifth element
-\end{enumerate}
+\end{enumerate} 
 }}}
 
 Note that ''enumii'', ''enumiii'', and ''enumv'' are for 2nd, 3rd and 4th level of nested lists, respectively.
