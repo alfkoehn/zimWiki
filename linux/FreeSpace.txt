@@ -1,0 +1,44 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2020-02-04T21:10:33+01:00
+
+====== FreeSpace ======
+Created Dienstag 04 Februar 2020
+
+The following tips are meant to be used on an ubuntu system to keep it clean and also to free some disk space; most of them are general linux-tips.
+
+1. Uninstall necessary applications by going through the software manager
+
+2. Remove unneccesary  packages and dependencies
+	''$ sudo apt-get remove''
+	
+3. Clean thumbnail cache
+	''$ rm -rf ~/.cache/thumbnails/*''
+	
+	 check its size before cleaning via
+	''$ du -sh ~/.cache/thumbnails''
+	
+	 only delete files that have not been accessed for more than a year
+	''$ find ~/.cache/thumbnails/ -type f -atime +365 -delete''
+	 list them before deleting
+	''$ find ~/.cache/thumbnails/ -depth -type f -atime +365'' 
+	
+4. Remove old kernels (if no longe required)
+	''$ sudo dpkg --list 'linux-image*'''
+	''$ sudo apt-get remove linux-image-VERSION''
+	
+5. Remove useless files and clean-up folders
+	e.g. ''~/Downloads/'', ''~/Desktop/'', ''~/Documents/'' etc.
+
+6. Clean apt-cache: ubuntu's software manager APT generates a cache of downloaded apps and keeps (also after apps have been uninstalled).
+	check its size via
+	''$ sudo du -sh /var/cache/apt''
+    
+	remove it with
+	''$ sudo apt-get clean''
+	
+7. Clean ''pip'' cache
+	''$ rm -rf ~/.cache/pip/*''
+	
+	 Note: good idea to first rename it and see if everything (pip) is still working
+
