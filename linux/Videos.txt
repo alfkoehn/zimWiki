@@ -5,7 +5,7 @@ Creation-Date: 2019-07-24T05:47:42+02:00
 ====== Videos ======
 Created Mittwoch 24 Juli 2019
 
-===== Create video from images =====
+===== Create (and modify) videos from images =====
 Using **ffmpeg**
 * ''$ ffmpeg -framerate 24 -i %03d.png output.mp4''
 	  --> ''-framerate 24''		default is 25 frames per secons
@@ -21,17 +21,37 @@ Using **ffmpeg**
 * if problems with frames occur, use "''fps''" filter
 	''$ ffmpeg -framerate 1/5 -i %03d.png -c:v libx264 -vf fps=25 -pix_fmt yuv420p out.mp4''
 * ''$ ffmpeg -f image2 -i %03d.jpg out.mpg''
+* create a video that has only one image with a specific time duration (title or credits for example)
+	''$ ffmpeg -loop 1 -framerate 25 -i title_blurred.png -c:v libx264 -t 5 -pix_fmt yuv420p -vf scale=1440:-2 title.mp4''
+		''-loop 1''		loop over the input if set to 1
+		''-t 5''		set length to 5 seconds
+* get the framerate of a video
+	''$ ffmpeg -i video.mp4''
+		look for the ''tbr'' value
+* add fade out (light to dark) at the end or fade in (dark to light) at beginning
+	''$ ffmpeg -i start.mp4 -y -vf fade=in:0:25 start_fadein.mp4''
+	''$ ffmpeg -i end.mp4 -y -vf fade=out:100:25 end_fadeout.mp4''
+		''-y''		overwrite out file without asking
+		''-vf''		short (alias) for ''-filter:v'' 
+* concatenate videos with same codecs
+	* create a file ''mylist.txt'' with all files to be concatenated:
+		''# file listing all files to be concatenated''
+		''file '/path/to/file1.mp4'''
+		''file '/path/to/file1.mp4'''
+	* concatenate with ffmepg
+		''$ ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4''
+			''-safe 0''		not required if paths are relative
 
 
 ===== Video capture with ubuntu =====
 * **screen capture** (including sound) with **recordMyDesktop**
 	1. install the software
-		''sudo apt-get install recordMyDesktop		''// //command-prompt version//
-		''sudo apt-get install gtk-recordMyDesktop'' 	// //GUI version//
+		''sudo apt-get install recordMyDesktop		'' command-prompt version//
+		''sudo apt-get install gtk-recordMyDesktop'' 	 GUI version//
 	2. record
 		''recordmydesktop -x START_POS -y START_POS --width XSIZE --height YSIZE -o foo.ogv''
 				//// e.g. recordmydesktop -x 10 -y 10 --width 640 --height 480 -o foo.ogv//
-		''wininfo						''// //get size and position of window//
+		''wininfo						'' get size and position of window//
 	2a. record with the gui (set windowsize and sound)
 * **video capture** using **ffmpeg** and the build-in webcam
 	1. using ffmpeg w/o sound
