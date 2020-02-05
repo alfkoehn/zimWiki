@@ -5,13 +5,18 @@ Creation-Date: 2019-06-24T23:30:20+02:00
 ====== vim ======
 Created Montag 24 Juni 2019
 
+===== Some important (i.e. very helpful) commands =====
 	''u''				undo last change
 	''<CTRL>+R			''redo
 	''<CTRL>+p			''autocomplete
 	''<CTRL>+n			''undo autocomplete
 	''%				''automatch, e.g. closing brackets
+	''d%''				delete from opening to closing bracket
 	''gg				''goto 1st line
 	''G				''goto last line
+	''0''				goto start of line
+	''^''				goto first non-blank character of line
+	''$''				goto end of line
 	''za				''fold/unfold code block
 	''zM				''fold all
 	''zR				''unfold all
@@ -19,7 +24,24 @@ Created Montag 24 Juni 2019
 	''<ctrl>+a''			increase number under cursor
 	''r<char>''				replace character under cursor by ''<char>''
 	'':w filename''			save as <filename>
+	''==''				auto-indent current line
+	''=i{''				auto-indent current block
 	''gg=G''				auto-indent the whole file
+	''dd''				delete (cut) current line
+	''dw''				delete (cut) current word
+	''D''				delete from cursor until end of line
+	'':%s/old/new/gc''			replace <old> with <new> throughout whole file with confirmation
+	'':tabe <file>''			open a new tab and edit <file> inside that tab
+	''<i>gt''				goto tab in position i (omitting number goes to next tab)
+	'':Explore''			open vim explorer
+	''qa''				start recording a sequence (for a user-defined macro), assign the letter ''a'' to the macro
+	''q''				stop recording the sequence
+	''@a''				replay (repeat) the sequence
+	''m<lowercaseletter>''		create a local bookmark in file (NOTE: ''<uppercaseletter>'' for global bookmarks, e.g. some other file)
+	''`<lowercaseletter>''		jump to exact position of local bookmark
+	'''<lowercaseletter>''		jump to beginning of line of local bookmark
+	'':marks	''			list all local bookmarks
+	'':!cal''				execute system command (here: ''cal''), return to vim after execution and pressing ''<enter>'' 
 
 
 ===== Split screens =====
@@ -156,13 +178,28 @@ Source: https://github.com/gmarik/Vundle.vim.git
 	   save file and restart vim (or :source %)
 	   :PluginInstall will install the plugin   
 
-5) some useful plugins
-   * NERDTree, github: scrooloose/nerdtree
-	  :NERDTree      open explorer-like sidebar
-	  :Bookmark foo  create a bookmark in that folder
-	  B              list bookmarks
-	  ?              help (list commands) 
-	  q              close NERDTree window
+
+==== NERDTree plugin ====
+* github: scrooloose/nerdtree
+	'':NERDTree''				open explorer-like sidebar
+	''o''					open selected file/directory/bookmark
+	''go''					same as o but leave cursor in NERDTree
+	''t''					open in new tab
+	''i''					open in split window
+	''s''					open in a new vsplit
+	
+	''P''					jump to root node
+	''p''					jump to node parrent
+	''K''					jump up inside directories at current tree depth
+	''J''					jump down inside directories at current tree depth
+	''u''					move tree root up one directory
+	''r''					refresh current directory
+	
+	'':Bookmark foo''				create a bookmark in that folder
+	''B					''list bookmarks
+	''I	''				toggle whether hidden files are shown
+	''?					''help (list commands) 
+	''q''					close NERDTree window
 
 
 ===== Spell check =====
