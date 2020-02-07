@@ -99,6 +99,21 @@ Source: https://www.youtube.com/watch?v=n_8DVwVOX9c
 	* zoom lense with help to keep distance
 
 
+===== Time lapse =====
+* Some suggestions for intervals
+	* slowly moving clouds			10 seconds interval
+	* normal moving clouds			5 seconds interval
+	* very fast moving clouds			3 seconds interval
+	* people walking down a street	2 seconds interval
+	* sun on a clear day				30 seconds interval
+	* night shots (moon, stars)		20-30 seconds interval
+	* cooking action					1 seconds interval
+* If tripod is not too heavy, hanging camera bag on it can make it less shaky (during wind)
+* Use RAW 
+* Focus before the time-lapse start, then set focus to manual to prevent losing/changing focus during time lapse
+* Use manual setting to ensure that exposure time, iso, f-number are all the same (to avoid "flickering" during time lapse)
+
+
 ===== Adding copyright infos to photos =====
 using exiftool
 	''$ exiftool -CopyrightNotice="Alf Köhn, CC BY-SA 3.0" -artist="Alf Köhn" -Copyright="Alf Köhn, CC BY-SA 3.0" picture.jpg''
