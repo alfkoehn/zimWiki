@@ -16,6 +16,9 @@ Created Samstag 29 Juni 2019
 	   "I placed the phone whose screen was broken in the bin"              	OK
 	   "I placed the phone which screen was broken in the bin"          		NOT OK
 	   "I replaced the phone, the screen of which was broken, in the bin"   	OK 
+* //I'm one hundred percent sure//  vs.  //I'm a hundred percent sure//  
+	* first one gives a greater impression of certainty (in speech, "one" would be emphasized)
+	* in negative sentences, one would write  //I'm not a hundred percent sure//
 
 
 ===== Figure caption =====
