@@ -30,6 +30,7 @@ Created Montag 05 August 2019
 	''$ aspell -t check file.tex''
 7. Dots in filename when using \includegraphics
 	''\includegraphics{path_to_file/{my.filename.with.dots}.png}''
+8. the ''pdfcomment'' package might be useful in a few cases to insert comment-boxes
 
 
 ===== Umlaute =====

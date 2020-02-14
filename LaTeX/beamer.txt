@@ -15,7 +15,7 @@ Created Donnerstag 16 Januar 2020
            Some important fact or result.
         \end{block}
     \end{minipage}
-\end{center}
+\end{center} 
 }}}
 
 Note that the appearance of the boxed text depends on the beamer theme used, i.e. the following results in different looking boxes
@@ -25,7 +25,7 @@ Note that the appearance of the boxed text depends on the beamer theme used, i.e
 
 
 ===== References and footnotes when using the beamer style =====
-1. To show footnotes from each column at the bottom of a slide, 2 methods exists
+1. To show **footnotes from each column at the bottom of a slide**, 2 methods exists
 	a. use ''[frame]'' option
 {{{code: lang="latex" linenumbers="True"
 \documentclass{beamer}
@@ -38,7 +38,7 @@ Note that the appearance of the boxed text depends on the beamer theme used, i.e
 		text for 2nd column and a footnote\footnote[frame]{footnote in 2nd column}
 		\end{columns}
 \end{frame}
-\end{document}
+\end{document} 
 }}}
 
 
@@ -56,10 +56,10 @@ Note that the appearance of the boxed text depends on the beamer theme used, i.e
 	\footnotetext[1]{footnote in 1st column}
 	\footnotetext[2]{footnote in 2nd column}
 \end{frame}
-\end{document}
+\end{document} 
 }}}
 	
-2. Use biblatex to show bibliography items at bottom
+2. Use biblatex to show **bibliography items at bottom**
 {{{code: lang="latex" linenumbers="True"
 \documentclass{beamer}
 \usepackage{biblatex}
@@ -68,13 +68,13 @@ Note that the appearance of the boxed text depends on the beamer theme used, i.e
 \begin{frame}
 	Here is text\footfullcite{smith00}
 \end{frame}
-\end{document}
+\end{document} 
 }}}
 
 	 --> this will display full reference smith00 from foo.bib 
 	 --> compile: ''pdflatex'', ''biber'', ''pdflatex'', ''pdflatex''
 
-3. Show references at bottom and at bibliography at end
+3. Show **references at bottom and at bibliography** at end
 {{{code: lang="latex" linenumbers="True"
 \documentclass{beamer}
 \usepackage[style=verbose]{biblatex}
@@ -82,13 +82,80 @@ Note that the appearance of the boxed text depends on the beamer theme used, i.e
 \addbibresource{foo.bib}
 \begin{document}
 \begin{frame}
-	Text text \footcite{RePEc:cwl:cwldpp:159}
+	Text text \footcite{Smith:2001}
 \end{frame}
 \begin{frame}
 	\printbibliography
 \end{frame} 
-\end{document}
+\end{document} 
 }}}
 
 	 --> compile: ''pdflatex'', ''biber'', ''pdflatex'', ''pdflatex''
+
+4. Change appearance of citations in footnotes and in bibliography at end
+{{{code: lang="latex" linenumbers="True"
+\documentclass[10pt]{beamer}
+% NOTE: using citestyle=authortitle + bibstyle=numeric
+%       allows to have numbers in footnotes + bibliography
+%       WARNING: care must be taken that numbers are same
+%       more info: https://tex.stackexchange.com/questions/73776/biblatex-footnote-citations-and-numbers-in-bibliography 
+\usepackage[
+    style=authortitle,
+    autocite=footnote,
+    maxcitenames=1,
+    backend=biber,
+    ]
+    {biblatex}
+\addbibresource{my_bib.bib}
+
+% change appearance of citations in footnotes
+\renewbibmacro*{cite:title}{%
+  \ifentrytype{article}{%
+    \printtext[bibhyperref]{%
+      \printfield{journaltitle}%
+%      \setunit{\addspace}%uncomment for bold volume number
+%      \printfield[citevolume]{volume}%uncomment for bold volume number
+      \setunit{\space}%
+      \printtext[parens]{\printdate}%
+    }%
+  }{}%
+  \ifentrytype{book}{%
+    \printtext[bibhyperref]{%
+      \printfield[citetitle]{labeltitle}%
+      \setunit{\space}%
+      \printtext[parens]{\printdate}%
+    }%
+  }{}%
+}
+
+% make journal title not italic
+\DeclareFieldFormat{journaltitle}{#1}
+
+% make the doi a clickable hyperlink and change it to lowercase letters
+\DeclareFieldFormat{doi}{%
+  doi\addcolon\space
+  \ifhyperref
+    {\href{https://doi.org/#1}{\nolinkurl{#1}}}
+    {\nolinkurl{#1}}%
+}
+
+\begin{document}
+
+\begin{frame}[t]{One column on this page}
+    \begin{itemize}
+        \item Even more text\footnotemark
+    \footcitetext{Peter1}
+        \item Note: an article\footnotemark
+    \footcitetext{Klaus1}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Bibliography}
+    \printbibliography
+\end{frame}
+
+\end{document}
+}}}
+
+	--> compile: xe''latex'', ''biber'', ''xelatex'', ''xelatex''
 
