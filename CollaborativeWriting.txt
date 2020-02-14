@@ -1,0 +1,167 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2020-02-14T13:46:48+01:00
+
+====== CollaborativeWriting ======
+Created Freitag 14 Februar 2020
+
+
+===== git =====
+* use README file to define contributors, contents, how to handle auxiliary files (figures, bibliography)
+* split paper into multiple files, typically each section in its own files with one ''main.tex'' combining everything using 
+	''\input''         or 
+	''\include  or''
+	''\subfile''
+* only commit salient files (''.tex'' and ''.bib'')
+	* configure the ''.gitignore'' to exclude the following files
+		'''
+		*.aux
+		*.log
+		*.bbl
+		*.dvi
+		*.fdb_latexmk
+		*.fls
+		*.out
+		'''
+		'''
+		*.synctex.gz
+		*.toc
+		'''
+
+* idea for general project setup
+
+	''CollaborativeWritingProject/''
+	''├── .git/''
+	''├── .gitignore''
+	''├── compile.sh''
+	''├── LICENSE''
+	''├── ProjectTitle''
+	''│   ├── chapters/''
+	''│   │   ├── chapter00_front_matter.tex''
+	''│   │   ├── chapter01_introduction.tex''
+	''│   │   ├── chapter02_bla.tex''
+	''│   │   └── chapter03_blub.tex''
+	''│   ├── images/''
+	''│   │   └── chapter01_fig144x333.png''
+	''│   ├── main.tex''
+	''│   └── .gitignore''
+	''├── README''
+	''└── StableCopy.pdf''
+
+* branches can be used to group work as //stable// or //development//
+'''
+
+|
+Stable .pdf at base of repository
+|\
+| \
+|  Tweaking a section
+|  |
+|  Fixing some typos
+| /
+|/
+Merge and create new stable document
+|
+'''
+
+
+* working with branches could look like the following workflow
+	* create a branch in the local repo
+		''$ git branch edit-section2''
+	* checkout branch for current section
+		''$ git checkout edit-section2''
+	* edit and commit
+		''$ git commit -a -m <message>''
+	* when done with edits and ready to share with others, checkout master branch, get latest changes from server, merge, and then push your changes
+		''$ git checkout master''
+		''$ git pull''
+		''$ git merge edit-section2''
+		''$ git push''
+* every sentence in a new line
+* use package like ''glossaries'' for acronyms and symbols 
+
+
+===== Overleaf =====
+* https://www.overleaf.com/
+
+
+===== gnu-screen of tmux =====
+* can be used to have simultaneous access to the entire development environment
+
+
+===== git-remote-dropbox =====
+* check here: https://github.com/anishathalye/git-remote-dropbox
+
+
+===== git + Dropbox =====
+* Partly from http://www.math.cmu.edu/~gautam/sj/blog/20160406-dropbox-git.html
+* Having a git repository, i.e. the ''.git'' folder, in a shared dropbox folder is a bad idea
+	* simultaneously pushing to the repo (by two users) will corrupt it
+	* every git operation will push notifications to all collaborators
+	* non-git aware collaborators might wreak it
+* set up shared Dropbox folder to be a git repository, but store repository, the ''.git/'' folder, in a non-dropbox folder
+	''$ cd ~/Dropbox/shared_folder/foo''
+	''$ dropbox exclude add .git''
+	''$ mkdir -p $HOME/.separate-gitroots''
+	''$ git init --separate-git-dir=$HOME/.separate-gitroots/foo.git''
+* working on a local copy, in a non-dropbox folder
+	* assume you have an empty repository created at ''git@yourserver.com:foo''  
+	* add this remote repo into dropbox and put shared files in it
+		''$ cd ~/Dropbox/shared_folder/foo''
+		''$ git remote add origin git@yourserver.com:foo''
+		''$ git add paper.tex ...''
+		''$ git commit --author 'Coauthor <who@doesnt.use.git>'''
+		''$ git push -u origin master''
+	* set up local copy, i.e. clone repo
+		''$ git clone git@yourserver.com:foo ~/foo''
+		
+		→ your work in remote repository ''git@yourserver.com''
+		→ clone in dropbox for coauthors to edit
+		→ local clone in ''~/foo'' for you to edit
+
+	* committing changes by a collaborator (you have to do this)
+
+		''$ cd ~/Dropbox/shared_folder/foo''
+		''$ git commit -a --author 'Coauthor <who@doesnt.use.git>'''
+		''$ git push''
+		''$ cd ~/foo''
+		''$ git pull''  
+		
+	* committing your changes
+
+		''$ cd ~/foo''
+		''$ git commit -a && git push''
+		''$ cd ~/Dropbox/shared_folder/foo''
+		''$ git pull''
+		
+	* committing simultaneous changes by you and co-author
+		''$ cd ~/Dropbox/shared/foo''
+		''$ git commit -a --author Coauthor && git push''
+		''$ cd ~/foo''
+		''$ git commit -a''
+		''$ git pull --rebase''
+
+		→ if done with potential warning from last command, push changes and pull into Dropbox
+		
+	* one could also created branches for co-authors
+		* commit and push collaborator's changes to new branch
+
+		''$ cd ~/Dropbox/shared_folder/foo''
+		''$ git checkout -b coauthor-b1''
+		''$ git commit --author Coauthor -a''
+		''$ git push --all''
+
+		* merge co-author's changes into local repo (or, for advanced user, rebase it)
+
+		''$ cd ~/foo''
+		''$ git commit -a''
+		''$ git fetch origin coauthor-b1''
+		''$ git merge coauthor-b1''
+		''$ git push''
+
+		* pull changes into share dropbox folder
+
+		''$ cd ~/Dropbox_folder/shared/foo''
+		''$ git checkout master''
+		''$ git pull''
+
