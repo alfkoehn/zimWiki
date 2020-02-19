@@ -92,7 +92,7 @@ In this table & each column has the same & width & of textwidth/4 \\
 \hline
 \end{tabularx}
 
-\end{document}
+\end{document} 
 }}}
 	
 3. Explicitly specify the column width using additional column types
@@ -111,10 +111,36 @@ blub & \blindtext\\
 blob & blib\\
 \hline
 \end{tabular}
-\end{document}
+\end{document} 
 }}}
 	
 
+===== Chemical elements and formulas =====
+1. Use the ''mhchem'' package for basic chemistry
+{{{code: lang="latex" linenumbers="True"
+\documentclass{article}
+\usepackage[version=4]{mhchem}
+\begin{document}
+% simple formulas
+\ce{Sb2O3}
+\ce{2H20}
+% isotopes
+\ce{^{227}_{90}Th+}
+% bonds
+\ce{A \sbond B \dbond C \tbond D}
+% reactions
+\ce{C02 + C -> 2CO}
+\ce{C02 + C ->[text above arrow][text below arrow] 2CO}
+\end{document} 
+}}}
+
+2. Use ''chemfig'' from ''tikz'' to make chemical drawings
+	''\chemfig{<Atom1><binding>[<angle>,<length-coefficient>,<n1>,<n2>,<tikz stuff>]<atom2>}''
+	 for example
+	''\chemfig{C-C-C-C}''
+	''\chemfig{H_3C-{{(CH_2)}_2}-CH_3}''
+	''\chemfig{H-C(-[2]H)(-[6]H)-C(-[2]H)(-[6]H)-C(-[2]H)(-[6]H)-C(-[2]H)(-[6]H)-H}''
+		→ numbers in square brackets correspond to directions (angles), counted from 0 to 7, in units of 45 degrees
 
 
 ===== Include pdfs =====
