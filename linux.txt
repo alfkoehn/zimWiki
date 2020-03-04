@@ -205,3 +205,10 @@ Alternatively:
    click "Install"
 
 
+===== Compress scanned pdf file =====
+	''$ gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf input.pdf''
+		 ''-dPDFSETTINGS=/screen''	72 dpi (lower qualitiy, smaller size)
+		''-dPDFSETTINGS=/ebook''	150 dpi (slightly lower qualitiy, larger size)
+		''-dPDFSETTINGS=/prepress''	300 dpi (similar to Acrobat distiller "Prepress Optimized" setting)
+		''-dPDFSETTINGS=/printer''	300 dpi (similar to Acrobat distiller "Printer Optimized" setting)
+
