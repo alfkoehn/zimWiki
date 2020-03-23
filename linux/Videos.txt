@@ -25,6 +25,7 @@ Using **ffmpeg**
 	''$ ffmpeg -loop 1 -framerate 25 -i title_blurred.png -c:v libx264 -t 5 -pix_fmt yuv420p -vf scale=1440:-2 title.mp4''
 		''-loop 1''		loop over the input if set to 1
 		''-t 5''		set length to 5 seconds
+		
 * get the framerate of a video
 	''$ ffmpeg -i video.mp4''
 		look for the ''tbr'' value
@@ -41,6 +42,20 @@ Using **ffmpeg**
 	* concatenate with ffmepg
 		''$ ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4''
 			''-safe 0''		not required if paths are relative
+* re-scale a video
+	''$ ffmpeg -i input.mp4 -s 720x480 -c:a copy output.mp4''
+* remove audio from video
+	''$ ffmpeg -i input.mp4 -c copy -an nosound.mp4''
+* cut a video
+	''$ ffmpeg -i input.mp4 -ss 00:03:46 -to 00:04:48 -c copy output.mp4''
+	''$ ffmpeg -i input.mp4 -ss 00:00:30.0 -c copy -t 00:00:10.0 output.mp4''
+* crop a video
+	''$ ffmpeg -i input.mp4 -filter:v "crop=out_w:out_h:x:y" output.mp4''
+		''out_w''		width of output rectangle
+		''out_h''		height of output rectangle
+		''x'', ''y''		top left corner of output rectangle (coordinate system 0 is top left)
+* get video information
+	''$ ffprobe video.mp4''
 
 
 ===== Video capture with ubuntu =====
