@@ -56,6 +56,12 @@ Using **ffmpeg**
 		''x'', ''y''		top left corner of output rectangle (coordinate system 0 is top left)
 * get video information
 	''$ ffprobe video.mp4''
+* add audio to video
+	''$ ffmpeg -i input.mp4 -i input.mp3 -c copy -map 0:v:0 -map 1:a:0 output.mp4''
+		''0:v:0''			first video stream of first file
+		''1:a:0''			first audio stream of second file
+		''-c copy''			copies audio and video stream (fast)
+		''-shortest	''	have ffmpeg stop conversion when the shorter of the two input ends
 
 
 ===== Video capture with ubuntu =====
