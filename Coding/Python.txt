@@ -69,4 +69,17 @@ A few advantages are:
 	''$ rmvirtualenv venv''				delete virtual environment venv
 
 
+===== Often seen or used header of python files =====
+* very first line often contains the **shebang line**, following example (often appearing in python code) ensures that interpreter used is the first one in environment's ''$PATH''
+	''#!/usr/bin/env''
+* some metadata is often included, although this is a controversial topic
+	'''
+	__author__	= "Peter Mueller"
+	__copyright__	= "Copyright 2020, University of Stuttgart"
+	__license__	= "GPL"
+	__version__	= 0.0.1
+	__maintainer__	= Peter Mueller"
+	__emai__	= "peter@mueller.com"
+	'''
+
 
