@@ -8,6 +8,8 @@ Created Freitag 05 Juli 2019
 "All mail clients suck. This one just sucks less."	--- Michael Elkins
 
 A good source for information is http://www.mutt.org/doc/manual/
+An additional, nice overview can be found here: https://wiki.archlinux.org/index.php/mutt
+Using mutt with multiple mail-accounts: https://www.youtube.com/watch?v=_Unn7fysiE0
 
 
 ===== Installation and set-up =====
@@ -90,4 +92,273 @@ This is the overview of your email in a certain folder.
 		''-b''		add Bcc address
 		''-c''		add Cc address
 		''-e''		if you want to specify sender's address (something other than default)
+
+
+===== Example for muttrc file (for gmail-access) =====
+
+{{{code: lang="sh" linenumbers="True"
+######################################################
+# note: replace USER.NAME with your google user name
+#       replace USERNAME with your real name
+######################################################
+
+# about me
+set from     = "USER.NAME@gmail.com"
+set realname = "USERNAME"
+
+set ssl_starttls=yes
+set ssl_force_tls=yes
+
+# my credentials
+set imap_user   = "USER.NAME@gmail.com"
+set smtp_url    = "smtps://USER.NAME@gmail.com@smtp.gmail.com:465/"
+
+# my mailboxes ################################################################
+set folder      = "imaps://imap.gmail.com/"
+
+# folder where all (i.e. unfiltered) emails arrive
+# often named INBOX by most email services
+#set spoolfile   = "imaps://imap.gmail.com/INBOX"
+set spoolfile   = "+INBOX"
+
+# specify where to save & look for postponed messages
+#set postponed = "imaps://imap.gmail.com/[Gmail]/Drafts"
+set postponed = "+[Gmail]/Drafts"
+
+# sent emails 
+# note: some say, gmail automatically saves sent emails
+#       this would result in duplicates, if so do following
+#       unset record
+#       according to my experience, however, this is not true
+set record      = "+[Google Mail]/Gesendet"
+#set record      = "+[Gmail]/Sent"
+###############################################################################
+
+# cache messages and headers to speed things up (like searching) ##############
+# message headers 
+set header_cache = "~/.mutt/cache/headers"
+
+# messages locally 
+# NOTE: can cost massive disk space, depending on your email account
+# NOTE: for proper offline access (mutt does not download full email for offline use)
+#       use external application like OfflineIMAP or isync to download emails
+#       into local folder which can then be processed by Mutt
+set message_cachedir = "~/.mutt/cache/bodies"
+
+# recommended to create this (empty) file before very first start of mutt
+set certificate_file = "~/.mutt/certificates"
+###############################################################################
+
+# by default, mutt asks to move read messages from INBOX to another folder
+# (set by mbox); I prefer to leave read messages in INBOX and move them
+# manually into other folders/mailboxes, which requires to disable move
+set move = no
+
+# keep IMAP connection alive by polling intermittently, time is in seconds
+set imap_keepalive  = 900
+
+# fetch list of subscribed folders from server on connection
+# add them to set of mailboxes
+set imap_check_subscribed = yes
+
+# look only for subscribed folders
+set imap_list_subscribed  = yes
+
+# time interval in seconds to check for new email
+set mail_check      = 120
+
+# set set and time format to be used in message header
+#set date_format="%Y-%m-%d at %H:%M %Z (%z)"
+set date_format="%Y-%m-%d at %H:%M"
+
+# explanation of format codes
+# 	%C	current message number
+# 	%Z	message status flag
+# 	%D	date & time of message specified in date_format converted to local time zone
+#	%L	if address in To or CC matches address defined by user's subscribe command,
+#		displays "To <list-name>" otherwise %F (author name)
+#	%s	subject of message
+#	(%?l?%4l&%4c?)
+#		if %l (number of lines in message) write number of lines
+#		else write number of characters
+set index_format="%4C %Z %D %-15.15L (%?l?%4l&%4c?) %s"
+
+# editor settings #############################################################
+# use vim, 
+#   move to 7th line, 
+#   start in insert mode, 
+#   linebreak after 80 chars, 
+#   spellchecker for de+en
+set editor="/usr/bin/vim '+:7' -c 'startinsert' -c 'set tw=80 et' -c 'set wrap' '+/^$' -c 'set spell spelllang=de,en'"
+
+# see headers when editing email
+set edit_hdrs
+
+# quote msg when replying
+set include
+
+# do not ask for to, subject when replying
+set fast_reply
+
+# signature to include at end of emails
+set signature="~/.mutt/signature"
+###############################################################################
+
+# sidebar #####################################################################
+set sidebar_visible = yes
+set sidebar_width   = 30
+
+# character to use as divider between sidebar and the other Mutt panels
+set sidebar_divider_char = '|'
+
+# Should the mailbox paths be abbreviated?
+set sidebar_short_path = yes
+
+# when abbreviating mailbox path names (if sidebar_short_path is set),
+# use any of these characters as path separators
+# only part after last separators will be shown, everything else
+# before it will be removed
+# For file folders '/' is good.  For IMAP folders, often '.' is useful.
+set sidebar_delim_chars = '/.'
+
+# If the mailbox path is abbreviated (shortened), should it be indented?
+set sidebar_folder_indent = yes
+
+# string to indent mailbox paths with (if sidebar_folder_indent is set)
+set sidebar_indent_string = '  '
+
+# make Sidebar only display mailboxes that contain new or flagged mail
+set sidebar_new_mail_only = no
+
+# When searching for mailboxes containing new mail, should the search wrap
+# around when it reaches the end of the list?
+set sidebar_next_new_wrap = no
+
+# enable extended buffy mode to calculate total, new, and flagged
+# message counts for each mailbox, i.e. must be set for some format codes 
+# to work
+set mail_check_stats
+
+# sidebar format, default is: %B%* %n
+#   %B              mailbox name
+#   %?F? [%F]?      if flagged emails [%F], otherwise nothing
+#   %*              pad with spaces
+#   %?N?%N/?        if new emails %N/, otherwise nothing
+#   %S              total number of emails in mailbox
+#
+#   %F              number of flagged emails in mailbox
+#   %N              number of new emails in mailbox
+#
+#   examples:
+#     %B%?F? [%F]?%* %?N?%N/?%S     -->     mailbox [F]            N/S
+#     %B%* %F:%N:%S                 -->     mailbox              F:N:S
+#     %B %?N?(%N)?%* %S             -->     mailbox (N)              S
+#     %B%* ?F?%F/?%N                -->     mailbox                F/S
+set sidebar_format = '%B%?F? [%F]?%* %?N?%N/?%S'
+
+# Sort the mailboxes in the Sidebar using this method:
+#       count    - total number of messages
+#       flagged  - number of flagged messages
+#       new      - number of new messages
+#       path     - mailbox path
+#       unsorted - do not sort the mailboxes
+set sidebar_sort_method = 'unsorted'
+
+# sidebar bindings
+# <ctrl>+p to select previous folder 
+bind index,pager \Cp sidebar-prev
+# <ctrl>+p to select next folder 
+bind index,pager \Cn sidebar-next
+# <ctrl>+o to open next folder 
+bind index,pager \Co sidebar-open
+# <ctrl>+b to open next folder 
+bind index,pager B sidebar-toggle-visible
+
+# sidebar bindings for a lot of mailboxes (folders)
+# move highlight to previous page
+bind index,pager <F3> sidebar-page-up
+# move highlight to next page
+bind index,pager <F4> sidebar-page-down
+# move highlight to previous mailbox containing new, or flagged mail
+bind index,pager <F5> sidebar-prev-new
+# move highlight to next mailbox containing new, or flagged, mail
+bind index,pager <F6> sidebar-next-new
+
+# sidebar colors
+#   color OBJECT FOREGROUND BACKGROUND
+#
+# ----------------------------------------------------------------------------------------------
+# Name                  Default Color       Description
+# ----------------------------------------------------------------------------------------------
+# sidebar_divider       default             dividing line between Sidebar and Index/Pager panels
+# sidebar_flagged       default             Mailboxes containing flagged mail
+# sidebar_highlight     underline           Cursor to select a mailbox
+# sidebar_indicator     neomutt indicator   mailbox currently opened in Index panel
+# sidebar_new           default             Mailboxes containing new mail
+# sidebar_ordinary      default             Mailboxes that have no new/flagged mails, etc.
+# sidebar_spoolfile     default             Mailbox that receives incoming mail
+# ----------------------------------------------------------------------------------------------
+#
+# Color of the current, open, mailbox
+# Note: This is a general Mutt option which colors all selected items.
+#color indicator cyan black
+#
+# NOTE: colorN not supported by xfce (there are some workarounds, though)
+#color sidebar_indicator default color17         # Dark blue background
+#color sidebar_highlight white   color238        # Grey background
+#color sidebar_spoolfile yellow  default         # Yellow
+#color sidebar_new       green   default         # Green
+#color sidebar_ordinary  default default         # Default colors
+#color sidebar_flagged   red     default         # Red
+#color sidebar_divider   color8  default         # Dark grey
+
+# --------------------------------------------------------------------------
+
+###############################################################################
+
+}}}
+
+
+=== Configuration for gmx-access, to be saved in a separate file named for example account.com.gmx.USERNAME: ===
+{{{code: lang="sh" linenumbers="True"
+# replace USERNAME by your gmx username
+set imap_user = "USERNAME@gmx.de"             
+set imap_pass = "PASSWORD"     
+set ssl_starttls=yes                               
+set smtp_url = "smtps://USERNAME@gmx.de@smtp.gmx.com:465/"    
+set smtp_pass = "PASSWORD"       
+set from = "USERNAME@gmx.de"
+set ssl_starttls        = yes
+set use_from=yes                                                      
+set realname = "My real name"                                  
+set folder = "imaps://imap.gmx.com:993"                     
+set spoolfile = "+INBOX"                                      
+set postponed = "imaps://imap.USERNAME@gmx.de/Drafts"                             
+set header_cache = ~/.mutt/com.gmx.USERNAME/cache/headers            
+set message_cachedir = ~/.mutt/com.gmx.USERNAME/cache/bodies         
+set certificate_file = ~/.mutt/com.gmx.USERNAME/certificates   
+}}}
+
+Relevant configuration in muttrc looks then as follows (removed all basic config stuff)
+{{{code: lang="sh" linenumbers="True"
+###################################################
+# replace USERNAME by the corresponding usernames
+###################################################
+
+# Folder hooks
+folder-hook 'account.com.gmx.USERNAME' 'source ~/.mutt/account.com.gmx.USERNAME'
+folder-hook 'USERNAME.bluewin.com' 'source ~/.mutt/USERNAME.bluewin.com'
+folder-hook 'USERNAME.com 'source ~/.mutt/USERNAME.com'
+
+# Default account
+source ~/.mutt/account.com.gmx.USERNAME
+
+# Macros for switching accounts
+
+macro index <F7> '<sync-mailbox><enter-command>source ~/.mutt/account.com.gmx.USERNAME<enter><change-folder>!<enter>'
+macro index <F8> '<sync-mailbox><enter-command>source ~/.mutt/USERNAME.bluewin.com<enter><change-folder>!<enter>'
+macro index <F9> '<sync-mailbox><enter-command>source ~/.mutt/USERNAME.com<enter><change-folder>!<enter>'
+}}}
+
+
 
