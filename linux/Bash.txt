@@ -7,6 +7,8 @@ Created Donnerstag 04 Juli 2019
 
 Bash is a Unix shell and command language. It is written in C and published under the GPLv3 license.
 
+Bash is short for **Bourne Again Shell**.
+
 ===== Shortcuts to move faster in command line =====
 Note that the following shortcuts are actually ''readline'' shortcuts, meaning they should work in every program using ''libreadline''.
 ''<Meta>'' is in most cases ''<alt>''.
@@ -121,3 +123,54 @@ Link to linux → Configuration
 
 ===== Start a script with a time delay =====
 	''$ sleep 14400 ; ./myAwesomeScript.sh''
+
+
+===== Some more syntax examples =====
+* if - else structure
+'''
+if [ test ]
+then
+   commands
+elif [ test ]
+   commands
+else
+   commands
+fi
+'''
+
+
+* for loop
+'''
+for var in item1 item2 item3
+do
+  commands
+done
+'''
+
+
+* while loop
+'''
+while test
+do
+  commands
+done
+'''
+
+
+* case structure
+'''
+case expression in
+  case1)         commands ;;
+  case2|case3)   commands ;;
+  *)             default-commands ;;
+esac
+'''
+
+
+* functions
+'''
+func () {
+	echo $1 $2 $3
+}
+func a b c
+'''
