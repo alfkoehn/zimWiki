@@ -1,0 +1,112 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2020-04-04T10:37:14+02:00
+
+====== Gitolite ======
+Created Samstag 04 April 2020
+
+Sources:
+* http://opensourceforu.com/2011/01/gitolite-specify-complex-access-controls-git-server/
+* https://stackoverflow.com/questions/29839688/gitolite-restrict-access-to-branch
+
+Terminology:
+* Authentication:	
+	* process checking if you are who you claim to be
+	* if successful, system can associate valid username with your connection/session
+* Authorisation:
+	* next step, in which system decides if you have right to do what you are attempting to do
+Typical workflow for working with git together on a server
+* add all relevant users to one group (e.g. dev)
+* give that group ownership of the repository
+* doing  ''git init --shared''  alows all users same access to all repos
+
+If number of repos and/or developers become large, fine-grained access control is required
+	⇒ Gitolite
+	
+Example for 2 repos and 5 devs:
+'''
+repo    r1
+    RW      =   alice
+    R       =   bob carol
+ 
+repo    r2
+    RW      =   alice bob
+    R       =   eve mallory
+'''
+
+
+Example for uniform set of access rules:
+'''
+repo    git gitolite linux rakudo
+    RW      =   alice bob carol
+    R       =   eve mallory
+'''
+
+
+For very high numbers, one can do
+'''
+@open       =   git gitolite
+@open       =   linux rakudo
+    # add as many more lines like this as you want; they accumulate
+@devs       =   alice bob carol
+ 
+repo    @open
+    RW      =   @devs
+    R       =   eve mallory
+'''
+
+
+Another example (assuming groups were already defined)
+'''
+# all bosses have read access to all projects
+repo @open @closed @topsecret
+    R   =   @bosses
+ 
+# everyone has read access to "open" projects
+repo @open
+    R   =   @bosses @devs @interns
+'''
+
+
+Branches and tags can also be access-controlled:
+'''
+@QA_team    =   QA_guy QA_gal
+@Lead_devs  =   sitaram dilbert
+@devs       =   @Lead_devs alice wally
+ 
+repo    foo
+    RW  refs/tags/v[0-9]        =   @QA_team
+    RW+                         =   @Lead_devs
+    RW  dev/                    =   @devs
+'''
+
+
+	-> member of QA_team can only push tags starting with v followed by digit (and optionally anything else)
+	-> lead dev can push or rewind ("force push") anythung
+	-> normal dev can only push branches whose names starting with dev/
+
+Example for "any dev can do anything to any branch, except only lead devs can push to master":
+'''
+repo    foo
+    RW+ master                  =   @Lead_devs  # line 1
+    -   master                  =   @devs       # line 2
+    RW+                         =   @devs       # line 3
+'''
+
+
+	-> deny rule, denoted by a minus sign
+	-> normal dev trying to write to master, first match rule is line 2, saying deny
+	-> lead dev trying it, line 1 (coming before line 2) matches  first, allowing access
+	-> switching lines would restict access to everybody here (as lead_devs are also part of devs)
+	
+Example for access control based on what files are being changed, e.g. junior devs should not be allowd to push changes to a critical module, whose code resides in ''critmod.c'' :
+'''
+repo    foo
+    RW+                         =   @devs
+    RW+ NAME/                   =   @Lead_devs
+    -   NAME/critmod.c          =   @devs
+    RW+ NAME/                   =   @devs
+'''
+
+
+
