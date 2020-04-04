@@ -7,6 +7,10 @@ Created Dienstag 25 Juni 2019
 
 * To compile your code, you usually do
 	''$ gcc -Wall test.c test2.c -o test''
+* Or, to compile and link separately
+	''$ gcc -c test.c''
+	''$ gcc -c test2.c''
+	''$ gcc test.o test2.o -o test''
 * With increasing number of files this becomes annoying, also when you have only made a change to one file (no need to compile everything again then)
 	==> use Makefiles
 * syntax of a makefile:
@@ -14,9 +18,11 @@ Created Dienstag 25 Juni 2019
 	''target: dependencies''
 	''[tab] command''
 	
-* example:
-'''
-
+	-> a file (a target) is derived from another one (a dependency)
+		steps to create a file from another one are called rules (commands)
+	
+* example for a file called e.g. ''makefile'':
+{{{code: lang="makefile" linenumbers="True"
 all: test
 
 test: test.o test2.o
@@ -29,8 +35,9 @@ test2.o: test2.c
     gcc -Wall -c test2.c
 
 clean:
-    rm -rf *.o test
-'''
+    rm -rf *.o test 
+}}}
+	
 
 * use with 
 	''$ make test''
@@ -40,3 +47,20 @@ clean:
 * nice feature about make is that is knows which files have changes 
 	==> only builds those dependencies that are required
 	==> easier for programmer to compile + minimize compilation time
+* makefiles can use variables (per convention, variable names are upper case), comments preceded by # character
+{{{code: lang="makefile" linenumbers="True"
+CC=gcc -g Wall
+
+# building test1.o	
+test1.o: test1.c test1.h
+	${CC} -c test1.c
+
+main.o: main.c test1.h
+	${CC} -c main.c
+		
+my_test: test1.o main.o
+	${CC} test1.o main.o -o my_test
+}}}
+	
+
+
