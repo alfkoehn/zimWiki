@@ -94,6 +94,10 @@ Using **ffmpeg**
 		record 1024x768 starting with upper left corner at (100,200)
 	d. ''ffmpeg -s 1024x768 -r 25 -f x11grab -i :0.0+100,200 -f alsa -ac 2 -i pulse output.flv''
 		same as b. but w/ sound
+	e. ''arecord -l''
+		to identify correct microphone (in case of external mic)
+		''ffmpeg -f x11grab -r 25 -s 1280x720 -i :0.0+320,236 -f alsa -i hw:1 -vcodec huffyuv lect_video.mkv''
+		to use "card 1" for audio input
 * some weblinks:
 	* https://web2.ph.utexas.edu/~asimha/PHY303K_Spring2015/making.htm
 	* https://sandilands.info/sgordon/presenting-and-recording-lectures-with-ubuntu-linux
