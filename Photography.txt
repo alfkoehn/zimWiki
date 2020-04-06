@@ -112,6 +112,15 @@ Source: https://www.youtube.com/watch?v=n_8DVwVOX9c
 * Use RAW 
 * Focus before the time-lapse start, then set focus to manual to prevent losing/changing focus during time lapse
 * Use manual setting to ensure that exposure time, iso, f-number are all the same (to avoid "flickering" during time lapse)
+* Canon 80D settings
+	a. Rad (um START/STOP Knopf) von Photokamera auf Videokamera drehen
+	b. MENU Knopf
+	c. Reiter 5 vom Kamera Menü (das erste)
+	d. Zeitraffer-Movie -> aktivieren
+	e. Detaileinstellungen machen -> mit OK bestätigen
+	f. Auslöser leicht drücken (so wieder ins aktive Display zurück), Einstellungen machen (Manual-Modus am besten)
+	g. START/STOP Knopf drücken -> Auslöser durchdrücken => Movieaufnahme ist gestartet (Display wird schwarz, oben in LCD-Anzeige wird runtergezählt)
+	h. Falls frühzeitiges Beenden erwünscht, Auslöser drücken
 
 
 ===== Adding copyright infos to photos =====
