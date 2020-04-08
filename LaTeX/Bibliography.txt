@@ -1,0 +1,54 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2020-04-08T17:20:26+02:00
+
+====== Bibliography ======
+Created Mittwoch 08 April 2020
+
+===== bibtex, biber, biblatex, natbib: what are they? =====
+Nice explanation: https://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib. The following points are basically a summary plus some additions:
+* ''bibtex'' and ''biber'' are separate programs to process bibliography information
+	→ corresponding to an interface between the ''.bib'' file and the [[LaTeX]] document
+* ''natbib'' and ''biblatex'' are both [[LaTeX]] packages to format citations and bibliographies
+	* ''natbib'' works only with ''bibtex''
+	* ''biblatex'' works with ''bibtex'' and ''biber''
+* ''.bib'' files are commonly referred to as "bibtex" files (note: might not make too much sense)
+
+==== natbib (package) ====
+* widely used, very reliable, but not much further development going on
+* depends on ''bibtex'', its interface requires ''.bst'' files
+* variety of ''.bst'' files exits
+* ''makebst'' is a useful utility (part of ''custom-bib'' package) to make your own custom bibliography style
+
+==== biblatex (package) ====
+* actively developed together with ''biber'' backend
+* formatting of citations and bibliography entries is done using [[LaTeX]] macros => easy to modify
+* multiple bibliographies are supported directly
+
+==== bibtex (program) ====
+* stable and widely used
+* hard to modify bilbiography styles
+* non-ascii characters known to cause probems 
+
+==== biber (program) ====
+* allows for a larger variety of entry and field types in ''.bib'' file
+* can handle UTF-8 ''.bib'' files
+* only works with ''biblatex'', not with ''natbib''
+	* [[LaTeX]] document has to contain 
+		* ''\usepackage{biblatex}''
+		* ''\addbibresource{filename.bib}''
+		* \printbibliography
+	* don't use ''\bibliography'' or ''\bibliographystyle'' as they belong to ''BibTeX''
+
+
+**Visual explanation** (https://tex.stackexchange.com/a/299286/120427): 
+
+{{~/Downloads/3mWZ3__mod1.png}}
+
+**Processing (compiling) diagram (**https://tex.stackexchange.com/a/299447/120427):
+
+{{./pasted_image002.png}}    {{./pasted_image003.png}}
+
+//Note//: ''pdflatex'' can be simply replaced by ''lulatex'' or ''xelatex'' 
+
+
