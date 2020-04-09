@@ -1,0 +1,28 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2020-04-09T12:10:39+02:00
+
+====== PlasmaPhysics ======
+Created Donnerstag 09 April 2020
+
+===== Cold, warm & hot plasma description =====
+**Cold plasma**
+	* no effect of temperature is taken into account
+	* all electrons have same velocity (no variation around averaged electron velocity)
+	* ok to describe wave propagation across a plasma, if temperature is low or phase speed is large (whistlers in ionosphere)
+
+**Hot plasma**
+	* no underlying assumption on velocities
+	* kinetic theory provides distribution function in velocity space
+	* moments of distribution function gives contributions to sources of EM field, in turn acting on equations of kinetic theory in a self-consistent manner
+
+**Warm plasma**
+	* somewhere inbetween cold & hot
+	* low-order corrections to cold plasma model gives warm plasma model
+	* some dimensionsless parameters in hot plasma models are << 1 in most cases (taking advantage of this)
+
+//Example: electron oscillations in a plasma//
+	* cold plasma:	Langmuir formula for plasma frequency, pure oscillation, no dispersion, no propagation
+	* warm plasma:	add Bohm-Gross correction, allows wave propagation with well-defined phase & group velocity
+	* hot plasma:	well-known hot plasma dispersion with formal solution to kinetic equation, leading to e.g. Landau damping, current drive, anomalous resistivity, ion acoustic turbulence
+
