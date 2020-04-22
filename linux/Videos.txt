@@ -21,7 +21,7 @@ Using **ffmpeg**
 * if problems with frames occur, use "''fps''" filter
 	''$ ffmpeg -framerate 1/5 -i %03d.png -c:v libx264 -vf fps=25 -pix_fmt yuv420p out.mp4''
 * ''$ ffmpeg -f image2 -i %03d.jpg out.mpg''
-* create a video that has only one image with a specific time duration (title or credits for example)
+* **create a video that has only one image** with a specific time duration (title or credits for example)
 	''$ ffmpeg -loop 1 -framerate 25 -i title_blurred.png -c:v libx264 -t 5 -pix_fmt yuv420p -vf scale=1440:-2 title.mp4''
 		''-loop 1''		loop over the input if set to 1
 		''-t 5''		set length to 5 seconds
@@ -29,12 +29,12 @@ Using **ffmpeg**
 * get the framerate of a video
 	''$ ffmpeg -i video.mp4''
 		look for the ''tbr'' value
-* add fade out (light to dark) at the end or fade in (dark to light) at beginning
+* **add fade out** (light to dark) at the end or fade in (dark to light) at beginning
 	''$ ffmpeg -i start.mp4 -y -vf fade=in:0:25 start_fadein.mp4''
 	''$ ffmpeg -i end.mp4 -y -vf fade=out:100:25 end_fadeout.mp4''
 		''-y''		overwrite out file without asking
 		''-vf''		short (alias) for ''-filter:v'' 
-* concatenate videos with same codecs
+* **concatenate videos** with same codecs
 	* create a file ''mylist.txt'' with all files to be concatenated:
 		''# file listing all files to be concatenated''
 		''file '/path/to/file1.mp4'''
@@ -42,21 +42,23 @@ Using **ffmpeg**
 	* concatenate with ffmepg
 		''$ ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4''
 			''-safe 0''		not required if paths are relative
-* re-scale a video
+* **re-scale a video**
 	''$ ffmpeg -i input.mp4 -s 720x480 -c:a copy output.mp4''
-* remove audio from video
+* **remove audio from video**
 	''$ ffmpeg -i input.mp4 -c copy -an nosound.mp4''
-* cut a video
+* **cut a video**
 	''$ ffmpeg -ss 00:03:46 -i input.mp4 -to 00:04:48 -c copy output.mp4''
 	''$ ffmpeg -ss 00:00:30.0 -i input.mp4 -c copy -t 00:00:10.0 output.mp4''
-* crop a video
+	''$ ffmpeg -ss 00:00:03.0 -i input.mp4 -t 00:19:47 output.mp4''
+		this enforces a full re-encoding which takes quite some time, but might be the only option to get precise cuts (due to keyframe misalignment issues)
+* **crop a video**
 	''$ ffmpeg -i input.mp4 -filter:v "crop=out_w:out_h:x:y" output.mp4''
 		''out_w''		width of output rectangle
 		''out_h''		height of output rectangle
 		''x'', ''y''		top left corner of output rectangle (coordinate system 0 is top left)
 * get video information
 	''$ ffprobe video.mp4''
-* add audio to video
+* **add audio to video**
 	''$ ffmpeg -i input.mp4 -i input.mp3 -c copy -map 0:v:0 -map 1:a:0 output.mp4''
 		''0:v:0''			first video stream of first file
 		''1:a:0''			first audio stream of second file
@@ -86,9 +88,15 @@ Using **ffmpeg**
 	b. ''ffmpeg -f x11grab -r 25 -s 640x480 -i :0.0 -vcodec huffyuv ffmepg_screencast.mkv''
 		--> record with 25 frames a window of 640x480 and with huffyuv codec
 			  note: will produce a HUGE file
-		''ffmpeg -i in.mkv -vcodec libx264 -crf 22 -threads 0 out.mp4''
+		''ffmpeg -i in.mkv -vcodec libx264 -acodec aac -crf 22 -pix_fmt yuv420p -threads 0 out.mp4''
 		--> compress to mp4 format (youtube-ready)
-			  lower -crf values might increase quality, but for screencast not really needed
+			''-crf''		Contant Rate Factor, for x264 range is 0-51 (depends on codec), where 0 is lossless, 23 is default, 51 is worst possible
+							  lower value means higher quality
+							  18 is often considered to be visually lossless
+			''-threads''	setting to configure number of threads to be used, default value is 0, which tries to optimize thread usage using all available cores
+							  depending on 
+			''-pix_fmt yuv420p	''default value is ''yuv444p'' which isn't compatible with all browsers (i.e. video would not be able to play in e.g. firefox)
+									   if color quality seems to be somewhat reduced, try ''yuvj420p''
 			  note: -vpre could be set to ensure using same presets
 	c. ''ffmpeg -s 1024x768 -r 25 -f x11grab -i :0.0+100,200 output.flv''
 		record 1024x768 starting with upper left corner at (100,200)
