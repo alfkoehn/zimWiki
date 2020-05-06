@@ -65,8 +65,17 @@ Using **ffmpeg**
 		''-c copy''			copies audio and video stream (fast)
 		''-shortest	''	have ffmpeg stop conversion when the shorter of the two input ends
 * **add text to video**
-	''$ ffmpeg -i video.mp4 -vf  "[in]drawtext=fontfile=<path_for_ttf_file>:fontsize=40:fontcolor=white:x=(w-text_w)/2:y=h-60*t:textfile='my_text.txt'[out]" -c:v libx264 -t 10 video_out.mp4''
+	''$ ffmpeg -i video.mp4 -vf  "[in]drawtext=fontfile=OpenSans-Regular.ttf:fontsize=40:fontcolor=white:x=(w-text_w)/2:y=h-60*t:textfile='my_text.txt'[out]" -c:v libx264 -t 10 video_out.mp4''
+		''-vf''				short for video filters, syntax for filters is always
+			''-vf "filter1=''
+				''setting1=value1:''
+				''setting2=value2, ''
+			   ''filter2=''
+				''setting1=value1:''
+				''setting2:value2"''
 		'':enable='between(t,8,15)'''	text will appear at 8 seconds and disappear at 15 seconds
+		''drawtext=fontfile=<font>	''available fonts can be listed with  ''$ fc-list''
+		
 	''$ ffmpeg -i video.mp4 -vf  "[in]drawtext=fontfile=<path_for_ttf_file>:fontsize=40:fontcolor=white:x=(w-text_w)/2:y=h-60*t:textfile='my_text.txt':enable='between(t,1,4)', drawtext=fontfile=<path_for_ttf_file>:fontsize=40:fontcolor=white:x=(w-text_w)/2:y=h-60*t:textfile='my_text2.txt':enable='between(t,6,8)'''''[out]" -c:v libx264 -t 10 video_out.mp4''
 
 
