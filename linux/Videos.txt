@@ -26,9 +26,22 @@ Using **ffmpeg**
 		''-loop 1''		loop over the input if set to 1
 		''-t 5''		set length to 5 seconds
 		
-* get the framerate of a video
+* **get the framerate** of a video
 	''$ ffmpeg -i video.mp4''
 		look for the ''tbr'' value
+* **add still image before first frame** of video
+	'''
+	$ ffmpeg -loop 1 -framerate FPS -t SECONDS -i IMAGE \
+	       -t SECONDS -f lavfi -i aevalsrc=0 \
+	       -i INPUTVIDEO \
+	       -filter_complex '[0:0] [1:0] [2:0] [2:1] concat=n=2:v=1:a=1' \
+	       [OPTIONS] OUTPUT
+	'''
+		''-loop 1 -framerate FPS -t SECONDS -i IMAGE	open image, loop over it making video with SECONDS and FPS framerate (must be same as video!)''
+		''-t SECONDS -f lavfi -i aevalsrc=0''		generate silence for SECONDS
+		''-filter_complex '[0:0] [1:0] [2:0] [2:1] concat=n=2:v=1:a=1'''
+															open file 0 stream 0 (image), file 1 stream 0 (silence audio), file 2 stream 0 and 1 (input audio and video)
+															use concat to concatenate them, n=number of segments, v=number of output videos, a=number of output audio
 * **add fade out** (light to dark) at the end or fade in (dark to light) at beginning
 	''$ ffmpeg -i start.mp4 -y -vf fade=in:0:25 start_fadein.mp4''
 	''$ ffmpeg -i end.mp4 -y -vf fade=out:100:25 end_fadeout.mp4''
@@ -65,7 +78,9 @@ Using **ffmpeg**
 		''-c copy''			copies audio and video stream (fast)
 		''-shortest	''	have ffmpeg stop conversion when the shorter of the two input ends
 * **add text to video**
-	''$ ffmpeg -i video.mp4 -vf  "[in]drawtext=fontfile=OpenSans-Regular.ttf:fontsize=40:fontcolor=white:x=(w-text_w)/2:y=h-60*t:textfile='my_text.txt'[out]" -c:v libx264 -t 10 video_out.mp4''
+	''$ ffmpeg -i video.mp4 -vf "[in]drawtext=fontfile=OpenSans-Regular.ttf:fontsize=40:fontcolor=white:x=(w-text_w)/2:y=h-60*t:textfile='my_text.txt'[out]" \''
+		''-c:v libx264 -t 10 video_out.mp4''
+		
 		''-vf''				short for video filters, syntax for filters is always
 			''-vf "filter1=''
 				''setting1=value1:''
@@ -77,6 +92,32 @@ Using **ffmpeg**
 		''drawtext=fontfile=<font>	''available fonts can be listed with  ''$ fc-list''
 		
 	''$ ffmpeg -i video.mp4 -vf  "[in]drawtext=fontfile=<path_for_ttf_file>:fontsize=40:fontcolor=white:x=(w-text_w)/2:y=h-60*t:textfile='my_text.txt':enable='between(t,1,4)', drawtext=fontfile=<path_for_ttf_file>:fontsize=40:fontcolor=white:x=(w-text_w)/2:y=h-60*t:textfile='my_text2.txt':enable='between(t,6,8)'''''[out]" -c:v libx264 -t 10 video_out.mp4''
+	
+	''$ ffmpeg -i video_in.mp4 \''
+		''-vf "[in]drawtext=fontfile=OpenSans-Regular.ttf:fontsize=40:fontcolor=white:x=w*.65:y=h*.6:text='sorry, buffer xrun':enable='between(t,454.5,456.5)'[out]" \ video_out.mp4''
+* **filter_complex** example from ffmpeg documentation
+	''$ ffmpeg -f lavfi -i testsrc -f lavfi -i testsrc -f lavfi -i testsrc -f lavfi -i testsrc -filter_complex \''
+		''"[1:v]negate[a]; \''
+		 ''[2:v]hflip[b]; \''
+		 ''[3:v]edgedetect[c]; \''
+		 ''[0:v][a]hstack=inputs=2[top]; \''
+		 ''[b][c]hstack=inputs=2[bottom]; \''
+		 ''[top][bottom]vstack=inputs=2[out]" -map "[out]" -c:v ffv1 -t 5 multiple_input_grid.avi''
+
+	''-f lavfi -i testsrc			''declaration of input, input format is lavfi, input file is testsrc; duplicated four times to initiate four different inputs
+	''-filter_complex''				
+		''[1:v]negate[a]''				take video from input at index 1, use negate filter on it and 'save' output of the filter to a link named a
+		''[2:v]hflip[b]''				take video from input at index 2, use hflip filter on it and 'save' output of the filter to a link named b
+		''[3:v]edgedetect[c]''			take video from input at index 3, use edgedetect filter on it and 'save' output of the filter to a link named c
+		''[0:v][a]hstack=inputs=2[top]''		take two inputs: video from input at index 0 + something that is in the link a (which is output of [1:v]negate filtering)
+													 then perform on these two inputs filter hstack with one parameter ''inputs'' that is set to 2; save result in link named top
+		''[b][c]hstack=inputs=2[bottom]''		similar to above: take two inputs from links b and c, perform filter hstack with parameter inputs set to 2, save result in link named bottom
+		''[top][bottom]vstack=inputs=2[out]	''take two inputs from links top and bottom, perform vstack filter with param inputs set to 2 and save the result in link named out
+	''-map''					map stuff from link named out as input to next arguments
+	''-c:v ffv1				''use FFV1 codec for video
+	''-t 5''					result should be a 5 second video
+	''multiple_input_grid.avi''			name of the output video
+	
 
 
 ===== Video capture with ubuntu =====
@@ -96,8 +137,10 @@ Using **ffmpeg**
 		''ffmpeg -t 00:00:15 -f video4linux2 -s 640x480 -i /dev/video0 -f alsa -ac 2 -i pulse -qscale 3 outSound.mpeg''
 * **screen capture** using **ffmpeg**
 	a. ''ffmpeg -f x11grab -r 25 -s 320x240 -i :0.0+10,20 out.mpg''
-									record with 25 framerate, window-size of ''320x240'' starting upper left corner at ''(10,20)''
-									''0.0'' is display.screen number of X11 server, same as DISPLAY environment variable
+		''-s 320x240''		set frame size of recorded video to 320x240, shortcut for ''-video_size''
+		''-r 25''			set framerate to 25, shortcut for ''-framerate''
+		''-i: 0.0+10,20''		starting upper left corner of frame to record at ''(10,20)'', ''0.0'' is ''display_number.screen_number'' of X11 server, same as DISPLAY environment variable
+								   one could also write:   ''-i: "${DISPLAY}.0"''
 	b. ''ffmpeg -f x11grab -r 25 -s 640x480 -i :0.0 -vcodec huffyuv ffmepg_screencast.mkv''
 									record with 25 framerate a window of 640x480 and with huffyuv codec
 										note: will produce a HUGE file
@@ -107,7 +150,6 @@ Using **ffmpeg**
 									   lower value means higher quality
 									   18 is often considered to be visually lossless
 			''-threads''		setting to configure number of threads to be used, default value is 0, which tries to optimize thread usage using all available cores
-									   depending on 
 			''-pix_fmt yuv420p	''default value is ''yuv444p'' which isn't compatible with all browsers (i.e. video would not be able to play in e.g. firefox)
 									   if color quality seems to be somewhat reduced, try ''yuvj420p''
 			  note: -vpre could be set to ensure using same presets
@@ -115,14 +157,55 @@ Using **ffmpeg**
 									record 1024x768 starting with upper left corner at (100,200)
 	d. ''ffmpeg -s 1024x768 -r 25 -f x11grab -i :0.0+100,200 -f alsa -ac 2 -i pulse output.flv''
 									same as b. but **with sound**
+			''-f alsa <input_option> -i <input_device>''
+									capturing audio with ffmpeg and ALSA, <input_device> tells ffmpeg which audio capturing card or device to use
+									NOTE: rebooting might change order of sound devices
+									''alsamixer'' is a helpful tool to set/control audio devices
+			''-f alsa -ar xxx''		audio sample rate, default value is usually "44100" (Hz)
+			''-f alsa -ac x''		audio channels, default value is "1" (mono) for Mic input
 	e. ''arecord -l''
 									to identify correct microphone (in case of **external mic**)
 		''ffmpeg -f x11grab -r 25 -s 1280x720 -i :0.0+320,236 -f alsa -i hw:1 -vcodec huffyuv lect_video.mkv''
 									to use "card 1" for audio input
-	f. ''ffmpeg -f x11grab -r 25 -s 1280x720 -i :0.0+320,236 -thread_queue_size 1024 -f alsa -thread_queue_size 1024 -i hw:1 -vcodec huffyuv screencast_video.mkv''
+	f. ''ffmpeg -f x11grab -thread_queue_size 1024 -r 25 -s 1280x720 -i :0.0+320,236 -f alsa -thread_queue_size 1024 -i hw:1 -vcodec huffyuv screencast_video.mkv''
 			''-thread_queue_size''	sets maximum number of queued packets when reading from the file or device. 
 									   With low latency / high rate live streams, packets may be discarded if they are not read in a timely manner; raising this value can avoid it.
 									   (otherwise, ''ALSA buffer xrun'' error appeared from time to time, leading to loss of audio packets)
+	g. ''ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 -c:v libx264rgb -crf 0 -preset ultrafast output.mkv''
+			''-crf 0''			tells x264 to encode in lossless mode (to reduce hardware requirements, **if CPU is not fast** enough)
+			''-preset ultrafast''	do encoding fast
+			''-c:v libx264rgb''		using instead ''libx264'' would be a lossy conversion from RGB to yuv444p	
+	h. ''ffmpeg -f alsa -ac 2 -i hw:0,0 -f x11grab -r 30 \''
+		''-s $(xwininfo -root | grep 'geometry' | awk '{print $2;}') \''
+		''-i :0.0 -acodec pcm_s16le -vcodec libx264 -preset ultrafast -crf 0 -threads 0 -y screencast.avi''
+			''xwininfo''		return size of window user clicks into (to define ''video_size'')
+			''-y''			overwrite output file without asking
+	i. ''ffmpeg -f alsa -ac 2 -i hw:0,0 -f x11grab -r 30 \''
+		''-s $(xwininfo -frame | grep -oEe 'geometry [0-9]+x[0-9]+' | grep -oEe '[0-9]+x[0-9]+') \''
+		''-i :0.0+$(xwininfo -frame | grep -oEe 'Corners:\s+\+[0-9]+\+[0-9]+' | grep -oEe '[0-9]+\+[0-9]+' | sed -e 's/\+/,/' ) \''
+		''-acodec pcm_s16le -vcodec libx264 -preset ultrafast -crf 0 -threads 0 screencast.avi''
+									record a single window, clicking mouse on window to start recording
+	j. putting everything into a bash script
+{{{code: lang="sh" linenumbers="True"
+#!/bin/sh -
+
+# Example values
+pulseaudio_source=0
+thread_queue_size=32
+video_size=1920x1080
+framerate=25
+record_area=$DISPLAY+0,0
+naudio_channels=2
+outfile=capture.mkv
+
+# Command
+ffmpeg -thread_queue_size $thread_queue_size -video_size $video_size \
+    -framerate $framerate -f x11grab -i $record_area \
+    -thread_queue_size $thread_queue_size -f pulse -ac $naudio_channels \
+    -channel_layout stereo -i $pulseaudio_source -c:v libx264 -qp 0 \
+    -preset ultrafast -c:a libvorbis $outfile
+}}}
+		
 * some weblinks:
 	* https://web2.ph.utexas.edu/~asimha/PHY303K_Spring2015/making.htm
 	* https://sandilands.info/sgordon/presenting-and-recording-lectures-with-ubuntu-linux
@@ -164,3 +247,164 @@ Using **ffmpeg**
 	   "Add" the first file, "Append" the second one
 	   "Append" third, fourth, ..., Set output name in the textbox at the bottom
 	   "Start muxing"
+
+
+===== Video streaming =====
+
+==== YouTube ====
+Access the Live Streaming panel to retrieve the Live Stream URL and the Private Key to be used within the FFmpeg scripts
+	1. broadcast, where video and audio are included in a single mp4 file, source: https://github.com/Darkseal/FFmpeg-scripts
+{{{code: lang="sh" linenumbers="True"
+#! /bin/bash
+ 
+VBR="1500k"
+FPS="30"
+QUAL="ultrafast"
+YOUTUBE_URL=" rtmp://a.rtmp.youtube.com/live2"
+YOUTUBE_KEY="XXXXXXXXXX"
+VIDEO_SOURCE="sample.mp4"
+AUDIO_ENCODER="aac"
+
+$ ffmpeg 
+  -re \
+  -f lavfi \
+  -i "$VIDEO_SOURCE" \
+  -c:v libx264 -preset $QUAL -r $FPS -g $(($FPS *2)) -b:v $VBR \
+  -c:a $AUDIO_ENCODER -threads 6 -ar 44100 -b:a 128k -bufsize 512k -pix_fmt yuv420p \
+  -f $YOUTUBE_URL/$YOUTUBE_KEY 
+}}}
+		
+
+	2. broadcast, where video and audio are separated and then merged in broadcast, source: https://github.com/Darkseal/FFmpeg-scripts
+{{{code: lang="sh" linenumbers="True"
+#! /bin/bash
+ 
+VBR="1500k"
+FPS="30"
+QUAL="ultrafast"
+YOUTUBE_URL=" rtmp://a.rtmp.youtube.com/live2"
+YOUTUBE_KEY="XXXXXXXXXX"
+VIDEO_SOURCE="sample.jpg"
+AUDIO_SOURCE="sample.mp3"
+AUDIO_ENCODER="aac"
+ 
+ffmpeg \
+ -loop 1 \
+ -re \
+ -framerate $FPS \
+ -i "$VIDEO_SOURCE" \
+ -thread_queue_size 512 \
+ -i "$AUDIO_SOURCE" \
+ -c:v libx264 -preset $QUAL -r $FPS -g $(($FPS *2)) -b:v $VBR \
+ -c:a $AUDIO_ENCODER -threads 6 -ar 44100 -b:a 128k -bufsize 512k -pix_fmt yuv420p \
+ -f flv $YOUTUBE_URL/$YOUTUBE_KEY
+}}}
+		
+
+	3. broadcast audio only, source: https://github.com/Darkseal/FFmpeg-scripts
+{{{code: lang="sh" linenumbers="True"
+#! /bin/bash
+ 
+VBR="1500k"
+FPS="30"
+QUAL="ultrafast"
+YOUTUBE_URL=" rtmp://a.rtmp.youtube.com/live2"
+YOUTUBE_KEY="XXXXXXXXXX"
+VIDEO_SOURCE="sample.jpg"
+AUDIO_SOURCE="sample.mp3"
+AUDIO_ENCODER="aac"
+ 
+ffmpeg \
+ -loop 1 \
+ -re \
+ -framerate $FPS \
+ -i "$VIDEO_SOURCE" \
+ -thread_queue_size 512 \
+ -i "$AUDIO_SOURCE" \
+ -c:v libx264 -tune stillimage -pix_fmt yuv420p -preset $QUAL -r $FPS -g $(($FPS *2)) -b:v $VBR \
+ -c:a $AUDIO_ENCODER -threads 6 -ar 44100 -b:a 128k -bufsize 512k -pix_fmt yuv420p \
+ -f flv $YOUTUBE_URL/$YOUTUBE_KEY
+}}}
+		
+
+
+==== Twitch ====
+FFmpeg has a built-in RTMP client (which is the protocol used to send video data to Twitch), FLV (wrapper for audio and video data), H.264 (video codec), and AAC (audio codec).
+get RTMP ingest URL: https://stream.twitch.tv/ingests/
+	''ffmpeg [input parameters] -vcodec libx264 -b:v 5M -acodec aac -b:a 256k -f flv [RTMP URL/STREAM KEY]''
+
+
+==== Periscope ====
+	1. broadcast, where video and audio are included in a single mp4 file, source: https://github.com/Darkseal/FFmpeg-scripts
+{{{code: lang="sh" linenumbers="True"
+#! /bin/bash
+ 
+VBR="1500k"
+FPS="30"
+QUAL="ultrafast"
+TWITTER_URL="rtmp://de.pscp.tv:80/x"
+TWITTER_KEY="XXXXXXXXXX"
+VIDEO_SOURCE="sample.mp4"
+AUDIO_ENCODER="aac"
+ 
+$ ffmpeg 
+  -re \
+  -f lavfi \
+  -i "$VIDEO_SOURCE" \
+  -c:v libx264 -preset $QUAL -r $FPS -g $(($FPS *2)) -b:v $VBR \
+  -c:a $AUDIO_ENCODER -threads 6 -ar 44100 -b:a 128k -bufsize 512k -pix_fmt yuv420p \
+  -f $TWITTER_URL/$TWITTER_KEY 
+}}}
+		
+
+	2. broadcast, where video and audio are separated and then merged in broadcast, source: https://github.com/Darkseal/FFmpeg-scripts
+{{{code: lang="sh" linenumbers="True"
+#! /bin/bash
+ 
+VBR="1500k"
+FPS="30"
+QUAL="ultrafast"
+TWITTER_URL="rtmp://de.pscp.tv:80/x"
+TWITTER_KEY="XXXXXXXXXX"
+VIDEO_SOURCE="sample.jpg"
+AUDIO_SOURCE="sample.mp3"
+AUDIO_ENCODER="aac"
+ 
+ffmpeg \
+ -loop 1 \
+ -re \
+ -framerate $FPS \
+ -i "$VIDEO_SOURCE" \
+ -thread_queue_size 512 \
+ -i "$AUDIO_SOURCE" \
+ -c:v libx264 -preset $QUAL -r $FPS -g $(($FPS *2)) -b:v $VBR \
+ -c:a $AUDIO_ENCODER -threads 6 -ar 44100 -b:a 128k -bufsize 512k -pix_fmt yuv420p \
+ -f flv $TWITTER_URL/$TWITTER_KEY
+}}}
+		
+
+	3. broadcast audio only, source: https://github.com/Darkseal/FFmpeg-scripts
+{{{code: lang="sh" linenumbers="True"
+#! /bin/bash
+ 
+VBR="1500k"
+FPS="30"
+QUAL="ultrafast"
+TWITTER_URL="rtmp://de.pscp.tv:80/x"
+TWITTER_KEY="XXXXXXXXXX"
+VIDEO_SOURCE="sample.jpg"
+AUDIO_SOURCE="sample.mp3"
+AUDIO_ENCODER="aac"
+ 
+ffmpeg \
+ -loop 1 \
+ -re \
+ -framerate $FPS \
+ -i "$VIDEO_SOURCE" \
+ -thread_queue_size 512 \
+ -i "$AUDIO_SOURCE" \
+ -c:v libx264 -tune stillimage -pix_fmt yuv420p -preset $QUAL -r $FPS -g $(($FPS *2)) -b:v $VBR \
+ -c:a $AUDIO_ENCODER -threads 6 -ar 44100 -b:a 128k -bufsize 512k -pix_fmt yuv420p \
+ -f flv $TWITTER_URL/$TWITTER_KEY
+}}}
+		
