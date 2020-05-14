@@ -8,3 +8,5 @@ Created Donnerstag 14 Mai 2020
 * incoming signal frequency is mixed to a lower intermediate frequency
 * RF signal processing and filtering happens at that intermediate frequency
 * in general, heterodyning describe the process of combining or mixing two frequencies and thus creating a new frequency
+* complex mixer has In-phase (I) and quadrature-phase (Q) signals, mismatch of phase or amplitude of those signals degrades combined signal
+* using I/Q, the phase information is kept in demodulating the incoming signal 
