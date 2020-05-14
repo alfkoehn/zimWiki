@@ -26,3 +26,52 @@ include all subdirectores by leading the name with a + sign
 	''idl> $ls     // does not work for all commands''
 	''idl> spawn, 'rm foo.dat'''
 
+
+===== Fonts: embedding formatting and positioning commands =====
+============================================================================
+Command			Hershey Vector Font		TrueType Font			PostScript Font
+============================================================================
+''!3''		Simplex Roman (default)	Helvetica		Helvetica
+''!4''		Simplex Greek		Helvetica Bold		Helvetica Bold
+''!5''		Duplex Roman		Helvetica Italic		Helvetica Narrow
+''!6''		Complex Roman		Helvetica Bold Italic	Helvetica Narrow Bold Oblique
+''!7''		Complex Greek		Times			Times Roman
+''!8''		Complex Italic		Times Italic		Times Bold Italic
+''!9''		Math/special characters	Symbol			Symbol
+''!M''		like !9 for 1 character	like !9 for 1 character	like !9 for 1 character
+''!10''		Special characters		DejaVu Sans		Zapf Dingbats
+''!11 or !G''	Gothic English		Courier			Courier
+''!12 or !W''	Simplex Script		Courier Italic		Courier Oblique
+''!13''		Complex Script		Courier Bold		Palatino
+''!14''		Gothic Ialian		Courier Bold Italic		Palatino Italic
+''!15''		Gothic German		Times Bold		Palatino Bold
+''!16''		Cyrillic			Times Bold Italic		Palatino Bold Italic
+''!17''		Triplex Roman		DejaVuSans Bold		Avant Garde Book
+''!18''		Triplex Italic		DejaVuSans Italic		New Century Schoolbook 
+''!19''					DejaVuSans Bold Italic	New Century Schoolbook Bold
+''!20''		Miscellaneous 		DejaVuSymbol 		Undefined User Font
+''!V''		like !20 for 1 character	like !20 for 1 character	Ignored
+''!X''		Revert to the entry font	Revert to the entry font	Revert to the entry font
+============================================================================
+
+============================================================================ 
+Command				Action
+============================================================================
+''!A''		Shift above the division line.
+''!B		''Shift below the division line. 
+''!C		''"Carriage return", shift back to the starting position and down one line. This also performs a "!N", returning to the normal level and character size.
+''!D		''Shift down to the first level subscript, shrink the character size by 38%.
+''!E		''Shift up to the exponent level, shrink the character size by 56%.
+''!I		''Shift down to the index level, shrink the character size by 56%.
+''!L''		Shift down to the second level subscript, shrink the character size by 38%.
+''!M		''Switch to the !9 symbol font for one character, then switch back.
+''!N		''Shift back to the normal level and original character size.
+''!R		''Restore position from the top of the saved positions stack.
+''!S		''Save position to the top of the saved positions stack.
+''!U		''Shift to upper subscript level, shrink the character size by 38%.
+''!V''		Switch to the !20 symbol font for one character, then switch back.
+''!X		''Return to the entry font.
+''!Z		''Each value within the parentheses will be interpreted as a 16-bit hexadecimal Unicode value. Values should be separated by commas.
+''!!		''Display the ! symbol.
+============================================================================ 
+

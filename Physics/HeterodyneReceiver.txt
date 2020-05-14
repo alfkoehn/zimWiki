@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2020-05-14T12:35:14+02:00
+
+====== HeterodyneReceiver ======
+Created Donnerstag 14 Mai 2020
+
+* incoming signal frequency is mixed to a lower intermediate frequency
+* RF signal processing and filtering happens at that intermediate frequency
+* in general, heterodyning describe the process of combining or mixing two frequencies and thus creating a new frequency
