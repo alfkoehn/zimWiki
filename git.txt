@@ -92,6 +92,16 @@ Current commit (most recent) is called //HEAD//.
 	''$ git remote show <remote-alias>	''	show info about remote repo
 
 
+===== Typical workflow when working with branches =====
+	''$ git checkout -b branch_a''
+	''$ git status''
+	''$ git commit -am  "Update some stuff"''
+	''$ git checkout master''
+	''$ git merge --no-ff contact-form''
+	''$ git branch -d branch_a''
+	''$ git push origin master''
+
+
 ===== Typical workflow when collaborating on a remote repo =====
 1. Fetch and merge changes from remote
 	(check for changes of remote and bring them down to local copy

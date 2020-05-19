@@ -46,6 +46,8 @@ Created Freitag 25 Oktober 2019
 		''$ xsetwacom set "<wacom-name>" RawSample 9''
 		''$ xsetwacom set "<wacom-name>" Suppress 10''
 		''...''
+	g. toggle between ''absolute mode'' and ''relative mode'': first means pointer corresponds to device's actual position on tablet (default), latter means pointer tracking functions like a mouse 
+		''$ xsetwacom set "<wacom-name>" Mode "Absolute"''
 3. look into the official wiki-page:
 	 http://linuxwacom.sourceforge.net/wiki/index.php/Tablet_Configuration
 
