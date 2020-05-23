@@ -5,6 +5,7 @@ Creation-Date: 2019-07-24T05:47:42+02:00
 ====== Videos ======
 Created Mittwoch 24 Juli 2019
 
+
 ===== Create (and modify) videos =====
 Using **ffmpeg**
 * ''$ ffmpeg -framerate 24 -i %03d.png output.mp4''
@@ -117,7 +118,48 @@ Using **ffmpeg**
 	''-c:v ffv1				''use FFV1 codec for video
 	''-t 5''					result should be a 5 second video
 	''multiple_input_grid.avi''			name of the output video
-	
+* **overlay image for a certain time** span
+	'''
+	$ ffmpeg -i input.mp4 -i watermark.png \
+		-filter_complex \
+		"[0:v][1:v] overlay=10:10:enable='between(t,1,2)'" \
+		output.mp4
+	'''
+
+* more **filter_complex** examples
+	''$ ffmpeg -i myvideo.mp4 -i image.png \''
+		''-filter_complex \''
+		''[0:v][1:v]overlay=5:5,drawtext=text=mytext:fontcolor=orange@1.0:fontsize=30:x=30:y=200[v] \''
+		''-map [v] -map 0:a -c:a copy output.mp4''
+* **filter_complex** example to **move overlay to specific position** 
+	'''
+	$ ffmpeg -i input.mp4 -i image.png -y \
+	       -filter_complex "[0:v][1:v]overlay=
+			x='if(eq(n,439),300,0)':
+			y='if(eq(n,439),300,0)':
+			enable='eq(n,438)+eq(n,439)'[out]" \
+	       -map [out] -map 0:a -ss 17 output.mp4
+	'''
+
+* **add a logo and simulateously text** to a video with **filter_complex**
+	''$ ffmpeg -i video.mp4 -i logo.png \''
+		''-filter_complex "[0:v][1:v]overlay=10:10,''
+			''drawtext=text='Hello World'" \''
+		''-c:a copy -movflags +faststart output.mp4''
+* **add animated text** to a video 
+	''$ ffmpeg -i input -vf \''
+		''"drawtext=enable='gte(t,3)':''
+		''fontfile=Vera.ttf:''
+		''textfile=text.txt:''
+		''reload=1:''
+		''y=h-line_h-10:''
+		''x=(W/tw)*n" \''
+	''output''
+	==> enable ''drawtext'' filter after 3 seconds
+		every time ''text.txt'' is updated, text appearance will change
+		text moves on screen from left to right
+		reload=1		textfile will be reloaded before every frame
+
 
 
 ===== Video capture with ubuntu =====
@@ -408,3 +450,6 @@ ffmpeg \
  -f flv $TWITTER_URL/$TWITTER_KEY
 }}}
 		
+
+===== References =====
+* ffmpeg: https://www.youtube.com/watch?v=M58rc7cxl_s
