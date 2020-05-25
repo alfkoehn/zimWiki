@@ -17,20 +17,23 @@ Created Montag 18 November 2019
 	* Flux capacitor, previously used to allow the sports car to travel through time and running on plutonium replaced by "Mr Fusion"
 	* looks like a coffee machine
 	* available in fan shops
-2. //The Saint// (1997)
+2. Chain Reaction (1996)
+	* Sonoluminescence, never said "fusion" explicitely though
+	* "glass of water could power Chicago for weeks" (no further explanation)
+3. //The Saint// (1997)
 	* Cold fusion
-3. //Spider Man II// (2004)
+4. //Spider Man II// (2004)
 	* Doc Octavius wants to unleash devastating power of fusion apparatus
-4. //Iron Man// (2008)
+5. //Iron Man// (2008)
 	* Mini fusion reactor integrated in exoskeleton
-5. //Dark Knight Rises// (2012)
+6. //Dark Knight Rises// (2012)
 	* Villain wants to transform experimental fusion reactor into a thermonuclear bomb
-6. //Oblivion// (2013)
+7. //Oblivion// (2013)
 	* in 2077, off-shore fusion power stations
 	* Fusion treated as the energy source it is (for the first time in movies?)
-7. //Interstellar// (2014)
+8. //Interstellar// (2014)
 	* Fusion-powered spaceship, //Endurance//
-	* Compact tokamaks
+	* Compact tokamaks (spherical tokamaks)
 
 
 ===== Fusion in computer games =====
