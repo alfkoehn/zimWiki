@@ -92,23 +92,35 @@ xsetwacom set 18 Button 1 key "PgDn"
 If using multiple monitors, it might happen that the tablet + pen maps to all screens where you want to map it for example only to the right monitor.
 1. Get the ID of the stylus
 	''$ xsetwacom list devices''
-2. Get the resolution of the style
+2. Get the resolution of the stylus
 	''$ xsetwacom get 15 area''
 	Output might be for example 
 	''0 0 15200 9500''
-	where ''0,0'' refers to the //upper left// corner and ''15200,9500'' to the //bottom right//.
+	where ''0,0'' refers to the //upper left// corner and ''15200,9500'' to the //bottom right// 
+	==> width = 15200, height = 9500.
 3. Get the resolution of all monitors/screens. Can be obtained via
 	''$ xrandr --listactivemonitors''
 5. Do some maths (if the cursor is going farther than we want, we need //bigger// numbers)
 	a. If we only want to use it on the left monitor of two monitors, we need to let the tablet pretend it has double its size. For two monitors of the same size this means
 		''$ xsetwacom set 15 area 0 0 30400 9500''
-	b. If we want to use it on the right monitor instead (of two same-sized monitors), it means
+	b. If we want to use it on the right monitor (i.e. again on one monitor only) instead (of two same-sized monitors), it means
 		''$ xsetwacom set 15 area -15200 0 15200 9500''
 	c. If we want to use it on the second of three same-sized monitors, we need to let the tablet pretend it has 3 times its actual width:
 		''$ xsetwacom set 15 area -15200 0 30400 9500''
 	d. If ''xrandr'' was used previously, following would for example work
 		''$ xsetwacom set 15 MapToOutput VGA1'' 
 		where ''VGA1'' is in this case the name of the screen we want to map to (could also be ''LVDS1'' or ''DVI1'' or ''eDP-1'' or something different)
+
+
+===== Restrict tablet to specific area of desktop =====
+Two commands are useful for this
+	* ''MapToOutput <width>x<height>+<x_offset>+<y_offset>		used to map tablet's active area to some portion of the desktop'' (numbers are pixels on your screen/desktop)
+	* ''area <left> <top> <right> <bottom>						define active area of tablet (numbers are coordinates on your tablet)''
+If configuration is messed-up, the following commands will reset everything:
+	''$ xsetwacom set <tabletname> MapToOutput desktop''
+	''$ xsetwacom set <tabletname> -1 -1 -1 -1''
+
+
 
 
 ===== Using the table in GIMP =====
