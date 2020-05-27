@@ -20,3 +20,20 @@ Created Samstag 29 Juni 2019
 	''plot tanh(x)''
 * iterations are possible
 	''plot [-pi:pi] for [i in "0 1.57 -1.57"] sin(x+i)''
+* plot simple data from multi-column file (per default '''#''' is interpreted as comment and thus ignored)
+	''# Set linestyle 1 to blue (#0060ad)''
+	''set style line 1 \''
+		''linecolor rgb '#0060ad' \''
+		''linetype 1 linewidth 2 \''
+		''pointtype 7 pointsize 1.5''
+		
+	''plot 'my_data.dat' with linespoints linestyle 1''
+	
+	* inserting a blank line (row) in datafile tells gnuplot to make two plots, they can be plotted with different format if desired
+	''plot 'my_data.dat' index 0 with linespoints linestyle 1, \''
+		'''' index 1 with linepoints linestyle 2''
+
+* plot data with errorbars, where the data is stored in a file as follows: ''x | y | xerror | yerror'' 
+	''plot 'battery.dat' using 1:2:4 with yerrorbars linestyle 1, \''
+		'''' with lines linestyle 1''
+
