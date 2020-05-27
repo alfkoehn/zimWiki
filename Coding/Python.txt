@@ -71,15 +71,23 @@ A few advantages are:
 
 ===== Often seen or used header of python files =====
 * very first line often contains the **shebang line**, following example (often appearing in python code) ensures that interpreter used is the first one in environment's ''$PATH''
-	''#!/usr/bin/env''
-* some metadata is often included, although this is a controversial topic
+	''#!/usr/bin/env python''
+* for proper utf-8 support (to, for example write umlaute), the following line has to be included at the beginning
+	''# -*- coding: utf-8 -*-''
+* a docstring should be next, including a description of what the code is doing, if it's long a one-line summary should be used at the beginning, followed by an empty line
+* some metadata is often included, although this is a controversial topic (license for example might be better to only put it into a separate file)
 	'''
 	__author__	= "Peter Mueller"
-	__copyright__	= "Copyright 2020, University of Stuttgart"
-	__license__	= "GPL"
-	__version__	= 0.0.1
-	__maintainer__	= Peter Mueller"
-	__emai__	= "peter@mueller.com"
+	__email__	= "peter@mueller.com"
+	__copyright__	= "University of Stuttgart"
+	__license__	= "MIT"
 	'''
+	'''
+	__maintainer__	= Peter Mueller"
+	'''
+* import statements should be organized as follows:
+	* built-in modules
+	* third-party modules
+	* changes to the path and own modules
 
 
