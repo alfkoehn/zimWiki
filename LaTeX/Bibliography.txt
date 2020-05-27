@@ -52,3 +52,74 @@ Nice explanation: https://tex.stackexchange.com/questions/25701/bibtex-vs-biber-
 //Note//: ''pdflatex'' can be simply replaced by ''lulatex'' or ''xelatex'' 
 
 
+===== Citing software =====
+1. One example for free software without a manual (the ''note'' field is sometimes used for the version)
+	'''
+	@misc{bla,
+	author = {author name},
+	title  = {software name (version...)},
+	'''
+	'''
+	url    = {url}
+	year   = {some year}
+	}
+	'''
+
+
+2. ''BibLaTeX'' has ''@software'' entry type which is an alias for ''@misc'', including a ''version'' field:
+	'''
+	@software{foo,
+	  author  = {author or organizational name},
+	  title   = {software name},
+	  url     = {https://hadoop.apache.org},
+	  version = {0.20.2},
+	  date    = {2010-02-19},
+	}
+	'''
+
+
+3. ''@Manual'' might be a good entry for a software including a manual
+	'''
+	@Manual{,
+	  title = {R: A Language and Environment for Statistical Computing},
+	  author = {{R Core Team}},
+	  organization = {R Foundation for Statistical Computing},
+	  address = {Vienna, Austria},
+	  year = {2016},
+	  url = {https://www.R-project.org/},
+	}
+	'''
+
+
+4. Citing a github repository
+	'''
+	@misc{foo,
+	  author    = {second-name, first-name},
+	  title     = {Project Title},
+	  year      = {2013},
+	  publisher = {GitHub},
+	  journal   = {GitHub repository},
+	  howpublished = {\url{https://github.com/<username>/<project-title>}},
+	  commit    = {commit-number},
+	'''
+	'''
+	}
+	'''
+
+
+5. Citing a github repository which has been issued a DOI using zenodo (guide how-to-do https://guides.github.com/activities/citable-code/ )
+	'''
+	@software{alf_kohn_seemann_2020_3744715,
+	  author       = {Alf Köhn-Seemann},
+	  title        = {{alfkoehn/fusion\_plots: First release of the 
+	                   fusion\_plots package}},
+	  month        = apr,
+	  year         = 2020,
+	  publisher    = {Zenodo},
+	  version      = {v1.0.0},
+	  doi          = {10.5281/zenodo.3744715},
+	  url          = {https://doi.org/10.5281/zenodo.3744715}
+	}
+	'''
+
+
