@@ -175,6 +175,8 @@ Current commit (most recent) is called //HEAD//.
 	''$ git remote update && git status		git remote update'' to bring your remote refs up to date
 												  ''git status'' to check was is different to my local version
 												  then (''git pull origin master'') to bring local up to data
+	''$ git clone --depth=2 https://github.com/<user>/<repo>.git''
+												  clone includes only last 2 commits (useful if very large history)
 
 
 ===== Good git commit messages =====
@@ -184,7 +186,7 @@ Current commit (most recent) is called //HEAD//.
 3. No period at end of subject line
 4. Blank line between subject and body (note: for small/tiny commits, a body might not be needed)
 5. Wrap body text at approximately 72 characters (in vim, type '':set textwidth=72'')
-6. Use body to explain what and why and not how
+6. Use body to explain what and //why// and not how
 
 
 ===== Download a single folder from within a github project =====
