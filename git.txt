@@ -97,7 +97,7 @@ Current commit (most recent) is called //HEAD//.
 	''$ git status''
 	''$ git commit -am  "Update some stuff"''
 	''$ git checkout master''
-	''$ git merge --no-ff contact-form''
+	''$ git merge --no-ff branch_a''
 	''$ git branch -d branch_a''
 	''$ git push origin master''
 
@@ -144,19 +144,25 @@ Current commit (most recent) is called //HEAD//.
 	''$ git config --global user.email <email>''	add email address to global git config (appearing in commits)
 	''$ git config --local user.name <name>''		set user name for current repo
 	''$ git config --local user.email <email>''		set email for current repo
+	''$ git config --global diff.tool meld''		set diff-ing program Meld as git's default diff-tool
+	''$ git config --global merge.tool meld''		set diff-ing program Meld as git's default merge-tool
 
 
 ===== Other useful commands =====
 	''$ git log					''show list of commits
-	''$ git log --pretty=oneline			show compressed ''commit history in oneline
-	''$ git log --author=Alice			''show only commits from Alice
-	''$ git log --graph --oneline --decorate --all	''show tree with all branches decorated with names of tags and names of branches
-	''$ git log --name-status				''show files which changed in each commit
-	''$ git log --patch -2''				show difference introduced by each commit (here: only last 2 commits)
+		''--pretty=oneline				compress ''commit history in oneline
+		''--author=Alice					''show only commits from Alice
+		''--graph --oneline --decorate --all		''show dependency tree with all branches decorated with names of tags and names of branches
+		''--name-status					''show files which changed in each commit
+		''--reverse'' 					show commits in reverse order (oldest first)
+		''--patch -2''					show difference introduced by each commit (here: only last 2 commits)
+		''--after="1 week ago"				''show all commits that happened after "1 week ago"
+		''--pretty=format:"%h%x09%an%x09%ad%x09%s" --date=short''
 	''$ git tag 0.1 <commit-id>			''tag commit (useful for releases), usually first 10 chars of //commid-id// is ok
 
 	''$ git diff <file>				''show difference of file between working dir and staging area
 	''$ git diff --cached (oder --staged)		''show difference between staged area and last commit
+	''$ git difftool -d				''diff the entire folder
 	''$ git show HEAD					''see HEAD commit
 	''$ git commit -a					''takes changed files directly from working dir (no need for git add)
 	''$ git rm <file>					''remove file from versioning-control, is no longer tracked by git
@@ -174,6 +180,7 @@ Current commit (most recent) is called //HEAD//.
 ===== Good git commit messages =====
 1. Limit subject to 1 line with roughly 50 chars
 2. Imperative mood in subject line (read as //if applied, the commit will <your-commit-subject>//)
+	→ //if applied, the commit will //**Update README file**
 3. No period at end of subject line
 4. Blank line between subject and body (note: for small/tiny commits, a body might not be needed)
 5. Wrap body text at approximately 72 characters (in vim, type '':set textwidth=72'')
