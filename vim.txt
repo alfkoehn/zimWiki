@@ -24,6 +24,7 @@ Created Montag 24 Juni 2019
 	''<ctrl>+a''			increase number under cursor
 	''r<char>''				replace character under cursor by ''<char>''
 	'':w filename''			save as <filename>
+	'':e''				reload active buffer
 	''==''				auto-indent current line
 	''=i{''				auto-indent current block
 	''gg=G''				auto-indent the whole file
