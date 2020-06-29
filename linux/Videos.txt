@@ -92,7 +92,8 @@ Using **ffmpeg**
 		'':enable='between(t,8,15)'''	text will appear at 8 seconds and disappear at 15 seconds
 		''drawtext=fontfile=<font>	''available fonts can be listed with  ''$ fc-list''
 		
-	''$ ffmpeg -i video.mp4 -vf  "[in]drawtext=fontfile=<path_for_ttf_file>:fontsize=40:fontcolor=white:x=(w-text_w)/2:y=h-60*t:textfile='my_text.txt':enable='between(t,1,4)', drawtext=fontfile=<path_for_ttf_file>:fontsize=40:fontcolor=white:x=(w-text_w)/2:y=h-60*t:textfile='my_text2.txt':enable='between(t,6,8)'''''[out]" -c:v libx264 -t 10 video_out.mp4''
+	''$ ffmpeg -i video.mp4 \''
+		''-vf  "[in]drawtext=fontfile=<path_for_ttf_file>:fontsize=40:fontcolor=white:x=(w-text_w)/2:y=h-60*t:textfile='my_text.txt':enable='between(t,1,4)', drawtext=fontfile=<path_for_ttf_file>:fontsize=40:fontcolor=white:x=(w-text_w)/2:y=h-60*t:textfile='my_text2.txt':enable='between(t,6,8)'''''[out]" -c:v libx264 -t 10 video_out.mp4''
 	
 	''$ ffmpeg -i video_in.mp4 \''
 		''-vf "[in]drawtext=fontfile=OpenSans-Regular.ttf:fontsize=40:fontcolor=white:x=w*.65:y=h*.6:text='sorry, buffer xrun':enable='between(t,454.5,456.5)'[out]" \ video_out.mp4''

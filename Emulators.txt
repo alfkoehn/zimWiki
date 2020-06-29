@@ -1,0 +1,24 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2020-06-29T19:41:24+02:00
+
+====== Emulators ======
+Created Montag 29 Juni 2020
+
+Note: https://vimm.net/ is a source for ROMs but downloading ROMs of games can be illegal (check copyright laws)
+
+===== PS1 =====
+* **PCSX-Reloaded**
+	* https://github.com/iCatButler/pcsxr
+	* available from the repositories:			''$ sudo apt-get install pcsxr''
+	* create iso from CD:					''$ sudo dd if=/dev/sr0 of=/path/to/game.iso'' 
+
+===== PS2 =====
+* **PCSX2**
+	* https://github.com/PCSX2/pcsx2
+	* Installation according to https://github.com/PCSX2/pcsx2/wiki/Installing-on-Linux:
+		add x86 architecture 				''$ sudo dpkg --add-architecture i386''
+		add ppa							''$ sudo add-apt-repository ppa:gregory-hainaut/pcsx2.official.ppa''
+											''$ sudo apt-get update''
+		install latest stable release			''$ sudo apt-get install pcsx2''
+	* get Playstation 2 BIOS file
