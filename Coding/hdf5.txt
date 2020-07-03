@@ -58,7 +58,7 @@ import numpy as np
 import h5py
 
 # open file
-hf = h5py.File( 'my_data.h5', 'w' )
+hf = h5py.File( 'my_data.h5', 'r' )
 
 # print keys to show datasets in hdf5 file
 for key in hf.keys():
