@@ -43,6 +43,13 @@ Using **ffmpeg**
 		''-filter_complex '[0:0] [1:0] [2:0] [2:1] concat=n=2:v=1:a=1'''
 															open file 0 stream 0 (image), file 1 stream 0 (silence audio), file 2 stream 0 and 1 (input audio and video)
 															use concat to concatenate them, n=number of segments, v=number of output videos, a=number of output audio
+	Example:
+		''$ ffmpeg -loop 1 -framerate 25 -t 7 \''
+			''-i blackboards/FusionResearch_titlepage.png -t 7 -f lavfi \''
+			''-i aevalsrc=0 -i FR10_concat.mp4 \''
+			''-filter_complex '[0:0] [1:0] [2:0] [2:1] concat=n=2:v=1:a=1' \''
+			''-codec:v libx264 -crf 18 -codec:a aac -b:a 192k FR10_concat_titlepage.mp4''
+
 * **add fade out** (light to dark) at the end or fade in (dark to light) at beginning
 	''$ ffmpeg -i start.mp4 -y -vf fade=in:0:25 start_fadein.mp4''
 	''$ ffmpeg -i end.mp4 -y -vf fade=out:100:25 end_fadeout.mp4''
@@ -56,15 +63,23 @@ Using **ffmpeg**
 	* concatenate with ffmepg
 		''$ ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4''
 			''-safe 0''		not required if paths are relative
+	* lossless concatenation of mp4 files
+		''$ ffmpeg -i video1.mp4 -c copy -bsf:v h264_mp4toannexb -f mpegts video1.ts''
+		''$ ffmpeg -i video2.mp4 -c copy -bsf:v h264_mp4toannexb -f mpegts video2.ts''
+''$ ffmpeg -i "concat:video1.ts|video2.ts" -c copy -bsf:a aac_adtstoasc output.mp4''
+
 * **re-scale a video**
 	''$ ffmpeg -i input.mp4 -s 720x480 -c:a copy output.mp4''
 * **remove audio from video**
 	''$ ffmpeg -i input.mp4 -c copy -an nosound.mp4''
+	
 * **cut a video**
 	''$ ffmpeg -ss 00:03:46 -i input.mp4 -to 00:04:48 -c copy output.mp4''
 	''$ ffmpeg -ss 00:00:30.0 -i input.mp4 -c copy -t 00:00:10.0 output.mp4''
-	''$ ffmpeg -ss 00:00:03.0 -i input.mp4 -t 00:19:47 output.mp4''
+	''$ ffmpeg -ss 00:00:03.0 -i input.mp4 -codec:v libx264 -crf 18 -codec:a aac -b:a 192k -t 00:19:47 output.mp4''
 		this enforces a full re-encoding which takes quite some time, but might be the only option to get precise cuts (due to keyframe misalignment issues)
+		bitrate is set to such a high value because with the default value (128k), the quality decreased significantly 
+		
 * **crop a video**
 	''$ ffmpeg -i input.mp4 -filter:v "crop=out_w:out_h:x:y" output.mp4''
 		''out_w''		width of output rectangle
@@ -79,7 +94,14 @@ Using **ffmpeg**
 		''-c copy''			copies audio and video stream (fast)
 		''-shortest	''	have ffmpeg stop conversion when the shorter of the two input ends
 * **add text to video**
-	''$ ffmpeg -i video.mp4 -vf "[in]drawtext=fontfile=OpenSans-Regular.ttf:fontsize=40:fontcolor=white:x=(w-text_w)/2:y=h-60*t:textfile='my_text.txt'[out]" \''
+	''$ ffmpeg -i video.mp4 -vf \''
+		''"[in]drawtext=''
+			''fontfile=OpenSans-Regular.ttf:''
+			''fontsize=40:''
+			''fontcolor=white:''
+			''x=(w-text_w)/2:''
+			''y=h-60*t:''
+			''textfile='my_text.txt'[out]" \''
 		''-c:v libx264 -t 10 video_out.mp4''
 		
 		''-vf''				short for video filters, syntax for filters is always
@@ -93,10 +115,24 @@ Using **ffmpeg**
 		''drawtext=fontfile=<font>	''available fonts can be listed with  ''$ fc-list''
 		
 	''$ ffmpeg -i video.mp4 \''
-		''-vf  "[in]drawtext=fontfile=<path_for_ttf_file>:fontsize=40:fontcolor=white:x=(w-text_w)/2:y=h-60*t:textfile='my_text.txt':enable='between(t,1,4)', drawtext=fontfile=<path_for_ttf_file>:fontsize=40:fontcolor=white:x=(w-text_w)/2:y=h-60*t:textfile='my_text2.txt':enable='between(t,6,8)'''''[out]" -c:v libx264 -t 10 video_out.mp4''
+		''-vf  "[in]drawtext=''
+			''fontfile=<path_for_ttf_file>:''
+			''fontsize=40:''
+			''fontcolor=white:''
+			''x=(w-text_w)/2:''
+			''y=h-60*t:''
+			''textfile='my_text.txt':''
+			''enable='between(t,1,4)', ''
+		''drawtext=''
+			''fontfile=OpenSans-Regular.ttf:''
+			''fontsize=40:''
+			''fontcolor=white:''
+			''x=w*.65:''
+			''y=h*.6:''
+			''text='sorry, buffer xrun':''
+			''enable='between(t,454.5,456.5)'''''[out]" \''
+		''-c:v libx264 -t 10 video_out.mp4''
 	
-	''$ ffmpeg -i video_in.mp4 \''
-		''-vf "[in]drawtext=fontfile=OpenSans-Regular.ttf:fontsize=40:fontcolor=white:x=w*.65:y=h*.6:text='sorry, buffer xrun':enable='between(t,454.5,456.5)'[out]" \ video_out.mp4''
 * **filter_complex** example from ffmpeg documentation
 	''$ ffmpeg -f lavfi -i testsrc -f lavfi -i testsrc -f lavfi -i testsrc -f lavfi -i testsrc -filter_complex \''
 		''"[1:v]negate[a]; \''
@@ -119,19 +155,41 @@ Using **ffmpeg**
 	''-c:v ffv1				''use FFV1 codec for video
 	''-t 5''					result should be a 5 second video
 	''multiple_input_grid.avi''			name of the output video
+	
 * **overlay image for a certain time** span
 	'''
 	$ ffmpeg -i input.mp4 -i watermark.png \
 		-filter_complex \
-		"[0:v][1:v] overlay=10:10:enable='between(t,1,2)'" \
+		"[0:v][1:v] overlay=
+			x=10:
+			y=10:
+			enable='between(t,1,2)'" \
 		output.mp4
 	'''
+
+* **overlay multiple images** at different times
+	''$ ffmpeg -i video_in.mp4 \''
+		''-i image1.png -i image2.jpeg -i image3.png \''
+		''-filter_complex \''
+			''"[0][1]overlay=''
+				''x=10:y=200:enable='between(t,655,665)'[v1]; ''
+			''[v1][2]overlay=x=10:y=300:enable='between(t,1189,1190)'[v2]; ''
+			''[v2][3]overlay=x=400:y=300:enable='between(t,814,820)'[v3]" \''
+		''-map "[v3]" -map 0:a -c:a libx264 -crf 18 -c:a copy video_out.mp4''
 
 * more **filter_complex** examples
 	''$ ffmpeg -i myvideo.mp4 -i image.png \''
 		''-filter_complex \''
-		''[0:v][1:v]overlay=5:5,drawtext=text=mytext:fontcolor=orange@1.0:fontsize=30:x=30:y=200[v] \''
+		''[0:v][1:v]overlay=''
+			x=''5:''
+			y=''5,''
+		''drawtext=text=mytext:''
+			''fontcolor=orange@1.0:''
+			''fontsize=30:''
+			''x=30:''
+			''y=200[v] \''
 		''-map [v] -map 0:a -c:a copy output.mp4''
+		
 * **filter_complex** example to **move overlay to specific position** 
 	'''
 	$ ffmpeg -i input.mp4 -i image.png -y \
@@ -147,6 +205,7 @@ Using **ffmpeg**
 		''-filter_complex "[0:v][1:v]overlay=10:10,''
 			''drawtext=text='Hello World'" \''
 		''-c:a copy -movflags +faststart output.mp4''
+		
 * **add animated text** to a video 
 	''$ ffmpeg -i input -vf \''
 		''"drawtext=enable='gte(t,3)':''
