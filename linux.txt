@@ -25,6 +25,15 @@ Created Dienstag 02 Juli 2019
 2. **unison**
 
 
+===== Mount iso file =====
+1. Create a directory to be used as mounting point
+	''$ sudo mkdir /media/iso''
+2. Mount iso file
+	''$ sudo mount -o loop path/to/iso/file/ISO_FILE.ISO /media/iso''
+5. Unmount iso file
+	''$ sudo umount /media/iso''
+
+
 ===== Freeing disk space =====
 1. Deleting thumbnails
 	''$ rm ~/.cache/thumbnails/''
