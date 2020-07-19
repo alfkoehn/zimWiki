@@ -219,7 +219,12 @@ Using **ffmpeg**
 		every time ''text.txt'' is updated, text appearance will change
 		text moves on screen from left to right
 		reload=1		textfile will be reloaded before every frame
-
+		
+* **add animated GIF to a video** (known as //picture in picture//)
+	''$ ffmpeg -i video_in.mp4 -ignore_loop 0 -i animated_gif.gif \''
+		''-filter_complex "[1:v]scale=240:135[ovrl];''
+			''[0:v][ovrl]overlay=0:590:enable='between(t,180.5,182)':shortest=1" \''
+			''-codec:a copy -codec:v libx264 -crf 18 video_out.mp4''
 
 
 ===== Video capture with ubuntu =====
@@ -307,8 +312,7 @@ ffmpeg -thread_queue_size $thread_queue_size -video_size $video_size \
     -channel_layout stereo -i $pulseaudio_source -c:v libx264 -qp 0 \
     -preset ultrafast -c:a libvorbis $outfile
 }}}
-		
-
+	
 * **screen capture** and **desktop audio capture** with ffmpeg 
 	1. start recording with ffmpeg, for example
 		''$ ffmpeg -f x11grab -thread_queue_size 4096 -r 25 -s 1920x1080 -i :0.0+0+0 \''
