@@ -1,7 +1,22 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
+Wiki-Format: zim 0.6
 Creation-Date: 2020-05-07T13:20:09+02:00
 
 ====== Physics ======
 Created Donnerstag 07 Mai 2020
 
+===== Spectrum analyzer =====
+* used for measuring magnitude of input signal against frequency
+* allows thus to identify the signal's frequency components
+* passive measurement
+
+
+===== Networt analyzer =====
+* measures transfer function of a circuit over frequency
+* active measurement: injects signal 
+* transfer function is basically output vs input
+* S-parameters are most commonly measured
+* used to measure the respons of a device or network
+* scalar network analyzer (SNA): measures only amplitude characteristics of a device
+* vector network analyzer (VNA): measures amplitude properties + other parameters like phase
+* large signal network analyzer (LSNA): can be operated with large power signals
