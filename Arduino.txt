@@ -1,0 +1,27 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2020-09-05T19:20:31+02:00
+
+====== Arduino ======
+Created Samstag 05 September 2020
+
+===== Installing Arduino IDE and setting it up for ESP8266 =====
+1. Download software from https://www.arduino.cc/en/Main/Software
+2. Decompress archiv and start installation script
+	''$ sudo ./install.sh''
+3. It might be necessary to install Java-Runtine
+	''$ sudo apt install openjdk-8-jre''
+4. Make your user a member of the ''dialout'' group in order to have access to the serial port
+	''$ sudo usermod -a -G dialout $USER''
+5. Log user out and in again 
+6. Register ESP8266 into the Arduino IDE by entering its board URL
+	File → Preferences → Settings
+	Additional Boards Manager URLs: http://arduino.esp8266.com/stable/package_esp8266com_index.json
+7. Install EPS8266 driver for the Arduino IDE
+	Tools → Board: [....] → Boards Manager...
+	enter ESP8266 into the dialogue and install the corresponding driver (only one should be found)
+8. Define the board of the ESP8266
+	Tools → Board: [...] 
+	choose yours
+9. You might need additional drivers to recognize the serial port (depends on the USB-UART converter)
+
