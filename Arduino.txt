@@ -6,6 +6,27 @@ Creation-Date: 2020-09-05T19:20:31+02:00
 Created Samstag 05 September 2020
 
 
+===== EPS8266 & NodeMCU =====
+* ESP8266 is a widespread WiFi-modul
+* all modules of the ESP-series can be controlled via a micro controller, an internal firmware interprets AT-commands (similar to old-school modems)
+* modules itself can also be programmed, no extra micro controller or arduino-board necessary
+	* ESP8266 has 80 MHz (at maximum even 160 MHz), which is faster than most Arduino-boards
+	* more memory than Arduino-boards (ESP-12E has 4 MB, ESP-01 has still 512 kB)
+	* ESP-12E series modules have lots of I/O-ports, serial ports like SPI, I2C
+	* similar ESP8266 modules have all very similar programming standards (mostly, only the number and type of ports (GPIO) varies
+	* programming can be done via Arduino IDE, lua-scripts or python
+* NodeMCU development board is ESP8266 + USB-port + voltage-stabilizer for power supply
+	* coding has been simplified
+	* simply connect with USB-cabel to PC and C-code can be directly transferred via Arduino IDE
+* WiFi requires high currents, up to 170 mA (too high for battery usage)
+	→ ESP chips can be put into sleep mode (DeepSleep-Mode, 0.5 muA)
+* typical pin connection of an NodeMCU board (version 2)
+	{{~/Desktop/NodeMCU-pinconnection.png}}
+	
+* using a NodeMCU ports can be accessed either via the name (e.g. D8) or the corresponding pin number (e.g. 15)
+* loops which take longer than 20 ms should always have a ''delay'' or ''yield'' in
+
+
 ===== Installing Arduino IDE and setting it up for ESP8266 =====
 1. Download software from https://www.arduino.cc/en/Main/Software
 2. Decompress archiv and start installation script
@@ -183,7 +204,7 @@ void loop() {
  
 } 
 }}}
-	 
+
 
 2. Connect LED with long pin to ''D8'' and short pin to ''GND''
 3. Upload the code to the ESP8266
