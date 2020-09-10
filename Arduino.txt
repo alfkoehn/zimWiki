@@ -6,7 +6,7 @@ Creation-Date: 2020-09-05T19:20:31+02:00
 Created Samstag 05 September 2020
 
 
-===== EPS8266 & NodeMCU =====
+===== ESP8266 & NodeMCU =====
 * ESP8266 is a widespread WiFi-modul
 * all modules of the ESP-series can be controlled via a micro controller, an internal firmware interprets AT-commands (similar to old-school modems)
 * modules itself can also be programmed, no extra micro controller or arduino-board necessary
