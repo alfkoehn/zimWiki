@@ -66,7 +66,7 @@ Using **ffmpeg**
 	* lossless concatenation of mp4 files
 		''$ ffmpeg -i video1.mp4 -c copy -bsf:v h264_mp4toannexb -f mpegts video1.ts''
 		''$ ffmpeg -i video2.mp4 -c copy -bsf:v h264_mp4toannexb -f mpegts video2.ts''
-''$ ffmpeg -i "concat:video1.ts|video2.ts" -c copy -bsf:a aac_adtstoasc output.mp4''
+		''$ ffmpeg -i "concat:video1.ts|video2.ts" -c copy -bsf:a aac_adtstoasc output.mp4''
 
 * **re-scale a video**
 	''$ ffmpeg -i input.mp4 -s 720x480 -c:a copy output.mp4''
@@ -225,6 +225,14 @@ Using **ffmpeg**
 		''-filter_complex "[1:v]scale=240:135[ovrl];''
 			''[0:v][ovrl]overlay=0:590:enable='between(t,180.5,182)':shortest=1" \''
 			''-codec:a copy -codec:v libx264 -crf 18 video_out.mp4''
+			
+* add **video in a video** (also known as picture-in-picture)
+	''$ ffmpeg -i main_video.mp4 -i short_overlay_video.mp4 \''
+		''-filter_complex "[1]setpts=PTS-STARTPTS+560/TB[ovrl];''
+			''[0:v][ovrl]overlay=x=400:y=460:enable='between(t,560,566)'" \''
+		''-codec:a copy -codec:v libx264 -crf 18 output.mp4''
+	==> import to set overlay video to start play when it is supposed to appear (see the ''setpts'' option),
+		otherwise, the overlay video starts to play when main video starts
 
 
 ===== Video capture with ubuntu =====
