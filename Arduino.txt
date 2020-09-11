@@ -213,3 +213,153 @@ void loop() {
 6. Open the corresponding IP address in your browser and 
 
 
+===== Program example: NodeMCU with ESP8266 and 0.91'' 128x32 OLED display =====
+1. A few starting notes
+	* OLED displays don't requires backlight, results in nice contrast in dark background and consumes little energy
+	* Using I2C communication, wiring is as follow (left is OLED, right is NodeMCU):
+		* Vin		→	3.3V
+		* GND	→	GND
+		* SCL	→	GPIO 5 (D1)
+		* SDA	→	GPIO 4 (D2)
+	* Install ''SSD1306'' library from Adafruit in Arduino IDE
+	* Install ''GFX'' library from Adafruit in Arduino IDE
+	* The examples are really helpful: File → Examples → Adafruit SSD1306
+2. Connect wires as described in 1.
+3. Use the following code
+{{{code: lang="c" linenumbers="True"
+#include <SPI.h>
+#include <Wire.h>				// for I2C communication
+#include <Adafruit_GFX.h>		// for writing to display
+#include <Adafruit_SSD1306.h>	// for writing to display
+
+#define SCREEN_WIDTH 128 		// OLED display width, in pixels
+#define SCREEN_HEIGHT 32 		// OLED display height, in pixels
+
+// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
+#define OLED_RESET LED_BUILTIN  // Reset pin
+								// 4 is default value (or -1 if sharing Arduino reset pin)
+								// using NodeMCU, we have to use LED_BUILTIN
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+void setup() {
+  // put your setup code here, to run once
+  
+  // initialize serial monitor at a baud rate of 115200, mostly used for debugging purposes
+  Serial.begin(115200);
+
+  // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
+  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { 		// Address 0x3C for 128x32
+    Serial.println(F("SSD1306 allocation failed"));
+    for(;;); 					// Don't proceed, loop forever
+  }
+
+  // Show initial display buffer contents on the screen --
+  // the library initializes this with an Adafruit splash screen.
+  display.display();
+  
+  // Pause for 2 seconds
+  delay(2000); 
+
+  // clear the display buffer
+  display.clearDisplay();
+  
+  // default font size and color have to be set
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+
+  // print a text line
+  display.println("Hello World!");
+  display.println("Hello again :)");
+  
+  // actually display the text or drawings on the OLED
+  display.display();  
+  delay(1000);
+
+  display.clearDisplay();
+}
+
+void loop() {
+  // put your setup code here, to run once
+
+  int ii;
+  
+  // Clear the buffer.
+  display.clearDisplay();
+
+  // draw a few pixel
+  for ( ii=0 ; ii<=10; ++ii){
+    display.drawPixel(0,ii,WHITE);
+    display.setCursor(50,5);
+    
+    display.print("ii = ");
+    display.print(ii);
+    delay(1000);
+    display.display();
+  }
+  
+  // set cursor to (x,y) coordinates and start text there
+  display.setTextSize(2);
+  display.setCursor(90,5);
+  display.print(".");
+  display.print("0"); 
+  
+  display.display();
+
+  // update every 1 sec
+  delay(1000); 
+}
+}}}
+
+4. Upload the code to the ESP8266: <''ctrl> + u''
+5. A few more commands:
+	a. **scrolling text** (scrolls whatever is currently written on the display) 
+		''display.startscrollright(0x00, 0x0F)''			scroll text from left to right 
+		''display.startscrollright(0x00, 0x00);''			scroll only first "page" of the display (OLED memory has 8 pages, 1 page corresponding to first 4 rows for 32 pixel heigt OLED)
+		''display.startscrollleft(0x00, 0x0F)''			scroll text from right to left
+		''display.startscrolldiagright(0x00, 0x07)''		scroll text from left bottom corner to right upper corner
+		''display.startscrolldiagleft(0x00, 0x07)''			scroll text from right bottom corner to left upper corner 
+		''display.stopscroll()''					stop scrolling
+	b. using **other fonts** (note that others fonts are available as 9, 12, 18, 24 point sizes, so font sets size, they also contain 7-bit ascii characters)
+		''#include <Fonts/FreeSerifBold12pt7b.h>''			include other fonts at beginning
+		''display.setFont(&FreeSerif12pt7b);''			change to specified font
+		''display.setFont()''					change back to default font
+	c. draw **shapes**
+		''display.drawPixel(64, 32, WHITE);''			draw pixel at (x,y,color)
+		''display.drawLine(x1, y1, x2, y2, WHITE);''		draw line from (x1,y1) to (x2,y2)
+		''display.drawRect(x, y, width, height, color);''		draw a rectangle, top left corner is (x,y)
+		''display.fillRect(x, y, width, height, color);''		draw a filled rectangle
+		''display.drawRoundRect(10, 10, 30, 50, 2, WHITE);	''draw a rectangle with round corners
+		''display.fillRoundRect(10, 10, 30, 50, 2, WHITE);	''draw a filled rectangle with round corners
+		''display.drawCircle(x, y, radius, color);''		draw a circle with (x,y) as center
+		''display.fillCircle(64, 32, 10, WHITE);	''		draw a filled circle
+		''display.drawTriangle(x1, y1, x2, y2, x3, y3, color);''	draw a triangle
+		''display.fillTriangle(10, 10, 55, 20, 5, 40, WHITE);''	draw a filled triangle
+	d. **invert** colors for shapes or text
+		''display.invertDisplay(true);''				from now on, all shapes and text are invert
+		''display.invertDisplay(false);	''			set back to normal
+		
+		alternatively, to invert text, one could also do the following
+		''// sets text color to black with a white background''
+		''display.setTextColor(BLACK, WHITE);''
+		''display.setCursor(5,10);''
+		''display.println("Inverted text!");''
+	e. display **images** on the OLED (images need to be bitmap monocolor images)
+		1. resize photo/image to OLED size and save it as monochrome bitmap
+		2. convert image to C array, use for example: https://sourceforge.net/projects/lcd-image-converter/files/ 
+			Options → Conversion → Prepare:	    Type: Monochrome, Threshold Dither
+											Main Scan Direction: Top to Bottom
+											Line scan direction: Forward
+			Options → Conversion → Image:	   Split to Rows
+											Block size: 8 bit
+											Byte order: Little-Endian
+			Alternative web-app: http://javl.github.io/image2cpp/
+		3. copy array picture.c file into Arduino IDE code
+		4. use ''display.drawBitmap(x, y, image array, image width, image height, rotation)'' method
+			''static const uint8_t image_data_array[1024] = { 0xff, 0xff, 0xff, 0 ..... }''
+			''display.drawBitmap(0, 0, image_data_array, 128, 64, 1);''
+	f. write some **special characters** using the Code Page 437 font, see here https://www.ascii-codes.com/
+		''display.cp437(true);''					activate the font  ← //might not be necessary//
+		''display.write(167);''					write symbol 167 (the ° symbol)
+		''display.write(3);''					write symbol 3 (a heart)
+6. If you want to use multiple displays, change the address of one of the displays (often, their address can be changed by unsoldering a resistor or setting a jumper otherwise)
+
