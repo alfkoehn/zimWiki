@@ -8,6 +8,7 @@ Created Samstag 05 September 2020
 
 ===== ESP8266 & NodeMCU =====
 * ESP8266 is a widespread WiFi-modul
+* its WiFi capabilities allows to operate EPS8266 (or NodeMCU) as server, access-point, or client
 * all modules of the ESP-series can be controlled via a micro controller, an internal firmware interprets AT-commands (similar to old-school modems)
 * modules itself can also be programmed, no extra micro controller or arduino-board necessary
 	* ESP8266 has 80 MHz (at maximum even 160 MHz), which is faster than most Arduino-boards
@@ -101,10 +102,123 @@ void loop() {
 } 
 }}}
 		
-2. Upload the code to the EPS8266
+2. Upload the code to the EPS8266: 	<''ctrl> + u''
 3. Start the Serial Monitor (Tools → Serial Monitor or ''<ctrl> + M'')
 4. Set the baud rate to the value set in the code (115200)
 5. Set "No line ending"
+
+
+===== Program example: get time from Internet =====
+1. Use the following code
+{{{code: lang="c" linenumbers="True"
+#include <ESP8266WiFi.h>
+#include <time.h>           // to get date and time
+
+// setup network
+const char* ssid = "WIFI_NAME";
+const char* password = "WIFI_PASSWORD";
+
+// setup timezone
+int timezone = 1;           // UTC + 1 = Central European Time
+int dst = 0;                // flag for "is day light saving time", note that this seems always to be interpreted as 0
+                            // ==> this variable is just a dummy in the function call
+
+void setup() {
+  // put setup code here, to run once
+  
+  Serial.begin(115200);
+  Serial.println();
+  Serial.print("Wifi connecting to ");
+  Serial.println( ssid );
+
+  WiFi.begin(ssid,password);
+
+  Serial.println();
+  
+  Serial.print("Connecting");
+
+  while( WiFi.status() != WL_CONNECTED ){
+      delay(500);
+      Serial.print(".");        
+  }
+
+  Serial.println();
+
+  Serial.println("Wifi Connected Success!");
+  Serial.print("NodeMCU IP Address : ");
+  Serial.println(WiFi.localIP() );
+
+  // get initial time via NTP, default update interval 1 hour
+  configTime(timezone*3600, dst, "pool.ntp.org","time.nist.gov");
+  Serial.println("\nWaiting for Internet time");
+
+  while(!time(nullptr)){
+     Serial.print("*");
+     delay(1000);
+  }
+  Serial.println("\nTime response....OK");  
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+  int dst_hours;
+  
+  time_t now = time(nullptr);
+
+  // create a time structure (struct tm) called timeinfo
+  // info: http://www.cplusplus.com/reference/ctime/localtime/
+  struct tm * timeinfo = localtime(&now);
+
+  // 0 = Sunday
+  Serial.print(timeinfo->tm_wday);
+  Serial.print(", ");
+  Serial.print(timeinfo->tm_mday);
+  Serial.print(".");
+  Serial.print(timeinfo->tm_mon + 1);
+  Serial.print(".");
+  Serial.print(timeinfo->tm_year + 1900);
+  
+  Serial.print(" ");
+
+  // test if Daylight Saving Time is active
+  if (summertime_EU( (timeinfo->tm_year + 1900 + 1), timeinfo->tm_mon + 1, timeinfo->tm_mday, timeinfo->tm_hour, timezone)) {
+    dst_hours = 1;
+  } else {
+    dst_hours = 0;
+  }
+  
+  Serial.print(timeinfo->tm_hour + dst_hours);
+  Serial.print(":");
+  Serial.print(timeinfo->tm_min);
+  Serial.print(":");
+  Serial.println(timeinfo->tm_sec);
+
+  //Serial.print("DST: ");
+  //Serial.println(timeinfo->tm_isdst);
+  
+  delay(1000);
+}
+
+
+boolean summertime_EU(int year, byte month, byte day, byte hour, byte tzHours)
+// European Daylight Savings Time calculation by "jurs" for German Arduino Forum
+// https://forum.arduino.cc/index.php?topic=172044.msg1278536#msg1278536
+// input parameters: "normal time" for year, month, day, hour and tzHours (0=UTC, 1=MEZ)
+// return value: returns true during Daylight Saving Time, false otherwise
+{
+  if (month<3 || month>10) return false; // keine Sommerzeit in Jan, Feb, Nov, Dez
+  if (month>3 && month<10) return true; // Sommerzeit in Apr, Mai, Jun, Jul, Aug, Sep
+  if (month==3 && (hour + 24 * day)>=(1 + tzHours + 24*(31 - (5 * year /4 + 4) % 7)) || month==10 && (hour + 24 * day)<(1 + tzHours + 24*(31 - (5 * year /4 + 1) % 7)))
+    return true;
+  else
+    return false;
+}
+}}}
+
+2. Upload the code to the ESP8266: 	<''ctrl> + u''
+3. Start the Serial Monitor (Tools → Serial Monitor or ''<ctrl> + M'')
+4. Set the baud rate to the value set in the code (115200)
 
 
 ===== Program example: controlling an LED via WiFi =====
