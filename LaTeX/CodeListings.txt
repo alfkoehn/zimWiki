@@ -5,7 +5,7 @@ Creation-Date: 2020-02-04T14:11:57+01:00
 ====== CodeListings ======
 Created Dienstag 04 Februar 2020
 
-There exists (at least) two generally different methods to write source code in your [[LaTeX-documents:]]
+There exists (at least) two generally different methods to write source code in your LaTeX-documents:
 * ''verbatim'' environment
 * ''listings'' package (providing advanced formatting features)
 
@@ -77,7 +77,7 @@ print( "hi" )
  
 \usepackage{listings}
 \usepackage{xcolor}
- 
+
 \definecolor{mycodegreen}{rgb}{0,0.6,0}
 \definecolor{mycodegray}{rgb}{0.5,0.5,0.5}
 \definecolor{mycodepurple}{rgb}{0.58,0,0.82}
@@ -102,7 +102,7 @@ print( "hi" )
     showspaces=false,                			% show spaces adding particular underscores (overrides 'showstringspaces')
     showstringspaces=false,						% underline spaces within strings only
     showtabs=false,                  			% show tabs within strings adding particular underscore
-    tabsize=4									% sets default tabsize to 4 spaces
+    tabsize=4,									% sets default tabsize to 4 spaces
     title=\lstname                   			% show filename of files included with \lstinputlisting; also try caption instead of title
 }
  

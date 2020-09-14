@@ -36,4 +36,6 @@ Created Samstag 29 Juni 2019
 * plot data with errorbars, where the data is stored in a file as follows: ''x | y | xerror | yerror'' 
 	''plot 'battery.dat' using 1:2:4 with yerrorbars linestyle 1, \''
 		'''' with lines linestyle 1''
+* put a box around the legend (solid line)
+	''set key box linetype -1 linewidth 2''
 
