@@ -61,9 +61,10 @@ Created Samstag 05 September 2020
 	If not already set per default increase Upload Speed to 115200 (Tools → Upload Speed)
 7. Upload the code to the ESP8266
 	<''ctrl> + u''
-8. Connect LED with long pin to ''D8'' and short pin to ''GND''
+8. Connect LED with long leg (the anote) to ''D8'' and short leg via 220 Ohm to ''GND''
+	→ resistor is series to the LED to limit current through LED (in principle NodeMCU limits current, too, but value is likely too high and will result in short lifetime of LED)
 	it should start blinking
-	
+	{{file:///media/alf/datar/myArduino/NodeMCU_LED_220Ohm.png}}
 	
 
 ===== Program example: controlling the internal LED via the "Serial Monitor" (i.e. console) =====
