@@ -23,6 +23,7 @@ The ''cases'' environment from the ''amsmath'' package is a good choice for that
 }}}
 
 
+
 ===== Writing matrices =====
 An easy way to writes matrices with 
 	''[]'' braces is provided by the ''bmatrix'' environment, 
@@ -78,3 +79,25 @@ To write a matrix inline, simply write
 	* sometimes there are problems with references and labels
 	* note that the iop-style fixes some of the problems
 
+
+===== Bold math symbols =====
+* one could in pricinple use ''\textcolor{\rightarrow}'' but that destroys the spacing
+* better to define a new command, that can be used exactly as ''\textcolor'' is used, but preserved the math-spacing
+   (source: https://tex.stackexchange.com/questions/85033/colored-symbols)
+{{{code: lang="latex" linenumbers="True"
+\documentclass{article}
+\usepackage{xcolor}
+
+\newcommand*{\mathcolor}{}
+\def\mathcolor#1#{\mathcoloraux{#1}}
+\newcommand*{\mathcoloraux}[3]{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+
+\begin{document}
+$a \mathcolor{red}{\rightarrow} b$
+\end{document}
+}}}
