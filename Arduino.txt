@@ -61,10 +61,10 @@ Created Samstag 05 September 2020
 	If not already set per default increase Upload Speed to 115200 (Tools → Upload Speed)
 7. Upload the code to the ESP8266
 	<''ctrl> + u''
-8. Connect LED with long leg (the anote) to ''D8'' and short leg via 220 Ohm to ''GND''
-	→ resistor is series to the LED to limit current through LED (in principle NodeMCU limits current, too, but value is likely too high and will result in short lifetime of LED)
-	it should start blinking
-	{{file:///media/alf/datar/myArduino/NodeMCU_LED_220Ohm.png}}
+8. Connect LED with long leg (the anote) to ''D8'' and short leg via 220 Ohm to ''GND ''(it should start blinking)
+	→ resistor in series to the LED to limit current through LED (in principle NodeMCU limits current (12 mA), too, but value might be too high and will result in shorter lifetime of LED)
+		R = (U_in - U_LED) / I
+	{{../Arduino__NodeMCU_LED_220Ohm.png}}
 	
 
 ===== Program example: controlling the internal LED via the "Serial Monitor" (i.e. console) =====
@@ -214,7 +214,7 @@ boolean summertime_EU(int year, byte month, byte day, byte hour, byte tzHours)
     return true;
   else
     return false;
-}
+} 
 }}}
 
 2. Upload the code to the ESP8266: 	<''ctrl> + u''
@@ -336,6 +336,7 @@ void loop() {
 		* GND	→	GND
 		* SCL	→	GPIO 5 (D1)
 		* SDA	→	GPIO 4 (D2)
+		{{../Arduino__NodeMCU_0.91inOLED.png}}
 	* Install ''SSD1306'' library from Adafruit in Arduino IDE
 	* Install ''GFX'' library from Adafruit in Arduino IDE
 	* The examples are really helpful: File → Examples → Adafruit SSD1306
