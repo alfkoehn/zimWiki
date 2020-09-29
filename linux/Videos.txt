@@ -256,6 +256,9 @@ Using **ffmpeg**
 		''ffmpeg -f video4linux2 -s 640x480 -i /dev/video0 -qscale 3 out.mpeg''
 	2. using ffmpeg w/ sound
 		''ffmpeg -t 00:00:15 -f video4linux2 -s 640x480 -i /dev/video0 -f alsa -ac 2 -i pulse -qscale 3 outSound.mpeg''
+* **get info about webcam** and supported resolutions and framerates
+	''$ ffmpeg -f video4linux2 -list_formats all -i /dev/video0''
+	''$ v4l2-ctl --list-formats-ext''
 * **screen capture** using **ffmpeg**
 	a. ''ffmpeg -f x11grab -r 25 -s 320x240 -i :0.0+10,20 out.mpg''
 		''-s 320x240''		set frame size of recorded video to 320x240, shortcut for ''-video_size''
