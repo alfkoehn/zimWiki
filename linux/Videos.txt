@@ -93,6 +93,12 @@ Using **ffmpeg**
 		''1:a:0''			first audio stream of second file
 		''-c copy''			copies audio and video stream (fast)
 		''-shortest	''	have ffmpeg stop conversion when the shorter of the two input ends
+* **add audio from one video to another video**
+	$ ''ffmpeg -an -i video_main.mp4 -vn -i video_sound2add.mp4 \''
+		''-map 0:v -map 1:a -c:v copy -c:a copy output.mp4''
+		''-an -i $VIDEO1''		ignore audio stream
+		''-vn -i $VIDEO2''		ignore video stream
+
 * **add text to video**
 	''$ ffmpeg -i video.mp4 -vf \''
 		''"[in]drawtext=''
