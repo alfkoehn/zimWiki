@@ -30,6 +30,17 @@ Using **ffmpeg**
 * **get the framerate** of a video
 	''$ ffmpeg -i video.mp4''
 		look for the ''tbr'' value
+
+* **extract frames** from a video
+	* write a single frame into image
+		''$ ffmpeg -i input.mov -ss 00:00:14.435 -vframes 1 out.png''
+	* write image every second 
+		''$ ffmpeg -i input.mov -vf fps=1 out%03d.png''
+	* write image every minute
+		''$ ffmpeg -i input.mov -vf fps=1/60 out%03d.jpg''
+	* write image every frame (assuming framerate is 24)
+		''$ ffmpeg -i input.mov -r 24/1 out%03d.jpg''
+
 * **add still image before first frame** of video
 	'''
 	$ ffmpeg -loop 1 -framerate FPS -t SECONDS -i IMAGE \

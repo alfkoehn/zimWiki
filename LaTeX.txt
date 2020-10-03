@@ -177,7 +177,6 @@ blob & blib\\
 
 
 
-
 ===== Basic drawing using TikZ =====
 * ''\usepackage{tikz}''
 * every TikZ diagram requires tikzpicture environment
