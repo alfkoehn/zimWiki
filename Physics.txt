@@ -20,3 +20,9 @@ Created Donnerstag 07 Mai 2020
 * scalar network analyzer (SNA): measures only amplitude characteristics of a device
 * vector network analyzer (VNA): measures amplitude properties + other parameters like phase
 * large signal network analyzer (LSNA): can be operated with large power signals
+
+
+===== Frequency synthesizer =====
+* electronic circuit that generates a range of frequencies from a single reference frequency
+* uses frequency multiplication and division, direct digital synthesis, frequency mixing, and PLLs to generate the required frequencies
+* stability and accuracy of output related to stability and accuracy of reference frequency input, which are of provided by very stable sources (crystal oscillators)

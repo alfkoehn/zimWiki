@@ -1,0 +1,38 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2020-10-07T15:12:29+02:00
+
+====== PhaseLockedLoop ======
+Created Mittwoch 07 Oktober 2020
+
+* Phase-locked loop: PLL
+* PLL ist not a single component but a system: multiple components carefully designed and interconnected in a negative-feedback configuration
+* PLLs are used in a variety of radio frequency applications
+* PLLs are used in various clever ways, most basic is locking output frequency to input frequency - made by a negative feedback, i.e. routing output signal back to phase detector
+* some applications:
+	* FM demodulation
+	* AM demodulation
+	* indirect frequency synthesizers
+	* signal recovery
+	* timing distribution
+	* multiply frequency of an input signal by integer numbers
+
+* overview diagram of a basic and most simple PLL, constisting of three elements: phase detector, loop filter, voltage controlled oscillator
+{{../PhaseLockedLoop.png}}
+* phase comparator (also referred to as phase detector) measure phase difference of two input signals
+* output of phase comparator is a signal which is combination of high-frequency content + analog signal being proportional to phase difference
+* loop filter (low pass filter) suppresses higher-frequency component and transforms phase detector's output such that it can control the VCO
+* the VCO is an oscillator where the frequency of the output signal generated is controlled by a voltage, here the low-pass filtered phase-detector signal
+
+* in a digital PLL, an XOR gate is used for the phase detector: XOR gate has logic-high output when two inputs are different, if two inputs are square waves then XOR is out-of-phase detector
+* a larger phase difference will thus result in a higher average value of the XOR output, i.e. the output is proportional to the phase difference
+
+* different frequencies will result in periodic variations of duty cycle/average output voltage of phase detector
+* control voltage will vary up and down until output frequency is same as input frequency
+* frequency variation will continue until frequency + phase lock have been achieved
+
+* information about error in phase between the two input signals is used to control the frequency of the loop
+* only if two signals have exactly same frequency, the phase difference between them is constant
+* initially, loop will be out of lock, error voltage will pull frequency of VCO towards that of reference, until error cannot be reduced further and loop is locked
+
+* PLL compares signal of a reference signal to phase of an adjustable feedback signal
