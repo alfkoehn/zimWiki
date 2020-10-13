@@ -159,25 +159,25 @@ Source: https://github.com/gmarik/Vundle.vim.git
 
 4) some useful commands
    * list all installed plugins
-	   :PluginList
+	   '':PluginList''
    * update plugins
-	   :PluginUpdate
+	   '':PluginUpdate''
    * reinstall plugins
-	   :PluginInstall!
+	   '':PluginInstall!''
    * delete installed plugin
-	   :PluginList
+	   '':PluginList''
 	   move cursor to plugin to be deleted
-	   <shift>+d
+	   ''<shift>+d''
 	   remove line from .vimrc 
    * search and install plugin using Vundle
-	   :PluginSearch search_expression
+	   '':PluginSearch search_expression''
 	   move cursor to desired plugin
 	   i to install plugin
 	   copy the line and paste it to .vimrc file
    * install plugins from github 
 	   Plugin github_repo_user/github_repo_project_name
 	   save file and restart vim (or :source %)
-	   :PluginInstall will install the plugin   
+	   '':PluginInstall'' will install the plugin   
 
 
 ==== NERDTree plugin ====
