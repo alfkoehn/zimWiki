@@ -422,7 +422,7 @@ void loop() {
 
   // update every 1 sec
   delay(1000); 
-}
+} 
 }}}
 
 4. Upload the code to the ESP8266: <''ctrl> + u''
@@ -477,4 +477,22 @@ void loop() {
 		''display.write(167);''					write symbol 167 (the ° symbol)
 		''display.write(3);''					write symbol 3 (a heart)
 6. If you want to use multiple displays, change the address of one of the displays (often, their address can be changed by unsoldering a resistor or setting a jumper otherwise)
+
+
+===== Program example: NodeMCU with ESP8266 and LCD display =====
+1. A few comments
+	* LCD displays require voltages between 4.7 V and 5.3 V
+	* current consumption is 1 mA without backlight and 120 mA with backlight
+	* green or blue blacklight color
+	* each character consists of a 5x8 pixel box
+	* library ''LiquidCrystal_I2C.h'' is available from library manager (use the version from Frank de Brabander)
+	* potentiometer for changing brightness of characters
+2. I2C communication is preferred (requires less cables), wiring is as follow (left is LCD, right is NodeMCU):
+	* GND	→	GND
+	* VCC	→	Vin
+	* SDA	→	D2 (GPIO 4)
+	* SLC	→	D1 (GPIO 5)
+	{{../Arduino__ESP8266_LCD16x2.png}}
+4. The following code shows an example of what can be done with an LCD display
+
 
