@@ -79,6 +79,102 @@ Using **ffmpeg**
 		''$ ffmpeg -i video2.mp4 -c copy -bsf:v h264_mp4toannexb -f mpegts video2.ts''
 		''$ ffmpeg -i "concat:video1.ts|video2.ts" -c copy -bsf:a aac_adtstoasc output.mp4''
 
+* **concatenate with crossfade** between the videos
+{{{code: lang="sh" linenumbers="True"
+#!/usr/bin/env bash
+
+# inspired by https://superuser.com/questions/1001039/what-is-an-efficient-way-to-do-a-video-crossfade-with-ffmpeg
+
+# set filenames of videos to concatenate
+vid0_fname="0.mp4"
+vid1_fname="1.mp4"
+vid2_fname="2.mp4"
+vid3_fname="3.mp4"
+vid4_fname="4.mp4"
+
+# get exact length of all videos
+vid0_length=`ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 ${vid0_fname}`
+vid1_length=`ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 ${vid1_fname}`
+vid2_length=`ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 ${vid2_fname}`
+vid3_length=`ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 ${vid3_fname}`
+vid4_length=`ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 ${vid4_fname}`
+
+# set crossfade times
+fadeout_time=1
+fadein_time=1
+
+# set start time of fadeout for each video
+vid0_fadeout=$(bc -l <<<"${vid0_length}-${fadeout_time}")
+vid1_fadeout=$(bc -l <<<"${vid1_length}-${fadeout_time}")
+vid2_fadeout=$(bc -l <<<"${vid2_length}-${fadeout_time}")
+vid3_fadeout=$(bc -l <<<"${vid3_length}-${fadeout_time}")
+vid4_fadeout=$(bc -l <<<"${vid4_length}-${fadeout_time}")
+
+echo $vid0_fname $vid0_length $vid0_fadeout
+
+# this is where the magic happens
+ffmpeg -i $vid0_fname -i $vid1_fname -i $vid2_fname -i $vid3_fname -i $vid4_fname -an \
+    -filter_complex "\
+        [0:v]trim=start=0:end=${vid0_fadeout},setpts=PTS-STARTPTS[clip0]; \
+        [1:v]trim=start=${fadein_time}:end=${vid1_fadeout},setpts=PTS-STARTPTS[clip1]; \
+        [2:v]trim=start=${fadein_time}:end=${vid2_fadeout},setpts=PTS-STARTPTS[clip2]; \
+        [3:v]trim=start=${fadein_time}:end=${vid3_fadeout},setpts=PTS-STARTPTS[clip3]; \
+        [4:v]trim=start=${fadein_time},setpts=PTS-STARTPTS[clip4]; \
+        [0:v]trim=start=${vid0_fadeout}:end=${vid0_length},setpts=PTS-STARTPTS[fadeoutclip0]; \
+        [1:v]trim=start=${vid1_fadeout}:end=${vid1_length},setpts=PTS-STARTPTS[fadeoutclip1]; \
+        [2:v]trim=start=${vid2_fadeout}:end=${vid2_length},setpts=PTS-STARTPTS[fadeoutclip2]; \
+        [3:v]trim=start=${vid3_fadeout}:end=${vid3_length},setpts=PTS-STARTPTS[fadeoutclip3]; \
+        [1:v]trim=start=0:end=${fadein_time},setpts=PTS-STARTPTS[fadeinclip1]; \
+        [2:v]trim=start=0:end=${fadein_time},setpts=PTS-STARTPTS[fadeinclip2]; \
+        [3:v]trim=start=0:end=${fadein_time},setpts=PTS-STARTPTS[fadeinclip3]; \
+        [4:v]trim=start=0:end=${fadein_time},setpts=PTS-STARTPTS[fadeinclip4]; \
+        [fadeinclip1]format=pix_fmts=yuva420p, fade=t=in:st=0:d=1:alpha=1[fadein1]; \
+        [fadeinclip2]format=pix_fmts=yuva420p, fade=t=in:st=0:d=1:alpha=1[fadein2]; \
+        [fadeinclip3]format=pix_fmts=yuva420p, fade=t=in:st=0:d=1:alpha=1[fadein3]; \
+        [fadeinclip4]format=pix_fmts=yuva420p, fade=t=in:st=0:d=1:alpha=1[fadein4]; \
+        [fadeoutclip0]format=pix_fmts=yuva420p, fade=t=out:st=0:d=1:alpha=1[fadeout0]; \
+        [fadeoutclip1]format=pix_fmts=yuva420p, fade=t=out:st=0:d=1:alpha=1[fadeout1]; \
+        [fadeoutclip2]format=pix_fmts=yuva420p, fade=t=out:st=0:d=1:alpha=1[fadeout2]; \
+        [fadeoutclip3]format=pix_fmts=yuva420p, fade=t=out:st=0:d=1:alpha=1[fadeout3]; \
+        [fadein1]fifo[fadeinfifo1]; \
+        [fadein2]fifo[fadeinfifo2]; \
+        [fadein3]fifo[fadeinfifo3]; \
+        [fadein4]fifo[fadeinfifo4]; \
+        [fadeout0]fifo[fadeoutfifo0]; \
+        [fadeout1]fifo[fadeoutfifo1]; \
+        [fadeout2]fifo[fadeoutfifo2]; \
+        [fadeout3]fifo[fadeoutfifo3]; \
+        [fadeoutfifo0][fadeinfifo1]overlay[crossfade1]; \
+        [fadeoutfifo1][fadeinfifo2]overlay[crossfade2]; \
+        [fadeoutfifo2][fadeinfifo3]overlay[crossfade3]; \
+        [fadeoutfifo3][fadeinfifo4]overlay[crossfade4]; \
+        [clip0][crossfade1][clip1][crossfade2][clip2][crossfade3][clip3][crossfade4][clip4]concat=n=9[output]; \
+        [0:a]volume=1.0[vid0_audio]; \
+        [1:a]volume=1.0[vid1_audio]; \
+        [2:a]volume=1.75[vid2_audio]; \
+        [3:a]volume=1.0[vid3_audio]; \
+        [4:a]volume=1.0[vid4_audio]; \
+        [vid0_audio][vid1_audio]acrossfade=d=1[audio1]; \
+        [audio1][vid2_audio]acrossfade=duration=1[audio2]; \
+        [audio2][vid3_audio]acrossfade=duration=1[audio3]; \
+        [audio3][vid4_audio]acrossfade=duration=1[audio4] \
+        " \
+    -map "[output]" -codec:v libx264 -crf 18 \
+    -map "[audio4]" -codec:a aac -b:a 192k \
+    out_volAdjusted.mp4 
+}}}
+
+	''trim''				break each input stream (each video) into two parts: content + cross fade section (fade out: content + fade section; fade in: fade section + content)
+	''setpts=PTS-STARTPTS''		this filter makes each subclip start at 0 seconds 
+	''fadeinclip1''			specify fade in clip
+		''format=pix_fmts=yuva420p	''any format which handles transparency is ok
+		''alpha=1''				video itself will not darken, transparency amout will fade
+		''st''				start
+		''d''				duration
+	''fifo''				this filter ensures that buffer space is available in filter complex (if not set, crossfade might fail)
+	''overlay''				overlay the fade-out with following fade-in section (ensuring earlier that the two crossfade sections have same size, we don't need to take care of complicated overlay filter options)
+	''concat=n=9''			line-up all segments and concatenating them to a video
+
 * **re-scale a video**
 	''$ ffmpeg -i input.mp4 -s 720x480 -c:a copy output.mp4''
 * **remove audio from video**
