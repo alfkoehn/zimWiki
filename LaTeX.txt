@@ -31,6 +31,9 @@ Created Montag 05 August 2019
 7. Dots in filename when using \includegraphics
 	''\includegraphics{path_to_file/{my.filename.with.dots}.png}''
 8. the ''pdfcomment'' package might be useful in a few cases to insert comment-boxes
+9. center vs. centering	
+	* do not use ''\begin{center} ... \end{center}'' inside a figure or table environment, it can cause additional vertical space
+	* use ''\centering'' instead
 
 
 ===== Umlaute =====
