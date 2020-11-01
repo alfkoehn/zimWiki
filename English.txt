@@ -19,6 +19,9 @@ Created Samstag 29 Juni 2019
 * //I'm one hundred percent sure//  vs.  //I'm a hundred percent sure//  
 	* first one gives a greater impression of certainty (in speech, "one" would be emphasized)
 	* in negative sentences, one would write  //I'm not a hundred percent sure//
+* //on <date> at <time>//
+	* e.g. on November 1, at 3:30 pm
+	* //in// //<month>// or //<year>//
 
 
 ===== Figure caption =====
