@@ -477,6 +477,7 @@ ffmpeg -video_size "$V" -f x11grab -i :0.0 -f pulse -i "$A" -filter_complex amer
 		''$ cvlc v4l2:///dev/video1:width=640:height=480''
 * using **ffmpeg**
 		? (stream to server)
+		''$ ffplay /dev/video0''
 * using **cheese**
 		''$ sudo apt-get install cheese''
 * see also
@@ -492,6 +493,56 @@ ffmpeg -video_size "$V" -f x11grab -i :0.0 -f pulse -i "$A" -filter_complex amer
 		   ...
 	b. greb possible Width and Height values
 		''$ lsusb -s 003:003 -v | egrep "Width|Height"''
+		
+		
+===== Remove background of live video (green screen, chroma keying) =====
+1. A few notes about green screens
+	* green screen hex code is #00b140; RGB is (0,177,64); CMYK is (81,0,92,0), websafe color is #009933
+		* #34D454 (0x34D454) might also work, is in RGB (52,212,84)
+	* green is most popular chroma color because camera sensors can see it more accurately than any other color
+	* green color channel produces less noise than others
+	* green is less commonly worn in wardrobes
+	* green is further from skin tones and red or blue
+	* chroma key colors does not have to be green
+	* //digital green// (in contrast to //chroma key green//) is a brighter neon green color, developed to further differentiate foreground and background, popular in streaming nowadays
+	* Chroma Key is compositing technique with green screen to superimpose two images or clips into a new image or clip
+2. Use **OBS** (Open Broadcaster Software)
+	a. install it: https://obsproject.com/
+	b. start it
+	c. Sources → + button → Video Capture Device (V4L2)
+	d. add your webcam as input source
+	e. give it a proper name
+	f. back in main window, right-click your new webcam source
+	g. select Filters
+	h. Effect Filters → + button → Chroma Key
+	i. choose appropriate color (green for green screen)
+	j. back in main window, add another source
+	k. choose an image which will be your virtual background
+3. Use **ffmpeg** and a **video4linux2** (v4l2) pseudo device using **v4l2loopback**
+	a. install required software 
+		''$ sudo apt-get install v4l2loopback-dkms'' 
+	b. reboot
+	c. load (enable) video4linux2 loopback device in kernel, creating a pseudo video device, usually ''/dev/video1''
+		''$ sudo modprobe v4l2loopback'' 
+	d. start capturing onto the pseudo video device, which can be later used as video source
+		''$ ffmpeg -i background.jpg -f v4l2 -pix_fmt mjpeg \''
+			''-framerate 30 -video_size 1280x720 -i /dev/video0 \''
+			''-filter_complex "[0:v]scale=1280x720[bg];[1:v]colorkey=0x00b140:0.5:0.0[ckout];[bg][ckout]overlay" -pix_fmt yuv420p -f v4l2 /dev/video1''
+			
+			''colorkey=<color>:<similarity>:<blend>''		color is rgb color to match in hex (e.g. 0x00b140), to pick a color from an image, use e.g. https://html-color-codes.info/colors-from-image/
+																similariy (percentage) is tolerance on color match, 0.01 must match exactly, 1.0 matches everything
+																blend percentage, 0.0 makes pixels either fully transparent or not, 
+																	higher values results in semi-transparent pixels (higher transparency, when more similar)
+	e. any video software can now simply access the pseudo video device
+		''$ ffplay /dev/video0''
+4. Use latest version of **Webcamoid** from github repository, https://github.com/webcamoid/webcamoid
+5. Use a **neural network** to recognize person in foreground and background and **v4l2loopback** to create virtual webcam
+	a. https://github.com/allo-/virtual_webcam_background and https://www.virtual-webcam.com/
+6. Use Python, **OpenCV**, Tensorflow, and Node.Js
+	a. https://github.com/fangfufu/Linux-Fake-Background-Webcam
+7. **Subtract background** with **Python** and **OpenCV** 
+	a. full code example: https://gist.github.com/drscotthawley/2d6bbffce9dda5f3057b4879c3bd4422
+	b. general explanation: http://grauonline.de/wordpress/?page_id=3065
 
 
 ===== Merge video files =====
