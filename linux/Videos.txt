@@ -495,6 +495,7 @@ ffmpeg -video_size "$V" -f x11grab -i :0.0 -f pulse -i "$A" -filter_complex amer
 		''$ lsusb -s 003:003 -v | egrep "Width|Height"''
 		
 		
+
 ===== Remove background of live video (green screen, chroma keying) =====
 1. A few notes about green screens
 	* green screen hex code is #00b140; RGB is (0,177,64); CMYK is (81,0,92,0), websafe color is #009933
@@ -535,12 +536,20 @@ ffmpeg -video_size "$V" -f x11grab -i :0.0 -f pulse -i "$A" -filter_complex amer
 																	higher values results in semi-transparent pixels (higher transparency, when more similar)
 	e. any video software can now simply access the pseudo video device
 		''$ ffplay /dev/video0''
-4. Use latest version of **Webcamoid** from github repository, https://github.com/webcamoid/webcamoid
-5. Use a **neural network** to recognize person in foreground and background and **v4l2loopback** to create virtual webcam
+	f. Instead of replacing background with a static image, one can also **loop a video in the background**
+		''$ ffmpeg -stream_loop 5 -re -i bg_video.mp4 -f v4l2 -pix_fmt mjpeg \''
+			''-framerate 30 -video_size 1280x720 -i /dev/video0 \''
+			''-filter_complex "[0:v]scale=1280x720[bg]; \''
+				''[1:v]colorkey=0x61A051:0.15:0.0[ckout]; \''
+				''[bg][ckout]overlay" \''
+			''-pix_fmt yuv420p -f v4l2 /dev/video1''
+
+5. Use latest version of **Webcamoid** from github repository, https://github.com/webcamoid/webcamoid
+6. Use a **neural network** to recognize person in foreground and background and **v4l2loopback** to create virtual webcam
 	a. https://github.com/allo-/virtual_webcam_background and https://www.virtual-webcam.com/
-6. Use Python, **OpenCV**, Tensorflow, and Node.Js
+7. Use Python, **OpenCV**, Tensorflow, and Node.Js
 	a. https://github.com/fangfufu/Linux-Fake-Background-Webcam
-7. **Subtract background** with **Python** and **OpenCV** 
+8. **Subtract background** with **Python** and **OpenCV** 
 	a. full code example: https://gist.github.com/drscotthawley/2d6bbffce9dda5f3057b4879c3bd4422
 	b. general explanation: http://grauonline.de/wordpress/?page_id=3065
 
