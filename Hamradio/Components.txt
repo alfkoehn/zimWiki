@@ -1,0 +1,30 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2020-12-07T18:38:01+01:00
+
+====== Components ======
+Created Montag 07 Dezember 2020
+
+===== Balun =====
+* "**bal**anced to **un**balanced" → balun
+* converts between balanced and unbalanced signal
+* used with many antennas and their feedlines: transform a balanced feed to unbalanced one
+* balanced line: line with two conductors having equal current in opposite directions
+* unbalanced line: line with a conductor and a ground (such as coax cable)
+* balanced dipole antenna → unbalanced feed like coax cable (ladder line, for example would be a balanced case)
+
+				   balun        dipole antenna
+	   ''----------□----------''
+				''|''
+				''|  unbalanced feed (coax cable)''
+				''|''
+				
+* using a balanced (e.g. dipole) antenna directly with a coaxial feed without a balun, coax can radiate and/or pick-up RF signals 
+* basically 2 types of baluns used in hamradio: 
+	* 1:1 (50 Ohm to 50 Ohm), typically used for resonant dipole antenna
+	* 4:1 (200 Ohm to 50 Ohm, or 300 Ohm to 75 Ohm), typically used for random wire antenna
+* purpose of balun is to shield transmission line from external influences
+* protects flow of RF current through transmission line back and forth between transmitter and antenna
+* balun is basically an RF choke, preventing //common mode current// from flowing on feedline
+* ensures in directional antennas (e.g. Yagi, Quad), equal amount of RF at each side of driven element (preventing unwanted skewing of directional pattern)
+* note that a balun is not an antenna ballancing device
