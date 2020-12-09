@@ -346,6 +346,9 @@ ffmpeg -i $vid0_fname -i $vid1_fname -i $vid2_fname -i $vid3_fname -i $vid4_fnam
 		''-codec:a copy -codec:v libx264 -crf 18 output.mp4''
 	==> import to set overlay video to start play when it is supposed to appear (see the ''setpts'' option),
 		otherwise, the overlay video starts to play when main video starts
+		
+* get **mouse position** (might help for getting coordinates)
+	''$ xdotool getmouselocation'' 
 
 
 ===== Video capture with ubuntu =====
