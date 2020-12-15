@@ -27,7 +27,29 @@ Created Dienstag 30 Juli 2019
 	* note that people tend to reply "do not use CQ here"
 		 --> you made a QSO :)
 		 --> tell them you're a beginner, that's always fine
+		
+		
+===== HamPi =====
+* Image for Raspberry Pi containing almost every ham radio software available for linux
+* https://sourceforge.net/projects/hampi/
+* Put together by KM4ACK 
+* Some useful tips on the software: https://dl1gkk.com/setup-raspberry-pi-for-ham-radio/
 
 
 ===== MD-380 =====
 * Kenwood K1 connector (for mic & headphones)
+
+
+===== Things to consider after getting your license =====
+* Buy a radio (transceiver)
+	* station: most flexible, expensive, also requires antennas, tuners etc
+	* portable transceiver: if possible get an "allmode" device, roughly around 1k€
+	* handheld transceiver: often VHF and UHF, try to get dualband device, around 100€
+* Log your QSOs
+	* Various software available, ADIF export important
+* Register your call sign
+	* used during QSO to check with whom you are talking
+	* qrz.com is largest database
+* QSL cards
+	* some people are still doing this
+	* there exist some design templates
