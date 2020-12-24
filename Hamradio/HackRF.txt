@@ -1,0 +1,25 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2020-12-24T15:25:23+01:00
+
+====== HackRF ======
+Created Donnerstag 24 Dezember 2020
+
+===== Install HackRF =====
+	''$ sudo apt-get install hackrf''
+	''$ hackrf_info''
+		test if HackRF is recognized after connecting to PC
+
+
+===== Replay Attack =====
+1. Garage door opener
+	a. Record signal from remote control
+		''$ hackrf_transfer -r garage.raw -f 433920000 -l 20 -g 20''
+			''-r''		receive data into file
+			''-f''		set frequency in Hz
+			''-l''		LNA gain, 0-40 dB (8 dB steps)
+	b. Replay recorded signal 
+		''$ hackrf_transfer -t garage.raw -f 433920000 -x 40''
+			''-t''		transmit data from file
+			''-x''		TX vga gain, 0-47 dB (1 dB steps)
+
