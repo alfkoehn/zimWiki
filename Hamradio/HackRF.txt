@@ -22,4 +22,9 @@ Created Donnerstag 24 Dezember 2020
 		''$ hackrf_transfer -t garage.raw -f 433920000 -x 40''
 			''-t''		transmit data from file
 			''-x''		TX vga gain, 0-47 dB (1 dB steps)
+2. Wireless door bell Honeywell ActiveLink
+	a. Record signal from bell button
+		''$ hackrf_transfer -r doorbell.raw -f 868300000 -l 20''
+	b. Replay recorded signal
+		''$ hackrf_transfer -t doorbell.raw -f 868300000 -x 40''
 
