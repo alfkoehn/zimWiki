@@ -9,6 +9,10 @@ Created Donnerstag 24 Dezember 2020
 	''$ sudo apt-get install hackrf''
 	''$ hackrf_info''
 		test if HackRF is recognized after connecting to PC
+	''$ hackrf_transfer -r /dev/null -s 21500000''
+		receive data at maximum speed, i.e. sample rate
+	''$ hackrf_transfer -t /dev/zero''
+		send dummy data (for testing)
 
 
 ===== Replay Attack =====
