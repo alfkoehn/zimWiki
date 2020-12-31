@@ -6,6 +6,28 @@ Creation-Date: 2020-12-13T17:53:28+01:00
 Created Sonntag 13 Dezember 2020
 
 
+===== SDR software on Ubuntu =====
+1. gqrx
+	a. There is a version in the official repositories, but it is slightly outdated
+	b. Use alternative ppa
+		''sudo apt-get purge --auto-remove gqrx''
+		''sudo apt-get purge --auto-remove gqrx-sdr''
+		
+		''sudo add-apt-repository -y ppa:ettusresearch/uhd''
+		''sudo add-apt-repository -y ppa:myriadrf/drivers''
+		''sudo add-apt-repository -y ppa:myriadrf/gnuradio''
+		''sudo add-apt-repository -y ppa:gqrx/gqrx-sdr''
+		''sudo apt-get update''
+		
+		''sudo apt-get install gqrx-sdr''
+	c. Alternatively, use App-Image from latest release: https://github.com/csete/gqrx/releases
+	d. Getting a perfomance boost by running the following command (will take several minutes)
+		''volk_profile''  
+2. GNURadio
+	a. Build from GitHub repository: https://github.com/gnuradio/gnuradio (recommended to use PyBOMBS, see https://github.com/gnuradio/pybombs)
+	b. Install latest official release: https://github.com/gnuradio/gnuradio/releases
+
+
 ===== Getting data from NOAA weather satellites =====
 NOAA 15, 18, 19 sending in APT-format images to earth at 137 MHz
 1. Build a Quadrifilar Helix Antenna
@@ -119,3 +141,42 @@ Planes sending unidirectional digital packages at 1090 MHz = ADS-B
 	 or, as an alternative
 	''$ ./dump1090 --interactive --net''
 	 open in browser: localhost:8080
+	
+	
+
+===== Receive and decode signals from radio weather stations (Funkwetterstationen) =====
+1. Using ''rtl_433''
+	a. Install rtl_sdr support (might not be necessary), see https://sdr-setup-notes.readthedocs.io/en/latest/dev_rtlsdr.html#rtl-433-tool-setup
+		''sudo apt-get install cmake libusb-1.0-0-dev build-essential''
+		''git clone git://git.osmocom.org/rtl-sdr.git''
+		''cd rtl-sdr/  &&  mkdir build  &&  cd build/''
+		''cmake ../ -DINSTALL_UDEV_RULES=ON''
+		''sudo make  &&  sudo make install''
+		''sudo ldconfig''
+		''cd ~''
+		''sudo cp ./rtl-sdr/rtl-sdr.rules /etc/udev/rules.d/''
+		''sudo reboot''
+		
+		# create file no-rtl.conf
+		''sudo vi /etc/modprobe.d/blacklist-rtl.conf''
+		
+		# add these three lines
+		''blacklist dvb_usb_rtl28xxu''
+		''blacklist rtl2832''
+		''blacklist rtl2830''
+		
+		''sudo reboot''
+		
+		''lsusb''
+		
+		''rtl_test -t''
+	b. Clone GitHub repository
+		git clone https://github.com/merbanan/rtl_433.git
+	c. Check for missing dependencies
+		''cd rtl_433/ && mkdir build && cd build && cmake ../'' 
+	d. Install missing libraries, e.g.
+		''sudo apt-get install libtool libusb-1.0.0-dev librtlsdr-dev'' 
+	e. make and install
+		''make && sudo make install''  
+	e. Test installation
+		''rtl_433'' 
