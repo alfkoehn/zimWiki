@@ -7,3 +7,26 @@ Created Dienstag 25 Juni 2019
 
 This page will contains some infos about the programming languages I usually work with.
 
+
+===== Tips for better code reviews =====
+1. Understand the changed code, if you don't understand it kindly ask the commiter to walk you through it
+	a. read the full change
+	b. draft some comments
+	c. read again
+2. Settle style arguments with a style guide (use existing ones or write one yourself)
+3. Let computers do boring parts
+	a. formatters to automate as much as possible
+	b. might be healthier to direct commiter's frustation to a bot
+	c. use automated compiles and code runs
+4. Use code examples to demonstrate what you want to be changed instead of just saying this should be changed => be generous with code examples
+5. Don't say "you"
+	a. replace "you" with "we": //can we rename this ....//
+	b. passive voice
+	c. "What about ..."
+6. Frame feedback as requests, not commands
+	a. be more polite in code reviews than in everyday's speech
+	b. encourage commiter to change something
+7. Offer sincere praise where possible
+8. Re-read your comments before submitting them
+9. Aim to bring code up by one grade (not more)
+10. Handle stalemates proactively (when commiter refuses to apply changes requested by reviewer and reviewer insists on those changes)
