@@ -54,7 +54,8 @@ GPG is an implementation of the Open PGP standard and provides thus an alternati
 	''$ gpg2 --delete-secret-key "User Name"''		delete a private key
 	''$ gpg2 --list-keys''				list keys in your public key ring
 	''$ gpg2 --list-secret-keys''			list keys in your secret key ring
-	''$ gpg2 --fingerprint > fingerprint''				generate fingerprint (short list of numbers, used via alternative method to verify public key)
+	''$ gpg2 --fingerprint > fingerprint''		generate fingerprint (short list of numbers, used via alternative method to verify public key)
+
 
 ==== Some use cases ====
 * encrypt some data
@@ -95,3 +96,8 @@ GPG is an implementation of the Open PGP standard and provides thus an alternati
 * detached signature (i.e. in a separate file)
 	''$ gpg2 --output doc.sig --detach-sig doc''
 		→ ''--verify'' option to check signature
+		
+* import a public key to your list of keys
+	* search for the key at http://keyserver.ubuntu.com:11371/
+	* copy the 16-digit letter/number key
+	* ''gpg2 --keyserver keyserver.ubuntu.com --recv <paste-key-from-previous-point>''  

@@ -57,6 +57,7 @@ Start Mutt by
 	4. Write message
 	5. Save message and quit editor
 	6. Type  ''y''  to send message
+		a. optionally: type  ''p''  to add pgp encryption (before typing y)
 
 ===== The index =====
 This is the overview of your email in a certain folder. 
