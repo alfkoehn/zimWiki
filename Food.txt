@@ -1,0 +1,56 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2021-02-11T23:10:24+01:00
+
+====== Food ======
+Created Donnerstag 11 Februar 2021
+
+===== General tips for healthy nutrition (in German) =====
+* Gemüse, Obst, Kräuter, Salat
+	* unterstützen gute Darmbakterien
+	* Kalorienarm
+	* Nährstoffreich
+	* Viel Gemüse und Obst essen (3:2)
+	* Frisch oder gefroren kaufen
+	* Abwechslung: roh, gedämpft, gegrillt, überbacken, Salat
+* Omega-3-Fettsäuren
+	* Lebensnotwendig
+	* Entzündungshemmend
+	* Fördert Leistung und Konzentration
+	* Schützt Zellen und Nerven
+	* Pflanzlich (einfache Form, wird im Körper in effektive Form umgewandelt)
+		* Hanföl
+		* Leinöl
+		* Rapsöl
+		* Walnussöl
+	* Tierisch (effektive Form)
+		* fette Meeresfische
+		* Fleisch & Milchprodukte aus Weidetierhaltung
+		* Mikroalgenöl
+* Omega-6-Fettsäuren
+	* Lebensnotwendig
+	* Entzündungsfördernd
+	* Pflanzlich
+		* Distelöl
+		* Maiskeimöl
+		* Sonnenblumenöl
+		* Getreide
+	* Tierisch
+		* Fleisch aus Massentierhaltung
+* "Unechte" Emotionen durch Eiweissmangel
+	* echte Emotionen: Trauer, Angst
+	* unechte Emotionen: eigentlich alles ok, trotzdem emotional down
+	* eventuell biochemische Ursache
+		* Eiweissmangel
+		* tierische Eiweiss-Quellen: Fleisch, Fisch, Meeresfrüchte, Eier, Milchprodukte
+		* pflanzliche Eiweiss-Quellen: Hülsenfrüchte (Erbsen, Linsen, Kichererbsen, Bohnen, Sojobohnen, Erdnüsse, Süsslupinen), Nüsse, Kerne & Samen
+		* tägliche Eiweißbedarf ca. 1 g pro Kilogramm Körpergewicht
+	* Aminosäuremangel
+		* Tryptophan (Serotonin, Melatonin)
+			* Mangelsymptome: negative Einstellung, Reizbarkeit, Schlaflosigkeit
+		* Phenylalanin (Endorphine)
+			* Mangelsymptome: leicht verletzlich
+		* Gaba
+			* Mangelsymptome: gestresst, überfordert
+		* Tyrosin (Katecholamine)
+			* Mangelsymptome: Antriebslosigkeit, Trägkeit, Traurigkeit
