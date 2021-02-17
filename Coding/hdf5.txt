@@ -17,6 +17,8 @@ Created Freitag 27 September 2019
 	''$ h5ls -r file.h5''
 5. show file structure of hdf5 file (including dataspace size)
 	''$ h5dump -H -A 0 file.h5''
+6. print specific dataset to console
+	''$ h5dump -d "/group_name/dataset" file.h5''
 		
 
 ===== Using hdf5 in C =====
