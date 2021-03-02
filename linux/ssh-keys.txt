@@ -49,21 +49,43 @@ test if ssh-key access is working with github:
 	''$ ssh-keygen -t rsa -f ~/.ssh/id_rsa.work''
 2. add entry to ''~/.ssh/config'' to pick key to use based on server you connect to: 
 {{{code: lang="sh" linenumbers="True"
-	Host *
-	IdentityFile ~/.ssh/id_dsa
+Host 			*
+IdentityFile 	~/.ssh/id_dsa
 	
-	Host *.gitlab.*
-	IdentitiyFile ~/.ssh/key_for_gitLab_from_work_PC
+Host 			*.gitlab.*
+IdentitiyFile 	~/.ssh/key_for_gitLab_from_work_PC
 	
-	Host home
-	Hostname home.com
-	IdentityFile ~/.ssh/id_rsa.home
-	User <home-username>
+Host 			home
+Hostname 		home.com
+IdentityFile 	~/.ssh/id_rsa.home
+User 			<home-username>
 
-	Host work
-	Hostname work.com
-	IdentityFile ~/.ssh/id_rsa.work
-	User <work-username>
+Host 			work
+Hostname 		work.com
+IdentityFile 	~/.ssh/id_rsa.work
+User 			<work-username>
+	
+Host     		shortNameForHost # allows to simply type 'ssh shortNameForHost'
+Hostname		host.com
+IdentityFile 	~/.ssh/private_key_file
+User 			remote-username
+
+# example for multiple accounts at GitHub
+# private GitHub account
+Host			github-private
+Hostname		github.com
+User			git
+IdentityFile	~/.ssh/id_dsa_git_private
+IdentitiesOnly	yes
+# work GitHub account
+Host			github-work
+Hostname		github.com
+User			git
+IdentityFile	~/.ssh/id_dsa_git_work
+IdentitiesOnly	yes
+# usecase of adding new origin:
+# git remote add origin git@github-private:<private-user-name>/<repo-name>.git
+# --> git remote add origin github-private:<private-user-name>/<repo-name>.git
 }}}
 
 3. append ''id_rsa.work.pub'' into ''~/.ssh/authorized_keys on work machine''
