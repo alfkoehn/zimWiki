@@ -1,5 +1,5 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.6
+Wiki-Format: zim 0.4
 Creation-Date: 2019-09-28T22:51:19+02:00
 
 ====== ssh-keys ======
@@ -11,12 +11,18 @@ Created Samstag 28 September 2019
 
 
 ===== Generate RSA keys =====
+'''
 	''$ mkdir ~/.ssh''
 	''$ chmod 700 ~/.ssh''
 	''$ ssh-keygen -t rsa -b 4096''
+'''
 
 add email address as a comment at end of key:
 	''$ ssh-keygen -t rsa -b 4096 -C "email@address.com"''
+	
+adding the new key to the ssh-agent might be necessary:
+	''$ eval `ssh-agent -s`''
+	''$ ssh-add ~/.ssh/new_private_key_file''
 
 
 ===== Add your (public) key to host (you want to log in to) =====
@@ -26,8 +32,10 @@ add email address as a comment at end of key:
 	''$ cp authorized_keys authorized_keys_Backup''
 	''$ cat id_rsa.pub >> authorized_keys''
 	
+'''
 	''($ chmod 600 ~/.ssh/authorized_keys)''
 	''($ ssh-add   <-- is sometimes required to start using ssh-agent to managing keys)''
+'''
 
 create public ssh key from private key (in case of lost of public key):
 	''$ ssh-keygen -f ~/.ssh/id_rsa -y > ~/.ssh/id_rsa.pub''
