@@ -6,6 +6,12 @@ Creation-Date: 2021-03-08T09:52:27+01:00
 Created Montag 08 März 2021
 
 
+===== EFT =====
+* too little positions (too little diversity) is dangerous (only usefull as little add-on to portfolio, e.g. 10% of monthly investment)
+	* EURO STOXX 50 (WKN: 965814): bad longterm performance
+	* iShares Global Clean Energy ETF (WKN: A0MW0M): only 30 positions, lots of hydrogen (heavily hyped) => heavy loss from 2021-01 - 2021-03
+
+
 ===== Tips for a quick research about a company =====
 1. Visit the company's website
 2. Look if the company actually exists (google maps)
