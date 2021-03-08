@@ -1,0 +1,27 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2021-03-08T09:52:27+01:00
+
+====== Stocks ======
+Created Montag 08 März 2021
+
+
+===== Tips for a quick research about a company =====
+1. Visit the company's website
+2. Look if the company actually exists (google maps)
+3. Read the latest 10-K (annual report required by US Security and Exchange Commision, that gives comprehensive summary of company's financial performance)
+4. Read the latest 10-Q (same as 10-K but quarterly, also less details)
+5. Look into online ressources summarizing official numbers:
+	a. Yahoo finance: https://finance.yahoo.com/
+	b. Zacks finance: https://finance.zacks.com/
+	c. OTC Markets: https://www.otcmarkets.com/
+6. Look into community analysis websites:
+	a. Seeking Alpha: https://seekingalpha.com/
+	b. reddit: r/pennystocks, r/mauerstrassenwetten, r/pfennigfuchser, r/ameisenstrassenwetten
+7. Look into some more statistics
+	a. Macrotrends: https://www.macrotrends.net/
+	b. statista: https://www.statista.com/
+8. Check insider behaviour (buying/selling): http://openinsider.com/
+9. Check latest financial news
+	a. MarketBeat: https://www.marketbeat.com/
+10. Look into the latest investor presentations, search for recent conference calls
