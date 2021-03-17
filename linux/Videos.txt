@@ -1,5 +1,5 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
+Wiki-Format: zim 0.6
 Creation-Date: 2019-07-24T05:47:42+02:00
 
 ====== Videos ======
@@ -332,6 +332,21 @@ ffmpeg -i $vid0_fname -i $vid1_fname -i $vid2_fname -i $vid3_fname -i $vid4_fnam
 		every time ''text.txt'' is updated, text appearance will change
 		text moves on screen from left to right
 		reload=1		textfile will be reloaded before every frame
+		
+* **fade in/out text** in a video
+	* get the command from here: http://ffmpeg.shanewhite.co/
+	* example command gotten from that webpage: fade-in start at t=0, fade-in duration t=1, time for text to be shown t=10, fade-out duration t=1
+	''$ ffmpeg -i in.mp4 -filter_complex \''
+		''"[0:v]drawtext=fontfile=Sans-Bold.ttf:''
+		''text='some text':''
+		''fontsize=40:''
+		''fontcolor=ffffff:''
+		''alpha='if(lt(t,0),0,if(lt(t,1),(t-0)/1,if(lt(t,11),1,if(lt(t,12),(1-(t-11))/1,0))))':''
+		''x=(w-text_w)/2:''
+		''y=h*.03" \''
+		''out.mp4''
+	-> ''lt(var,value)'' is //less than// function
+
 		
 * **add animated GIF to a video** (known as //picture in picture//)
 	''$ ffmpeg -i video_in.mp4 -ignore_loop 0 -i animated_gif.gif \''
