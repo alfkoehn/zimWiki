@@ -64,3 +64,14 @@ Created Montag 08 März 2021
 9. Check latest financial news
 	a. MarketBeat: https://www.marketbeat.com/
 10. Look into the latest investor presentations, search for recent conference calls
+
+
+===== Typical mistakes =====
+* Don't forget your //Freistellungsauftrag// (max. 801 EUR //Sparerpauschbetrag//)
+	* get earning up to this value tax-free, i.e. without paying //Kapitalertragssteuer//
+* Try to not trade outside of market hours (neo-broker often offer this)
+	* spread (difference between buy/sell price) can be large (especially during weekends)
+* Take care to use to correct order type (//limit//, //stop loss//, etc.)
+* Don't trade too much
+	* look for long-term invests (5-15 years): buy and hold
+
