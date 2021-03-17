@@ -6,8 +6,41 @@ Creation-Date: 2021-03-08T09:52:27+01:00
 Created Montag 08 März 2021
 
 
+===== Software for Linux =====
+* mop
+	* https://github.com/mop-tracker/mop
+	* tracker software for the terminal
+	* written in Go
+* Chart Geany
+	* https://chart-geany.sourceforge.io/
+	* technical analysis, charts, portfolio management
+* JStock
+	* https://github.com/yccheok/jstock
+	* some analysis, portfolio management
+	* note: **not** fully open source
+
+
+===== Dollar-Cost Averaging vs. Lump-Sum Investing =====
+* Dollar-Cost Averaging (DCA)
+	* continuously investing same amount of money over time 
+	* ignore market fluctuations
+	* psychological benefit of not risking large amout of money at once
+	* better suited for nervous investors with little risk tolerance
+	* buying over time can bring down average cost per share if stock drops over somewhat longer time
+	* if market is tending downwards, DCA outperforms lump-sum investing
+* Lump-Sum Investing
+	* immediate investing using all available money
+	* requires higher risk tolarance
+	* if market is trending upwards, lump-sum investing outperforms DCA
+
+
 ===== EFT =====
-* too little positions (too little diversity) is dangerous (only usefull as little add-on to portfolio, e.g. 10% of monthly investment)
+* Websites for getting information
+	* Good overview including list of top holdings: https://www.onvista.de/etf/
+	* Detailed statistics including country list: https://www.comdirect.de/inf/etfs/finder.html
+* The ETF should have a minimum volume to minimize risk of getting closed
+	* 100 Mio EUR should be fine
+* Too little positions (too little diversity) is dangerous (only usefull as little add-on to portfolio, e.g. 10% of monthly investment)
 	* EURO STOXX 50 (WKN: 965814): bad longterm performance
 	* iShares Global Clean Energy ETF (WKN: A0MW0M): only 30 positions, lots of hydrogen (heavily hyped) => heavy loss from 2021-01 - 2021-03
 
