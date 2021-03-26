@@ -1,0 +1,46 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2021-03-26T20:45:06+01:00
+
+====== Android ======
+Created Freitag 26 März 2021
+
+===== Mirror device to Linux desktop =====
+1. Enable USB debugging on Android device
+	a. Grab Android device
+	b. Settings > About Phone > Software information > Scroll down to ‘Build number’ and tap that box 7 times
+2. Enabling USB Debugging on Android device
+	a. Settings > Developer options 
+	b. Scroll down to ‘USB debugging’
+	c. Activate it
+3. Connect Android device via USB cable to Linux computer
+4. Install adb-tools on your Linux PC
+	''$ sudo apt-get install android-tools-adb''
+5. Test if Linux PC recognizes Android device
+	''$ adb devices''
+6. Alternatively, connection via WiFi might work
+	a. connect Android device via USB cable to Linux device
+	b. test if it is recognized via
+		''$ adb devices''
+	c. set target device to listen for a TCP/IP connection on port 5555
+		''$ adb tcpip 5555''
+	d. disconnect USB cable
+	e. find IP address of Android device
+		* About tablet (or About phone) > Status > IP address
+	f. connect to Android device via its IP address
+		''$ adb connect device_ip_address:5555''
+	g. confirm that host computer (Linux PC) is connected to the target device (Android device)
+		''$ adb devices''
+	h. if finished, terminate server
+		''$ adb kill-server''
+7. Install scrcpy on Linux device: https://github.com/Genymobile/scrcpy
+	a. either from repositories
+		''$ apt install scrcpy''
+	b. or as snap
+		''$ sudo snap install scrcpy''
+8. Start scrcpy
+	''$ scrcpy''
+
+	* mirror only part of the screen:
+		''$ scrcpy --crop 2000:1200:0:0''   		# 2000x1200 at offset (0,0), where (0,0) is at top
+
