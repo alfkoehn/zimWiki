@@ -49,8 +49,7 @@ Created Montag 05 August 2019
 * insert current date, where format is according to language settings
 	''\today''
 * change format of displayed date can be easily done via package ''datetime2''
-	''\usepackage[yyyymmdd]{datetime}''
-	''\renewcommand{\dateseparator}{--}''
+	''\usepackage[yyyymmdd]{datetime2}''
 	''\today''
 * define your own command to display date is iso-standard
 	''\def\myisodate{\leavevmode\hbox{\the\year-\twodigits\month-\twodigits\day}}''
