@@ -1,5 +1,5 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.6
+Wiki-Format: zim 0.4
 Creation-Date: 2019-07-24T05:47:42+02:00
 
 ====== Videos ======
@@ -48,24 +48,28 @@ Using **ffmpeg**
 	       -i INPUTVIDEO \
 	       -filter_complex '[0:0] [1:0] [2:0] [2:1] concat=n=2:v=1:a=1' \
 	       [OPTIONS] OUTPUT
+			''-loop 1 -framerate FPS -t SECONDS -i IMAGE	open image, loop over it making video with SECONDS and FPS framerate (must be same as video!)''
+			''-t SECONDS -f lavfi -i aevalsrc=0''		generate silence for SECONDS
+			''-filter_complex '[0:0] [1:0] [2:0] [2:1] concat=n=2:v=1:a=1'''
+																open file 0 stream 0 (image), file 1 stream 0 (silence audio), file 2 stream 0 and 1 (input audio and video)
+																use concat to concatenate them, n=number of segments, v=number of output videos, a=number of output audio
+		Example:
+			''$ ffmpeg -loop 1 -framerate 25 -t 7 \''
+				''-i blackboards/FusionResearch_titlepage.png -t 7 -f lavfi \''
+				''-i aevalsrc=0 -i FR10_concat.mp4 \''
+				''-filter_complex '[0:0] [1:0] [2:0] [2:1] concat=n=2:v=1:a=1' \''
+				''-codec:v libx264 -crf 18 -codec:a aac -b:a 192k FR10_concat_titlepage.mp4''
 	'''
-		''-loop 1 -framerate FPS -t SECONDS -i IMAGE	open image, loop over it making video with SECONDS and FPS framerate (must be same as video!)''
-		''-t SECONDS -f lavfi -i aevalsrc=0''		generate silence for SECONDS
-		''-filter_complex '[0:0] [1:0] [2:0] [2:1] concat=n=2:v=1:a=1'''
-															open file 0 stream 0 (image), file 1 stream 0 (silence audio), file 2 stream 0 and 1 (input audio and video)
-															use concat to concatenate them, n=number of segments, v=number of output videos, a=number of output audio
-	Example:
-		''$ ffmpeg -loop 1 -framerate 25 -t 7 \''
-			''-i blackboards/FusionResearch_titlepage.png -t 7 -f lavfi \''
-			''-i aevalsrc=0 -i FR10_concat.mp4 \''
-			''-filter_complex '[0:0] [1:0] [2:0] [2:1] concat=n=2:v=1:a=1' \''
-			''-codec:v libx264 -crf 18 -codec:a aac -b:a 192k FR10_concat_titlepage.mp4''
 
 * **add fade out** (light to dark) at the end or fade in (dark to light) at beginning
 	''$ ffmpeg -i start.mp4 -y -vf fade=in:0:25 start_fadein.mp4''
 	''$ ffmpeg -i end.mp4 -y -vf fade=out:100:25 end_fadeout.mp4''
 		''-y''		overwrite out file without asking
 		''-vf''		short (alias) for ''-filter:v'' 
+		
+* make video **play faster** (assuming there is no audio)
+	''$ ffmpeg -i input.mp4 -filter:v "setpts=PTS/4" output_4x.mp4''
+
 * **concatenate videos** with same codecs
 	* create a file ''mylist.txt'' with all files to be concatenated:
 		''# file listing all files to be concatenated''
@@ -74,6 +78,9 @@ Using **ffmpeg**
 	* concatenate with ffmepg
 		''$ ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4''
 			''-safe 0''		not required if paths are relative
+	* if first video has no audio, dummy audio track must be added first, otherwise final video will have no audio (as setup of first video is used for final video)
+		''$ ffmpeg -i input.mp4 -f lavfi -i anullsrc=cl=stereo:r=48000 -shortest -c:v copy output.mp4''
+			''-i anullsrc=cl=stereo:r=48000''	make sure that these settings match settings of other audio tracks
 	* lossless concatenation of mp4 files
 		''$ ffmpeg -i video1.mp4 -c copy -bsf:v h264_mp4toannexb -f mpegts video1.ts''
 		''$ ffmpeg -i video2.mp4 -c copy -bsf:v h264_mp4toannexb -f mpegts video2.ts''
@@ -164,6 +171,7 @@ ffmpeg -i $vid0_fname -i $vid1_fname -i $vid2_fname -i $vid3_fname -i $vid4_fnam
     out_volAdjusted.mp4 
 }}}
 
+'''
 	''trim''				break each input stream (each video) into two parts: content + cross fade section (fade out: content + fade section; fade in: fade section + content)
 	''setpts=PTS-STARTPTS''		this filter makes each subclip start at 0 seconds 
 	''fadeinclip1''			specify fade in clip
@@ -174,6 +182,7 @@ ffmpeg -i $vid0_fname -i $vid1_fname -i $vid2_fname -i $vid3_fname -i $vid4_fnam
 	''fifo''				this filter ensures that buffer space is available in filter complex (if not set, crossfade might fail)
 	''overlay''				overlay the fade-out with following fade-in section (ensuring earlier that the two crossfade sections have same size, we don't need to take care of complicated overlay filter options)
 	''concat=n=9''			line-up all segments and concatenating them to a video
+'''
 
 * **re-scale a video**
 	''$ ffmpeg -i input.mp4 -s 720x480 -c:a copy output.mp4''
@@ -217,6 +226,7 @@ ffmpeg -i $vid0_fname -i $vid1_fname -i $vid2_fname -i $vid3_fname -i $vid4_fnam
 			''textfile='my_text.txt'[out]" \''
 		''-c:v libx264 -t 10 video_out.mp4''
 		
+'''
 		''-vf''				short for video filters, syntax for filters is always
 			''-vf "filter1=''
 				''setting1=value1:''
@@ -226,7 +236,9 @@ ffmpeg -i $vid0_fname -i $vid1_fname -i $vid2_fname -i $vid3_fname -i $vid4_fnam
 				''setting2:value2"''
 		'':enable='between(t,8,15)'''	text will appear at 8 seconds and disappear at 15 seconds
 		''drawtext=fontfile=<font>	''available fonts can be listed with  ''$ fc-list''
+'''
 		
+'''
 	''$ ffmpeg -i video.mp4 \''
 		''-vf  "[in]drawtext=''
 			''fontfile=<path_for_ttf_file>:''
@@ -245,6 +257,7 @@ ffmpeg -i $vid0_fname -i $vid1_fname -i $vid2_fname -i $vid3_fname -i $vid4_fnam
 			''text='sorry, buffer xrun':''
 			''enable='between(t,454.5,456.5)'''''[out]" \''
 		''-c:v libx264 -t 10 video_out.mp4''
+'''
 	
 * **filter_complex** example from ffmpeg documentation
 	''$ ffmpeg -f lavfi -i testsrc -f lavfi -i testsrc -f lavfi -i testsrc -f lavfi -i testsrc -filter_complex \''
@@ -255,6 +268,7 @@ ffmpeg -i $vid0_fname -i $vid1_fname -i $vid2_fname -i $vid3_fname -i $vid4_fnam
 		 ''[b][c]hstack=inputs=2[bottom]; \''
 		 ''[top][bottom]vstack=inputs=2[out]" -map "[out]" -c:v ffv1 -t 5 multiple_input_grid.avi''
 
+'''
 	''-f lavfi -i testsrc			''declaration of input, input format is lavfi, input file is testsrc; duplicated four times to initiate four different inputs
 	''-filter_complex''				
 		''[1:v]negate[a]''				take video from input at index 1, use negate filter on it and 'save' output of the filter to a link named a
@@ -268,6 +282,7 @@ ffmpeg -i $vid0_fname -i $vid1_fname -i $vid2_fname -i $vid3_fname -i $vid4_fnam
 	''-c:v ffv1				''use FFV1 codec for video
 	''-t 5''					result should be a 5 second video
 	''multiple_input_grid.avi''			name of the output video
+'''
 	
 * **overlay image for a certain time** span
 	'''
@@ -467,13 +482,17 @@ ffmpeg -thread_queue_size $thread_queue_size -video_size $video_size \
 	4. change audio capture from  //Built-in Audio Analog Stereo//  to  //Monitor of Built-in Audio Analog Stereo//
 	5. NOTE: this setting will be remember when you start recording the next time
 
+'''
 	Alternatively, one can enter the internal name of the monitor source manually:
 		''$ pactl list sources'' 			get name of monitor source
 		''$'' ''ffmpeg -f x11grab -thread_queue_size 4096 -r 25 -s 1920x1080 -i :0.0+0+0 \''
 					''-f pulse -thread_queue_size 4096 -i alsa_output.pci-0000_00_1f.3.analog-stereo.monitor \''
 					''-vcodec libx264 -pix_fmt yuv420p -threads 0 -acodec aac elearning_3.mp4''
+'''
 
+'''
 	One can make it even more convenient (source: https://unix.stackexchange.com/a/489522 )
+'''
 {{{code: lang="sh" linenumbers="True"
 A="$(pacmd list-sources | grep -PB 1 "analog.*monitor>" | head -n 1 | perl -pe 's/.* //g')"
 F="$(date --iso-8601=minutes | perl -pe 's/[^0-9]+//g').mkv"
@@ -556,6 +575,7 @@ ffmpeg -video_size "$V" -f x11grab -i :0.0 -f pulse -i "$A" -filter_complex amer
 			''-framerate 30 -video_size 1280x720 -i /dev/video0 \''
 			''-filter_complex "[0:v]scale=1280x720[bg];[1:v]colorkey=0x00b140:0.5:0.0[ckout];[bg][ckout]overlay" -pix_fmt yuv420p -f v4l2 /dev/video1''
 			
+'''
 			''colorkey=<color>:<similarity>:<blend>''		color is rgb color to match in hex (e.g. 0x00b140), to pick a color from an image, use e.g. https://html-color-codes.info/colors-from-image/
 																similariy (percentage) is tolerance on color match, 0.01 must match exactly, 1.0 matches everything
 																blend percentage, 0.0 makes pixels either fully transparent or not, 
@@ -569,6 +589,7 @@ ffmpeg -video_size "$V" -f x11grab -i :0.0 -f pulse -i "$A" -filter_complex amer
 				''[1:v]colorkey=0x61A051:0.15:0.0[ckout]; \''
 				''[bg][ckout]overlay" \''
 			''-pix_fmt yuv420p -f v4l2 /dev/video1''
+'''
 
 5. Use latest version of **Webcamoid** from github repository, https://github.com/webcamoid/webcamoid
 6. Use a **neural network** to recognize person in foreground and background and **v4l2loopback** to create virtual webcam
@@ -621,7 +642,9 @@ $ ffmpeg
 }}}
 		
 
+'''
 	2. broadcast, where video and audio are separated and then merged in broadcast, source: https://github.com/Darkseal/FFmpeg-scripts
+'''
 {{{code: lang="sh" linenumbers="True"
 #! /bin/bash
  
@@ -647,7 +670,9 @@ ffmpeg \
 }}}
 		
 
+'''
 	3. broadcast audio only, source: https://github.com/Darkseal/FFmpeg-scripts
+'''
 {{{code: lang="sh" linenumbers="True"
 #! /bin/bash
  
@@ -681,7 +706,9 @@ get RTMP ingest URL: https://stream.twitch.tv/ingests/
 
 
 ==== Periscope ====
+'''
 	1. broadcast, where video and audio are included in a single mp4 file, source: https://github.com/Darkseal/FFmpeg-scripts
+'''
 {{{code: lang="sh" linenumbers="True"
 #! /bin/bash
  
@@ -703,7 +730,9 @@ $ ffmpeg
 }}}
 		
 
+'''
 	2. broadcast, where video and audio are separated and then merged in broadcast, source: https://github.com/Darkseal/FFmpeg-scripts
+'''
 {{{code: lang="sh" linenumbers="True"
 #! /bin/bash
  
@@ -729,7 +758,9 @@ ffmpeg \
 }}}
 		
 
+'''
 	3. broadcast audio only, source: https://github.com/Darkseal/FFmpeg-scripts
+'''
 {{{code: lang="sh" linenumbers="True"
 #! /bin/bash
  

@@ -16,16 +16,16 @@ Created Montag 29 Juli 2019
 	* Shutter priority "Tv"
 		* control motion blur by setting shutter speed manually
 		* f-stop number are set automatically
-* Some iso-recommendation
+* Some **iso-recommendation**
 	* normal daylight					iso 100,200
 	* mid morning/afternoon			iso 400
 	* inside building, sunset/sunrise		iso 800, 1600
-	* before sunrise, after sunset		iso 3200, 6400
-* Fireworks
+	* before sunrise, after sunset			iso 3200, 6400
+* **Fireworks**
 	* Blende f5.6 - f11
 	* ISO 100-400
 	* Belichtung 1-20 s
-* Thunderstorm-lightnings
+* Thunderstorm-**lightnings**
 	* only nice during night (or evening/blue hour)
 		--> during day: use of Graufilter required
 	* manual mode, set focus to infinity, Blende 8, Belichtung 4 s, ISO 100
@@ -33,7 +33,7 @@ Created Montag 29 Juli 2019
 		--> Blitz/Wolken überstrahlt: Blende schließen (=größere Blendenzahl)
 		--> Scharf-stellen kann per live-view gut klappen
 	* blitzortung.org shows real-time lightnings
-* Moving water
+* **Moving water**
 	* program mode "Tv"
 	* 1 sec for beautifully blurred water
 		* use tripod, best early morning or late day
@@ -41,7 +41,7 @@ Created Montag 29 Juli 2019
 		* iso is lowest possible
 	* 1/250 sec for freezing the water
 		* iso 400-1600
-* Landscapes
+* **Landscapes**
 	* sharp landscapes: use highest f-stop number
 	* before and after mid-day might require a tripod to avoid blurry photos
 	* golden hourse: first hour of sunrise, last of sunset
@@ -53,12 +53,30 @@ Created Montag 29 Juli 2019
 		* wide lens, ND filter
 		* zip lock bag + elastic band (for an in-expensive rain-cover)
 		* cleaning kit
-* Astro-stuff
+* **Astro**-stuff
 	* Sun (Canon EOS1100D)
 		* White balance: cloudy
 		* Blende 1/8
 		* Belichtung ca. 1/1000s, ISO 100
-* Set correct focus for your photos
+	* Moon (super-full-moon)
+		* use a tripod
+		* lens with large focal length (große Brennweite)
+		* Bildstabilisator: OFF (since using a tripod)
+		* manual focus, use live-view for setting focus (Lupen-Funktion in live-view)
+		* 1/200 sec (since full moon is very bright), change to longer times if necessary
+		* iso 100
+		* f/10
+		* to avoid shaking, set self-timer (2 sec) (Selbstauslöser) or use WiFi control
+	* Milky Way
+		* an app (e.g. PhotoPills) can be very helpful to plan where and when the Milky Way will be visible and what might be a good perspective
+		* tripod should be sturdy due to long exposure times of 5-30s (wind might otherwise be a problem)
+		* use manual focus
+		* make test-photos during daylight when possible to set-up picture composition (and where to place camera)
+		* use headlight with red light
+		* to avoid star trails (long exposure times) use following formula:  500/focal length = maximum exposure time (small focal lengths better)
+		* iso 1600 - 3200 (depends on noise)
+		* smallest f-number possible (to let maximum light through), e.g. f/2.8
+* Set **correct focus** for your photos
 	* single shot autofocus "AF-S" or "ONE SHOT AF"
 		* works in most photo situations where subject is not moving
 		* e.g. landscape, portrait
@@ -70,6 +88,11 @@ Created Montag 29 Juli 2019
 	* manual focus "MF"
 		* still life, close-up, makro
 		* for situation with very little contrast
+* **Changing the lens**
+	* Clean Bajonett before removing the lens (Blasebalg, Pinsel, Reinigungsstift)
+	* Red dot on lens ↔ red dot at camera
+	* First protect sensor, then lens
+	* Keep camera down, when removing lens (no dust can then fall into camera and onto sensor)
 
 
 ===== Travel photo tips =====
