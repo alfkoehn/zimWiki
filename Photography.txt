@@ -6,7 +6,7 @@ Creation-Date: 2019-07-29T06:19:13+02:00
 Created Montag 29 Juli 2019
 
 ===== General tips =====
-* Two camera modes should be used for vast majority of photos: Aperture priority "Av", Shutter priority "Tv"
+* Two **camera modes** should be used for vast majority of photos: Aperture priority "Av", Shutter priority "Tv"
 	* Aperture prority "Av"
 		* control how soft background blur is
 		* f-stop number:	lower   =>	more background blur
@@ -76,6 +76,19 @@ Created Montag 29 Juli 2019
 		* to avoid star trails (long exposure times) use following formula:  500/focal length = maximum exposure time (small focal lengths better)
 		* iso 1600 - 3200 (depends on noise)
 		* smallest f-number possible (to let maximum light through), e.g. f/2.8
+* **Bird** photography
+	* bird in-flight photography: 
+		* shutter speed 1/1600 sec (large birds) - 1/4000 sec (small birds)
+		* take wind direction into account: birds land and take-off into the wind ⇒ keep your back to the wind if birds should face the camera (your side, if birds should be shown from side)
+		* use continuous autofocus "AF-C" (otherwise not possible to track birds when they are flying)
+		* turn-off image-stabilization, in order to get faster shutter speeds 
+		* use focal-range limiter (e.g. 8 m - infinity) if available (unless shooting birds nearby), in order to focus onto distant flying birds faster
+		* practise tracking birds during flight 
+		* using a tripod + Gimbal head might be convenient for long photo sessions
+		* eye-level shots (birds roughly on eye-level) are usually best
+	* f/4 - f/8 as a guideline
+	* avoid shooting against blue or white background (i.e. sky) all the time
+	* full manual exposure control might be a good idea to keep bird at same light when it moves around and infront of different backgrounds
 * Set **correct focus** for your photos
 	* single shot autofocus "AF-S" or "ONE SHOT AF"
 		* works in most photo situations where subject is not moving
@@ -93,6 +106,11 @@ Created Montag 29 Juli 2019
 	* Red dot on lens ↔ red dot at camera
 	* First protect sensor, then lens
 	* Keep camera down, when removing lens (no dust can then fall into camera and onto sensor)
+* **Super tele-lens**
+	* always handle system at lens, not at camera body, otherwise the mount might get damaged
+	* Gimbal head on a tripod is very helpful to move around camera easily
+	* proberly balanced Gimbal head will stay at the position you moved it into
+		→ see here: https://www.youtube.com/watch?v=OWAzwWOaXwc
 
 
 ===== Travel photo tips =====
