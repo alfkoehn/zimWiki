@@ -91,7 +91,9 @@ Created Montag 29 Juli 2019
 		* large, if taking photos of flying birds against sky
 	* avoid shooting against blue or white background (i.e. sky) all the time, some not too messy green background looks much nicer
 	* eye-level shots (birds roughly on eye-level) are usually best
-	* light is best 2 hours after sunrise and 2 hours before sunset
+	* light
+		* best 2 hours after sunrise and 2 hours before sunset
+		* worst light is usually when sun is high in the sky (harsh or hard light), clouds are beneficial during that time as they make light more diffuse
 	* bird in-flight photography: 
 		* shutter speed 1/1600 sec (large birds) - 1/4000 sec (small birds)
 		* turn-off image-stabilization, in order to get faster shutter speeds 
