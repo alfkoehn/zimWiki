@@ -77,18 +77,31 @@ Created Montag 29 Juli 2019
 		* iso 1600 - 3200 (depends on noise)
 		* smallest f-number possible (to let maximum light through), e.g. f/2.8
 * **Bird** photography
+	* lens:
+		* focal length should allow to get close to the birds (zoom in), i.e. large focal length
+		* focus speed should be fast
+		* frame rate should be high to get 3-5 shots per second (burst-mode)
+		* using an extension tube allows to reduce minimum focussing distance of large-focal-length-lenses, e.g. Canon 1.4 extender (but also reduces light slightly)
+	* continuous shooting (5-10 frames per seconds), burst mode
+	* exposure for beginner: aperture priority (Av) with auto iso (wide aperture, i.e. small f-number, lets in more light, which allows for faster shutter speed)
+		→ shutter priority if you are more advanced
+	* RAW allows to reduce or increase exposure (usefull when taking photos against sky (increase exposure) or of white birds (reduce exposure))
+	* focus area
+		* generally small to ensure focus point is set correctly on birds' eyes (especially important for low f-numbers)
+		* large, if taking photos of flying birds against sky
+	* avoid shooting against blue or white background (i.e. sky) all the time, some not too messy green background looks much nicer
+	* eye-level shots (birds roughly on eye-level) are usually best
+	* light is best 2 hours after sunrise and 2 hours before sunset
 	* bird in-flight photography: 
 		* shutter speed 1/1600 sec (large birds) - 1/4000 sec (small birds)
-		* take wind direction into account: birds land and take-off into the wind ⇒ keep your back to the wind if birds should face the camera (your side, if birds should be shown from side)
-		* use continuous autofocus "AF-C" (otherwise not possible to track birds when they are flying)
 		* turn-off image-stabilization, in order to get faster shutter speeds 
+		* take wind direction into account: birds land and take-off into the wind ⇒ keep your back to the wind if birds should face the camera (your side, if birds should be shown from side)
+		* use continuous autofocus "AF-C" or "AI SERVO" (otherwise not possible to track birds when they are flying)
 		* use focal-range limiter (e.g. 8 m - infinity) if available (unless shooting birds nearby), in order to focus onto distant flying birds faster
 		* practise tracking birds during flight 
 		* using a tripod + Gimbal head might be convenient for long photo sessions
-		* eye-level shots (birds roughly on eye-level) are usually best
-	* f/4 - f/8 as a guideline
-	* avoid shooting against blue or white background (i.e. sky) all the time
-	* full manual exposure control might be a good idea to keep bird at same light when it moves around and infront of different backgrounds
+		* f/4 - f/8 as a guideline
+		* full manual exposure control might be a good idea to keep bird at same light when it moves around and infront of different backgrounds
 * Set **correct focus** for your photos
 	* single shot autofocus "AF-S" or "ONE SHOT AF"
 		* works in most photo situations where subject is not moving
@@ -137,18 +150,18 @@ Source: https://www.youtube.com/watch?v=n_8DVwVOX9c
 	* take photos at 45 degrees angle with interesting background
 	* use burst mode / continuous shooting mode
 	* wait for actual shoot
-	* zoom lense with help to keep distance
+	* zoom lense will help to keep distance
 
 
 ===== Time lapse =====
 * Some suggestions for intervals
 	* slowly moving clouds			10 seconds interval
 	* normal moving clouds			5 seconds interval
-	* very fast moving clouds			3 seconds interval
+	* very fast moving clouds		3 seconds interval
 	* people walking down a street	2 seconds interval
-	* sun on a clear day				30 seconds interval
+	* sun on a clear day			30 seconds interval
 	* night shots (moon, stars)		20-30 seconds interval
-	* cooking action					1 seconds interval
+	* cooking action				1 seconds interval
 * If tripod is not too heavy, hanging camera bag on it can make it less shaky (during wind)
 * Use RAW 
 * Focus before the time-lapse start, then set focus to manual to prevent losing/changing focus during time lapse
