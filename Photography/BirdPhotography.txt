@@ -1,0 +1,51 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2021-06-06T11:35:05+02:00
+
+====== BirdPhotography ======
+Created Sonntag 06 Juni 2021
+
+===== General Tips =====
+* lens:
+	* focal length should allow to get close to the birds (zoom in), i.e. large focal length
+	* focus speed should be fast
+	* frame rate should be high to get 3-5 shots per second (burst-mode)
+	* using an extension tube allows to reduce minimum focussing distance of large-focal-length-lenses, e.g. Canon 1.4 extender (but also reduces light slightly)
+* continuous shooting (5-10 frames per seconds), burst mode
+* exposure for beginner: aperture priority (Av) with auto iso (wide aperture, i.e. small f-number, lets in more light, which allows for faster shutter speed)
+		→ shutter priority if you are more advanced
+* RAW allows to reduce or increase exposure (usefull when taking photos against sky (increase exposure) or of white birds (reduce exposure))
+* focus area
+	* generally small to ensure focus point is set correctly on birds' eyes (especially important for low f-numbers)
+	* large, if taking photos of flying birds against sky
+* avoid shooting against blue or white background (i.e. sky) all the time, some not too messy green background looks much nicer
+* eye-level shots (birds roughly on eye-level) are usually best
+* light
+	* best 2 hours after sunrise and 2 hours before sunset
+	* worst light is usually when sun is high in the sky (harsh or hard light), clouds are beneficial during that time as they make light more diffuse
+* bird in-flight photography: 
+	* shutter speed 1/1600 sec (large birds) - 1/4000 sec (small birds)
+	* turn-off image-stabilization, in order to get faster shutter speeds 
+	* take wind direction into account: birds land and take-off into the wind ⇒ keep your back to the wind if birds should face the camera (your side, if birds should be shown from side)
+	* use continuous autofocus "AF-C" or "AI SERVO" (otherwise not possible to track birds when they are flying)
+	* use focal-range limiter (e.g. 8 m - infinity) if available (unless shooting birds nearby), in order to focus onto distant flying birds faster
+	* practise tracking birds during flight 
+	* using a tripod + Gimbal head might be convenient for long photo sessions
+	* f/4 - f/8 as a guideline
+	* full manual exposure control might be a good idea to keep bird at same light when it moves around and infront of different backgrounds
+
+
+===== European bee-eater (Bienenfresser, Merops apiaster) =====
+* Roughly 350 - 1000 couples in Germany
+	* Kaiserstuhl in Baden-Württemberg
+		* small village Königschaffhausen: from parking lot at Kirchcafe (N 48°08´33″ E07°39´45″) into the direction of the wine yards, roughly in direction Endingen
+		* Wanderweg **Bienenfresserpfad** 
+			* starts in Ihringen at S-Bahn station (Breisgau S-Bahn)
+			* ends in Königschaffhausen
+			* 16 km, roughly 4 hours
+	* near Merseburg in Sachsen-Anhalt
+	* small population in Steinbruch Nussloch near Heidelberg
+* Breeding
+	* mid May - end July
+	* in colonies
+	* bilding caves/tunnels in sandy banks (Steifufer, Sandgruben)
