@@ -1,0 +1,27 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2021-06-26T19:06:17+02:00
+
+====== Sports ======
+Created Samstag 26 Juni 2021
+
+
+===== Running in the morning (German) =====
+* Laufen **vor dem Frühstück** hat einige Vorteile
+	* Glykogenspeicher sind schnell leer, Körper schaltet auf Fettstoffwechsel um, Körper lernt so freie Fettsäuren früher und vermehrt zu nutzen
+	* Körper lernt auf Dauer, vorhandene Brennstoffe effektiver zu nutzen, was die Grundlagenausdauer steigert
+	* Tag wird mit gutem Gefühl gestartet, was geschafft zu haben, man ist voll wach auf der Arbeit und i.A. leistungsfähiger
+* Darauf sollte man achten beim Laufen **vor dem Frühstück**
+	* Wasser vorher trinken, da der Körper nachts nur Flüssigkeit abgibt, aber keine aufnimmt
+	* 30-45 min geht meist wunderbar ohne Frühstück, darüber hinaus sollte **kleiner Snack** 15-30 min vor dem Laufen eingenommen werden, z.B.
+		* halbe Banana, andere Hälfte ins Gefrierfach (für den Smoothie danach)
+		* Dörrobst, z.B. getrocknete Aprikose, getrocknete Dattel, Rosine
+		* kleine Portion Apfelmus
+		* Cracker mit Teelöffel Honig
+		* eventuell wasserreiches Obst, z.B. Wassermelone, Honigmelone, Mango, Papaya, Nektarine, Pfirsich
+	* Gelenke versteifen über Nacht, daher langsamer Start wichtig, eventuell ein paar Dehnübungen
+	* keine intensive Einheit, eher lockerer Lauf (75-80% der maximalen Herzfrequenz) 
+* Wichtig ist ausreichend essen nach dem Laufen
+	* damit Fettverbrennung nicht gleich wieder stoppt, ist Protein-reiche Mahlzeit wichtig: Hüttenkäse, Quark, Spiegelei
+	* Protein-reiches Frühstück macht satt und hält Nachbrenneffekt (erhöhter Kalorienverbrauch nach dem Training) hoch
+	* komplexe Kohlenhydrate wichtig um leere Speicher zu füllen: Müsli mit Joghurt, Früchten, Nüssen
