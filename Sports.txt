@@ -25,3 +25,52 @@ Created Samstag 26 Juni 2021
 	* damit Fettverbrennung nicht gleich wieder stoppt, ist Protein-reiche Mahlzeit wichtig: Hüttenkäse, Quark, Spiegelei
 	* Protein-reiches Frühstück macht satt und hält Nachbrenneffekt (erhöhter Kalorienverbrauch nach dem Training) hoch
 	* komplexe Kohlenhydrate wichtig um leere Speicher zu füllen: Müsli mit Joghurt, Früchten, Nüssen
+
+
+===== Planning routes =====
+1. Strava: https://www.strava.com
+	* heat map feaure very useful to find good tracks ("good" = lots of runners are using it)
+	* can create routes of set distance (e.g. just setting an overall distance will create a route)
+	* route planning feature not for free
+2. Garmin Connect: https://connect.garmin.com
+	* if owning a Garmin watch, heat map data to plan popular routes is possible
+3. Komoot: https://connect.garmin.com
+	* seems to have some more less crowded routes
+
+
+===== Running: useful data screens on Garmin watches =====
+* **Easy runs (**running by heart rate, trying to stay in zone 2)
+	* average heart rate (not the live heart rate)
+	* distance (or time)
+* **Races**
+	* distance
+	* average pace
+	* lap pace (for each kilometer)
+	* elapsed time (advantage is this will not pause when accidentally hitting pause)
+* **Hills** (intervals)
+	* live heart rate (to make sure that properly recovering from hard part and getting heart rate down before next hard part)
+	* laps (count each hard and relaxing part as individuals laps)
+	* lap distance
+	* lap time
+* **Progression runs** (getting faster in e.g. 1 km steps)
+	* distance
+	* lap pace (for current lap, e.g. kilometer)
+	* last lap pace (to ensure that current lap is faster than last lap)
+* **Trail runs** (somewhere new, usually some trails, using a pre-run created route loaded to the watch)
+	* map
+	* distance remaining
+	* average pace
+* **Ultra races** (very long runs)
+	* First data screen
+		* distance
+		* distance remaining (assumes to run a pre-loaded course)
+		* time of day
+		* battery level (might be worth to carry a small portable charger)
+		* total ascent
+	* Second data screen
+		* average pace
+		* pace pro
+		* eta
+		* calories (as a rough indicator to ensure that enough calories are consumed)
+		* elapsed time
+
