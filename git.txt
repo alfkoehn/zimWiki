@@ -119,6 +119,28 @@ Current commit (most recent) is called //HEAD//.
   (1. and 4. are a safeguard against merge conflicts, which occur when two branches contain file changes that cannot be merged with the git merge command.)
 
 
+===== Contributing to a somebody's repo on GitHub via creating a pull request =====
+1. Fork the repository into your own account: click the //Fork// button at the top of the github page (of the original repository
+2. Clone the forked repository onto your local machine
+	''$ git clone <https_address>''
+3. Usually, you want to create a branch (considered as good practise)
+	''$ git checkout -b my_new_branch''
+4. Make change and commit them
+	''$ git add changed_file''
+	''$ git commit -m "Include new feature XY"''
+5. Push changes to github
+	use either a. or b., if a. is used it has to be typed like that every time, whereas b. saves the connection
+	a. need to identify remote's name first via  ''$ git remote'' , assuming that it is called ''origin'' here
+		''$ git push origin my_new_branch''
+	b. might be needed to connect branch to upstream repository via
+		''$ git push --set-upstream origin update_UH_docstrin''
+6. Create pull request: go to the original repository on GitHub, there should be now a button "Compare & pull request", click it
+	provide some details, reference issue using #, e.g. "should close #1123")
+7. Wait for somebody to review and, if necessary, apply further changes by going back to step 4.
+8. After the reviewer has accepted the pull request and merged the new branch into the original repository, that branch can be deleted
+	''$ git branch -d my_new_branch''
+
+
 ===== Backtrack/rewind changes =====
 1. Restore file in working dir to version when last made commit (in case you messed around in the working dir)
 	''$ git checkout HEAD <file>''
