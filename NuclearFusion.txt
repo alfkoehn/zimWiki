@@ -10,6 +10,7 @@ Created Montag 18 November 2019
 * International Stellarator-Heliotron Profile Database: https://ishpdb.ipp-hgw.mpg.de/
 * International Global H-Mode Confinement Database: http://efdasql.ipp.mpg.de/HmodePublic/
 * International Multi-Tokamak Confinement Profile Database: http://tokamak-profiledb.ccfe.ac.uk/
+* Edge Turbulence Data Base: https://ishpdb.ipp-hgw.mpg.de/ISHPDB_public/physicsTopics/edge_turbulence/index.html
 
 
 ===== Fusion and Fiction =====
