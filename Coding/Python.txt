@@ -81,8 +81,6 @@ A few advantages are:
 	__email__	= "peter@mueller.com"
 	__copyright__	= "University of Stuttgart"
 	__license__	= "MIT"
-	'''
-	'''
 	__maintainer__	= Peter Mueller"
 	'''
 * import statements should be organized as follows:
@@ -91,3 +89,43 @@ A few advantages are:
 	* changes to the path and own modules
 
 
+===== Miniconda as a virtual environment tool =====
+Conda is a package management system, miniconda (as a lightweight alternative to Anaconda) is a software package including conda and python. Using conda requires manual installing of each package, whereas Anaconda contains most of the existing popular packages (and is thus somewhat heavy).
+**Installing miniconda**
+1. Download latest shell script 
+	''$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh''
+2. Make the script executable
+	''$ chmod +x Miniconda3-latest-Linux-x86_64.sh''
+3. Run the script
+	''$ ./Miniconda3-latest-Linux-x86_64.sh''
+4. It is recommended to ask last question with <no>, or to manually delete ''.bashrc'' entry afterwards and replace it with 
+{{{code: lang="sh" linenumbers="True"
+source ~/miniconda3/etc/profile.d/conda.sh
+if [[ -z ${CONDA_PREFIX+x} ]]; then
+    export PATH="~/conda/bin:$PATH"
+fi
+}}}
+	
+**Activate conda**
+1. If done as suggested above, type
+	''$ conda activate base''
+2. The text ''(base)'' in front of the bash prompt indicates conda is running now
+**Managing virtual environments**
+1. Create a new virtual environment
+	''$ conda create --name ENV_NAME python=PYTHON_VERSION''
+	''$ conda create --name py37 python=3.7''
+2. Delete a virtual environment
+	''$ conda remove --name ENV_NAME --all''
+3. List all virtual environments
+	''$ conda info -e''
+4. Activate a virtual environment
+	''$ conda activate ENV_NAME''
+5. Deactivate current environment
+	''$ conda deactivate''
+6. Install python packages
+	''$ conda install PACKAGE_NAME''
+	look at https://anaconda.org/ for available packages
+7. Uninstall python packages
+	''$ conda uninstall PACKAGE_NAME''
+8. List installed packages in current environment
+	''$ conda list''
