@@ -90,7 +90,7 @@ Taken from https://www.youtube.com/watch?v=sI1iHQSHOQE
 
 ===== Running hill repeats =====
 * builds up leg strength
-* warm-up is important including dynamic stretches, cool down at the very end is also important
+* warm-up is important including dynamic stretches, cool-down at the very end is also important
 * running up fast, running down slow
 * fixed distance or time
 * 4 - 6 % inclination would be optimal
@@ -99,3 +99,48 @@ Taken from https://www.youtube.com/watch?v=sI1iHQSHOQE
 * 90 % effort when going up
 * recovery is most important when running or walking down (heart rate needs to get down, back to zone 2, monitor heart rate)
 * 5 repitions for beginners, 10 for advanced runner
+
+
+===== Intervalls without hills =====
+**Session 1**
+* Source: https://www.youtube.com/watch?v=HFUz5qazxn0
+* 10 min warm-up
+* 6x 
+	* 3 min fast (consistently 5k or 10k pace)
+	* 2 min recovery
+* 10 min cool down
+* stretch
+
+**Session 2**
+* Source: https://www.youtube.com/watch?v=HFUz5qazxn0
+* 10 min warm-up
+* 5-4-3-2-1 min fast (trying to slightly increase pace for shorter intervals)
+* 2 min recovery in-between
+* 10 min cool down
+* stretch
+
+**Session 3**
+* Source: https://www.youtube.com/watch?v=HFUz5qazxn0
+* 10 min warm-up
+* 1-1-1-10-1-1-1 min fast (short intervals fast, long interval somewhat slower)
+* 2 min recovery in-between
+* 10 min cool down
+* stretch
+
+**Session 4**
+* Source: https://www.youtube.com/watch?v=HFUz5qazxn0
+* 10 min warm-up
+* 3x
+	* 8 min fast (race pace)
+	* 2 min recovery
+* 10 min cool down
+* stretch
+
+**Session 5**
+* Source: https://www.youtube.com/watch?v=HFUz5qazxn0
+* 10 min warm-up
+* 10x
+	* 1 min 5k pace
+	* 1 min recovery
+* 10 min cool down
+* stretch
