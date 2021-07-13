@@ -144,3 +144,17 @@ Taken from https://www.youtube.com/watch?v=sI1iHQSHOQE
 	* 1 min recovery
 * 10 min cool down
 * stretch
+
+
+===== Making nice videos of your running/cycling/hiking activities =====
+1. **Relive App**: 3D animated maps overview videos
+	* free version available
+	* possibility to connect the app to a sports-tracker app (e.g. Garmin Connect) to get the animation
+	* can also import ''.fit'' or ''.gpx ''or'' .tcx'' files from your tracking device
+	* simply click on activity in //Relive App//, and then click on //Create Video //
+2. **Garmin VIRB Edit**: Data overlay of track to GoPro Videos
+	* free software for Mac or Windows
+	* requires video from GoPro device + ''.fit'' datafile from Garmin device
+	* Via the //G-Metrix// menu, the ''.fit'' file is imported, clicking on //G-Metrix Sync// is trying to automatically sync the track data to the video data
+
+
