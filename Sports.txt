@@ -94,7 +94,7 @@ Taken from https://www.youtube.com/watch?v=sI1iHQSHOQE
 * running up fast, running down slow
 * fixed distance or time
 * 4 - 6 % inclination would be optimal
-* 60 - 90 seconds up would be optimal
+* 60 - 90 seconds up would be optimal, 90 sec - 3 min for pushing the lactat threshold up
 * lap running watch at top and at bottom
 * 90 % effort when going up
 * recovery is most important when running or walking down (heart rate needs to get down, back to zone 2, monitor heart rate)
