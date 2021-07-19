@@ -112,10 +112,11 @@ Taken from https://www.youtube.com/watch?v=sI1iHQSHOQE
 * stretch
 
 **Session 2**
-* Source: https://www.youtube.com/watch?v=HFUz5qazxn0
 * 10 min warm-up
-* 5-4-3-2-1 min fast (trying to slightly increase pace for shorter intervals)
-* 2 min recovery in-between
+* 2x
+	* 5-4-3-2-1 min fast (trying to slightly increase pace for shorter intervals)
+	* 1 min recovery in-between
+	* 3 min recovery in-between sets
 * 10 min cool down
 * stretch
 
