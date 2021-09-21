@@ -65,16 +65,30 @@ Using **ffmpeg**
 	''$ ffmpeg -i start.mp4 -y -vf fade=in:0:25 start_fadein.mp4''
 	''$ ffmpeg -i end.mp4 -y -vf fade=out:100:25 end_fadeout.mp4''
 		''-y''		overwrite out file without asking
-		''-vf''		short (alias) for ''-filter:v'' 
+		''-vf''		short (alias) for ''-filter:v''
+* add **fade** in and out of **video and sound** 
+	'''
+	$ ffmpeg -i video_in.mp4 -filter_complex \
+		"[0:v]fade=type=in:start_time=0:duration=1,
+	              fade=type=out:start_time=3:duration=1[v];
+	         [0:a]afade=type=in:start_time=0:duration=2,
+	              afade=type=out:start_time=30.57:duration=2[a]" \
+	        -map "[v]" -map "[a]" video_out.mp4
+	'''
+
 		
 * make video **play faster** (assuming there is no audio)
 	''$ ffmpeg -i input.mp4 -filter:v "setpts=PTS/4" output_4x.mp4''
 
 * **concatenate videos** with same codecs
 	* create a file ''mylist.txt'' with all files to be concatenated:
+
 		''# file listing all files to be concatenated''
 		''file '/path/to/file1.mp4'''
 		''file '/path/to/file1.mp4'''
+		
+		alternatively, and if all files in current directory are to be used, a single command can do this
+		''$ printf "file '%s'\n" * > myclips.txt''
 	* concatenate with ffmepg
 		''$ ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4''
 			''-safe 0''		not required if paths are relative
@@ -201,7 +215,7 @@ ffmpeg -i $vid0_fname -i $vid1_fname -i $vid2_fname -i $vid3_fname -i $vid4_fnam
 		''out_w''		width of output rectangle
 		''out_h''		height of output rectangle
 		''x'', ''y''		top left corner of output rectangle (coordinate system 0 is top left)
-* get video information
+* get **video information**
 	''$ ffprobe video.mp4''
 * **add audio to video**
 	''$ ffmpeg -i input.mp4 -i input.mp3 -c copy -map 0:v:0 -map 1:a:0 output.mp4''
@@ -214,6 +228,11 @@ ffmpeg -i $vid0_fname -i $vid1_fname -i $vid2_fname -i $vid3_fname -i $vid4_fnam
 		''-map 0:v -map 1:a -c:v copy -c:a copy output.mp4''
 		''-an -i $VIDEO1''		ignore audio stream
 		''-vn -i $VIDEO2''		ignore video stream
+* **extract audio** from video (not sure which one is better)
+	''$ ffmpeg -i video.mp4 -vn -acodec copy only_sound.mp3''
+	''$ ffmpeg -i video.mp4 -q:a 0 -map a only_audio.mp3''
+* **reduce volume**
+	''$ ffmpeg -i music_in.mp3 -filter:a "volume=0.5" music_out.mp3''
 
 * **add text to video**
 	''$ ffmpeg -i video.mp4 -vf \''
@@ -361,7 +380,6 @@ ffmpeg -i $vid0_fname -i $vid1_fname -i $vid2_fname -i $vid3_fname -i $vid4_fnam
 		''y=h*.03" \''
 		''out.mp4''
 	-> ''lt(var,value)'' is //less than// function
-
 		
 * **add animated GIF to a video** (known as //picture in picture//)
 	''$ ffmpeg -i video_in.mp4 -ignore_loop 0 -i animated_gif.gif \''
@@ -434,7 +452,8 @@ ffmpeg -i $vid0_fname -i $vid1_fname -i $vid2_fname -i $vid3_fname -i $vid4_fnam
 									to use "card 1" for audio input
 	f. ''ffmpeg -f x11grab -thread_queue_size 1024 -r 25 -s 1280x720 -i :0.0+320,236 -f alsa -thread_queue_size 1024 -i hw:1 -vcodec huffyuv screencast_video.mkv''
 			''-thread_queue_size''	sets maximum number of queued packets when reading from the file or device. 
-									   With low latency / high rate live streams, packets may be discarded if they are not read in a timely manner; raising this value can avoid it.
+									   With low latency / high rate live streams, packets may be discarded if they are not read in a timely manner; raising this value can a
+									void it.
 									   (otherwise, ''ALSA buffer xrun'' error appeared from time to time, leading to loss of audio packets)
 	g. ''ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 -c:v libx264rgb -crf 0 -preset ultrafast output.mkv''
 			''-crf 0''			tells x264 to encode in lossless mode (to reduce hardware requirements, **if CPU is not fast** enough)

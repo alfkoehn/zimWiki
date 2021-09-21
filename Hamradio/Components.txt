@@ -28,3 +28,15 @@ Created Montag 07 Dezember 2020
 * balun is basically an RF choke, preventing //common mode current// from flowing on feedline
 * ensures in directional antennas (e.g. Yagi, Quad), equal amount of RF at each side of driven element (preventing unwanted skewing of directional pattern)
 * note that a balun is not an antenna ballancing device
+
+
+===== LNB =====
+* LNB = low noise block converter
+* convert from Ku band (10.7 - 12.5 GHz) to 950 -2150 MHz
+* very low noise figure
+* very high conversion gain, typically over 55 dB
+* some other, rare LNB working at 4 GHz and 2.7 GHz
+* universal LNB has circular waveguide, two probes for vertical and horizonatal polarization
+* polarization and desired local oscillator (and thus frequency) is selected by F-connector, which is only output of an LNB
+	* 12 Volt and 18 Volt to switch between polarization
+	* local oscillator (and thus frequenc) is selected via optional 22 kHz tone imposed to supply voltage (1 Volt amplitude), tone is present means using 10.6 GHz local oscillator (no tone 9.75 GHz local oscillator)
