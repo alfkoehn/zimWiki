@@ -229,7 +229,9 @@ ffmpeg -i $vid0_fname -i $vid1_fname -i $vid2_fname -i $vid3_fname -i $vid4_fnam
 		''-an -i $VIDEO1''		ignore audio stream
 		''-vn -i $VIDEO2''		ignore video stream
 * **extract audio** from video (not sure which one is better)
+	extract audio without re-encoding
 	''$ ffmpeg -i video.mp4 -vn -acodec copy only_sound.mp3''
+	better practice is the following
 	''$ ffmpeg -i video.mp4 -q:a 0 -map a only_audio.mp3''
 * **reduce volume**
 	''$ ffmpeg -i music_in.mp3 -filter:a "volume=0.5" music_out.mp3''
