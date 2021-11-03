@@ -89,9 +89,11 @@ Using **ffmpeg**
 		
 		alternatively, and if all files in current directory are to be used, a single command can do this
 		''$ printf "file '%s'\n" * > myclips.txt''
-	* concatenate with ffmepg
+	* concatenate with ffmpeg
 		''$ ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4''
 			''-safe 0''		not required if paths are relative
+	* concatenate with ffmpeg, is previously video has been cut with ffmpeg which might result in broken timetamps
+		''$ ffmpeg -safe 0 -f concat -segment_time_metadata 1 -i mylist.txt -vf select=concatdec_select -af aselect=concatdec_select,aresample=async=1 output.mp4''
 	* if first video has no audio, dummy audio track must be added first, otherwise final video will have no audio (as setup of first video is used for final video)
 		''$ ffmpeg -i input.mp4 -f lavfi -i anullsrc=cl=stereo:r=48000 -shortest -c:v copy output.mp4''
 			''-i anullsrc=cl=stereo:r=48000''	make sure that these settings match settings of other audio tracks
