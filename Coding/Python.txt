@@ -129,3 +129,14 @@ fi
 	''$ conda uninstall PACKAGE_NAME''
 8. List installed packages in current environment
 	''$ conda list''
+
+
+===== Using pip to install additional libraries/packages =====
+Installing pip3 without root privileges:
+1. download install script
+	''$ wget https://bootstrap.pypa.io/get-pip.py''
+2. run the installation script
+	''$ python3 get-pip.py --user''
+3. pip3 is now installed at ''/home/$USER/.local/bin/''[[,]] check installed version with  ''$HOME/.local/bin/pip3 -V'' 
+	or ''PATH=$PATH:$HOME/.local/bin'' and then ''pip3 --version'' 
+
