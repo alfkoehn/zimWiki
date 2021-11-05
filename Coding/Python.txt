@@ -139,4 +139,7 @@ Installing pip3 without root privileges:
 	''$ python3 get-pip.py --user''
 3. pip3 is now installed at ''/home/$USER/.local/bin/''[[,]] check installed version with  ''$HOME/.local/bin/pip3 -V'' 
 	or ''PATH=$PATH:$HOME/.local/bin'' and then ''pip3 --version'' 
+4. use it as follows
+	''$ python3 -m pip install --user --upgrade matplotlib numpy scipy''
+ 
 
