@@ -154,8 +154,27 @@ Note that the appearance of the boxed text depends on the beamer theme used, i.e
     \printbibliography
 \end{frame}
 
-\end{document}
+\end{document} 
 }}}
 
 	--> compile: xe''latex'', ''biber'', ''xelatex'', ''xelatex''
+
+5. Have footnotes appear correctly in figure captions
+{{{code: lang="latex" linenumbers="True"
+\documentclass{article}
+\usepackage[demo]{graphicx}
+
+\begin{document}
+
+\begin{figure}
+   \centering
+   \includegraphics{foo}  ...
+   \caption[Caption for LOF]{Real caption appearing underneath the figure\protect\footnotemark}
+\end{figure}
+
+\footnotetext{some important stuff or a reference to a paper}
+
+\end{document}
+}}}
+
 
