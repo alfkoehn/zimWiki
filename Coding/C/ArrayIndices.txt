@@ -1,0 +1,33 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2022-01-09T17:06:37+01:00
+
+====== ArrayIndices ======
+Created Sonntag 09 Januar 2022
+
+Following datatypes are suitable for array indices (and thus loop counts):
+* ''size_t''
+* ''ptrdiff_t''
+
+Using simply ''int'' as datatype for array indices is not recommended, as it can be negative and, depending on the architecture, it might be too small (32 bit or 64 bit). Furthermore, using size_t or ptrdiff_t might result in **performance gain** compared to using int or long int due to less implicit type conversions when compiling the code. 
+
+Note that ''a[i]'' is equivalent to ''*(a + i)'', which is in principle an argument to use ''ptrdiff_t'' for array indexing.
+
+size_t type:
+* **unsigned integer** type
+* result of ''sizeof'' operator
+* can sort maximum size of an array, i.e. on a 32bit sytem size_t will take 32 bit, on a 64bit sytem size_t will take 64 bit
+* usually used for loop counters, array indexing, address arithmetic
+
+ptrdiff_t type:
+* **signed integer** type
+* can sort maximum size of an array, i.e. on a 32bit sytem size_t will take 32 bit, on a 64bit sytem size_t will take 64 bit
+* result of an expression where pointer is subtracted from pointer
+* usually used for loop counters, array indexing, size storage, address arithmetic
+
+Loop-end values when interating backwards will get problematic when using an unsigned datatype like size_t. Alternatively, write a backwards loop as follows:
+	''for (size_t i = 0; i != n; ++i) {''
+		''arr[n - i - 1] = foo();''
+	''}''
+
+Note that the maximum value of ptrdiff_t might be smaller than the maximum value of size_t (since size_t is measuring the length of an array, sizeof, in bytes, whereas ptrdiff_t corresponds to the pointer, the index).
