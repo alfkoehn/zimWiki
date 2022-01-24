@@ -72,8 +72,9 @@ A few advantages are:
 ===== Often seen or used header of python files =====
 * very first line often contains the **shebang line**, following example (often appearing in python code) ensures that interpreter used is the first one in environment's ''$PATH''
 	''#!/usr/bin/env python''
-* for proper utf-8 support (to, for example write umlaute), the following line has to be included at the beginning
+* for proper utf-8 support (to, for example write umlaute), one of the following lines has to be included at the beginning (first emacs-friendly)
 	''# -*- coding: utf-8 -*-''
+	''# coding=utf-8''
 * a docstring should be next, including a description of what the code is doing, if it's long a one-line summary should be used at the beginning, followed by an empty line
 * some metadata is often included, although this is a controversial topic (license for example might be better to only put it into a separate file)
 	'''
