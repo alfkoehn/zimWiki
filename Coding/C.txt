@@ -240,6 +240,7 @@ example code:
 }}}
 
 
+
 ===== Executing system commands =====
 {{{code: lang="c" linenumbers="True"
 	#include <stdio.h>
@@ -255,6 +256,20 @@ example code:
         execvp(name[0], name);
     } 
 }}}
+
+alternative method:
+{{{code: lang="c" linenumbers="True"
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+	puts("Calling the system:");
+	system("ls");
+	puts("Done!");
+	return(0);
+	} 
+}}}
+
 
 
 ===== Using OR condition in #ifdef macro =====
