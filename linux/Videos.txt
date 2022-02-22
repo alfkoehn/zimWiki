@@ -1,5 +1,5 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
+Wiki-Format: zim 0.6
 Creation-Date: 2019-07-24T05:47:42+02:00
 
 ====== Videos ======
@@ -7,7 +7,8 @@ Created Mittwoch 24 Juli 2019
 
 
 ===== Create (and modify) videos =====
-Using **ffmpeg**
+
+=== Using **ffmpeg** ===
 * ''$ ffmpeg -framerate 24 -i %03d.png output.mp4''
 	  --> ''-framerate 24''		default is 25 frames per secons
 	  --> ''-i '%03d.png'''		specify input files (* does NOT work)
@@ -402,6 +403,10 @@ ffmpeg -i $vid0_fname -i $vid1_fname -i $vid2_fname -i $vid3_fname -i $vid4_fnam
 * get **mouse position** (might help for getting coordinates) or **window information**
 	''$ xdotool getmouselocation'' 
 	''$ xwininfo -frame'' 
+
+
+Create a rotating gif from an image (with for example text)
+	''$ convert original_file.png -duplicate 69 -distort SRT %[fx:t*360/n] -set delay 10 -loop 0 rotated.gif'' 
 
 
 ===== Video capture with ubuntu =====
