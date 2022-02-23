@@ -77,6 +77,15 @@ Created Dienstag 02 Juli 2019
 	  ''$ foremost -o /tmp/daten -i backup_image_file''
 
 
+===== Safely delete a harddrive =====
+1. use shred to overwrite everything on disk (can take a while)
+	''$ shred -vfz -n 2 /dev/sdb1''
+		''-v''		show progress
+		''-f''		change permission if necessary (to ensure write permission everywhere)
+		''-z''		do a last overwrite with 0 to hide overwrite procedure
+		''-n 2''		number of times everything should be overwritten
+
+
 ===== Zip and unzip files =====
 1. **tar** and **gzip**
 	''$ tar cfvz my_archive.tar.gz <folder1> <file1>''
