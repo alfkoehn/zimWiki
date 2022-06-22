@@ -1,0 +1,133 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2022-06-22T14:17:26+02:00
+
+====== StyleGuide ======
+Created Mittwoch 22 Juni 2022
+
+This style guide is mostely a copy of the numpy style guide
+
+===== Import conventions =====
+{{{code: lang="python3" linenumbers="True"
+import numpy as np
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import scipy as scipy
+}}}
+
+
+
+===== Doctring Standard =====
+{{{code: lang="python3" linenumbers="True"
+"""This is a docstring.
+
+It can be spread over multiple lines.
+
+"""
+}}}
+
+The standard is due to a community consensus which might change in time.
+Length of docstring lines should be fixed to 75 characters.
+
+==== Sections ====
+1. Short summary
+	* one-line summary (not using variable names or function name)
+2. Extended summary
+	* few sentences with an extended description
+	* clarify functionality, not implementation or background theory (which is for //Notes// section)
+3. Parameters
+	* description of function arguments, keywords and their respective types
+	* Example:
+{{{code: lang="python3" linenumbers="True"
+Parameters
+----------
+x : type
+    Description of parameter `x`.
+y
+    Description of parameter `y` (with type not specified).
+}}}
+	
+	* as precise as possible for parameter types, examples:
+{{{code: lang="python3" linenumbers="True"
+Parameters
+----------
+filename : str
+copy : bool
+dtype : data-type
+iterable : iterable object
+shape : int or tuple of int
+files : list of str
+}}}
+
+	* if keyword is optional, write ''optional'' after its type, e.g.  ''x : int, optional''
+	* multiple input parameters having exactly same type, shape, and description can be combined, e.g.  ''x1, x2 : array_like''
+4. Returns
+	* description of returned values and their types
+	* similar to //Parameters// section, except that name of each return variable is optional
+{{{code: lang="python3" linenumbers="True"
+Returns
+-------
+int
+    Description of anonymous integer return value.
+}}}
+	
+5. Yields
+	* relevant to //generators// only
+	* explanation of yielded values and their types
+	* similar to //Return// section
+6. Receives
+	* explanation of parameters passed to a generator's ''.send()'' method
+	* similar to //Parameters// section
+7. Other Parameters
+	* optional
+	* description of infrequently used parameters
+	* should only be used if function has large number of keyword parameters
+8. Raises
+	* optional
+	* which errors get raised under what conditions
+	* should only be used for errors that are non-obvious or have large chance of getting raised
+9. Warns
+	* optional
+	* similar to //Raises// section, but for which warnings get raised under what conditions
+10. See Also
+	* optional
+	* used to refer to related code, to direct user to other functions they may not be aware of
+{{{code: lang="python3" linenumbers="True"
+See Also
+--------
+average : Weighted average.
+}}}
+	
+11. Notes
+	* optional
+	* additional information about the code, including discussion of the algorithm
+	* may include mathematical equations written in [[LaTeX]] format
+{{{code: lang="python3" linenumbers="True"
+Notes
+-----
+The FFT is a fast implementation of the discrete Fourier transform:
+
+.. math:: X(e^{j\omega } ) = x(n)e^{ - j\omega n} 
+}}}
+	
+12. References
+	* references cites in //Notes// section may be listed here
+	* include as list, e.g. ''[1] J. Doe, "Some important science", Some Journal, vol. 11, pp. 1-3, 2000''  
+13. Examples
+	* optional (but strongly encouraged)
+	* using ''doctest'' format
+	* to illustrate usage, not to provide testing framework
+{{{code: lang="python3" linenumbers="True"
+Examples
+--------
+
+np.add(1, 2)
+3
+
+Comment explaining the second example.
+
+np.add([1, 2], [3, 4])
+array([4, 6]) 
+}}}
+	
+
