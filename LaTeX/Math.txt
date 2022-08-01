@@ -19,7 +19,7 @@ The ''cases'' environment from the ''amsmath'' package is a good choice for that
       1, & \text{otherwise}
     \end{cases}
   \end{equation}
-\end{document}
+\end{document} 
 }}}
 
 
@@ -44,7 +44,7 @@ M=
   \end{bmatrix}
 \end{equation}
 
-\end{document}
+\end{document} 
 }}}
 
 To write a matrix inline, simply write
@@ -99,5 +99,5 @@ To write a matrix inline, simply write
 
 \begin{document}
 $a \mathcolor{red}{\rightarrow} b$
-\end{document}
+\end{document} 
 }}}
