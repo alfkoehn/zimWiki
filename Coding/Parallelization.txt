@@ -1,0 +1,37 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2022-08-24T11:50:39+02:00
+
+====== Parallelization ======
+Created Mittwoch 24 August 2022
+
+Modern processors often take a Non-Uniform Memory Access (NUMA) approach to hardware design.
+To run codes more efficiently, we sometimes want to control how threads are assigned to processor cores, to avoid hyper-threading and use hardware threads instead or ensure a task is not migrating all the time.
+
+To display information about the CPU architecture, use 
+	''$ lscpu''
+Relevant information might look as follows
+	''NUMA node0 CPU(s):               0-7,16-23''
+	''NUMA node1 CPU(s):               8-15,24-31''
+This tells us that 0-7, 16-23 are the 16 hardware threads in the 8 cores NUMA node 0, 16-23 can be thought of as hyper threads
+
+The tool ''numactl'' allows to control NUMA scheduling policy, i.e. which cores to you want to run this task on, or where to allocate the data. It can also show you the available nodes and how the threads are distributed
+	''$ numactl --hardware		''shows available nodes 
+
+
+
+
+
+
+There are two major tools out there for controlling NUMA access through command line (bash script). In this article, we focus on NUMACTL, but in practice, “taskset” is also often used.
+“taskset -c 0-11 command” uses the 12 cores in socket 1 (NUMA node 0) without using their hyper threads.
+“taskset -c 0-11,24-35 command” uses the 12 cores in socket 1 (NUMA node 0) along with their hyper threads.
+“taskset -c 0-23 command” uses the 24 cores in both sockets (NUMA node 0, NUMA node1) without using their hyper threads.
+“taskset -c 0-47 command” uses the 24 cores in both sockets (NUMA node 0, NUMA node1) with their hyper threads. This should be similar to “numactl -i all”.
+
+
+numactl --show			shows NUMA policy settings of current process
+
+
+
+--localalloc is also useful because it makes sure each thread allocated on its own node.
