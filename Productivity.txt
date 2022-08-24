@@ -1,0 +1,42 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2022-05-23T09:43:56+02:00
+
+====== Productivity ======
+Created Montag 23 Mai 2022
+
+General tips:
+1. Time is the most valuable ressource
+2. Identify most important task and simply start doing it
+3. Rather work from calendar, not from To-Do list (as To-Do lists can quickly become a graveyard of ideas)
+4. Trying to avoid future procrastination by getting rid of future excuses (i.e. putting running shoes next to bed)
+5. End day when you're tired, not when you're finished
+6. Always carry a notebook
+7. Control email-/messenger-inbox (turn-off notifications on phone helps, instead look at inbox only 2 or 3 times per day)
+8. Say no to (long) meetings if possible
+9. Say no to things not supporting your main current goal
+10. Focus on your strengths and passion
+11. Days can have different main themes (i.e. catch-up on phone calls for one day, fully work on main project for another day)
+12. Everything requiring less than 5 minutes should be done immediatly instead of putting it on a list, "touch everything once"
+13. Strengthen body and mind during early morning routines
+
+
+4 tools are often recommended:
+1. Notebook
+	a. App for phone + PC and synchronization across them is mandatory
+	b. Using different folders within the notebook app, where one should be for quick notes
+	c. One folder should be for ideas for future projects, papers, collaborations, videos, etc.
+	d. General checklists for re-appearing stuff, like e.g. organize trip
+	e. Personal folder is useful
+	f. Archive folder to remove things from the other notebooks (without actually removing them)
+2. Calendar
+	a. Reminders are useful
+	b. Synchronize across mobile + PC
+3. To-Do list
+	a. 3-5 items per days is ideal (more than 7 and it starts to look like too much)
+	b. Breaking things down into small tasks to not miss something
+	c. Weekly overview, i.e. seeing what's on for next days is helpful
+	d. Having some fixed, optionally visable, lists might be useful (groceries, reading lists, future stuff)
+4. Cloud storage
+	a. Should be available locally + remotely (synchronize)
+	b. Keep it organized in folders

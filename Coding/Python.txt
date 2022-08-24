@@ -144,3 +144,5 @@ Installing pip3 without root privileges:
 	''$ python3 -m pip install --user --upgrade matplotlib numpy scipy''
  
 
+===== Some scipy stuff =====
+* ''scipy.mgrid[1:6:4j]'' makes a list of length 4, with first element 1, last element 6, and stepsize (6-1)/(4-1)

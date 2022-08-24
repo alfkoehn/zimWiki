@@ -6,6 +6,10 @@ Creation-Date: 2021-06-26T19:06:17+02:00
 Created Samstag 26 Juni 2021
 
 
+===== Nice mantras =====
+* Forward is a pace
+
+
 ===== Running in the morning (German) =====
 * Laufen **vor dem Frühstück** hat einige Vorteile
 	* Glykogenspeicher sind schnell leer, Körper schaltet auf Fettstoffwechsel um, Körper lernt so freie Fettsäuren früher und vermehrt zu nutzen
@@ -197,11 +201,11 @@ Doing such a routine once per week is fine (e.g. 30 seconds each exercise, 4 rep
 1. Step-up variation (might add weights to it) 
 	a. forward stepping up a chair with pushing the knee up
 	b. lateral step-up and step-down a chair, keeping the other leg more or less stiff
-2. Squat variation (might add weights to it)
+2. Squat variation (might add weights/dumbbells to it)
 	a. have a chair behind you, put one foot on it
 	b. move down such that the knee, whose foot is on the chair, almost touches the floor
 	c. classical squat also ok
-3. Calf raise variation
+3. Calf raise variation (calf = Wade)
 	a. move one foot/leg slightly up that it is not touching the ground
 	b. "step" up but always keep foot (rather the toes) on ground to train the calf
 	c. can also be done without chair/stair/bench
@@ -233,7 +237,7 @@ Doing such a routine once per week is fine (e.g. 30 seconds each exercise, 4 rep
 	b. jump slidly sideways (lateral) on one leg from one edge to the other
 	c. starting with hoping diagonally, then sideways/laterally, then diagonally ...
 	d. take care to find proper balance after each landing
-10. Deadlift
+10. Deadlift (Latissmus)
 	a. stand straight with some weights in your hands
 	b. slightly bend the knees
 	c. bend your upper body forward/down and back up again, up to an angle of 90 degree between legs and upper body
@@ -257,4 +261,24 @@ Doing such a routine once per week is fine (e.g. 30 seconds each exercise, 4 rep
 	d. angle foot slightly inwards
 2. Foam-rolling all muscles above the knee
 3. Massage with (not spiked) end of hiking pole your glute muscle
+
+
+===== Tips to keep heart rates low during easy runs =====
+* run-walk breaks with 60-90 seconds walking every few kilometers
+* running at a pace where you can constantly and easily maintain a conversation
+* don't expect too much, it takes time
+
+
+===== Running in the winter (German) =====
+* zum längeren Trail im Winter im Rucksack einige zusätzliche Lagen dabei haben
+* "Rab Windveil Pull On" zum schnellen An- oder Ausziehen, komaktes Packmaß
+* Trail-Regenjacke, optimalerweise mit Shakedry-Technologie
+* Merino-Baselayer, z.B. "Smartwool Intraknit"
+* Weste zum Schutz von Bauch und Brust, z.B. "La Sportiva Could Vest"
+* Kompressionssocken von CEP
+* eventuell tut es auch eine All-in-One Lösung für Oberteil, z.B. "On Running Trailbreaker"
+
+
+===== Trailrunning Urlaubsorte =====
+* Die Insel Elba (Italien) im April, Mai, Juni und Oktober: Zeltplätze vorher reservieren
 

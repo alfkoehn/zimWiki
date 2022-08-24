@@ -277,3 +277,35 @@ int main() {
 ''#if defined(HELIOS) || defined(TOKS)''
 ''...''
 ''#endif''
+
+
+===== Typical header layout =====
+
+{{{code: lang="c" linenumbers="True"
+/*H**********************************************************************
+* FILENAME :        somefile.c
+*
+* DESCRIPTION :
+*       File compression and decompression routines.
+*
+* PUBLIC FUNCTIONS :
+*       int     MYPACK_CompressFile( FileHandle )
+*       int     MAPACK_DecompressFile( FileHandle )
+*
+* NOTES :
+*       These functions are a part of the MYPACK suite;
+*       See MYPACK-2021-06 for detailed description.
+*
+*       Copyright A.Company 2000.  All rights reserved.
+*
+* AUTHOR :    Arthur Dent         START DATE :    25 Feb 2022
+*
+* CHANGES :
+*
+* REF NO  VERSION DATE    WHO     DETAIL
+* F21/33  A.03.04 25Feb22 JR      Function CalcCorrSum corrected
+*
+*H*/
+}}}
+
+
