@@ -1,0 +1,16 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2022-09-13T22:06:18+02:00
+
+====== Zotero ======
+Created Dienstag 13 September 2022
+
+Zotero type **Presentation**:
+* talk at a conference
+* poster at a conference
+* //Meeting Name// is for the name of the conference
+
+Zotero type **Conference paper**:
+* for published paper in a conference proceedings (not just a presentation)
+* //Proceedings Title// will be used by most styles, should contain "Proceedings of that nice conference"
+* //Conference Name// will be used only by small number of styles
