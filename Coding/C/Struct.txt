@@ -1,0 +1,149 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2022-12-28T09:34:06+01:00
+
+====== Struct ======
+Created Mittwoch 28 Dezember 2022
+
+In C, a struct (structure) is a collection of variables, which can be of different type, under a single name. This might make passing data to functions much easier (just one variable instead of 17).
+
+1. Define a struct
+{{{code: lang="c" linenumbers="True"
+struct structureName {
+    dataType member1;
+    dataType member2;
+    ...
+}; 
+}}}
+	
+2. Create a struct variable
+{{{code: lang="c" linenumbers="True"
+struct structureName {
+    // some code
+}; 
+
+int main() {
+	// create struct structureName variables 
+    struct structureName bla1, bla2;
+    // create struct structureName array of size 50
+    struct structureName bla3[50];
+    return 0;
+} 
+}}}
+	
+3. Access members of a struct
+{{{code: lang="c" linenumbers="True"
+// member operator is "."
+bla1.dataType
+// structure pointer operator is "->"
+bla1->dataType
+}}}
+	
+
+
+Example:
+{{{code: lang="c" linenumbers="True"
+#include <stdio.h>
+#include <string.h>
+
+// create struct 
+struct Person {
+	char name[50];
+	int yearOfBirth;
+	float salary;
+};
+
+int main() {
+
+	// create struct variable
+	struct Person person1;
+
+	// assign value to name of person1
+	strcpy(person1.name, "Jane Doe");
+
+	// assign values to other person1 variables
+	person1.yearOfBirth = 1984;
+	person1. salary = 2500;
+
+	// print struct variables
+	printf("Name: %s\n", person1.name);
+	printf("Year of birth: %d\n", person1.yearOfBirth);
+	printf("Salary: %.2f\n", person1.salary);
+
+	return 0;
+}  
+}}}
+
+
+
+=== Keyword typedef ===
+
+The ''typedef'' keyword is used to create an alias name for data types. It is often used with structures to simplify the syntax/code for declaring struct variables.
+
+Code without ''typedef'' keyword:
+{{{code: lang="c" linenumbers="True"
+struct Person{
+	int yearOfBirth;
+	float salary;
+};
+
+int main() {
+	struct Person p1, p2;
+}  
+}}}
+
+
+Code with ''typedef'' keyword:
+{{{code: lang="c" linenumbers="True"
+typedef struct Person {
+	int yearOfBirth;
+	float salary;
+} persons;
+
+int main() {
+	// using alias "persons" is equivalent to "struct Person p1"
+	persons p1, p2;
+} 
+}}}
+
+
+
+=== Pointer to struct ===
+
+{{{code: lang="c" linenumbers="True"
+struct person {
+	int age;
+	float weight;
+};
+
+int main() {
+	// personPtr is a pointer to struct
+	struct person *personPtr, Hans;
+	// address of "Hans" is stored in pointer "personPtr"
+	personPtr = &Hans;
+	
+	printf("Enter age: ");
+	scanf("%d", &personPtr->age);
+	// note that "&personPtr->age" is equivalent to "(*personPtr).age"
+	
+	printf("Enter weight: ");
+	scanf("%f", &personPtr->weight);
+	
+	printf("Age   : %d\n", personPtr->age);
+	printf("Weight: %f\n", personPtr->weight);
+	
+	return 0;
+} 
+}}}
+
+
+For dynamic memory allocation of struct, the following code can be used
+	''ptr = (struct person*) malloc(n * sizeof(struct person));''
+which allocates memory for n numbers of struct person. 
+To access 1st struct person's members:
+	''ptr->memberName''
+To access i-th struct person's members:
+	''(ptr+1)->memberName''
+
+
+

@@ -124,7 +124,7 @@ Declaration: T a[N][M][O];
 		(example for double here)
 **Note 3**:	better use calloc instead of malloc (array is then initiallized with 0)
 		''int *arr = calloc( length, sizeof *arr )''
-
+**Note 4**: using a pointer to a variable length array (VLA) might be the most compact ways
 
 ==== 2D arrays ====
 1. Using a single pointer
@@ -165,6 +165,17 @@ Declaration: T a[N][M][O];
 	
 	// access with arr4[ii][jj] = 1;  OR *(*(arr+i)+j) = 1;
 	'''
+
+
+==== 3D arrays ====
+1. Pointer to a variable length array (VLA)
+		''double (*arr3d)[Ny][Nz] = calloc(Nx, sizeof *arr3d);''
+		
+		''// access with arr3d[ii][jj][kk] = 1''
+		''// free with free(arr3d);''
+		''// can be simply passed to functions''
+		''//   int doSomething( size_t dim1, size_t dim2, size_t dim3, double arr3d[dim1][dim2][dim3] );''
+		''//   doSomething( Nx, Ny, Nz, arr3d );''
 
 
 
