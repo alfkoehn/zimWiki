@@ -52,3 +52,7 @@ Created Montag 18 November 2019
 	* last power plant to unlock
 	* expensive, but can power a whole city
 	* no risk of meltdown or any other source of pollution
+
+
+===== Fusion start-ups =====
+List of private fusion projects/start-ups: http://julien.hillairet.free.fr/wiki/doku.php?id=list_of_fusion_startups
