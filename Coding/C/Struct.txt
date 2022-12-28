@@ -5,7 +5,10 @@ Creation-Date: 2022-12-28T09:34:06+01:00
 ====== Struct ======
 Created Mittwoch 28 Dezember 2022
 
-In C, a struct (structure) is a collection of variables, which can be of different type, under a single name. This might make passing data to functions much easier (just one variable instead of 17).
+Inspired by https://www.programiz.com/c-programming/
+
+In C, a struct (structure) is a collection of variables, which can be of different type, under a single name. This makes passing data to functions easier (just one variable instead of 17).
+It should be used as a global variable (declared outside main) such that all functions can access it easily.
 
 1. Define a struct
 {{{code: lang="c" linenumbers="True"
@@ -20,7 +23,7 @@ struct structureName {
 {{{code: lang="c" linenumbers="True"
 struct structureName {
     // some code
-}; 
+};  // important to close structure body with ";"
 
 int main() {
 	// create struct structureName variables 
@@ -76,7 +79,7 @@ int main() {
 
 
 
-=== Keyword typedef ===
+===== Keyword typedef =====
 
 The ''typedef'' keyword is used to create an alias name for data types. It is often used with structures to simplify the syntax/code for declaring struct variables.
 
@@ -107,8 +110,22 @@ int main() {
 }}}
 
 
+Note that the following is also ok and often used:
+{{{code: lang="c" linenumbers="True"
+typedef struct Person {
+	int yearOfBirth;
+	float salary;
+} Person;
 
-=== Pointer to struct ===
+int main() {
+	// "struct Person p1, p2" would be equivalent
+	Person p1, p2;
+} 
+}}}
+
+
+
+===== Pointer to struct =====
 
 {{{code: lang="c" linenumbers="True"
 struct person {
@@ -145,5 +162,87 @@ To access 1st struct person's members:
 To access i-th struct person's members:
 	''(ptr+1)->memberName''
 
+
+===== Passing struct to functions =====
+
+==== Passing by value ====
+
+{{{code: lang="c" linenumbers="True"
+#include <stdio.h>
+
+struct student {
+	char name[50];
+	int age;
+};
+
+// function prototype
+struct student getInformation();
+void display(struct student s);
+
+int main() {
+	// create struct variable "s1" of type "struct student"
+	struct student s1;
+	
+	s1 = getInformation();
+
+	// passing struct to function	
+	display(s1);
+
+   return 0;
+}
+
+// function returns structure of type "struct student"
+struct student getInformation() {
+	struct student s1;
+	
+	s1.name = "Hans";
+	s1.age = 23;
+	
+	return s1;
+}	
+
+void display(struct student s) {
+	printf("\nDisplaying information\n");
+	printf("Name: %s", s.name);
+	printf("\nAge: %d", s.age);
+} 
+}}}
+
+
+==== Passing by reference ====
+
+Passing by reference means that the memory address instead of its value is passed to function. This avoids creating a copy of the structure and thus saves memory.
+
+{{{code: lang="c" linenumbers="True"
+#include <stdio.h>
+
+typedef struct Complex {
+	float real;
+	float imag;
+} complex;
+
+void addNumbers(complex c1, complex c2, complex *result); 
+
+int main() {
+    complex c1, c2, result;
+
+	c1.real = 0.4;
+	c1.imag = 0.7;
+
+	c2.real = 0.1;
+	c2.imag = 0.2;
+
+    addNumbers(c1, c2, &result); 
+    printf("\nresult.real = %.1f\n", result.real);
+    printf("result.imag = %.1f", result.imag);
+    
+    return 0;
+}
+
+void addNumbers(complex c1, complex c2, complex *result) {
+     result->real = c1.real + c2.real;
+     result->imag = c1.imag + c2.imag; 
+} 
+}}}
 
 
