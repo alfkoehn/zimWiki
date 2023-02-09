@@ -230,3 +230,14 @@ Alternatively:
 		''-dPDFSETTINGS=/prepress''	300 dpi (similar to Acrobat distiller "Prepress Optimized" setting)
 		''-dPDFSETTINGS=/printer''	300 dpi (similar to Acrobat distiller "Printer Optimized" setting)
 
+
+===== Reset mouse touchpad when crashed after suspend =====
+1. Identify kernel modul controlling touchpad
+	''$ lsmod | grep touch''
+	→ called ''hid_multitouch'' in my case
+2. Reset kernel modul
+	''$ sudo rmmod hid_multitouch''
+	''$ sudo modprobe hid_multitouch''
+
+
+
