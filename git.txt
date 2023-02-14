@@ -211,6 +211,20 @@ Current commit (most recent) is called //HEAD//.
 6. Use body to explain what and //why// and not how
 
 
+===== Git name conventions =====
+1. A **git branch** should start with a category, followed by a "/", then the references of the issue/ticket, if no reference, "no-ref" is used, then a very short description, i.e. "category/reference/description", e.g. "feature/issue-42/create-new-button
+	* feature/	adding, refactoring or removing a feature
+	* bugfix/	fixing a bug
+	* test/		experimenting outside of an issue or a ticket
+	* hotfix/		chaning something in code with temporary solution
+	* wip/		work in progess (no idea when it's going to be finished)
+2. **Commit messages** should start with a category, followed by a ":", e.g. "feat: do something"
+	* feat		adding new feature
+	* fix			fixing a bug
+	* refactor	changing code for performance or readibility or similar purposes
+	* chore		everything else (documentation, formatting, adding tests, removing useless code)
+
+
 ===== Download a single folder from within a github project =====
 1. Copy the folder link, e.g. ''https://github.com/alfkoehn/zimWiki/tree/master/LaTeX''
 2. Modify the url: ''tree/master'' → ''trunk''
