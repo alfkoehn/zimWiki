@@ -43,6 +43,10 @@ Created Montag 18 November 2019
 	* Fusion fuel: D-He3 [https://expanse.fandom.com/wiki/Epstein_Drive]
 	* Magnetic bottle is mentioned
 	* The spaceship Rocinante uses laser-ignited fusion reactions and water as propellant
+11. //The Man Who Fell to Earth// (2022)
+	* Quantum fusion power
+	* Lotus cube is a cold fusion reactor
+	* Dr. Melanie Windridge contributed as science consultant
 
 
 ===== Fusion in computer games =====
