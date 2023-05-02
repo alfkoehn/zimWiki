@@ -240,4 +240,10 @@ Alternatively:
 	''$ sudo modprobe hid_multitouch''
 
 
+===== Repair not-charging battery =====
+1. Shut down notebook
+2. Unplug the charger
+3. Press power button for 10 seconds
+4. Boot-up
+5. Plug charger back in
 
