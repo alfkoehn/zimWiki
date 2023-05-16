@@ -34,3 +34,8 @@ PDF documents creating using LaTeX do not include the document structure and tag
 * ''LaTeXML'' is a command line tool converting LaTeX to XML, ''Latexmlpost'' then converts this XML further into e.g. HTML or XHTML, with option to convert math into MathML 
 * Pandoc is another command line tool converting LaTeX to XML and HTML
 
+
+=== Webpages with more informations ===
+* https://www.tug.org/twg/accessibility/
+* https://hochschulforumdigitalisierung.de/de/blog/barrierefreie-dokumente-markdown-latex-pdf
+
