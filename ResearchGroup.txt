@@ -1,0 +1,8 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2023-07-31T10:54:56+02:00
+
+====== ResearchGroup ======
+Created Montag 31 Juli 2023
+
+* end-of-semester ceremony or tradition **Things to celebrate**: every group member writes on a board their successes from the past semester/year; allows to reflect on past year, realizing personal accomplishments and appreciating them. See https://doi.org/10.1038/d41586-023-02350-w
