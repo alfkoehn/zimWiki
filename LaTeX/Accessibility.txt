@@ -1,0 +1,41 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2023-05-08T12:39:44+02:00
+
+====== Accessibility ======
+Created Montag 08 Mai 2023
+
+PDF documents creating using LaTeX do not include the document structure and tags required for accessible documents. Two methods exists trying to ensure your documents are following accessibility standards:
+
+=== Adding tags and alt text ===
+* the package **accessibility** can be used to add structure, tags, and alt text
+	* package can be loaded as follows
+	''\usepackage[tagged, highstructure]{accessibility}''
+	* example for usage in figures
+{{{code: lang="latex" linenumbers="True"
+\begin{figure}
+    \centering
+    \includegraphics[width=.5\textwidth]{figure_1}
+    \alt{Image of the Earth from outer space}
+    \caption{Image of the Earth from the Apollo 17 mission.}
+    \label{fig:earth}
+\end{figure} 
+}}}
+
+	* note that the **package does not work** in the current form
+* for accessible equations, the **''axessibility''** package can be used
+	''\usepackage{axessibility}''
+	* requires using ''equation'' environment for all equations
+* the package **tagpdf** offers some tools for tagging 
+
+
+=== HTML method ===
+* LaTeX is quite limited in terms of accessibility at the moment, thus many experts recommends converting LaTeX document to HTML and MathML 
+* ''LaTeXML'' is a command line tool converting LaTeX to XML, ''Latexmlpost'' then converts this XML further into e.g. HTML or XHTML, with option to convert math into MathML 
+* Pandoc is another command line tool converting LaTeX to XML and HTML
+
+
+=== Webpages with more informations ===
+* https://www.tug.org/twg/accessibility/
+* https://hochschulforumdigitalisierung.de/de/blog/barrierefreie-dokumente-markdown-latex-pdf
+
