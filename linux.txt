@@ -1,5 +1,5 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
+Wiki-Format: zim 0.6
 Creation-Date: 2019-07-02T06:26:57+02:00
 
 ====== linux ======
@@ -246,4 +246,15 @@ Alternatively:
 3. Press power button for 10 seconds
 4. Boot-up
 5. Plug charger back in
+
+
+===== Dual monitors with one wallpaper spanning across both monitors =====
+
+=== XFCE: ===
+1. Open //XFCE Settings Editor// from Application Menu → Settings → Setting Editor
+2. Navigate to ''xfce-desktop'' on left pane
+3. Create new property with following settings
+	* Name: [[/backdrop/screen0/xinerama-stretch]]
+	* Type: BOOL
+	* Value: TRUE|1|Enables
 
