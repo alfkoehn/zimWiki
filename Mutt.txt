@@ -1,5 +1,5 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
+Wiki-Format: zim 0.6
 Creation-Date: 2019-07-05T18:41:46+02:00
 
 ====== Mutt ======
@@ -23,6 +23,8 @@ Using mutt with multiple mail-accounts: https://www.youtube.com/watch?v=_Unn7fys
 	  
 3. Create the Mutt configuration file
 	''$ touch ~/.mutt/muttrc''
+
+====== Beste Grüße, ======
 	
 	 Note that Mutt supports the ''source'' command, i.e. you can put some of your settings into separate files and ''source'' them from the ''.muttrc'' file.
 
