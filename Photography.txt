@@ -25,6 +25,7 @@ Created Montag 29 Juli 2019
 	* Blende f5.6 - f11
 	* ISO 100-400
 	* Belichtung 1-20 s
+	* Manual focus (set to infinity), trying to use autofocus on moon or distance traffic light, then set to manual
 * Thunderstorm-**lightnings**
 	* only nice during night (or evening/blue hour)
 		--> during day: use of Graufilter required
