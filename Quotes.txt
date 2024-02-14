@@ -1,5 +1,5 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.6
+Wiki-Format: zim 0.4
 Creation-Date: 2023-10-04T09:09:22+02:00
 
 ====== Quotes ======
@@ -7,3 +7,6 @@ Created Mittwoch 04 Oktober 2023
 
 //The person who achieves his goal is the one that has faced frustration and dealt with it, understood it, and used it to their advantage … We repeatedly fell, were knocked down, ignored. And we kept getting up, and we didn’t give up.//
 In a speech to a class of freshly graduated physicians in 2021, Nobel prizewinner Drew Weissman wished them a lifetime of frustration.
+
+//You can have a scientific impact, but you can also have an impact by being a good mentor or giving somebody the confidence they need to do a hard thing//
+Jenny Hoffman, Interniew with nature, https://www.nature.com/articles/d41586-024-00369-1
