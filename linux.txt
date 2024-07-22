@@ -1,5 +1,5 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.6
+Wiki-Format: zim 0.4
 Creation-Date: 2019-07-02T06:26:57+02:00
 
 ====== linux ======
@@ -41,9 +41,12 @@ Created Dienstag 02 Juli 2019
 	$ ''find ~/.cache/ -depth -type f -atime +365''			list everything which hasn't been accessed for a year 
 	$ ''find ~/.cache/ -type f -atime +365 -delete''			delete everything which hasn't been accessed for a year
 
+'''
 	 Alternatively
 	''$ find /path/to/ -type f -mtime +7 -name '*.gz' -execdir rm -- '{}' \;''
+'''
 		
+'''
 		''find''		the unix command for finding files/directories/links and etc.
 		''/path/to/''	the directory to start your search in.
 		''-type f''		only find files.
@@ -52,12 +55,17 @@ Created Dienstag 02 Juli 2019
 		''-execdir ... \;''	for each such result found, do the following command in ....
 		''rm -- '{}'''	remove the file; the {} part is where the find result gets substituted into from the previous part. 
 						  ''--'' means end of command parameters avoid prompting error for those files starting with hyphen.
+'''
 						
+'''
 	Alternatively
 	  ''$ find /path/to/ -type f -mtime +7 -name '*.gz' -print0 | xargs -r0 rm ''—
+'''
 	
+'''
 	Alternatively and slightly faster (still slightly slower than ''find -delete'')
 	  $ ''find /path/to/ -type f -mtime +7 -name '*.gz' -execdir rm -- '{}' +''
+'''
 
 
 ===== Undelete or recover files =====
@@ -75,6 +83,18 @@ Created Dienstag 02 Juli 2019
 	  ''$ foremost jpg -o /tmp/bilder -i backup_image_file''
 	  recover everything
 	  ''$ foremost -o /tmp/daten -i backup_image_file''
+3. TestDisk 
+	a. install
+		''$ sudo apt install testdisk'' 
+	b. run and follow the screen instructions
+4. Mondo Rescue (might be helpful for lost data on RAID systems)
+5. ddrescue
+6. Redo Backup and Recovery (works as a bootable live version)
+7. Boot Repair (live version for recovering GRUB or boot sector)
+8. foremost
+9. scalpel
+10. SystemRescue CD: live version, helpful if not able to boot into system
+11. Ultimate Boot CD: huge variety of collection of diagnostic tools
 
 
 ===== Safely delete a harddrive =====
@@ -224,11 +244,13 @@ Alternatively:
 
 
 ===== Compress scanned pdf file =====
+'''
 	''$ gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf input.pdf''
 		 ''-dPDFSETTINGS=/screen''	72 dpi (lower qualitiy, smaller size)
 		''-dPDFSETTINGS=/ebook''	150 dpi (slightly lower qualitiy, larger size)
 		''-dPDFSETTINGS=/prepress''	300 dpi (similar to Acrobat distiller "Prepress Optimized" setting)
 		''-dPDFSETTINGS=/printer''	300 dpi (similar to Acrobat distiller "Printer Optimized" setting)
+'''
 
 
 ===== Reset mouse touchpad when crashed after suspend =====
