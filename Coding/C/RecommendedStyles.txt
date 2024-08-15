@@ -1,0 +1,95 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2024-08-15T17:43:43+02:00
+
+====== RecommendedStyles ======
+Created Donnerstag 15 August 2024
+
+===== Program files (.c files) =====
+Following this reference: https://www.doc.ic.ac.uk/lab/cplus/cstyle.html
+1. Prologue describing what this file contains, description of purpose of objects (not just list of objects), optionally authors, version info, references
+2. System include files, e.g. ''stdio.h'' 
+3. User include files
+4. defines and typedefs: usually constant macros first, then function macros, then typedefs and enums
+5. global data declarations: externs, non-static globals, static globals
+6. Functions, grouped together in meaningful way
+
+If the c file is a self-contained program, i.e. no multilpe-file program, the file is usually structured as follows
+1. Prologue: copyright, licensing, purpose of program
+2. includes
+3. defines
+4. typedefs
+5. global variable declarations
+6. function prototypes
+7. main function: ''int main(int argc, char *argv[]) { .... }''
+8. function declarations
+
+=== Some ideas what to define ===
+{{{code: lang="c" linenumbers="True"
+/* main.c */
+<...>
+
+#define OPTSTR "i:o:h"
+#define USAGE_FMT  "%s [-i inputfile] [-o outputfile] [-h]"
+}}}
+
+	* OPTSTR is to be used for optional parameters when calling the program, e.g.    ''while ((opt = getopt(argc, argv, OPTSTR)) != EOF)''  
+	* USAGE_FMT is a printf() like format string used in a printing function
+
+
+===== Header files (.h files) =====
+Following this reference: https://www.doc.ic.ac.uk/lab/cplus/cstyle.html
+* should be functionally organized (declarations for separate subsystems into separate files)
+* can also data declarations and defines needed by more than one program
+* header files declaring functions or external variables should be included in the file defining the function or variable
+* try to not define variables in a header file
+* prologue should describe what other header files need to be included for the header file to be functional
+* to avoid double inclusion, include following code in each .h file
+{{{code: lang="c" linenumbers="True"
+#ifndef EXAMPLE_H
+#define EXAMPLE_H
+
+/* body of example.h file */
+
+#endif /* EXAMPLE_H */ 
+}}}
+	
+	
+
+
+===== Comments =====
+* comments should decribe what is happening, how it is being done, what parameters mean, which globals are used, which are modified, any restrictions or bugs
+* short comments should be //what// comments rather than //how// comments
+* comments describing algorithms, data structures etc should be in block comment in the following form
+{{{code: lang="c" linenumbers="True"
+/*
+ * Here is a block comment.
+ * Comment text should be tabbed or spaced uniformly.
+ * The opening slash-star and closing star-slash are alone on a line.
+ */ 
+}}}
+	
+* How to use the function and what it is doing should be included in the header file, whereas documentation how the function works should be in the source code file (where the function is defined)
+
+
+===== Declarations =====
+* pointer qualifier ''*'' should be with variable name rather than with the type, e.g. 
+	''char *s, *t, *u'' ;
+* comment describing role of object being declared should be included (unless names are sufficient documentation)
+* when files being part of a larger program, ''static'' keyword should be used often to make functions and variables local to single files
+* structures may be typedeffed when declared, give struct and typedef same name
+* functions
+	* each function should be preceded by block comment with short description what function does (and, optionally and if not immediately clear, how)
+	* function return should be in one line
+
+
+===== Naming conventions =====
+* names with leading and trailing underscores should not be used by user (they are reserved for system purposes)
+* #define constants should be in full CAPS
+* function, typedef, variable names, struct, union, enum should all be lower case
+* global names should have common prefix
+* typedeffed names often have ''_t'' at their end
+
+
+Note: macro definitions with arguments must NOT have blank between name and left parenthesis, otherwise C preprocessor will not recognize argument list
+Note: Lint is a C program file checker
