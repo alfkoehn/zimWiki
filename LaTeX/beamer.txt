@@ -1,5 +1,5 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
+Wiki-Format: zim 0.6
 Creation-Date: 2020-01-16T14:36:04+01:00
 
 ====== beamer ======
@@ -174,7 +174,10 @@ Note that the appearance of the boxed text depends on the beamer theme used, i.e
 
 \footnotetext{some important stuff or a reference to a paper}
 
-\end{document}
+\end{document} 
 }}}
 
 
+
+===== Highlighting with tikz =====
+Very nice example on https://tex.stackexchange.com/questions/445840/beamer-highlighting-some-part-of-an-image-and-hiding-remaining-part

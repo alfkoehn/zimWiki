@@ -1,8 +1,8 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
+Wiki-Format: zim 0.6
 Creation-Date: 2019-06-23T12:23:25+02:00
 
-====== git ======
+====== ipgit ======
 Created Sonntag 23 Juni 2019
 
 ===== Overview =====
