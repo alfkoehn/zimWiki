@@ -1,5 +1,5 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
+Wiki-Format: zim 0.6
 Creation-Date: 2019-06-29T01:22:12+02:00
 
 ====== English ======
@@ -22,6 +22,18 @@ Created Samstag 29 Juni 2019
 * //on <date> at <time>//
 	* e.g. on November 1, at 3:30 pm
 	* //in// //<month>// or //<year>//
+* //overview on// vs. //overview of//
+	* both are technically correct, while //overview of// seems to be a safe bet in most situations
+	* when //overview// is used as a subject, it might be more common to use of
+		* "An overview of XXX is given"
+		* "This is an overview of XXX"
+	* when //overview// is not the subject, //on// might be more common
+		* "I will give an overview on XXX"
+	* //overview on// sounds slightly more direct, forcefull, where //overview of// is somewhat general
+* //discussion about/of/on //[https://english.stackexchange.com/a/16584]
+	* //discussion about// a topic: implies that discussion was just a conversions, might not have stayed strictly on-topic
+	* //discussion of// a topic: brings to mind a true discussion, going into all sorts of details of the topic (and only that topic)
+	* //discussion on// a topic: more a one-sided discussion, almost a lecture
 
 
 ===== Figure caption =====
