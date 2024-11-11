@@ -8,7 +8,7 @@ Created Montag 01 Juli 2019
 ===== Mayavi =====
 Very smooth 3D plotting environment. To use it on a clean python environment, i.e. with nothing installed, do the following
 	1. create a new (empty) virtual environment, and activate it
-		''$ python 3 -m venv env''
+		''$ python3 -m venv env''
 		''$ source env/bin/activate''
 	2. update pip first (required for the pyqt5 package, which seem to use some stuff outside of the virtual environment)
 		''$ pip install pip --upgrade''
