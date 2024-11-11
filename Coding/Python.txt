@@ -1,9 +1,65 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
+Wiki-Format: zim 0.6
 Creation-Date: 2019-07-01T12:37:52+02:00
 
 ====== Python ======
 Created Montag 01 Juli 2019
+
+===== Mayavi =====
+Very smooth 3D plotting environment. To use it on a clean python environment, i.e. with nothing installed, do the following
+	1. create a new (empty) virtual environment, and activate it
+		''$ python 3 -m venv env''
+		''$ source env/bin/activate''
+	2. update pip first (required for the pyqt5 package, which seem to use some stuff outside of the virtual environment)
+		''$ pip install pip --upgrade''
+	3. install all required packages
+		''$ pip install mayavi''
+		''$ pip install configobj''
+		''$ pip install pyqt5''
+	4. run a simple code snippet to test if it works
+{{{code: lang="python3" linenumbers="True"
+import matplotlib.pyplot as plt
+from mayavi import mlab
+import numpy as np
+
+import matplotlib
+import mayavi
+import sys
+
+# check versions
+print( 'matplotlib version: ', matplotlib.__version__ )
+print( 'mayavi version    : ', mayavi.__version__ )
+print( 'numpy version     : ', np.__version__ )
+print( 'python version    : ', sys.version_info )
+
+# create the grid
+x       = np.linspace(0,np.pi,100)
+y       = np.linspace(0,2*np.pi,200)
+z       = np.linspace(0,2*np.pi,400)
+X, Y, Z = np.meshgrid(x, y, z)
+
+# create the data to be plotted
+dat = np.cos(X) * np.sin(Y) * np.cos(Z)
+
+fig1    = mlab.figure( bgcolor=(1,1,1), 
+                       fgcolor=(0,0,0),
+                       size=(800,600), 
+                       )
+
+# make a 3D contour plot
+cont3d  = mlab.contour3d( dat, 
+                          transparent=True, opacity=.4,
+                          figure=fig1,
+                          colormap='bwr'
+                        )
+#ax1     = mlab.axes( color=(1,1,1), nb_labels=4 )
+mlab.outline(cont3d)
+#mlab.outline()      # <-- in some situations, the axes might not lie on top of outline
+mlab.show()
+
+}}}
+
+
 
 ===== Python virtual environments =====
 The idea is to create an isolated environment for a Python project. This has the advantage that each project has its own dependencies and libraries.
