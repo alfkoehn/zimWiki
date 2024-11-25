@@ -10,17 +10,20 @@ Created Samstag 28 September 2019
 * RSA better than DSA
 
 
-===== Generate RSA keys =====
-'''
+===== Generate key-pair =====
+The current standard is ed25519, create the key-pair first, then add the public key to the server you want to connect to:
+	''$ ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_bla	''(on the server you want to connect to)
+	''$ cat id_ed25519_bla >> ~/.ssh/authorized_keys		''(on the server you want to connect to)
+	''$ ssh-add ~/.ssh/id_ed25519_bla				''(on client you are connecting from)
+
+RSA is deprecated and should not be used any longer, for archiving purposes, these were the steps for RSA key-pair:
+* Generate RSA keys
 	''$ mkdir ~/.ssh''
 	''$ chmod 700 ~/.ssh''
 	''$ ssh-keygen -t rsa -b 4096''
-'''
-
-add email address as a comment at end of key:
-	''$ ssh-keygen -t rsa -b 4096 -C "email@address.com"''
-	
-adding the new key to the ssh-agent might be necessary:
+* add email address as a comment at end of key:
+	''$ ssh-keygen -t rsa -b 4096 -C "email@address.com"''	
+* adding the new key to the ssh-agent might be necessary
 	''$ eval `ssh-agent -s`''
 	''$ ssh-add ~/.ssh/new_private_key_file''
 
