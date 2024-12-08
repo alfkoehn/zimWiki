@@ -5,6 +5,10 @@ Creation-Date: 2021-07-12T21:39:50+02:00
 ====== Food ======
 Created Montag 12 Juli 2021
 
+===== Nutritional supplements =====
+Generally not needed if following a _normal_ diet. Some things might be useful though.
+* Magnesiumbisglycinat (highly concentrated and easy digestable form of magnesium)
+
 ===== Fuel during the run =====
 * water
 * gels
