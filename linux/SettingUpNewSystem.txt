@@ -10,11 +10,11 @@ Created Mittwoch 07 August 2019
 {{{code: lang="sh" linenumbers="True"
 sudo apt-get install git xvnc4viewer mc xournal sshfs nfs-common \
 texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra \
-texmaker conky-all ncview qtiplot radiotray meld diffpdf caca-utils unison-all-gtk stockfish pychess scid \
-vim gnuplot gv imagemagick inkscape irssi pdftk ps2eps rdesktop screen ssvnc mupdf guake \
 texlive-science texlive-base texlive-lang-english texlive-lang-german texlive-games texlive-generic-extra \
 texlive-publishers texlive-xetex pandoc \
-povray jabref lm-sensors youtube-dl chromium-browser p7zip-full gnudatalanguage valgrind \
+texmaker conky-all lm-sensors ncview qtiplot radiotray meld diffpdf caca-utils unison-all-gtk stockfish pychess scid crafty \
+vim gnuplot gv imagemagick inkscape irssi pdftk ps2eps screen ssvnc mupdf \
+povray chromium-browser p7zip-full gnudatalanguage valgrind \
 hdfview h5utils hdf5-tools libhdf5-dev vitables libpng12-dev libpng12-0 \
 graphviz octave octave-doc subversion gnupg2 gnupg-doc enigmail moc xdotool \
 owncloud-client build-essential linux-headers-generic fbreader calibre djview \
@@ -43,25 +43,21 @@ exfat-fuse exfat-utils
 	''radiotray'' 		online radio station player
 	''meld'' 			visualizing difference between 2 files
 	''diffpdf'' 			visualizing difference between 2 pdfs
-	''cacaview'' 		view images in ascii-format
+	''caca-utils'' 		cacaview: view images in ascii-format
 	''unison'' 			GUI for synching
 	''stockfish pychess scid crafty'' 	chess software
-	''vim''
-	''gnuplot''
-	''gv''
+	''vim			''text editor
+	''gnuplot			''command line graphing tool
+	''gv			''viewing postscript and pdf files
 	''imagemagick''
 	''inkscape''
-	''irssi''
-	''pdftk''
+	''irssi			''IRC (and more) chat client for the terminal
+	''pdftk			''splitting and merging pdf files
 	''ps2eps''
-	''rdesktop''
-	''screen''
-	''ssvnc''
-	''mupdf''
-	''guake''
-	''povray''
-	''jabref''
-	''youtube-dl'' 		command line for youtoube video or sound download
+	''screen			''terminal multiplexer
+	''ssvnc			''VNC viewer with additiona encryption
+	''mupdf			''simple and fast pdf viewer
+	''povray			''3D ray tracer
 	''chromium-browser''
 	''p7zip-full'' 		7zipper
 	''gnudatalanguage'' open-source IDL clone
@@ -69,7 +65,6 @@ exfat-fuse exfat-utils
 	''hdfview h5utils hdf5-tools libhdf5-dev vitables''
 	''libpng12-dev libpng12-0''
 	''graphviz''
-	''zotero-standalone''
 	''octave octave-doc''
 	''subversion''
 	''gnupg2 gnupg-doc enigmail''
@@ -94,6 +89,14 @@ exfat-fuse exfat-utils
 	''dvipng'' 			for matplotlib usetex
 	''exfat'' 			mount SD-cards
 	''pandoc'' 			document converter 
+	
+=== Old, no longer included stuff ===
+	''rdesktop		''client for remote desktop access on windows machines (up to Windows Server 2016)
+	''guake			''python-based dropdown terminal for gnome
+	''jabref			''reference manager for scientific literature
+	''youtube-dl'' 		command line for youtoube video or sound download (now inactive, successor is yt-dlp)
+	''zotero-standalone''
+
 
 {{{code: lang="sh" linenumbers="True"
 sudo add-apt-repository ppa:smathot/cogscinl
