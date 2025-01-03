@@ -21,11 +21,14 @@ owncloud-client build-essential linux-headers-generic fbreader calibre djview \
 libimage-exiftool-perl dcraw gpsbabel network-manager-vpnc gparted usb-creator-gtk \
 playonlinux vlc rar gfortran \
 python-pip python3-pip python-dev python3-dev python-doc python3-doc spyder \
-gimp gimp-help-en gimp-data-extras feh \
+gimp gimp-help-en gimp-data-extras feh img2pdf ffmpeg v4l2loopback-dkms viewnior sweethome3d \
 libreoffice-impress \
+hyphen-de hyphen-en-gb fonts-ocr-a fonts-open-sans\
 dvipng \
-crafty \
-exfat-fuse exfat-utils
+exfat-fuse exfat-utils \
+neofetch \
+testdisk \
+fritzing fritzing-parts
 }}}
 
 
@@ -84,12 +87,25 @@ exfat-fuse exfat-utils
 	''gfortran''
 	''python-pip python3-pip python-dev python3-dev spyder''
 	''gimp gimp-help-en gimp-data-extras'' 
-	''feh'': 
-	''libreoffice-impress'':
+	''feh''
+	''viewnior''		simple and fast image viewer
+	''img2pdf''			command line tool for lossless conversion from jpeg to pdf
+	''ffmpeg''			package for record, convert, and modify video & audio files
+	''v4l2loopback-dkms''	allows upgrading individual kernel models, used for creating virtual video recording devices (for e.g. directly capturing/livestreaming videos with video as background)
+	''sweethome3d''		interior design application (also good for basic layout/floor plan)
+	''libreoffice-impress''
+	''hyphen-de hyphen-en-gb	''hyphenation package for German and English
+	''fonts-ocr-a''		ANSI font developed to be readable by computers in the 1960s, still used in payment services
+	''fonts-open-sans''		modern sans-serif font
 	''dvipng'' 			for matplotlib usetex
 	''exfat'' 			mount SD-cards
 	''pandoc'' 			document converter 
+	''neofetch''		system information tool for the bash
+	''testdisk''		file recovery tool
+	''fritzing fritzing-parts''	design electronic circiuts and breadboard views
 	
+	
+
 === Old, no longer included stuff ===
 	''rdesktop		''client for remote desktop access on windows machines (up to Windows Server 2016)
 	''guake			''python-based dropdown terminal for gnome
@@ -101,10 +117,13 @@ exfat-fuse exfat-utils
 {{{code: lang="sh" linenumbers="True"
 sudo add-apt-repository ppa:smathot/cogscinl
 sudo add-apt-repository ppa:atareao/sunflower
+sudo apt-add-repository ppa:yktooo/ppa
 sudo apt-get update
 sudo apt-get install zotero-standalone
 sudo apt-get install sunflower
+sudo apt-get install indicator-sound-switcher
 }}}
+
 
 2. Add dropdown-terminal
 	* in xfce: Settings --> Keyboard --> Application shortcuts --> Add:  "xfce4-terminal --drop-down" --> F12
