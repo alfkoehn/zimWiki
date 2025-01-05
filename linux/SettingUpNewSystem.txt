@@ -8,20 +8,20 @@ Created Mittwoch 07 August 2019
 1. Install software packages
 
 {{{code: lang="sh" linenumbers="True"
-sudo apt-get install git xvnc4viewer mc xournal sshfs nfs-common \
+sudo apt-get install git xvnc4viewer mc ranger xournal xournalpp sshfs nfs-common \
 texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra \
 texlive-science texlive-base texlive-lang-english texlive-lang-german texlive-games texlive-generic-extra \
-texlive-publishers texlive-xetex pandoc \
-texmaker conky-all lm-sensors ncview qtiplot radiotray meld diffpdf caca-utils unison-all-gtk stockfish pychess scid crafty \
+texlive-publishers texlive-xetex pandoc texlive-bibtex-extra biber \
+texmaker conky-all lm-sensors netcdf-bin ncview qtiplot radiotray meld diffpdf caca-utils unison-all-gtk stockfish pychess scid crafty \
 vim gnuplot gv imagemagick inkscape irssi pdftk ps2eps screen ssvnc mupdf \
 povray chromium-browser p7zip-full gnudatalanguage valgrind \
 hdfview h5utils hdf5-tools libhdf5-dev vitables libpng12-dev libpng12-0 \
-graphviz octave octave-doc subversion gnupg2 gnupg-doc enigmail moc xdotool \
+graphviz octave octave-doc subversion gnupg2 gnupg-doc enigmail moc sox xdotool \
 owncloud-client build-essential linux-headers-generic fbreader calibre djview \
 libimage-exiftool-perl dcraw gpsbabel network-manager-vpnc gparted usb-creator-gtk \
 playonlinux vlc rar gfortran \
 python-pip python3-pip python-dev python3-dev python-doc python3-doc spyder \
-gimp gimp-help-en gimp-data-extras feh img2pdf ffmpeg v4l2loopback-dkms viewnior sweethome3d \
+gimp gimp-help-en gimp-data-extras feh img2pdf ffmpeg v4l2loopback-dkms v4l-utils viewnior sweethome3d \
 libreoffice-impress \
 hyphen-de hyphen-en-gb fonts-ocr-a fonts-open-sans\
 dvipng \
@@ -35,12 +35,15 @@ fritzing fritzing-parts
 	''git	'' 	version control system
 	''xvnc4viewer'' 		vnc-viewer
 	''mc'' 				midnight commander, total commander-like in xterm
+	''ranger''			file manager for the console
 	''xournal'' 			annotating pdfs
+	''xournalpp''		modern and more feature-rich version of xournal
 	''sshfs'' 			mounting remote distance folders (what about fuse-utils ??)
 	''nfs-common'' 		mounting nfs over network
 	''texlive-*'' 		latex
 	''texmaker'' 		very nice LaTeX-editor
 	''conky-all lm-sensors'' 	nice system monitor
+	''netcdf-bin''		reading and writing NetCDF files
 	''ncview'' 			netcdf-viewer
 	''qtiplot'' 			origin-like 
 	''radiotray'' 		online radio station player
@@ -63,7 +66,7 @@ fritzing fritzing-parts
 	''povray			''3D ray tracer
 	''chromium-browser''
 	''p7zip-full'' 		7zipper
-	''gnudatalanguage'' open-source IDL clone
+	''gnudatalanguage'' 	open-source IDL clone
 	''valgrind''
 	''hdfview h5utils hdf5-tools libhdf5-dev vitables''
 	''libpng12-dev libpng12-0''
@@ -72,7 +75,7 @@ fritzing fritzing-parts
 	''subversion''
 	''gnupg2 gnupg-doc enigmail''
 	''moc'' 				music player for the terminal
-	''sunflower''
+	''sox''				powerful audio converter for command line
 	''xdotool'' 			move mouse per command line (for noSleep)
 	''owncloud-client''
 	''build-essential linux-headers-generic''
@@ -81,7 +84,7 @@ fritzing fritzing-parts
 	''network-manager-vpnc''
 	''gparted'' 
 	''usb-creator-gtk''
-	''playonlinux'' 
+	''playonlinux'' 		GUI for Wine-stuff (makes installing windows-applications easier)
  	''vlc''
 	''rar''
 	''gfortran''
@@ -92,6 +95,7 @@ fritzing fritzing-parts
 	''img2pdf''			command line tool for lossless conversion from jpeg to pdf
 	''ffmpeg''			package for record, convert, and modify video & audio files
 	''v4l2loopback-dkms''	allows upgrading individual kernel models, used for creating virtual video recording devices (for e.g. directly capturing/livestreaming videos with video as background)
+	''v4l-utils''		handling media devices contained in Video4Linux library
 	''sweethome3d''		interior design application (also good for basic layout/floor plan)
 	''libreoffice-impress''
 	''hyphen-de hyphen-en-gb	''hyphenation package for German and English
@@ -106,7 +110,7 @@ fritzing fritzing-parts
 	
 	
 
-=== Old, no longer included stuff ===
+== Old, no longer included stuff ==
 	''rdesktop		''client for remote desktop access on windows machines (up to Windows Server 2016)
 	''guake			''python-based dropdown terminal for gnome
 	''jabref			''reference manager for scientific literature
@@ -118,12 +122,17 @@ fritzing fritzing-parts
 sudo add-apt-repository ppa:smathot/cogscinl
 sudo add-apt-repository ppa:atareao/sunflower
 sudo apt-add-repository ppa:yktooo/ppa
+sudo add-apt-repository ppa:jaap.karssenberg/zim
 sudo apt-get update
 sudo apt-get install zotero-standalone
 sudo apt-get install sunflower
 sudo apt-get install indicator-sound-switcher
+sudo apt-get install zim
 }}}
 
+
+== more software from different repos ==
+	''darktable''		raw-image file viewer, modifier & export-tool
 
 2. Add dropdown-terminal
 	* in xfce: Settings --> Keyboard --> Application shortcuts --> Add:  "xfce4-terminal --drop-down" --> F12
