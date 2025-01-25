@@ -1,5 +1,5 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
+Wiki-Format: zim 0.6
 Creation-Date: 2019-08-07T00:03:41+02:00
 
 ====== SettingUpNewSystem ======
@@ -32,7 +32,7 @@ fritzing fritzing-parts
 }}}
 
 
-	''git	'' 	version control system
+	''git''	 	version control system
 	''xvnc4viewer'' 		vnc-viewer
 	''mc'' 				midnight commander, total commander-like in xterm
 	''ranger''			file manager for the console
@@ -52,18 +52,18 @@ fritzing fritzing-parts
 	''caca-utils'' 		cacaview: view images in ascii-format
 	''unison'' 			GUI for synching
 	''stockfish pychess scid crafty'' 	chess software
-	''vim			''text editor
-	''gnuplot			''command line graphing tool
-	''gv			''viewing postscript and pdf files
+	''vim''			text editor
+	''gnuplot''			command line graphing tool
+	''gv''			viewing postscript and pdf files
 	''imagemagick''
 	''inkscape''
-	''irssi			''IRC (and more) chat client for the terminal
-	''pdftk			''splitting and merging pdf files
+	''irssi''			IRC (and more) chat client for the terminal
+	''pdftk''			splitting and merging pdf files
 	''ps2eps''
-	''screen			''terminal multiplexer
-	''ssvnc			''VNC viewer with additiona encryption
-	''mupdf			''simple and fast pdf viewer
-	''povray			''3D ray tracer
+	''screen''			terminal multiplexer
+	''ssvnc''			VNC viewer with additiona encryption
+	''mupdf''			simple and fast pdf viewer
+	''povray''			3D ray tracer
 	''chromium-browser''
 	''p7zip-full'' 		7zipper
 	''gnudatalanguage'' 	open-source IDL clone
@@ -79,7 +79,7 @@ fritzing fritzing-parts
 	''xdotool'' 			move mouse per command line (for noSleep)
 	''owncloud-client''
 	''build-essential linux-headers-generic''
-	''calibre fbreader djview	''ebook reader
+	''calibre fbreader djview''	ebook reader
 	''libimage-exiftool-perl dcraw gpsbabel'' 	gps-tagging images
 	''network-manager-vpnc''
 	''gparted'' 
@@ -98,7 +98,7 @@ fritzing fritzing-parts
 	''v4l-utils''		handling media devices contained in Video4Linux library
 	''sweethome3d''		interior design application (also good for basic layout/floor plan)
 	''libreoffice-impress''
-	''hyphen-de hyphen-en-gb	''hyphenation package for German and English
+	''hyphen-de hyphen-en-gb''	hyphenation package for German and English
 	''fonts-ocr-a''		ANSI font developed to be readable by computers in the 1960s, still used in payment services
 	''fonts-open-sans''		modern sans-serif font
 	''dvipng'' 			for matplotlib usetex
@@ -111,9 +111,9 @@ fritzing fritzing-parts
 	
 
 == Old, no longer included stuff ==
-	''rdesktop		''client for remote desktop access on windows machines (up to Windows Server 2016)
-	''guake			''python-based dropdown terminal for gnome
-	''jabref			''reference manager for scientific literature
+	''rdesktop''		client for remote desktop access on windows machines (up to Windows Server 2016)
+	''guake''			python-based dropdown terminal for gnome
+	''jabref''			reference manager for scientific literature
 	''youtube-dl'' 		command line for youtoube video or sound download (now inactive, successor is yt-dlp)
 	''zotero-standalone''
 
@@ -179,7 +179,20 @@ sudo apt-get install zim
 	or via command line (should work):
 	''$ syndaemon -i 1 -d -t -K''
 	
-10. Copy thunderbird profile from old setup
+10. Enable tapping on touchpad (if not working by default)
+	/usr/share/X11/xorg.conf.d/40-libinput.conf
+
+'''
+Section "InputClass"
+	Identifier "libinput touchpad catchall"
+	MatchIsTouchpad "on"
+	MatchDevicePath "/dev/input/event*"
+	Driver "libinput"
+	Option "Tapping" "on"
+EndSection
+'''
+
+11. Copy thunderbird profile from old setup
 	''$ tar -czvf Thunderbird_backup.tar.gz .thunderbird/''
 	''$ tar -xzvf Thunderbird_backup.tar.gz''
 
@@ -189,19 +202,6 @@ sudo apt-get install zim
 		   --> Startpage to search box
 		   --> Xmarks (for syncing bookmarks)
 
-12. Install dropbox
-	''$ cd ~ && wget -0 - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -''
-	''$ ~/.dropbox-dist/dropboxd''
-	* if dropbox-icon is not working properly:
-		''$ sudo apt-get install nautilus-dropbox''
-		''$ dropbox stop && dbus-launch dropbox start''
-	Dropbox-icon --> Preferences --> Disable "Start Dropbox on system startup"
-	XFCE-Settings --> Session and Startup --> Application Autostart --> Add
-		Name: Dropbox
-		Command: dbus-launch dropbox start -i
-		(Check that it is enabled in list)
-		OR: vi /usr/share/applications/dropbox.desktop
-			replace "Exec=dropbox start -i" with "Exec=dbus-launch dropbox start"
 
 13. Install VMware
 	* install necessary packages
@@ -219,3 +219,21 @@ sudo apt-get install zim
 15. Enable Ctrl-Alt-Backspace (reboot graphical environment)
 	''$ sudo vi /etc/default/keyboard'' 
 		  change  ''XKBOPTIONS=""''  to  ''XKBOPTIONS="terminate:ctrl_alt_bksp"''
+
+
+=== Old stuff no longer used ===
+* Install dropbox
+	''$ cd ~ && wget -0 - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -''
+	''$ ~/.dropbox-dist/dropboxd''
+	* if dropbox-icon is not working properly:
+		''$ sudo apt-get install nautilus-dropbox''
+		''$ dropbox stop && dbus-launch dropbox start''
+	Dropbox-icon --> Preferences --> Disable "Start Dropbox on system startup"
+	XFCE-Settings --> Session and Startup --> Application Autostart --> Add
+		Name: Dropbox
+		Command: dbus-launch dropbox start -i
+		(Check that it is enabled in list)
+		OR: vi /usr/share/applications/dropbox.desktop
+			replace "Exec=dropbox start -i" with "Exec=dbus-launch dropbox start"
+
+
