@@ -1,5 +1,5 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
+Wiki-Format: zim 0.6
 Creation-Date: 2020-05-07T13:20:09+02:00
 
 ====== Physics ======
@@ -30,3 +30,13 @@ Created Donnerstag 07 Mai 2020
 * electronic circuit that generates a range of frequencies from a single reference frequency
 * uses frequency multiplication and division, direct digital synthesis, frequency mixing, and PLLs to generate the required frequencies
 * stability and accuracy of output related to stability and accuracy of reference frequency input, which are of provided by very stable sources (crystal oscillators)
+
+
+===== Quadrature signals =====
+* two signals are in quadrature, when they are 90 degrees out of phase (corresponding to 1/4 cycle, hence quadrature)
+* cosine and sine waves are in quadrature
+* amplitude of "in-phase" signal is referred to as I, amplitude of "90 degrees shifted" signal is referred to as Q
+* adding quadrature signals
+	* if I and Q have same frequency and amplitude, i.e. vary identically, the amplitude of the sum varies simply with a phase shift
+	* if I and Q vary differently, phase and amplitude of sum varies, thus resulting in amplitude and phase modulation of sum
+* phasor diagram: Q value corresponds to amplitude, I to phase/angle
