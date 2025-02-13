@@ -195,6 +195,9 @@ EndSection
 11. Copy thunderbird profile from old setup
 	''$ tar -czvf Thunderbird_backup.tar.gz .thunderbird/''
 	''$ tar -xzvf Thunderbird_backup.tar.gz''
+	* change time and date format of emails: Config editor
+		* ''intl.date_time.pattern_override.date_short''  , set as string and set to ''yyyy-MM-dd'' 
+		* ''intl.date_time.pattern_override.time_short'' , set as string and set to ''HH:mm''
 
 12. Change Firefox settings
 	  Preferences --> History --> custom settings --> Clear history when Firefox closes
