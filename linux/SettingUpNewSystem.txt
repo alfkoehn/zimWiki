@@ -196,12 +196,11 @@ EndSection
 	''$ tar -czvf Thunderbird_backup.tar.gz .thunderbird/''
 	''$ tar -xzvf Thunderbird_backup.tar.gz''
 
-11. Change Firefox settings
+12. Change Firefox settings
 	  Preferences --> History --> custom settings --> Clear history when Firefox closes
 	  Add-ons --> LastPass
 		   --> Startpage to search box
 		   --> Xmarks (for syncing bookmarks)
-
 
 13. Install VMware
 	* install necessary packages
@@ -219,6 +218,13 @@ EndSection
 15. Enable Ctrl-Alt-Backspace (reboot graphical environment)
 	''$ sudo vi /etc/default/keyboard'' 
 		  change  ''XKBOPTIONS=""''  to  ''XKBOPTIONS="terminate:ctrl_alt_bksp"''
+
+16. In case of high-resolution screen on a laptop and using XFCE, everything might appear much too small (fonts, symbols etc.)
+	* Settings -> Appearance -> Fonts -> Custom DPI Setting, maybe not 96 but 110 or 120
+	* Right click on Panel -> Panel preferences, increase row size
+	* Settings -> Window Manager, maybe default-hdpi or Default xhdpi theme
+	* Settings -> Appearance -> Settings: Try Window Scaling x2. Note: log-out and log-in again to see the proper effect (otherwise is simply appears to be too large)
+	* edit ''/etc/default/grub'' and change ''GRUB_GXFMODE'' to ''640x480''   
 
 
 === Old stuff no longer used ===
