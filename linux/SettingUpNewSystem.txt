@@ -230,7 +230,7 @@ EndSection
 
 17. Replace some snap software by DEB packages
 	* due to sandboxing features of snap, some software might not work properly as access to sshfs-mounted folder is no longer possible
-	* Install Thunderbird DEB
+	* Thunderbird
 		* uninstall thunderbird snap
 			* sudo snap remove --purge thunderbird && sudo apt remove thunderbird 
 		* add mozilla team PPA
@@ -252,6 +252,8 @@ Pin-Priority: -1
 		* unattanded upgrades should be disabled, one option to disable them specifially for thunderbird is
 			* echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-thunderbird
 		* Note: undo all the above by using PPA Purge and remove above mentioned pin
+	* Firefox
+		* see https://www.omgubuntu.co.uk/2022/04/how-to-install-firefox-deb-apt-ubuntu-22-04
 
 === Old stuff no longer used ===
 * Install dropbox
