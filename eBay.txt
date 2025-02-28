@@ -1,0 +1,17 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2025-02-28T19:38:38+01:00
+
+====== eBay ======
+Created Freitag 28 Februar 2025
+
+Selling used stuff on eBay or kleinanzeigen or some similar portal, the seller should add the following sentence to avoid warenty issues:
+**Der Verkauf erfolgt unter Ausschluss jeglicher Sachmängelhaftung**. 
+Only this sentence is legally okay, not okay is the often used version: //Nach neuem EU-Recht muss ich als privater Verkäufer darauf hinweisen, dass ich keine Garantie und Gewährleistung übernehmen kann//.
+
+If sellers are more or less regularly selling stuff, they should add the following sentence (in addition): 
+**Die Haftung auf Schadenersatz wegen Verletzungen von Gesundheit, Körper oder Leben und grob fahrlässiger und/oder vorsätzlicher Verletzungen meiner Pflichten als Verkäufer bleibt davon unberührt**. 
+
+Source: 
+	* https://www.test.de/Verkauf-im-Internet-Haftung-ausschliessen-als-Verkaeufer-4533698-0/
+	* https://www.techbook.de/shop-pay/shops-marktplaetze/kleinanzeigen-falscher-satz-haftung
