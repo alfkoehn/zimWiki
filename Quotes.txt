@@ -1,5 +1,5 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
+Wiki-Format: zim 0.6
 Creation-Date: 2023-10-04T09:09:22+02:00
 
 ====== Quotes ======
@@ -15,3 +15,7 @@ Jenny Hoffman, Interniew with nature, https://www.nature.com/articles/d41586-024
 
 //Simply preposterous.//
 Anthony Fauci, the face of the US pandemic response during both the Trump and Biden administrations, dismissed allegations at a hearing of US lawmakers that his agency funded research that created the COVID-19 pandemic or that he coordinated a cover-up of the pandemic’s origins, https://www.nature.com/articles/d41586-024-01657-6
+
+
+//Knowledge is like a shark: it must keep moving to stay alive.//
+César Hidalgo, article in Financial Times "How economies forget", https://www.ft.com/content/fba0f841-5bfe-49b5-b686-6bc7732837bb
