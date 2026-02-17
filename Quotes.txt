@@ -23,3 +23,7 @@ César Hidalgo, article in Financial Times "How economies forget", https://www.f
 
 //Pour ce qui est de l'avenir, il ne s'agit pas de le prévoir, mais de le rendre possible. (As for the future, your task is not to foresee it, but to enable it.)//
 Antoine de Saint-Exupéry, Citadelle (1948)
+
+
+//For a successful technology, reality must take precedence over public relations, for Nature cannot be fooled.//
+Richard Feynman, report on the shuttle Challenger accident in 1986
