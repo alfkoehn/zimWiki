@@ -1,5 +1,5 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
+Wiki-Format: zim 0.6
 Creation-Date: 2019-09-27T22:02:10+02:00
 
 ====== pdf ======
@@ -33,3 +33,6 @@ Created Freitag 27 September 2019
 		repair pdf
 	''$ qpdf --linearize infile.pdf outfile.pdf''
 		linearize pdf
+	''$ qpdf --compress-streams=y --decode-level=generalized --recompress-flate --compression-level=9 --optimize-images --object-streams=generate''
+		compress pdf
+
