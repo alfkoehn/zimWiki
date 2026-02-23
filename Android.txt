@@ -1,5 +1,5 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
+Wiki-Format: zim 0.6
 Creation-Date: 2021-03-26T20:45:06+01:00
 
 ====== Android ======
@@ -43,4 +43,49 @@ Created Freitag 26 März 2021
 
 	* mirror only part of the screen:
 		''$ scrcpy --crop 2000:1200:0:0''   		# 2000x1200 at offset (0,0), where (0,0) is at top
+
+===== Threema =====
+1. Data restore not working due to **invalid backup**, error message might contain "//Zip Headers not found.//"
+	a. extract and compress again with 7zip (worked for me)
+		1. extract backup
+			 ''7z x threema-backup_*.zip''
+		2. compress with password (same password as before), take care to not compress also the original zip file itself
+			''7z a -p -mem=AES256 -tzip ../threema-backup_<original_filename>.zip *''
+		3. check compression and encyption
+			''7z l -slt threema-backup_<original_filename>.zip''
+		4. copy new zip file to phone and use this instead
+	b. test zip file for integrity
+		''7z t threema-backup_<original_filename>.zip''
+		if error "//Unexpected end of archive//", and then "//Data Error in encrypted file. ... nonces.csv//", then  following solutions:
+		- extract and compress again (see above), check new file for integrity
+		- nonces.csv can, in principle, be removed, threema will recreate it (old "EinmalCodes" are lost)
+	c. not use QuickShare or similar tools to transfer large files, you might loose something along the way
+	d. also important
+		1. making backup
+			a. enable developer options (Settings → Phone → Build number, click several times on it)
+			b. enable "stay awake (while charging)" in developer options
+			c. plug-in a charger
+			d. make backup, keep display active!
+			e. transfer backup via ''adb pull'' or normal file transfer via PC
+			f. "stay awake (while charging)" deactivate
+		2. restore backup (was important for me)
+			a. enable "stay awake (while charging)" in developer options
+			b. plug-in charger
+			c. transfer backup file via ''adb push'' or normal file transfer via PC
+			d. restore backup with threema, keep display active!
+			e. "stay awake (while charging)" deactivate
+		3. note: open threema while doing backup/restore could be important and helpful, too!
+	e. do full backup and backup with no media, then extract and merge them, replacing corrupt files from one with the other, might also work
+	f. Empty cache helps something, too
+		Einstellungen → Apps → threema → Speicherplatz → Cache leeren (only cache!)
+
+
+
+
+
+
+
+
+
+
 
