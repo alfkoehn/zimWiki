@@ -1,0 +1,46 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2026-02-24T15:56:17+01:00
+
+====== Academia ======
+Created Tuesday 24 February 2026
+
+===== How to read a paper efficiently =====
+1. Read the title
+2. Read the abstract
+3. Read the conclusion
+4. Read the paper
+	a. Look at tables & figures (and their captions)
+	b. Read the introduction
+	c. Read results, discussions, methodology
+5. Take notes while reading the paper, ideally on a notebook or an index card
+	//"The faintes writing is better than the best memory"//
+
+
+===== How to write a paper =====
+1. Producing a first draft is important
+2. Suppress the urge to procrastinate
+3. Before start writing the paper
+	a. review and renew your literature search
+	b. determine the audience (research paper, tutorial, review, which journal)
+		reviewers are the gatekeepers, keep that in mind
+4. Initial draft is creative part, don't correct and edit as you go (it's tempting), produce complete first draft is important
+5. The "Algorithm"
+	a. get started, don't procrastinate
+	b. create an outline (by making list of all figures and tables, put them in paper in correct order)
+	c. do not write introduction now (it's hardest part to write)
+	d. begin with experimental section (it's easiest part)
+	e. results and discussion (following figures and tables already there)
+	f. write conclusions (could be in numbered format, makes it easy for the reader)
+	g. write introduction (why/what is purpose, collect relevant essential background information)
+	h. fill-in references according to your notes you made while writing
+6. Final notes
+	a. review journal requirements
+	b. Some references
+		1. "The Elements of Style", Strunk & White
+		2. "Skillfull writing of an awful research paper", Murray, Anal. Chem. 2011, 83, 633
+
+Source: https://www.youtube.com/watch?v=UY7sVKJPTMA
+
+
+
