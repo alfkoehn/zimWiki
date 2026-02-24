@@ -1,5 +1,5 @@
 Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
+Wiki-Format: zim 0.6
 Creation-Date: 2019-11-18T23:53:49+01:00
 
 ====== NuclearFusion ======
@@ -47,10 +47,13 @@ Created Montag 18 November 2019
 	* Quantum fusion power
 	* Lotus cube is a cold fusion reactor
 	* Dr. Melanie Windridge contributed as science consultant
+12. //Fallout// (2024-)
+	* Cold fusion 
+	* Vault-Tec buried cold fusion and any hint on its existence, only used internally, bought companies working on cold fusion pre-war to keep it secret and prevent peaceful solution to war
 
 
 ===== Fusion in computer games =====
-1. //SimCity 2000 //(1994)
+1. //SimCity 2000// (1994)
 	* fusion power plant is ultimate power plant in SimCity 2000, SimCity 3000, and SimCity: Cities of Tomorrow
 	* looks different in each of the Sim-titles where it appears
 	* last power plant to unlock
