@@ -43,4 +43,27 @@ Created Tuesday 24 February 2026
 Source: https://www.youtube.com/watch?v=UY7sVKJPTMA
 
 
+===== Abstract, Summary, and Conclusion in a Paper =====
+**Abstract:** 
+	* written for potentially interested reader
+	* read first by everybody
+	* should therefore give impression what paper will be about
+	* don't use abbreviations or jargon
+	* should be understandable for non-specialists
+	* potential 
+
+**Conclusion:**
+	* should conclude the paper
+	* written for reader who has read the paper ⇒ don't write "//we have shown A by using method B//" (this is written in the paper), rather tell reader what they can do with new knowledge, answer "//so what?//"
+
+**Summary:**
+	* sums up the paper
+	* try to avoid jargon
+	* use buzzwords (probably followed by some explanation)
+	* go from general to specific
+	* answer questions that may have been raised in the abstract
+	* don't be afraid of layman's terms
+
+Source: https://academia.stackexchange.com/a/9307/54593
+
 
