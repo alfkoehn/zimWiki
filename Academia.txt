@@ -50,11 +50,13 @@ Source: https://www.youtube.com/watch?v=UY7sVKJPTMA
 	* should therefore give impression what paper will be about
 	* don't use abbreviations or jargon
 	* should be understandable for non-specialists
-	* potential 
+	* can be defined as a summary of information in a document
 
 **Conclusion:**
 	* should conclude the paper
 	* written for reader who has read the paper ⇒ don't write "//we have shown A by using method B//" (this is written in the paper), rather tell reader what they can do with new knowledge, answer "//so what?//"
+	* offer insights or implications based on discussions
+	* can reflect reader's perspective (i.e. interpretation)
 
 **Summary:**
 	* sums up the paper
@@ -63,6 +65,7 @@ Source: https://www.youtube.com/watch?v=UY7sVKJPTMA
 	* go from general to specific
 	* answer questions that may have been raised in the abstract
 	* don't be afraid of layman's terms
+	* provides overview without without personal interpretation
 
 Source: https://academia.stackexchange.com/a/9307/54593
 
