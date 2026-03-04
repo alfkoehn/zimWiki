@@ -1,0 +1,38 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.6
+Creation-Date: 2026-03-04T21:12:11+01:00
+
+====== Plants ======
+Created Wednesday 04 March 2026
+
+===== Philodendron =====
+* originally from rain forest in South America
+	* ⇒ warm temperatures, high humidity, indirect light
+* belongs to Araceae family
+* many different philodendron species, e.g. Philodendron Monstera (Fensterblatt), Philodendron Xanadu or Philodendron Scandens
+* many philodendron species are climbing species, benefit greatly from climbing aid as moss stick or coconut stick ⇒ larger and more stable leaves (otherwise also ok)
+* watering
+	* soil should always be somewhat wet
+	* does not need much water
+	* sensitive against over-watering
+	* water when soil begins to dry out
+	* stick finger into soil to test if it's still wet
+	* spray species with aerial roots regularly (once per week)
+* light
+	* no direct sunlight
+	* a few meters away from window optimal
+	* can even be in hallways with no windows
+	* too much light can lead to burnings, too little light can lead to small leaves and long unstable shoots
+* soil
+	* loose and well aerated
+	* mixtures of soil, bark pieces (Rindenstücke), coconut chips, and mineral components such as perlite ensure that roots always receive sufficient oxygen and that moisture is released evenly
+	* particularly important to avoid waterlogging, philodendrons are especially sensitive to this
+* Propagation
+	* easy to propagate from cuttings
+	* cut-off piece of shoot with at least one leaf and a node (small knot from which roots emerge)
+	* put cutting then directly in water or into loose substrate
+	* warm bright location without direct sunlight
+	* will root within a few weeks
+* problems
+	* yellow leaves often due to over-watering
+	* dry leaf edges or new leaves not opening properly due to too dry air (often in winter), 50-70% optimal (place in kitchen or in groups)
